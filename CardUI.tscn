@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://bplpwpncwxjh4"]
+
+[ext_resource type="Script" uid="uid://dpm51wtebqca4" path="res://CardUI.gd" id="1_kwle2"]
+[ext_resource type="Texture2D" uid="uid://dux2bf8i4324q" path="res://Asset/card 1.jpg" id="2_qh7ip"]
+
+[node name="CardUI" type="PanelContainer"]
+custom_minimum_size = Vector2(120, 170)
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_kwle2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="CardImage" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(80, 100)
+layout_mode = 2
+texture = ExtResource("2_qh7ip")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2

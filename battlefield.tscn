@@ -1,0 +1,183 @@
+[gd_scene load_steps=8 format=3 uid="uid://c383wxvj0hh7q"]
+
+[ext_resource type="Texture2D" uid="uid://uidjcdf62vif" path="res://Asset/charlotte-removebg-preview.png" id="1_4y0t7"]
+[ext_resource type="PackedScene" uid="uid://bplpwpncwxjh4" path="res://CardUI.tscn" id="1_fxwnf"]
+[ext_resource type="Script" uid="uid://1mh1lv3r2q5c" path="res://BattleManager.gd" id="1_vsh2u"]
+[ext_resource type="Texture2D" uid="uid://cmpprcr84ive7" path="res://Asset/1.png" id="2_fxwnf"]
+[ext_resource type="Texture2D" uid="uid://ccclxldrmru4w" path="res://Asset/background 1.jpg" id="3_tkjg1"]
+[ext_resource type="Script" uid="uid://bwy2biobw6kaq" path="res://Character.gd" id="4_y8d5v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vsh2u"]
+size = Vector2(311.5, 317.5)
+
+[node name="Battlefield" type="Node2D"]
+script = ExtResource("1_vsh2u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(579.25, 325)
+scale = Vector2(1.7017673, 1.5523809)
+texture = ExtResource("3_tkjg1")
+
+[node name="Background" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 1)
+
+[node name="PlayerTeam" type="Node2D" parent="."]
+
+[node name="Beatrix" type="Node2D" parent="PlayerTeam"]
+script = ExtResource("4_y8d5v")
+base_speed = 12
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerTeam/Beatrix"]
+position = Vector2(202, 348)
+texture = ExtResource("1_4y0t7")
+
+[node name="HealthBar" type="ProgressBar" parent="PlayerTeam/Beatrix"]
+offset_left = 157.0
+offset_top = 177.0
+offset_right = 251.0
+offset_bottom = 204.0
+value = 100.0
+
+[node name="ShieldLabel" type="Label" parent="PlayerTeam/Beatrix"]
+offset_left = 227.0
+offset_top = 217.0
+offset_right = 288.0
+offset_bottom = 240.0
+text = "Shield:0"
+
+[node name="Area2D" type="Area2D" parent="PlayerTeam/Beatrix"]
+position = Vector2(88, 133)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTeam/Beatrix/Area2D"]
+visible = false
+position = Vector2(113, 218)
+shape = SubResource("RectangleShape2D_vsh2u")
+
+[node name="Charlotte" type="Node2D" parent="PlayerTeam"]
+script = ExtResource("4_y8d5v")
+base_speed = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerTeam/Charlotte"]
+position = Vector2(387, 352)
+texture = ExtResource("1_4y0t7")
+
+[node name="HealthBar" type="ProgressBar" parent="PlayerTeam/Charlotte"]
+offset_left = 342.0
+offset_top = 181.0
+offset_right = 436.0
+offset_bottom = 208.0
+value = 100.0
+
+[node name="ShieldLabel" type="Label" parent="PlayerTeam/Charlotte"]
+offset_left = 412.0
+offset_top = 221.0
+offset_right = 473.0
+offset_bottom = 244.0
+text = "Shield:0"
+
+[node name="Area2D" type="Area2D" parent="PlayerTeam/Charlotte"]
+position = Vector2(273, 137)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTeam/Charlotte/Area2D"]
+visible = false
+position = Vector2(113, 218)
+shape = SubResource("RectangleShape2D_vsh2u")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hand" type="HBoxContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.95000005
+anchor_right = 0.505
+anchor_bottom = 0.96000004
+offset_left = -57.0
+offset_top = -110.60004
+offset_right = 59.23999
+offset_bottom = 31.919983
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 15
+
+[node name="CardUi" parent="CanvasLayer/Hand" instance=ExtResource("1_fxwnf")]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 1035.0
+offset_top = 493.0
+offset_right = 1138.0
+offset_bottom = 538.0
+text = "Restart"
+
+[node name="ActionPanel" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BeatrixBar" type="ProgressBar" parent="CanvasLayer/ActionPanel"]
+layout_mode = 2
+value = 100.0
+
+[node name="CharlotteBar" type="ProgressBar" parent="CanvasLayer/ActionPanel"]
+layout_mode = 2
+value = 100.0
+
+[node name="EnemyBar" type="ProgressBar" parent="CanvasLayer/ActionPanel"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+value = 100.0
+
+[node name="EnergyLabel" type="Label" parent="CanvasLayer"]
+offset_left = 1023.0
+offset_top = 567.0
+offset_right = 1103.0
+offset_bottom = 606.0
+
+[node name="EndTurnButton" type="Button" parent="CanvasLayer"]
+offset_left = 863.0
+offset_top = 503.0
+offset_right = 982.0
+offset_bottom = 534.0
+text = "End Turn"
+
+[node name="EnemyTeam" type="Node2D" parent="."]
+
+[node name="Enemy" type="Node2D" parent="EnemyTeam"]
+position = Vector2(799, -6)
+script = ExtResource("4_y8d5v")
+is_enemy = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyTeam/Enemy"]
+position = Vector2(134.53452, 335)
+scale = Vector2(-0.97070533, 0.83933353)
+texture = ExtResource("2_fxwnf")
+
+[node name="HealthBar" type="ProgressBar" parent="EnemyTeam/Enemy"]
+offset_left = 47.534546
+offset_top = 164.0
+offset_right = 141.53455
+offset_bottom = 191.0
+theme_override_colors/font_color = Color(0.79573834, 0, 0.21928853, 1)
+theme_override_colors/font_outline_color = Color(0.8838147, 0.33180755, 1.92523e-07, 1)
+step = 1.0
+value = 100.0
+
+[node name="ShieldLabel" type="Label" parent="EnemyTeam/Enemy"]
+offset_left = 117.534546
+offset_top = 204.0
+offset_right = 178.53455
+offset_bottom = 227.0
+text = "Shield:0"
+
+[node name="Area2D" type="Area2D" parent="EnemyTeam/Enemy"]
+position = Vector2(-21.465454, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTeam/Enemy/Area2D"]
+visible = false
+position = Vector2(170.25, 209.25)
+shape = SubResource("RectangleShape2D_vsh2u")
+
+[connection signal="pressed" from="CanvasLayer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
