@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://bm7cgrmasembw"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://bm7cgrmasembw"]
 
 [ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://CardData.gd" id="1_kc8nw"]
+[ext_resource type="Texture2D" uid="uid://enhis1321fhk" path="res://Asset/fireball.jpg" id="1_m0xy3"]
 
 [resource]
 script = ExtResource("1_kc8nw")
+card_image = ExtResource("1_m0xy3")
 damage = 50
 energy_cost = 2
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

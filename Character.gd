@@ -10,10 +10,17 @@ var current_health: int = 100
 var current_shield: int = 0
 var action_meter: float = 0.0 # This fills up from 0 to 100
 
+var is_stunned: bool = false # NEW: Tracks if the character skips a turn
+
 # These must exist as children inside each character node!
 @onready var hp_bar = $HealthBar
 @onready var shield_label = $ShieldLabel
 
+# Add this function to handle healing
+func heal(amount: int):
+	current_health = min(100, current_health + amount)
+	update_ui()
+	
 func _ready():
 	hp_bar.max_value = 100
 	hp_bar.value = current_health

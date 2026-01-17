@@ -19,7 +19,6 @@ scale = Vector2(1.7017673, 1.5523809)
 texture = ExtResource("3_tkjg1")
 
 [node name="Background" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(0, 1)
 
 [node name="PlayerTeam" type="Node2D" parent="."]
@@ -29,17 +28,19 @@ script = ExtResource("4_y8d5v")
 base_speed = 12
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerTeam/Beatrix"]
-position = Vector2(202, 348)
+position = Vector2(255, 314)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("1_4y0t7")
 
 [node name="HealthBar" type="ProgressBar" parent="PlayerTeam/Beatrix"]
-offset_left = 157.0
-offset_top = 177.0
-offset_right = 251.0
-offset_bottom = 204.0
+offset_left = 205.0
+offset_top = 186.0
+offset_right = 299.0
+offset_bottom = 213.0
 value = 100.0
 
 [node name="ShieldLabel" type="Label" parent="PlayerTeam/Beatrix"]
+visible = false
 offset_left = 227.0
 offset_top = 217.0
 offset_right = 288.0
@@ -59,21 +60,23 @@ script = ExtResource("4_y8d5v")
 base_speed = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerTeam/Charlotte"]
-position = Vector2(387, 352)
+position = Vector2(359, 421)
+scale = Vector2(0.7, 0.685)
 texture = ExtResource("1_4y0t7")
 
 [node name="HealthBar" type="ProgressBar" parent="PlayerTeam/Charlotte"]
-offset_left = 342.0
-offset_top = 181.0
-offset_right = 436.0
-offset_bottom = 208.0
+offset_left = 313.0
+offset_top = 291.0
+offset_right = 407.0
+offset_bottom = 318.0
 value = 100.0
 
 [node name="ShieldLabel" type="Label" parent="PlayerTeam/Charlotte"]
-offset_left = 412.0
-offset_top = 221.0
-offset_right = 473.0
-offset_bottom = 244.0
+visible = false
+offset_left = 395.0
+offset_top = 334.0
+offset_right = 456.0
+offset_bottom = 357.0
 text = "Shield:0"
 
 [node name="Area2D" type="Area2D" parent="PlayerTeam/Charlotte"]
@@ -106,28 +109,11 @@ layout_mode = 2
 
 [node name="RestartButton" type="Button" parent="CanvasLayer"]
 unique_name_in_owner = true
-offset_left = 1035.0
-offset_top = 493.0
-offset_right = 1138.0
-offset_bottom = 538.0
+offset_left = 1050.0
+offset_top = 18.0
+offset_right = 1153.0
+offset_bottom = 63.0
 text = "Restart"
-
-[node name="ActionPanel" type="VBoxContainer" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BeatrixBar" type="ProgressBar" parent="CanvasLayer/ActionPanel"]
-layout_mode = 2
-value = 100.0
-
-[node name="CharlotteBar" type="ProgressBar" parent="CanvasLayer/ActionPanel"]
-layout_mode = 2
-value = 100.0
-
-[node name="EnemyBar" type="ProgressBar" parent="CanvasLayer/ActionPanel"]
-custom_minimum_size = Vector2(0, 1)
-layout_mode = 2
-value = 100.0
 
 [node name="EnergyLabel" type="Label" parent="CanvasLayer"]
 offset_left = 1023.0
@@ -136,10 +122,10 @@ offset_right = 1103.0
 offset_bottom = 606.0
 
 [node name="EndTurnButton" type="Button" parent="CanvasLayer"]
-offset_left = 863.0
-offset_top = 503.0
-offset_right = 982.0
-offset_bottom = 534.0
+offset_left = 1007.0
+offset_top = 511.0
+offset_right = 1126.0
+offset_bottom = 542.0
 text = "End Turn"
 
 [node name="EnemyTeam" type="Node2D" parent="."]
@@ -150,21 +136,22 @@ script = ExtResource("4_y8d5v")
 is_enemy = true
 
 [node name="Sprite2D" type="Sprite2D" parent="EnemyTeam/Enemy"]
-position = Vector2(134.53452, 335)
-scale = Vector2(-0.97070533, 0.83933353)
+position = Vector2(54.99997, 384)
+scale = Vector2(-0.694, 0.6)
 texture = ExtResource("2_fxwnf")
 
 [node name="HealthBar" type="ProgressBar" parent="EnemyTeam/Enemy"]
-offset_left = 47.534546
-offset_top = 164.0
-offset_right = 141.53455
-offset_bottom = 191.0
+offset_left = -62.0
+offset_top = 252.0
+offset_right = 32.0
+offset_bottom = 279.0
 theme_override_colors/font_color = Color(0.79573834, 0, 0.21928853, 1)
 theme_override_colors/font_outline_color = Color(0.8838147, 0.33180755, 1.92523e-07, 1)
 step = 1.0
 value = 100.0
 
 [node name="ShieldLabel" type="Label" parent="EnemyTeam/Enemy"]
+visible = false
 offset_left = 117.534546
 offset_top = 204.0
 offset_right = 178.53455

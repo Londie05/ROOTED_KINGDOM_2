@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://c1n53h5gfnv83"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://c1n53h5gfnv83"]
 
+[ext_resource type="Texture2D" uid="uid://cv1dj0hbdda2n" path="res://Asset/shield.jpg" id="1_jfkh3"]
 [ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://CardData.gd" id="1_u32hb"]
 
 [resource]
 script = ExtResource("1_u32hb")
+card_image = ExtResource("1_jfkh3")
 damage = 25
 energy_cost = 2
 metadata/_custom_type_script = "uid://olc2cw5uohq6"
