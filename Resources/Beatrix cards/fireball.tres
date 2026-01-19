@@ -6,6 +6,8 @@
 [resource]
 script = ExtResource("1_kc8nw")
 card_image = ExtResource("1_m0xy3")
-damage = 3
-energy_cost = 2
+damage = 20
+energy_cost = 5
+is_aoe = true
+aoe_targets = 3
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

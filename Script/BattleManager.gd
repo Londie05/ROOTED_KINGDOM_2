@@ -19,6 +19,9 @@ var charlotte_slash = preload("res://Resources/Charlotte cards/slash.tres")
 var charlotte_heal = preload("res://Resources/Charlotte cards/HealSpell.tres")
 var charlotte_slash_aoe = preload("res://Resources/Charlotte cards/slash_aoe.tres")
 
+var beatrix_fireball_aoe = preload("res://Resources/Beatrix cards/fireball.tres")
+var beatrix_shield = preload("res://Resources/Beatrix cards/Shield25.tres")
+
 # The Deck System
 var deck: Array = []
 var discard_pile: Array = []
@@ -41,9 +44,13 @@ var current_phase_index: int = 0
 
 func _ready():
 	# 1. Build Deck
+	# Charlotte cards
 	for i in range(4): deck.append(charlotte_slash)
 	for i in range(3): deck.append(charlotte_heal)
 	for i in range(3): deck.append(charlotte_slash_aoe)
+	# Beatrix cards
+	for i in range(1): deck.append(beatrix_fireball_aoe)
+	for i in range(2): deck.append(beatrix_shield)
 	deck.shuffle()
 
 	# 2. Start the game at the Player Phase

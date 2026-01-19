@@ -7,5 +7,6 @@
 script = ExtResource("1_u32hb")
 card_image = ExtResource("1_jfkh3")
 damage = 5
+shield = 20
 energy_cost = 2
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

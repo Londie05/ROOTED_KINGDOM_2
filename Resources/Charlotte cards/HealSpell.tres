@@ -7,7 +7,6 @@
 script = ExtResource("2_etp2g")
 card_name = "Heal"
 card_image = ExtResource("1_e0cxu")
-heal_amount = 5
+heal_amount = 30
 energy_cost = 3
-description = "Heal all allies"
 metadata/_custom_type_script = "uid://olc2cw5uohq6"
