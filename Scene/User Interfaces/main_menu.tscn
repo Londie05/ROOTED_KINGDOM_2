@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://qde0e5mwnany"]
+
+[ext_resource type="Script" uid="uid://bxn5segpvyh4e" path="res://Scene/User Interfaces/button_manager.gd" id="1_kxbd2"]
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="ButtonManager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_kxbd2")
+
+[node name="Start Battle" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 237.0
+offset_right = 693.0
+offset_bottom = 299.0
+text = "Start/Battle
+"
+
+[node name="Inventory and Shop" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 305.0
+offset_right = 693.0
+offset_bottom = 367.0
+text = "Inventory/Shop
+"
+
+[node name="Characters" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 372.0
+offset_right = 691.0
+offset_bottom = 434.0
+text = "Characters"
+
+[node name="Tutorial" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 440.0
+offset_right = 691.0
+offset_bottom = 502.0
+text = "Tutorial
+"
+
+[node name="Settings" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 423.0
+offset_top = 511.0
+offset_right = 690.0
+offset_bottom = 573.0
+text = "Settings"
+
+[connection signal="pressed" from="ButtonManager/Start Battle" to="ButtonManager" method="_on_start_battle_pressed"]
+[connection signal="pressed" from="ButtonManager/Inventory and Shop" to="ButtonManager" method="_on_inventory_and_shop_pressed"]
+[connection signal="pressed" from="ButtonManager/Characters" to="ButtonManager" method="_on_characters_pressed"]
+[connection signal="pressed" from="ButtonManager/Tutorial" to="ButtonManager" method="_on_tutorial_pressed"]
+[connection signal="pressed" from="ButtonManager/Settings" to="ButtonManager" method="_on_settings_pressed"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3qsqy5r6pe1i"]
+
+[ext_resource type="Script" uid="uid://ute0x4yw2loi" path="res://Scene/User Interfaces/button_manager_tutorial.gd" id="1_vlpxj"]
+
+[node name="Tutorial" type="Node2D"]
+
+[node name="Button Manager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_vlpxj")
+
+[node name="Back" type="Button" parent="Button Manager"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 47.0
+offset_right = 153.0
+offset_bottom = 102.0
+text = "Back
+"
+
+[connection signal="pressed" from="Button Manager/Back" to="Button Manager" method="_on_back_pressed"]

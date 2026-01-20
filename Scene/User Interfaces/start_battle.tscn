@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://qmnutdlpk68l"]
+
+[ext_resource type="Script" uid="uid://dg4em0ukvp7ku" path="res://Scene/User Interfaces/button_manager_start.gd" id="1_nfl2a"]
+
+[node name="Start_Battle" type="Node2D"]
+
+[node name="ButtonManager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_nfl2a")
+
+[node name="Story Mode" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 477.0
+offset_top = 282.0
+offset_right = 678.0
+offset_bottom = 339.0
+text = "Story Mode"
+
+[node name="Tower Mode" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 479.0
+offset_top = 351.0
+offset_right = 679.0
+offset_bottom = 413.0
+text = "Tower Mode
+"
+
+[node name="Back" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 47.0
+offset_right = 153.0
+offset_bottom = 102.0
+text = "Back
+"
+
+[connection signal="pressed" from="ButtonManager/Back" to="ButtonManager" method="_on_back_pressed"]
