@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://bq43e1owpaudj"]
+
+[ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="1_frn3b"]
+[ext_resource type="Texture2D" uid="uid://bsdx2ibxxkcpk" path="res://Asset/Common cards/Poison dart.jpg" id="1_hr2mt"]
+
+[resource]
+script = ExtResource("1_frn3b")
+card_name = "Poison dart"
+card_image = ExtResource("1_hr2mt")
+damage = 8
+energy_gain = 2
+description = "deals continuous damage to two enemies for 3 rounds"
+aoe_targets = 2
+metadata/_custom_type_script = "uid://olc2cw5uohq6"

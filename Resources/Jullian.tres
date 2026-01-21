@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=9 format=3 uid="uid://bgu42lalfpfe1"]
+
+[ext_resource type="Texture2D" uid="uid://ceauwhfsbqpfh" path="res://Asset/Julian.jpg" id="1_ck40k"]
+[ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="1_q2phu"]
+[ext_resource type="Script" uid="uid://dcjbbujtui8uu" path="res://Script/CharacterData.gd" id="2_4dq7u"]
+[ext_resource type="Texture2D" uid="uid://brc3rc52dkn0x" path="res://Asset/Julian_char-removebg-preview.png" id="2_bksev"]
+[ext_resource type="Resource" uid="uid://bf2bciwkcq40g" path="res://Resources/Common cards resources/Parry.tres" id="4_5if1j"]
+[ext_resource type="Resource" uid="uid://cei5i8cmjhpqy" path="res://Resources/Common cards resources/slash.tres" id="5_y8lat"]
+[ext_resource type="Resource" uid="uid://bpx0gk4fwgevj" path="res://Resources/Common cards resources/Thrust.tres" id="6_pr37i"]
+[ext_resource type="Resource" uid="uid://c0dac4le7uft2" path="res://Resources/Signature cards/Jullian_ultimate.tres" id="8_uoa73"]
+
+[resource]
+script = ExtResource("2_4dq7u")
+name = "Jullian"
+character_sprite = ExtResource("2_bksev")
+character_illustration = ExtResource("1_ck40k")
+unique_card = ExtResource("8_uoa73")
+common_cards = Array[ExtResource("1_q2phu")]([ExtResource("4_5if1j"), ExtResource("5_y8lat"), ExtResource("6_pr37i")])
+metadata/_custom_type_script = "uid://dcjbbujtui8uu"

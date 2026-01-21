@@ -15,12 +15,12 @@ var active_character: BattleCharacter = null
 var is_battle_paused: bool = false
 
 # Preload your Card Resources
-var charlotte_slash = preload("res://Resources/Charlotte cards/slash.tres")
-var charlotte_heal = preload("res://Resources/Charlotte cards/HealSpell.tres")
-var charlotte_slash_aoe = preload("res://Resources/Charlotte cards/slash_aoe.tres")
+var charlotte_slash = preload("res://Resources/Common cards resources/slash.tres")
+var charlotte_heal = preload("res://Resources/Common cards resources/Warm Touch.tres")
+var charlotte_slash_aoe = preload("res://Resources/Signature cards/charlotte_ultimate.tres")
 
-var beatrix_fireball_aoe = preload("res://Resources/Beatrix cards/fireball.tres")
-var beatrix_shield = preload("res://Resources/Beatrix cards/Shield25.tres")
+var beatrix_fireball_aoe = preload("res://Resources/Common cards resources/Magic Blast.tres")
+var beatrix_shield = preload("res://Resources/Common cards resources/Shield.tres")
 
 # The Deck System
 var deck: Array = []

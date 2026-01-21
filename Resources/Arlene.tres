@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=9 format=3 uid="uid://b4141yupqysbg"]
+
+[ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="1_r141m"]
+[ext_resource type="Texture2D" uid="uid://c1dlxvo3qpnlr" path="res://Asset/Characters/Arlene/Arlene.jpg" id="1_vxghk"]
+[ext_resource type="Texture2D" uid="uid://574p8fl6toy2" path="res://Asset/Characters/Arlene/Arlene_char-removebg-preview.png" id="2_a3b3a"]
+[ext_resource type="Script" uid="uid://dcjbbujtui8uu" path="res://Script/CharacterData.gd" id="2_xw6e2"]
+[ext_resource type="Resource" uid="uid://dhh82yst46iew" path="res://Resources/Common cards resources/Ice barrage.tres" id="4_7vmdm"]
+[ext_resource type="Resource" uid="uid://qn54dvyfdrjc" path="res://Resources/Common cards resources/Warm Touch.tres" id="5_st0tk"]
+[ext_resource type="Resource" uid="uid://bvhpgffxipn01" path="res://Resources/Common cards resources/Magic Blast.tres" id="6_4bc3a"]
+[ext_resource type="Resource" uid="uid://7ojtheqef82v" path="res://Resources/Signature cards/Arlene_Ultimate.tres" id="8_3u8k0"]
+
+[resource]
+script = ExtResource("2_xw6e2")
+name = "Arlene"
+character_sprite = ExtResource("2_a3b3a")
+character_illustration = ExtResource("1_vxghk")
+unique_card = ExtResource("8_3u8k0")
+common_cards = Array[ExtResource("1_r141m")]([ExtResource("4_7vmdm"), ExtResource("5_st0tk"), ExtResource("6_4bc3a")])
+metadata/_custom_type_script = "uid://dcjbbujtui8uu"

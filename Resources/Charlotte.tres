@@ -1,13 +1,23 @@
-[gd_resource type="Resource" script_class="CharacterData" load_steps=9 format=3 uid="uid://cib8qbfhl2fg1"]
+[gd_resource type="Resource" script_class="CharacterData" load_steps=10 format=3 uid="uid://cib8qbfhl2fg1"]
 
 [ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="1_fogen"]
 [ext_resource type="Texture2D" uid="uid://dux2bf8i4324q" path="res://Asset/Characters/Charlotte/Charlotte 4 cards/card 1.jpg" id="1_nhdel"]
 [ext_resource type="Texture2D" uid="uid://sw0mbj8beo73" path="res://Asset/Characters/Charlotte/Charlotte.webp" id="2_6n3js"]
 [ext_resource type="Script" uid="uid://dcjbbujtui8uu" path="res://Script/CharacterData.gd" id="2_levea"]
-[ext_resource type="Resource" uid="uid://qn54dvyfdrjc" path="res://Resources/Charlotte cards/HealSpell.tres" id="4_rrj0s"]
-[ext_resource type="Resource" uid="uid://cei5i8cmjhpqy" path="res://Resources/Charlotte cards/slash.tres" id="5_kbv2t"]
-[ext_resource type="Resource" uid="uid://c2g35n2exr4hj" path="res://Resources/Charlotte cards/slash_aoe.tres" id="6_awfcp"]
-[ext_resource type="Resource" uid="uid://71ifm4u8c2xh" path="res://Resources/Charlotte cards/charlotte_ultimate.tres" id="8_cbo0c"]
+[ext_resource type="Resource" uid="uid://qn54dvyfdrjc" path="res://Resources/Common cards resources/Warm Touch.tres" id="4_rrj0s"]
+[ext_resource type="Resource" uid="uid://cei5i8cmjhpqy" path="res://Resources/Common cards resources/slash.tres" id="5_kbv2t"]
+[ext_resource type="Texture2D" uid="uid://bmbdt7krb1i4f" path="res://Asset/Characters/Charlotte/Charlotte 4 cards/stun.jpg" id="6_awfcp"]
+[ext_resource type="Resource" uid="uid://71ifm4u8c2xh" path="res://Resources/Signature cards/charlotte_ultimate.tres" id="8_cbo0c"]
+
+[sub_resource type="Resource" id="Resource_gx78h"]
+script = ExtResource("1_fogen")
+card_name = "Aoe slash"
+card_image = ExtResource("6_awfcp")
+damage = 99
+description = "Deals 8 damage to all enemies"
+is_aoe = true
+aoe_targets = 3
+metadata/_custom_type_script = "uid://olc2cw5uohq6"
 
 [resource]
 script = ExtResource("2_levea")
@@ -15,5 +25,5 @@ name = "Charlotte"
 character_sprite = ExtResource("2_6n3js")
 character_illustration = ExtResource("1_nhdel")
 unique_card = ExtResource("8_cbo0c")
-common_cards = Array[ExtResource("1_fogen")]([ExtResource("4_rrj0s"), ExtResource("5_kbv2t"), ExtResource("6_awfcp")])
+common_cards = Array[ExtResource("1_fogen")]([ExtResource("4_rrj0s"), ExtResource("5_kbv2t"), SubResource("Resource_gx78h")])
 metadata/_custom_type_script = "uid://dcjbbujtui8uu"

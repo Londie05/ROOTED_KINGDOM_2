@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://c1n53h5gfnv83"]
+
+[ext_resource type="Texture2D" uid="uid://cv1dj0hbdda2n" path="res://Asset/Characters/Beatrix/Beatrix 4 cards/shield.jpg" id="1_mkp88"]
+[ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="2_yn7dl"]
+
+[resource]
+script = ExtResource("2_yn7dl")
+card_name = "Sacred Barrier"
+card_image = ExtResource("1_mkp88")
+shield = 8
+energy_cost = 2
+description = "Give 8% shield to all heroes on the field"
+is_aoe = true
+aoe_targets = 3
+metadata/_custom_type_script = "uid://olc2cw5uohq6"

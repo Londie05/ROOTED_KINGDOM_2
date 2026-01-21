@@ -1,21 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://cy6a1v8pg016g"]
+[gd_scene load_steps=9 format=3 uid="uid://cy6a1v8pg016g"]
 
 [ext_resource type="Script" uid="uid://idrjdgnxmgon" path="res://Scene/User Interfaces/CharacterScenes/characters.gd" id="1_omqtn"]
 [ext_resource type="Script" uid="uid://dcjbbujtui8uu" path="res://Script/CharacterData.gd" id="2_kxk3n"]
 [ext_resource type="Script" uid="uid://dpofwsfae5sxx" path="res://Scene/User Interfaces/UI Scripts/button_manager_characters.gd" id="2_vsams"]
 [ext_resource type="Resource" uid="uid://cev2gr7ft7bvl" path="res://Resources/Beatrice.tres" id="3_b6bgg"]
 [ext_resource type="Resource" uid="uid://cib8qbfhl2fg1" path="res://Resources/Charlotte.tres" id="4_khyj0"]
+[ext_resource type="Resource" uid="uid://b4141yupqysbg" path="res://Resources/Arlene.tres" id="5_b6bgg"]
+[ext_resource type="Resource" uid="uid://bgu42lalfpfe1" path="res://Resources/Jullian.tres" id="6_khyj0"]
+[ext_resource type="Resource" uid="uid://d1f60p8trj2rh" path="res://Resources/Sean.tres" id="7_tsn11"]
 
 [node name="CharacterSelection" type="Control"]
-custom_minimum_size = Vector2(600, 400)
+custom_minimum_size = Vector2(500, 400)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 600.0
+offset_right = 513.0
 offset_bottom = 400.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_omqtn")
-available_heroes = Array[ExtResource("2_kxk3n")]([ExtResource("3_b6bgg"), ExtResource("4_khyj0")])
+available_heroes = Array[ExtResource("2_kxk3n")]([ExtResource("3_b6bgg"), ExtResource("4_khyj0"), ExtResource("5_b6bgg"), ExtResource("6_khyj0"), ExtResource("7_tsn11")])
 
 [node name="Button Manager" type="Control" parent="."]
 anchors_preset = 0
@@ -41,13 +44,15 @@ offset_bottom = 560.0
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
 offset_left = 31.0
-offset_top = 152.0
-offset_right = 513.0
-offset_bottom = 400.0
+offset_top = 124.0
+offset_right = 522.0
+offset_bottom = 375.0
 
 [node name="HeroGrid" type="GridContainer" parent="ScrollContainer"]
-custom_minimum_size = Vector2(600, 400)
+custom_minimum_size = Vector2(480, 400)
 layout_mode = 2
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 25
 columns = 3
 
 [node name="RosterLabel" type="Label" parent="."]
@@ -98,9 +103,6 @@ text = "Name:"
 [node name="StatsLabel" type="Label" parent="DetailPanel/VBoxContainer"]
 layout_mode = 2
 text = "Stats:"
-
-[node name="UniqueCardAnchor" type="Control" parent="DetailPanel/VBoxContainer"]
-layout_mode = 2
 
 [node name="CommonTitle" type="Label" parent="DetailPanel/VBoxContainer"]
 layout_mode = 2

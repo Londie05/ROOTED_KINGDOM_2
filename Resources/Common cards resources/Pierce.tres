@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://ce2o1btwte4i6"]
+
+[ext_resource type="Texture2D" uid="uid://sfw3kygjf8ch" path="res://Asset/Common cards/Pierce.jpg" id="1_4my0g"]
+[ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="1_q2jd0"]
+
+[resource]
+script = ExtResource("1_q2jd0")
+card_name = "Pierce"
+card_image = ExtResource("1_4my0g")
+damage = 14
+description = "deals 14 damage to two enemies"
+is_aoe = true
+aoe_targets = 2
+metadata/_custom_type_script = "uid://olc2cw5uohq6"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://dhh82yst46iew"]
+
+[ext_resource type="Texture2D" uid="uid://c1h3ejyydx3m6" path="res://Asset/Common cards/Ice barrage.jpg" id="1_23vd8"]
+[ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="1_qym0v"]
+
+[resource]
+script = ExtResource("1_qym0v")
+card_name = "Ice barrage"
+card_image = ExtResource("1_23vd8")
+damage = 5
+stuns_enemy = true
+energy_cost = 3
+description = "Deals 5 damage and stuns all enemies on the field for 1 round"
+is_aoe = true
+aoe_targets = 3
+metadata/_custom_type_script = "uid://olc2cw5uohq6"

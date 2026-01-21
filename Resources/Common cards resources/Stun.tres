@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://bg41rywf50mm2"]
+
+[ext_resource type="Texture2D" uid="uid://b2hdnss25usou" path="res://Asset/Common cards/stun.jpg" id="1_6lr0r"]
+[ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="2_j3qua"]
+
+[resource]
+script = ExtResource("2_j3qua")
+card_name = "Stun"
+card_image = ExtResource("1_6lr0r")
+stuns_enemy = true
+energy_cost = 2
+description = "Stun 1 enemy for 2 rounds"
+aoe_targets = 1
+metadata/_custom_type_script = "uid://olc2cw5uohq6"

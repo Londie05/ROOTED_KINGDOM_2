@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://c55c341gbenxw"]
+
+[ext_resource type="Texture2D" uid="uid://bh8yc86cpagib" path="res://Asset/Common cards/Gun down.jpg" id="1_l5lvx"]
+[ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="1_utgqj"]
+
+[resource]
+script = ExtResource("1_utgqj")
+card_name = "Gun Down"
+card_image = ExtResource("1_l5lvx")
+damage = 18
+description = "deals 18 damage to single enemy"
+aoe_targets = 1
+metadata/_custom_type_script = "uid://olc2cw5uohq6"

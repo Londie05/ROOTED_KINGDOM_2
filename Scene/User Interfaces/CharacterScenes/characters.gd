@@ -9,7 +9,6 @@ var selection_card_scene = preload("res://Scene/User Interfaces/CharacterScenes/
 
 @onready var detail_name = $DetailPanel/VBoxContainer/NameLabel
 @onready var detail_stats = $DetailPanel/VBoxContainer/StatsLabel
-@onready var unique_anchor = $DetailPanel/VBoxContainer/UniqueCardAnchor
 @onready var common_grid = $DetailPanel/VBoxContainer/ScrollContainer/CommonGrid
 
 # We need this to create the actual card images
@@ -101,15 +100,17 @@ func update_details(data: CharacterData):
 		var desc_label = Label.new()
 		desc_label.text = card_data.description # Ensure CardData has a 'description' variable
 		desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		desc_label.custom_minimum_size.x = 200 # Adjust based on panel width
+		desc_label.custom_minimum_size.x = 320 # Adjust based on panel width
 		desc_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		
+		var c_name = card_data.card_name.to_upper()
+		var c_desc = card_data.description
 		# Optional: Make Unique Card text a different color
 		if card_data == data.unique_card:
-			desc_label.modulate = Color(1, 0.8, 0.3) # Golden text for Unique
-			desc_label.text = "[SIGNATURE]\n" + desc_label.text
+			desc_label.modulate = Color(0.973, 0.82, 0.0, 1.0) # Golden text for Unique
+			desc_label.text = "[SIGNATURE]\n" + c_name + ":" + "\n" + c_desc
 		else:
 			desc_label.modulate = Color(0.535, 0.899, 0.935, 1.0) # Golden text for Unique
-			desc_label.text = "[COMMON CARD]\n" + desc_label.text
+			desc_label.text = "[COMMON CARD]\n" + c_name + ":" + "\n" + c_desc
 		row.add_child(desc_label)
 	

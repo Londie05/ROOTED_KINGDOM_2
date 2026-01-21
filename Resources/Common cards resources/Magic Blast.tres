@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://bvhpgffxipn01"]
+
+[ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="1_0hm0l"]
+[ext_resource type="Texture2D" uid="uid://c4vnvi3fhxebj" path="res://Asset/Common cards/Magic Blast.jpg" id="1_ra1yf"]
+
+[resource]
+script = ExtResource("1_0hm0l")
+card_name = "Magic Blast"
+card_image = ExtResource("1_ra1yf")
+damage = 12
+energy_cost = 2
+is_aoe = true
+aoe_targets = 3
+metadata/_custom_type_script = "uid://olc2cw5uohq6"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://c0dac4le7uft2"]
+
+[ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="1_2b8co"]
+[ext_resource type="Texture2D" uid="uid://bfc8yimv2kb3j" path="res://Asset/Characters/Julian SIgnature.jpg" id="1_ixv3g"]
+
+[resource]
+script = ExtResource("1_2b8co")
+card_name = "The Luminious warrior"
+card_image = ExtResource("1_ixv3g")
+damage = 20
+shield = 30
+energy_cost = 4
+description = "Deals 20 damage to one enemy and gain 30 shield"
+metadata/_custom_type_script = "uid://olc2cw5uohq6"

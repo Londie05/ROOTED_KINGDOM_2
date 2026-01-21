@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://bkmqdfk1cob5s"]
+
+[ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="1_6jplm"]
+[ext_resource type="Texture2D" uid="uid://c7bkoubmjeao1" path="res://Asset/Characters/Sean Signature.jpg" id="1_ys7tt"]
+
+[resource]
+script = ExtResource("1_6jplm")
+card_name = "Sharpshooter of death"
+card_image = ExtResource("1_ys7tt")
+damage = 35
+energy_cost = 4
+description = "Deals 35 damage to a signle enemy"
+aoe_targets = 1
+metadata/_custom_type_script = "uid://olc2cw5uohq6"

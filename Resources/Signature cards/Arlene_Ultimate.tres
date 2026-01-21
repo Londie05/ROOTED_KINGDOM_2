@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://7ojtheqef82v"]
+
+[ext_resource type="Texture2D" uid="uid://ci6xuefdsumbm" path="res://Asset/Characters/Arlene/Arlene signature.jpg" id="1_ejm6m"]
+[ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="1_n4al4"]
+
+[resource]
+script = ExtResource("1_n4al4")
+card_name = "Glaciation of Plains"
+card_image = ExtResource("1_ejm6m")
+damage = 35
+shield = 10
+energy_cost = 4
+description = "Deals 35 damage to all enemies and all allies gain 10 shields"
+is_aoe = true
+aoe_targets = 3
+metadata/_custom_type_script = "uid://olc2cw5uohq6"
