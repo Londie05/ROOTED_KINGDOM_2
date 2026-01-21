@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b3qsqy5r6pe1i"]
 
-[ext_resource type="Script" uid="uid://ute0x4yw2loi" path="res://Scene/User Interfaces/button_manager_tutorial.gd" id="1_vlpxj"]
+[ext_resource type="Script" uid="uid://ute0x4yw2loi" path="res://Scene/User Interfaces/UI Scripts/button_manager_tutorial.gd" id="1_vlpxj"]
 
 [node name="Tutorial" type="Node2D"]
 

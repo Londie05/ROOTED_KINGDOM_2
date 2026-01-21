@@ -12,20 +12,20 @@ func _ready() -> void:
 
 
 func _on_start_battle_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scene/User Interfaces/start_battle.tscn")
+	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/start_battle.tscn")
 
 
 func _on_inventory_and_shop_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scene/User Interfaces/inventory_and_shop.tscn")
+	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/inventory_and_shop.tscn")
 
 
 func _on_characters_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scene/User Interfaces/characters.tscn")
+	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/characters.tscn")
 
 
 func _on_tutorial_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scene/User Interfaces/tutorial.tscn")
+	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/tutorial.tscn")
 
 
 func _on_settings_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scene/User Interfaces/settings.tscn")
+	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/settings.tscn")

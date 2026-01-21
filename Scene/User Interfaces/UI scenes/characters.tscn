@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bksl2a7ppswlg"]
 
-[ext_resource type="Script" uid="uid://idrjdgnxmgon" path="res://Scene/User Interfaces/characters.gd" id="1_abjc7"]
-[ext_resource type="Script" uid="uid://dpofwsfae5sxx" path="res://Scene/User Interfaces/button_manager_characters.gd" id="1_v3w5k"]
+[ext_resource type="Script" uid="uid://idrjdgnxmgon" path="res://Scene/User Interfaces/CharacterScenes/characters.gd" id="1_abjc7"]
+[ext_resource type="Script" uid="uid://dpofwsfae5sxx" path="res://Scene/User Interfaces/UI Scripts/button_manager_characters.gd" id="1_v3w5k"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

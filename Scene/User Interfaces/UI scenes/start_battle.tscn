@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://qmnutdlpk68l"]
 
-[ext_resource type="Script" uid="uid://dg4em0ukvp7ku" path="res://Scene/User Interfaces/button_manager_start.gd" id="1_nfl2a"]
+[ext_resource type="Script" uid="uid://dg4em0ukvp7ku" path="res://Scene/User Interfaces/UI Scripts/button_manager_start.gd" id="1_nfl2a"]
 
 [node name="Start_Battle" type="Node2D"]
 

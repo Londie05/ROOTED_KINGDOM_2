@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://qde0e5mwnany"]
 
-[ext_resource type="Script" uid="uid://bxn5segpvyh4e" path="res://Scene/User Interfaces/button_manager.gd" id="1_kxbd2"]
+[ext_resource type="Script" uid="uid://bxn5segpvyh4e" path="res://Scene/User Interfaces/UI Scripts/button_manager.gd" id="1_kxbd2"]
 
 [node name="MainMenu" type="Node2D"]
 
