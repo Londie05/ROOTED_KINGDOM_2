@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bmbdt7krb1i4f"
-path="res://.godot/imported/stun.jpg-2717dd586a7f7018250446416985d00a.ctex"
+path="res://.godot/imported/stun.jpg-6a7e8da0d322bf041836e02faaf00755.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/Characters/Charlotte/stun.jpg"
-dest_files=["res://.godot/imported/stun.jpg-2717dd586a7f7018250446416985d00a.ctex"]
+source_file="res://Asset/Characters/Charlotte/Charlotte 4 cards/stun.jpg"
+dest_files=["res://.godot/imported/stun.jpg-6a7e8da0d322bf041836e02faaf00755.ctex"]
 
 [params]
 

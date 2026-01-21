@@ -9,6 +9,7 @@ card_name = "Beatrice Ultimate"
 card_image = ExtResource("1_5nntb")
 damage = 20
 energy_cost = 5
+description = "Deals the mage to all enemies on the field"
 is_aoe = true
 aoe_targets = 3
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

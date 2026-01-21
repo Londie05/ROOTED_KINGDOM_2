@@ -29,7 +29,6 @@ color = Color(0.9474067, 0.17865682, 0.24602902, 1)
 
 [node name="NameLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 29.0
 offset_top = 160.0
-offset_right = 95.0
-offset_bottom = 183.0
+offset_right = 66.0
+offset_bottom = 191.0

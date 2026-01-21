@@ -77,4 +77,40 @@ layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 
+[node name="DetailPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 583.0
+offset_top = 102.0
+offset_right = 1127.0
+offset_bottom = 646.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DetailPanel"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 22.0
+offset_right = 496.0
+offset_bottom = 524.0
+
+[node name="NameLabel" type="Label" parent="DetailPanel/VBoxContainer"]
+layout_mode = 2
+text = "Name:"
+
+[node name="StatsLabel" type="Label" parent="DetailPanel/VBoxContainer"]
+layout_mode = 2
+text = "Stats:"
+
+[node name="UniqueCardAnchor" type="Control" parent="DetailPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="CommonTitle" type="Label" parent="DetailPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DetailPanel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 400)
+layout_mode = 2
+
+[node name="CommonGrid" type="GridContainer" parent="DetailPanel/VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(430, 300)
+layout_mode = 2
+
 [connection signal="pressed" from="Button Manager/Back" to="Button Manager" method="_on_back_pressed"]
