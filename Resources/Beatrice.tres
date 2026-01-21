@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=8 format=3 uid="uid://cev2gr7ft7bvl"]
+
+[ext_resource type="Texture2D" uid="uid://by282evl3dxef" path="res://Asset/Characters/Beatrix/Beatrix 4 cards/Beatrix card  2.jpg" id="1_sqwuj"]
+[ext_resource type="Texture2D" uid="uid://uidjcdf62vif" path="res://Asset/Characters/Beatrix/charlotte-removebg-preview.png" id="1_x5mnr"]
+[ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="2_sqwuj"]
+[ext_resource type="Resource" uid="uid://c1n53h5gfnv83" path="res://Resources/Beatrix cards/Shield25.tres" id="3_eviq4"]
+[ext_resource type="Resource" uid="uid://qn54dvyfdrjc" path="res://Resources/Charlotte cards/HealSpell.tres" id="4_o141x"]
+[ext_resource type="Script" uid="uid://dcjbbujtui8uu" path="res://Script/CharacterData.gd" id="5_xkcyg"]
+[ext_resource type="Resource" uid="uid://bm7cgrmasembw" path="res://Resources/Beatrix cards/fireball.tres" id="6_7ecl1"]
+
+[resource]
+script = ExtResource("5_xkcyg")
+name = "Beatrice"
+character_sprite = ExtResource("1_x5mnr")
+character_illustration = ExtResource("1_sqwuj")
+unique_card = ExtResource("6_7ecl1")
+common_cards = Array[ExtResource("2_sqwuj")]([ExtResource("3_eviq4"), ExtResource("4_o141x"), ExtResource("3_eviq4")])
+metadata/_custom_type_script = "uid://dcjbbujtui8uu"

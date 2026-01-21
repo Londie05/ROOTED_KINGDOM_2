@@ -7,6 +7,7 @@
 
 [resource]
 script = ExtResource("2_levea")
+name = "Charlotte"
 character_sprite = ExtResource("2_6n3js")
-character_illustraition = ExtResource("1_nhdel")
+character_illustration = ExtResource("1_nhdel")
 metadata/_custom_type_script = "uid://dcjbbujtui8uu"

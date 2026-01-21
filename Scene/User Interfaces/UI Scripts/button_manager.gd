@@ -20,7 +20,7 @@ func _on_inventory_and_shop_pressed() -> void:
 
 
 func _on_characters_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/characters.tscn")
+	get_tree().change_scene_to_file("res://Scene/User Interfaces/CharacterScenes/CharacterSelection.tscn")
 
 
 func _on_tutorial_pressed() -> void:

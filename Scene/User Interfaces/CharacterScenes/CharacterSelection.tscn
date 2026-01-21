@@ -1,12 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://cy6a1v8pg016g"]
+[gd_scene load_steps=6 format=3 uid="uid://cy6a1v8pg016g"]
 
 [ext_resource type="Script" uid="uid://idrjdgnxmgon" path="res://Scene/User Interfaces/CharacterScenes/characters.gd" id="1_omqtn"]
+[ext_resource type="Script" uid="uid://dcjbbujtui8uu" path="res://Script/CharacterData.gd" id="2_kxk3n"]
 [ext_resource type="Script" uid="uid://dpofwsfae5sxx" path="res://Scene/User Interfaces/UI Scripts/button_manager_characters.gd" id="2_vsams"]
+[ext_resource type="Resource" uid="uid://cev2gr7ft7bvl" path="res://Resources/Beatrice.tres" id="3_b6bgg"]
+[ext_resource type="Resource" uid="uid://cib8qbfhl2fg1" path="res://Resources/Charlotte.tres" id="4_khyj0"]
 
 [node name="CharacterSelection" type="Control"]
+custom_minimum_size = Vector2(600, 400)
 layout_mode = 3
 anchors_preset = 0
+offset_right = 600.0
+offset_bottom = 400.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_omqtn")
+available_heroes = Array[ExtResource("2_kxk3n")]([ExtResource("3_b6bgg"), ExtResource("4_khyj0")])
 
 [node name="Button Manager" type="Control" parent="."]
 anchors_preset = 0
@@ -29,36 +38,39 @@ layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 560.0
 
-[node name="RosterLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 343.0
-offset_top = 47.0
-offset_right = 383.0
-offset_bottom = 70.0
-
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
 offset_left = 31.0
-offset_top = 304.0
-offset_right = 207.0
-offset_bottom = 505.0
+offset_top = 152.0
+offset_right = 513.0
+offset_bottom = 400.0
 
-[node name="HeroGrid" type="HBoxContainer" parent="ScrollContainer"]
+[node name="HeroGrid" type="GridContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(600, 400)
 layout_mode = 2
+columns = 3
+
+[node name="RosterLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 370.0
+offset_top = 29.0
+offset_right = 627.0
+offset_bottom = 102.0
 
 [node name="TeamPanel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 740.0
-offset_top = 40.0
-offset_right = 1073.0
-offset_bottom = 418.0
+offset_left = 40.0
+offset_top = 443.0
+offset_right = 522.0
+offset_bottom = 624.0
 
 [node name="SlotContainer" type="HBoxContainer" parent="TeamPanel"]
 layout_mode = 0
-offset_left = 333.0
-offset_top = 112.0
-offset_right = 437.0
-offset_bottom = 256.0
+offset_left = 33.0
+offset_top = 22.0
+offset_right = 150.0
+offset_bottom = 161.0
 
 [node name="ConfirmButton" type="Button" parent="."]
 layout_mode = 0
