@@ -17,7 +17,7 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 [autoload]
 
 Global="*res://Script/Global.gd"
-GlobalMenu="*res://Scene/GlobalMenu.tscn"
+GlobalMenu="*res://Scene/BattleMenu.tscn"
 Character_Attributes="*res://Script/GLOBALS/character_global.gd"
 Effect="*res://Script/GLOBALS/effect_module.gd"
 

@@ -1,26 +1,41 @@
 extends Node2D
 class_name BattleCharacter
 
+@export var damage_node: PackedScene
+
 @export var char_name: String = ""
 @export var is_enemy: bool = false
 @onready var sprite_2d = $Sprite2D
-@export var target_height: float = 350.0 # Adjust this number to fit your scene
+@export var target_height: float = 350.0 
 
 var current_health: int = 100
 var current_shield: int = 0
-var action_meter: float = 0.0 # This fills up from 0 to 100
+var max_health: int = 100
+var base_damage: int = 10
 
-var is_stunned: bool = false # NEW: Tracks if the character skips a turn
-var max_health: int
-var base_damage: int
-# These must exist as children inside each character node!
-@onready var sprite = $Sprite2D
+@onready var hp_label = $HealthBar/HPLabel
 @onready var hp_bar = $HealthBar
 @onready var shield_label = $ShieldLabel
 
+func _ready():
+	update_ui()
+
+func spawn_popup(amount: int, color: Color):
+	if damage_node == null: return
+	
+	var popup = damage_node.instantiate()
+	get_tree().current_scene.add_child(popup)
+	
+	# Calculate the head position (using the fix from before)
+	var spawn_pos = sprite_2d.global_position
+	spawn_pos.y -= (target_height / 2.0)
+	
+	popup.setup(amount, spawn_pos, color)
+	
+# THIS IS THE FUNCTION YOUR MANAGER IS LOOKING FOR
 func setup_character(data: CharacterData):
 	if data == null: 
-		hide() # Hide dummy if no hero was selected for this slot
+		hide()
 		return
 		
 	char_name = data.name
@@ -28,71 +43,74 @@ func setup_character(data: CharacterData):
 	current_health = max_health
 	base_damage = data.base_damage
 	
-	# Update the Visuals
-	if sprite:
-		sprite.texture = data.character_sprite
+	if sprite_2d and data.character_sprite:
+		sprite_2d.texture = data.character_sprite
 		var texture_size = sprite_2d.texture.get_size()
 		var scale_factor = target_height / texture_size.y
-		
 		sprite_2d.scale = Vector2(scale_factor, scale_factor)
+	
 	show()
-	print("Initialized: ", char_name)
-	
-# Add this function to handle healing
-func heal(amount: int):
-	current_health = min(100, current_health + amount)
 	update_ui()
-	
-func _ready():
-	hp_bar.max_value = 100
-	hp_bar.value = current_health
-	shield_label.text = "Shield: 0"
+
+func flash_character(flash_color: Color):
+	if sprite_2d:
+		sprite_2d.modulate = flash_color 
+		
+		var tween = create_tween()
+		tween.tween_property(sprite_2d, "modulate", Color.WHITE, 0.55)
+
 
 func take_damage(amount: int):
-	# 1. Determine how much damage hits the health after the shield absorbs what it can
-	
 	var damage_to_hp = amount
 	
 	if current_shield > 0:
 		if current_shield >= amount:
-			# Shield absorbs everything
 			current_shield -= amount
 			damage_to_hp = 0
 		else:
-			# Shield breaks; some damage still goes to HP
 			damage_to_hp = amount - current_shield
 			current_shield = 0
 	
-	# 2. Apply remaining damage to health
 	current_health -= damage_to_hp
-	# 3. Trigger visual feedback and UI updates
-	update_ui()
 	
-	# 4. Check for death
+	# Trigger your existing flash effect
+	flash_character(Color(2.5, 0.5, 0.5)) 
+	
+	# --- THE FIX: CALLING THE POPUP ---
+	spawn_popup(amount, Color.RED)
+	
+	update_ui()
 	if current_health <= 0:
-		current_health = 0
 		die()
 
+func heal(amount: int):
+	current_health = min(max_health, current_health + amount)
+	
+	# Flash GREEN on heal
+	flash_character(Color(0.5, 2.5, 0.5))
+	spawn_popup(amount, Color.GREEN)
+
+	update_ui()
+
+func add_shield(amount: int):
+	current_shield += amount
+	
+	# Flash CYAN/BLUE on shield
+	flash_character(Color(0.5, 1.0, 2.5))
+	spawn_popup(amount, Color.CYAN)
+	update_ui()
+
 func update_ui():
-	hp_bar.value = current_health
-	shield_label.text = "Shield: " + str(current_shield)
+	if hp_bar:
+		hp_bar.max_value = max_health 
+		hp_bar.value = current_health
+	if hp_label:
+		hp_label.text = str(current_health) 
+	if shield_label:
+		shield_label.text = "Shield: " + str(current_shield)
+
 
 func die():
-	print(char_name + " has been defeated!")
-	
 	var tween = create_tween()
-	tween.tween_property(self, "modulate:a", 0, 0.5) # Fades opacity to 0 over 0.5 seconds
-	
-	# 3. Remove from the game tree once the fade is done
+	tween.tween_property(self, "modulate:a", 0, 0.5)
 	tween.tween_callback(queue_free)
-	
-func setup(data: CharacterData):
-	char_name = data.name
-	current_health = data.max_health
-	hp_bar.max_value = data.max_health # Set bar max based on resource
-	
-	# Set the picture from the resource
-	if has_node("Sprite"):
-		$Sprite.texture = data.character_illustration
-	
-	update_ui()

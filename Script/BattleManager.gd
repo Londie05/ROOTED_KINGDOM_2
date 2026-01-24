@@ -116,7 +116,8 @@ func execute_enemy_ai():
 		var alive_heroes = get_alive_players()
 		if alive_heroes.is_empty():
 			break
-
+		
+		get_alive_players()
 		var target = alive_heroes.pick_random()
 		var damage_to_deal = enemy.base_damage
 		target.take_damage(damage_to_deal)
@@ -278,6 +279,7 @@ func execute_slotted_actions():
 			)
 
 			var receiver = targets[0]
+			receiver.add_shield(data.shield)
 			receiver.current_shield += data.shield
 			receiver.update_ui()
 			print("Granted " + str(data.shield) + " shield to " + receiver.char_name)

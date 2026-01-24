@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://cbhbm36r5gevn"]
 
-[ext_resource type="Script" uid="uid://dtee61lgfjnnk" path="res://Scene/BattleMenu.gd" id="1_y6mjl"]
-[ext_resource type="Texture2D" uid="uid://cdfpkjhi1gi77" path="res://Asset/User Interface/button_ui.png" id="2_goedh"]
-[ext_resource type="FontFile" uid="uid://dtdw2k1jvjn37" path="res://Asset/Fonts/times.ttf" id="2_rh2qi"]
+[ext_resource type="Script" uid="uid://dtee61lgfjnnk" path="res://Scene/BattleMenu.gd" id="1_xxdim"]
+[ext_resource type="FontFile" uid="uid://dtdw2k1jvjn37" path="res://Asset/Fonts/times.ttf" id="2_h6w2l"]
+[ext_resource type="Texture2D" uid="uid://cdfpkjhi1gi77" path="res://Asset/User Interface/button_ui.png" id="3_0qxed"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rh2qi"]
 
@@ -19,7 +19,7 @@
 [node name="CanvasLayer" type="CanvasLayer"]
 process_mode = 3
 layer = 100
-script = ExtResource("1_y6mjl")
+script = ExtResource("1_xxdim")
 
 [node name="Panel" type="Panel" parent="."]
 offset_right = 1152.0
@@ -35,7 +35,7 @@ offset_bottom = 485.0
 [node name="Title" type="Label" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_rh2qi")
+theme_override_fonts/font = ExtResource("2_h6w2l")
 theme_override_font_sizes/font_size = 30
 text = "Title"
 horizontal_alignment = 1
@@ -44,26 +44,26 @@ vertical_alignment = 1
 [node name="ActionButton" type="Button" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_rh2qi")
+theme_override_fonts/font = ExtResource("2_h6w2l")
 theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rh2qi")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_hmge3")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_l3vhw")
 text = "------------"
-icon = ExtResource("2_goedh")
+icon = ExtResource("3_0qxed")
 icon_alignment = 1
 expand_icon = true
 
 [node name="QuitButton" type="Button" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_rh2qi")
+theme_override_fonts/font = ExtResource("2_h6w2l")
 theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxEmpty_k6k01")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_onc3p")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_3fd2a")
 text = "Quit"
-icon = ExtResource("2_goedh")
+icon = ExtResource("3_0qxed")
 icon_alignment = 1
 expand_icon = true
 

@@ -37,10 +37,10 @@ script = ExtResource("1_kxbd2")
 
 [node name="Start Battle" type="Button" parent="ButtonManager"]
 layout_mode = 0
-offset_left = 900.0
-offset_top = 121.0
-offset_right = 1087.0
-offset_bottom = 210.0
+offset_left = 889.0
+offset_top = 124.0
+offset_right = 1082.0
+offset_bottom = 213.0
 theme_override_fonts/font = ExtResource("2_jykwv")
 theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxEmpty_jykwv")
@@ -53,10 +53,10 @@ expand_icon = true
 
 [node name="Inventory and Shop" type="Button" parent="ButtonManager"]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 522.0
-offset_right = 210.0
-offset_bottom = 609.0
+offset_left = 893.0
+offset_top = 298.0
+offset_right = 1091.0
+offset_bottom = 385.0
 theme_override_fonts/font = ExtResource("2_jykwv")
 theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxEmpty_4mbs0")
@@ -69,10 +69,10 @@ expand_icon = true
 
 [node name="Characters" type="Button" parent="ButtonManager"]
 layout_mode = 0
-offset_left = 408.0
-offset_top = 527.0
-offset_right = 605.0
-offset_bottom = 608.0
+offset_left = 892.0
+offset_top = 215.0
+offset_right = 1089.0
+offset_bottom = 296.0
 theme_override_fonts/font = ExtResource("2_jykwv")
 theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxEmpty_87orj")
@@ -84,10 +84,10 @@ expand_icon = true
 
 [node name="Tutorial" type="Button" parent="ButtonManager"]
 layout_mode = 0
-offset_left = 206.0
-offset_top = 528.0
-offset_right = 408.0
-offset_bottom = 608.0
+offset_left = 386.0
+offset_top = 551.0
+offset_right = 588.0
+offset_bottom = 631.0
 theme_override_fonts/font = ExtResource("2_jykwv")
 theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxEmpty_eh1oq")
@@ -100,10 +100,10 @@ expand_icon = true
 
 [node name="Settings" type="Button" parent="ButtonManager"]
 layout_mode = 0
-offset_left = 894.0
-offset_top = 203.0
-offset_right = 1091.0
-offset_bottom = 277.0
+offset_left = 190.0
+offset_top = 555.0
+offset_right = 387.0
+offset_bottom = 629.0
 theme_override_fonts/font = ExtResource("2_jykwv")
 theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qelcm")
@@ -115,10 +115,10 @@ expand_icon = true
 
 [node name="Quit" type="Button" parent="ButtonManager"]
 layout_mode = 0
-offset_left = 865.0
-offset_top = 277.0
-offset_right = 1120.0
-offset_bottom = 350.0
+offset_left = -27.0
+offset_top = 555.0
+offset_right = 228.0
+offset_bottom = 628.0
 theme_override_fonts/font = ExtResource("2_jykwv")
 theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxEmpty_87orj")
