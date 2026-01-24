@@ -11,4 +11,5 @@ damage = 20
 shield = 30
 energy_cost = 4
 description = "Deals 20 damage to one enemy and gain 30 shield"
+critical_chance = 30
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

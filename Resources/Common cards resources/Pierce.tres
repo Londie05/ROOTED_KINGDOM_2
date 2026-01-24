@@ -11,4 +11,5 @@ damage = 14
 description = "deals 14 damage to two enemies"
 is_aoe = true
 aoe_targets = 2
+critical_chance = 30
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

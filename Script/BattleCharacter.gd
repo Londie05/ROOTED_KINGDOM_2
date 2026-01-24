@@ -13,6 +13,9 @@ var current_shield: int = 0
 var max_health: int = 100
 var base_damage: int = 10
 
+var critical_chance: int = 0
+var is_aoe: bool = false
+var max_aoe_targets: int = 1
 @onready var hp_label = $HealthBar/HPLabel
 @onready var hp_bar = $HealthBar
 @onready var shield_label = $ShieldLabel
@@ -20,17 +23,17 @@ var base_damage: int = 10
 func _ready():
 	update_ui()
 
-func spawn_popup(amount: int, color: Color):
+func spawn_popup(amount: int, color: Color, is_critical: bool = false):
 	if damage_node == null: return
 	
 	var popup = damage_node.instantiate()
 	get_tree().current_scene.add_child(popup)
 	
-	# Calculate the head position (using the fix from before)
 	var spawn_pos = sprite_2d.global_position
 	spawn_pos.y -= (target_height / 2.0)
 	
-	popup.setup(amount, spawn_pos, color)
+	# Call the updated setup function
+	popup.setup(amount, spawn_pos, color, is_critical)
 	
 # THIS IS THE FUNCTION YOUR MANAGER IS LOOKING FOR
 func setup_character(data: CharacterData):
@@ -60,7 +63,7 @@ func flash_character(flash_color: Color):
 		tween.tween_property(sprite_2d, "modulate", Color.WHITE, 0.55)
 
 
-func take_damage(amount: int):
+func take_damage(amount: int, is_critical: bool = false):
 	var damage_to_hp = amount
 	
 	if current_shield > 0:
@@ -73,14 +76,14 @@ func take_damage(amount: int):
 	
 	current_health -= damage_to_hp
 	
-	# Trigger your existing flash effect
-	flash_character(Color(2.5, 0.5, 0.5)) 
+	flash_character(Color(2.5, 0.5, 0.5))
 	
-	# --- THE FIX: CALLING THE POPUP ---
-	spawn_popup(amount, Color.RED)
+	# 2. Pass the flag to spawn_popup
+	spawn_popup(amount, Color.RED, is_critical)
 	
 	update_ui()
 	if current_health <= 0:
+		current_health = 0
 		die()
 
 func heal(amount: int):

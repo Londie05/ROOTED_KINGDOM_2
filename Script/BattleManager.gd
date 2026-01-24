@@ -117,12 +117,35 @@ func execute_enemy_ai():
 		if alive_heroes.is_empty():
 			break
 		
-		get_alive_players()
-		var target = alive_heroes.pick_random()
+		# --- 1. Calculate Damage & Crit ---
 		var damage_to_deal = enemy.base_damage
-		target.take_damage(damage_to_deal)
+		var is_crit = false
+		
+		# Roll for Crit (0-100)
+		if randi() % 100 < enemy.critical_chance:
+			is_crit = true
+			damage_to_deal = int(damage_to_deal * 1.5) # 1.5x Damage for Crit
+			print("CRITICAL HIT by " + enemy.char_name + "!")
 
-		print(enemy.char_name + " dealt " + str(damage_to_deal) + " damage to " + target.char_name)
+		# --- 2. Handle Target Selection (AOE vs Single) ---
+		var targets_to_hit = []
+		
+		if enemy.is_aoe:
+			# AOE: Get multiple random heroes
+			alive_heroes.shuffle()
+			var hit_count = min(enemy.max_aoe_targets, alive_heroes.size())
+			for i in range(hit_count):
+				targets_to_hit.append(alive_heroes[i])
+		else:
+			# Single Target
+			targets_to_hit.append(alive_heroes.pick_random())
+
+		# --- 3. Apply Damage ---
+		for target in targets_to_hit:
+			# Pass the 'is_crit' flag to the character
+			target.take_damage(damage_to_deal, is_crit)
+			print(enemy.char_name + " dealt " + str(damage_to_deal) + " to " + target.char_name)
+
 		await get_tree().create_timer(0.8).timeout
 	
 	check_battle_status()
@@ -257,48 +280,55 @@ func advance_round():
 
 func execute_slotted_actions():
 	for data in slotted_cards:
-
+		# --- 1. DAMAGE LOGIC (Already working) ---
 		if data.damage > 0:
 			var enemies = get_alive_enemies()
-			if enemies.is_empty():
-				return
-			# AOE DAMAGE
-			if data.is_aoe == true :
-				var hits = min(data.aoe_targets, enemies.size())
-				for i in range(hits):
-					enemies[i].take_damage(data.damage)
-			else:
-				# Single target
-				enemies[0].take_damage(data.damage)
+			if not enemies.is_empty():
+				var final_damage = data.damage
+				var is_crit = randi() % 100 < data.critical_chance
+				if is_crit: final_damage = int(final_damage * 1.5)
+				
+				if data.is_aoe:
+					var hits = min(data.aoe_targets, enemies.size())
+					for i in range(hits):
+						enemies[i].take_damage(final_damage, is_crit)
+				else:
+					enemies[0].take_damage(final_damage, is_crit)
 
-		# Shield cards: give shield to the lowest-health hero
+		# --- 2. SHIELD LOGIC (Fixed for AOE) ---
 		if data.shield > 0:
-			var targets = player_team.get_children()
-			targets.sort_custom(func(a, b):
-				return a.current_health < b.current_health
-			)
+			var targets = get_alive_players()
+			if not targets.is_empty():
+				if data.is_aoe:
+					# Apply shield to everyone (up to Aoe Target limit)
+					var hits = min(data.aoe_targets, targets.size())
+					for i in range(hits):
+						targets[i].add_shield(data.shield)
+				else:
+					# Single target: prioritize lowest health
+					targets.sort_custom(func(a, b): return a.current_health < b.current_health)
+					targets[0].add_shield(data.shield)
 
-			var receiver = targets[0]
-			receiver.add_shield(data.shield)
-			receiver.current_shield += data.shield
-			receiver.update_ui()
-			print("Granted " + str(data.shield) + " shield to " + receiver.char_name)
-
-		# Heal cards
+		# --- 3. HEAL LOGIC (Fixed for AOE) ---
 		if data.heal_amount > 0:
-			var targets2 = player_team.get_children()
-			targets2.sort_custom(func(a, b):
-				return a.current_health < b.current_health
-			)
-			targets2[0].heal(data.heal_amount)
+			var targets = get_alive_players()
+			if not targets.is_empty():
+				if data.is_aoe:
+					# Apply heal to everyone (Warm Touch fix)
+					var hits = min(data.aoe_targets, targets.size())
+					for i in range(hits):
+						targets[i].heal(data.heal_amount)
+				else:
+					# Single target: prioritize lowest health
+					targets.sort_custom(func(a, b): return a.current_health < b.current_health)
+					targets[0].heal(data.heal_amount)
 
 		discard_pile.append(data)
 		await get_tree().create_timer(0.5).timeout
 
-	# Clear slots
+	# Cleanup slots
 	for child in slot_container.get_children():
 		child.queue_free()
-
 	slotted_cards.clear()
 	check_battle_status()
 
@@ -349,11 +379,10 @@ func check_battle_status():
 		
 	# Only trigger victory if there are NO alive enemies left
 	if alive_enemies.is_empty():
-		# This ensures we don't trigger it if the floor hasn't spawned yet
 		if Global.current_tower_floor > 0:
 			print("Victory! All enemies defeated.")
 			Global.mark_floor_cleared(Global.current_tower_floor) #
-			GlobalMenu.show_victory_menu() # Calls the Autoload you just set up
+			GlobalMenu.show_victory_menu() 
 	
 func get_alive_players() -> Array:
 	var alive = []

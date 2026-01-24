@@ -206,7 +206,6 @@ text = "End Turn"
 
 [node name="CardSlots" type="HBoxContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 anchors_preset = -1
 anchor_bottom = 0.0050000004
 offset_left = 3.0

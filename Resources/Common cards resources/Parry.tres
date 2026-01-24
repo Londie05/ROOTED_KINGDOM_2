@@ -11,4 +11,5 @@ damage = 4
 shield = 5
 description = "Parry the attack and deals 4 damage, and also gain 5 shield"
 aoe_targets = 1
+critical_chance = 30
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

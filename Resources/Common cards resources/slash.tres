@@ -7,7 +7,8 @@
 script = ExtResource("2_fc3r1")
 card_name = "Slash"
 card_image = ExtResource("1_wbie6")
-damage = 99
+damage = 12
 energy_cost = 2
 aoe_targets = 1
+critical_chance = 30
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

@@ -12,3 +12,5 @@ class_name CardData
 @export var description: String = ""
 @export var is_aoe: bool = false
 @export var aoe_targets: int = 0
+
+@export var critical_chance: int = 0

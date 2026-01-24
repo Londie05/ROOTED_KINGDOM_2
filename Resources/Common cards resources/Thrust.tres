@@ -10,4 +10,5 @@ card_image = ExtResource("1_7keqb")
 damage = 15
 energy_cost = 2
 aoe_targets = 1
+critical_chance = 30
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

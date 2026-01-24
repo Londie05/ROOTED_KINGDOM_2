@@ -7,9 +7,10 @@
 script = ExtResource("2_hswhc")
 card_name = "Judgement Crimson"
 card_image = ExtResource("1_7753u")
-damage = 80
+damage = 25
 shield = 5
 description = "Deals 99 damage"
 is_aoe = true
-aoe_targets = 2
+aoe_targets = 4
+critical_chance = 40
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

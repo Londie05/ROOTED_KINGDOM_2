@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CharacterData" load_steps=8 format=3 uid="uid://cev2gr7ft7bvl"]
+[gd_resource type="Resource" script_class="CharacterData" load_steps=9 format=3 uid="uid://cev2gr7ft7bvl"]
 
 [ext_resource type="Texture2D" uid="uid://by282evl3dxef" path="res://Asset/Characters/Beatrix/Beatrix 4 cards/Beatrix card  2.jpg" id="1_sqwuj"]
 [ext_resource type="Texture2D" uid="uid://uidjcdf62vif" path="res://Asset/Characters/Beatrix/charlotte-removebg-preview.png" id="1_x5mnr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://c1n53h5gfnv83" path="res://Resources/Common cards resources/Shield.tres" id="4_sqwuj"]
 [ext_resource type="Resource" uid="uid://qn54dvyfdrjc" path="res://Resources/Common cards resources/Warm Touch.tres" id="5_eviq4"]
 [ext_resource type="Script" uid="uid://dcjbbujtui8uu" path="res://Script/CharacterData.gd" id="5_xkcyg"]
+[ext_resource type="Resource" uid="uid://bvhpgffxipn01" path="res://Resources/Common cards resources/Magic Blast.tres" id="6_eviq4"]
 [ext_resource type="Resource" uid="uid://bm7cgrmasembw" path="res://Resources/Signature cards/Beatrice_ultimate.tres" id="7_o141x"]
 
 [resource]
@@ -14,5 +15,5 @@ name = "Beatrice"
 character_sprite = ExtResource("1_x5mnr")
 character_illustration = ExtResource("1_sqwuj")
 unique_card = ExtResource("7_o141x")
-common_cards = Array[ExtResource("2_sqwuj")]([ExtResource("4_sqwuj"), ExtResource("5_eviq4"), ExtResource("4_sqwuj")])
+common_cards = Array[ExtResource("2_sqwuj")]([ExtResource("4_sqwuj"), ExtResource("5_eviq4"), ExtResource("6_eviq4")])
 metadata/_custom_type_script = "uid://dcjbbujtui8uu"
