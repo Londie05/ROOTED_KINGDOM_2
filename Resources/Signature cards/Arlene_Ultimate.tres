@@ -7,7 +7,7 @@
 script = ExtResource("1_n4al4")
 card_name = "Glaciation of Plains"
 card_image = ExtResource("1_ejm6m")
-damage = 23
+damage = 25
 shield = 10
 heal_amount = 10
 energy_cost = 4

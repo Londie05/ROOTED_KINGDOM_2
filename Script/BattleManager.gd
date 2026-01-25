@@ -5,6 +5,11 @@ extends Node2D
 @export var floor_3_enemies: Array[EnemyData] = []
 @export var floor_4_enemies: Array[EnemyData] = []
 @export var floor_5_enemies: Array[EnemyData] = []
+@export var floor_6_enemies: Array[EnemyData] = []
+@export var floor_7_enemies: Array[EnemyData] = []
+@export var floor_8_enemies: Array[EnemyData] = []
+@export var floor_9_enemies: Array[EnemyData] = []
+@export var floor_10_enemies: Array[EnemyData] = []
 # --- 1. NODE LINKS ---
 @onready var slot_container = %CardSlots
 @onready var player_team = $PlayerTeam
@@ -414,6 +419,12 @@ func setup_tower_enemies():
 		3: selected_floor_data = floor_3_enemies
 		4: selected_floor_data = floor_4_enemies
 		5: selected_floor_data = floor_5_enemies
+		6: selected_floor_data = floor_6_enemies
+		7: selected_floor_data = floor_7_enemies
+		8: selected_floor_data = floor_8_enemies
+		9: selected_floor_data = floor_9_enemies
+		10: selected_floor_data = floor_10_enemies
+
 		
 	for node in enemy_nodes:
 		node.hide()

@@ -7,9 +7,9 @@
 script = ExtResource("2_hswhc")
 card_name = "Judgement Crimson"
 card_image = ExtResource("1_7753u")
-damage = 25
-shield = 5
-heal_amount = 10
+damage = 33
+shield = 10
+heal_amount = 15
 energy_cost = 5
 description = "Deals 99 damage"
 is_aoe = true

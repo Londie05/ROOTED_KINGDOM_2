@@ -11,7 +11,11 @@ func _ready():
 	container.get_node("Floor2").pressed.connect(_on_floor_selected.bind(2, "Floor 2: Two Grunts"))
 	container.get_node("Floor3").pressed.connect(_on_floor_selected.bind(3, "Floor 3: The Trio"))
 	container.get_node("Floor4").pressed.connect(_on_floor_selected.bind(4, "Floor 4: The four enemies"))
-	container.get_node("Floor5").pressed.connect(_on_floor_selected.bind(5, "Floor 5: The benevolent"))
+	container.get_node("Floor6").pressed.connect(_on_floor_selected.bind(6, "Floor 6: The benevolent"))
+	container.get_node("Floor7").pressed.connect(_on_floor_selected.bind(7, "Floor 7: The benevolent"))
+	container.get_node("Floor8").pressed.connect(_on_floor_selected.bind(8, "Floor 8: The benevolent"))
+	container.get_node("Floor9").pressed.connect(_on_floor_selected.bind(9, "Floor 9: The benevolent"))
+	container.get_node("Floor10").pressed.connect(_on_floor_selected.bind(10, "Floor 10: The benevolent"))
 
 	# Redirect the button to the Character Selection scene
 	$StartBattleButton.text = "Choose Characters" # Optional: Change button text

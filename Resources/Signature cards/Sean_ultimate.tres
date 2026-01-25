@@ -7,7 +7,7 @@
 script = ExtResource("1_6jplm")
 card_name = "Sharpshooter of death"
 card_image = ExtResource("1_ys7tt")
-damage = 35
+damage = 44
 heal_amount = 11
 energy_cost = 4
 description = "Deals 35 damage to a signle enemy"

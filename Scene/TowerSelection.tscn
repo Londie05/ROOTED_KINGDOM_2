@@ -9,54 +9,85 @@ script = ExtResource("1_p0bcw")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
-offset_left = 661.0
-offset_top = 34.999996
-offset_right = 979.66364
-offset_bottom = 412.60452
+offset_left = 354.99997
+offset_top = 35.0
+offset_right = 774.64856
+offset_bottom = 640.5922
 scale = Vector2(0.891222, 0.98250943)
 horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
 
 [node name="VBox" type="VBoxContainer" parent="ScrollContainer"]
-custom_minimum_size = Vector2(300, 300)
+custom_minimum_size = Vector2(400, 400)
 layout_mode = 2
 size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 25
 
 [node name="Floor1" type="Button" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(120, 80)
+custom_minimum_size = Vector2(400, 90)
 layout_mode = 2
 theme_override_constants/h_separation = 2
 text = "Floor 1"
 
 [node name="Floor2" type="Button" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(120, 80)
+custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
 text = "Floor 2"
 
 [node name="Floor3" type="Button" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(120, 80)
+custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
 text = "Floor 3
 "
 
 [node name="Floor4" type="Button" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(120, 80)
+custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
 text = "Floor 4
 "
 
 [node name="Floor5" type="Button" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(120, 80)
+custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
 text = "Floor 5
 "
 
+[node name="Floor6" type="Button" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+text = "Floor 6
+"
+
+[node name="Floor7" type="Button" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+text = "Floor 7
+"
+
+[node name="Floor8" type="Button" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+text = "Floor 8
+"
+
+[node name="Floor9" type="Button" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+text = "Floor 9
+"
+
+[node name="Floor10" type="Button" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+text = "Floor 10
+"
+
 [node name="DescriptionPanel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 587.0
-offset_top = 467.0
-offset_right = 1151.0
-offset_bottom = 645.0
+offset_left = 743.0
+offset_top = 35.0
+offset_right = 1143.0
+offset_bottom = 630.0
 
 [node name="Label" type="Label" parent="DescriptionPanel"]
 layout_mode = 0
@@ -65,8 +96,8 @@ offset_bottom = 23.0
 
 [node name="StartBattleButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 436.0
-offset_top = 312.0
-offset_right = 622.0
-offset_bottom = 360.0
+offset_left = 190.0
+offset_top = 555.0
+offset_right = 314.0
+offset_bottom = 629.0
 text = "Start battle"

@@ -7,7 +7,8 @@
 script = ExtResource("1_kiovc")
 name = "Enemy2"
 enemy_sprite = ExtResource("1_vk04e")
-base_damage = 15
-min_crit_chance = 30
-max_crit_chance = 60
+max_health = 435
+base_damage = 12
+min_crit_chance = 40
+max_crit_chance = 80
 metadata/_custom_type_script = "uid://de4ufxbti7lif"

@@ -7,8 +7,8 @@
 script = ExtResource("1_cbvff")
 name = "Nah'rgot"
 enemy_sprite = ExtResource("1_q4icm")
-max_health = 777
-base_damage = 12
+max_health = 1200
+base_damage = 15
 min_crit_chance = 70
 max_crit_chance = 100
 is_aoe = true

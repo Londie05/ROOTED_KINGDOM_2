@@ -7,9 +7,10 @@
 script = ExtResource("1_om1pg")
 name = "Enemy1"
 enemy_sprite = ExtResource("1_j73hr")
-base_damage = 6
-min_crit_chance = 60
-max_crit_chance = 100
+max_health = 333
+base_damage = 7
+min_crit_chance = 44
+max_crit_chance = 70
 is_aoe = true
 aoe_targets = 3
 metadata/_custom_type_script = "uid://de4ufxbti7lif"
