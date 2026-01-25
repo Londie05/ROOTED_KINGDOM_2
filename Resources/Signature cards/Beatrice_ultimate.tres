@@ -7,12 +7,11 @@
 script = ExtResource("2_eay75")
 card_name = "Bloom endless meadow"
 card_image = ExtResource("1_e1or4")
-damage = 25
-shield = 5
-heal_amount = 20
-energy_cost = 5
 description = "Deals the mage to all enemies on the field"
+shield = 15
+heal_amount = 10
+mana_gain = 8
+mana_cost = 5
 is_aoe = true
-aoe_targets = 4
-critical_chance = 70
+aoe_targets = 5
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

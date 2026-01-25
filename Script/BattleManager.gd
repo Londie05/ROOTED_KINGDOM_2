@@ -16,7 +16,8 @@ extends Node2D
 @onready var enemy_team = $EnemyTeam
 @onready var hand_container = %Hand
 @onready var mana_label = $CanvasLayer/EnergyLabel
-	
+
+var mana_popup_scene = preload("res://Scene/ManaPopup.tscn") 
 var card_scene = preload("res://Scene/CardUI.tscn")
 
 var is_processing_turn: bool = false
@@ -99,11 +100,14 @@ func start_current_phase():
 	var phase = phases[current_phase_index]
 	
 	if phase == "player":
-		# 1. Player Phase: Regen Mana (Cap at 20)
 		if current_phase_index == 0:
-			# Logic: Add 4, but don't go over 20
+			var old_mana = current_mana
 			current_mana = min(current_mana + mana_regen, max_mana)
-			print("Player Turn! Mana: " + str(current_mana))
+			
+			# Calculate how much we actually gained (in case of cap)
+			var actual_gain = current_mana - old_mana
+			if actual_gain > 0:
+				spawn_mana_popup(actual_gain)
 		
 		# Highlight heroes
 		for hero in player_team.get_children():
@@ -215,10 +219,10 @@ func _on_card_played(data: CardData, card_node: Node):
 	# Safety Checks
 	if phases[current_phase_index] != "player": return
 	if slotted_cards.size() >= max_slots: return 
-	if current_mana < data.energy_cost: return
+	if current_mana < data.mana_cost: return
 
 	# 1. Deduct Mana
-	current_mana -= data.energy_cost
+	current_mana -= data.mana_cost
 	
 	# 2. Add to Slot Logic
 	slotted_cards.append(data)
@@ -249,7 +253,7 @@ func return_card_to_hand(data: CardData, card_node: Node):
 	if is_processing_turn: return
 	
 	# 1. Refund Mana
-	current_mana += data.energy_cost
+	current_mana += data.mana_cost
 	# (Optional: Cap it again if needed, but usually refund allows overflow or exact return)
 	current_mana = min(current_mana, max_mana)
 
@@ -303,7 +307,7 @@ func update_mana_ui():
 	# Update Hand Cards (Dim if too expensive)
 	for card in hand_container.get_children():
 		if "card_data" in card and card.card_data != null:
-			var cost = card.card_data.energy_cost
+			var cost = card.card_data.mana_cost
 			var btn = card.get_node("VBoxContainer/PlayButton")
 			
 			if not is_player_phase or cost > current_mana:
@@ -341,11 +345,10 @@ func highlight_active_character():
 
 func advance_round():
 	round_number += 1
-	# Cap max energy at 10 so the game stays challenging
 
 func execute_slotted_actions():
 	for data in slotted_cards:
-
+		
 		# --- 1. DAMAGE LOGIC ---
 		if data.damage > 0:
 			var enemies = get_alive_enemies()
@@ -381,7 +384,16 @@ func execute_slotted_actions():
 				else:
 					targets.sort_custom(func(a, b): return a.current_health < b.current_health)
 					targets[0].add_shield(final_shield)
-
+					
+		if data.mana_gain > 0:
+			var gain = Global.get_card_mana(data)
+			current_mana = min(current_mana + gain, max_mana) # Added min() to respect max_mana
+			
+			# NEW: Show the visual popup!
+			spawn_mana_popup(gain)
+			
+			update_mana_ui()
+			
 		# --- 3. HEAL LOGIC ---
 		if data.heal_amount > 0:
 			var targets = get_alive_players()
@@ -475,3 +487,14 @@ func get_alive_players() -> Array:
 	
 func _on_menu_button_pressed() -> void:
 	GlobalMenu.show_pause_menu()
+
+func spawn_mana_popup(amount: int):
+	if mana_label == null: return
+	
+	var popup = mana_popup_scene.instantiate()
+	# Add it to the CanvasLayer so it stays on top of the UI
+	$CanvasLayer.add_child(popup)
+	
+	# Position it right on top of the Mana Label
+	popup.global_position = mana_label.global_position + Vector2(20, -20)
+	popup.setup(amount)

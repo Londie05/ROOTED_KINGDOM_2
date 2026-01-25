@@ -41,6 +41,10 @@ func get_card_heal(data: CardData) -> int:
 	var lvl = card_levels.get(data.card_name, 0)
 	return data.heal_amount + (data.heal_growth * lvl)
 
+func get_card_mana(data: CardData) -> int:
+	var lvl = card_levels.get(data.card_name, 0)
+	return data.mana_gain + (data.mana_gain * lvl)
+
 # 4. Get the Current Level Number (For UI)
 func get_card_level_number(data: CardData) -> int:
 	# Returns 1, 2, 3... instead of 0, 1, 2...

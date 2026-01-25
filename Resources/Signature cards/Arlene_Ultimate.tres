@@ -7,11 +7,11 @@
 script = ExtResource("1_n4al4")
 card_name = "Glaciation of Plains"
 card_image = ExtResource("1_ejm6m")
-damage = 25
-shield = 10
-heal_amount = 10
-energy_cost = 4
 description = "Deals 35 damage to all enemies and all allies gain 10 shields"
+damage = 25
+shield = 12
+heal_amount = 12
+mana_cost = 5
 is_aoe = true
 aoe_targets = 4
 critical_chance = 40

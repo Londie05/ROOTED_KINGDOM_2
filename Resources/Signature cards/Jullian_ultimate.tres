@@ -7,10 +7,10 @@
 script = ExtResource("1_2b8co")
 card_name = "The Luminious warrior"
 card_image = ExtResource("1_ixv3g")
+description = "Deals 20 damage to one enemy and gain 30 shield"
 damage = 33
 shield = 45
 heal_amount = 5
-energy_cost = 4
-description = "Deals 20 damage to one enemy and gain 30 shield"
+mana_cost = 5
 critical_chance = 30
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

@@ -10,6 +10,7 @@ card_image = ExtResource("1_e2mba")
 description = "Parry the attack and deals 4 damage, and also gain 5 shield"
 damage = 5
 shield = 5
+mana_cost = 1
 aoe_targets = 1
 critical_chance = 30
 damage_growth = 2

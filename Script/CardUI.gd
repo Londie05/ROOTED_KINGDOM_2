@@ -13,4 +13,4 @@ func setup(data: CardData):
 	if data.card_image:
 		get_node("VBoxContainer/CardImage").texture = data.card_image
 	
-	get_node("VBoxContainer/PlayButton").text = "Play (" + str(data.energy_cost) + ")"
+	get_node("VBoxContainer/PlayButton").text = "Play (" + str(data.mana_cost) + ")"

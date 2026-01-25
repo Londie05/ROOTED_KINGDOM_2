@@ -7,10 +7,10 @@
 script = ExtResource("1_6jplm")
 card_name = "Sharpshooter of death"
 card_image = ExtResource("1_ys7tt")
-damage = 44
-heal_amount = 11
-energy_cost = 4
 description = "Deals 35 damage to a signle enemy"
+damage = 45
+heal_amount = 11
+mana_cost = 5
 aoe_targets = 1
 critical_chance = 70
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

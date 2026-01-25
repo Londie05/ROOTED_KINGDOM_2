@@ -197,15 +197,16 @@ offset_bottom = 63.0
 text = "Menu"
 
 [node name="EnergyLabel" type="Label" parent="CanvasLayer"]
-offset_left = 1023.0
-offset_top = 567.0
-offset_right = 1103.0
-offset_bottom = 606.0
+offset_left = 1007.0
+offset_top = 566.0
+offset_right = 1119.0
+offset_bottom = 612.0
+theme_override_font_sizes/font_size = 25
 
 [node name="EndTurnButton" type="Button" parent="CanvasLayer"]
 offset_left = 1007.0
 offset_top = 511.0
-offset_right = 1126.0
+offset_right = 1136.0
 offset_bottom = 542.0
 text = "End Turn"
 

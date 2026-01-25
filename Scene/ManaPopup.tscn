@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjlo5he4it2xj"]
+
+[ext_resource type="Script" uid="uid://kanncblagwan" path="res://Scene/ManaPopup.gd" id="1_tdjmh"]
+
+[node name="ManaPopup" type="Label"]
+offset_right = 85.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(0.26, 0.51899993, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "mana +999"
+horizontal_alignment = 1
+script = ExtResource("1_tdjmh")

@@ -9,6 +9,7 @@ card_name = "Pierce"
 card_image = ExtResource("1_4my0g")
 description = "deals 14 damage to two enemies"
 damage = 14
+mana_cost = 1
 is_aoe = true
 aoe_targets = 2
 critical_chance = 30
