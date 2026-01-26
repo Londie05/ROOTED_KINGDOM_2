@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://qn54dvyfdrjc" path="res://Resources/Common cards resources/Warm Touch.tres" id="4_rrj0s"]
 [ext_resource type="Resource" uid="uid://bvhpgffxipn01" path="res://Resources/Common cards resources/Magic Blast.tres" id="5_rrj0s"]
 [ext_resource type="Resource" uid="uid://dhh82yst46iew" path="res://Resources/Common cards resources/Ice barrage.tres" id="6_rrj0s"]
-[ext_resource type="SpriteFrames" uid="uid://cywakqpa2mvgy" path="res://Resources/Animation resourcess/Charlotte.tres" id="7_kbv2t"]
+[ext_resource type="SpriteFrames" uid="uid://cywakqpa2mvgy" path="res://Resources/Animation resourcess/Hero animations/Charlotte.tres" id="7_kbv2t"]
 [ext_resource type="Resource" uid="uid://71ifm4u8c2xh" path="res://Resources/Signature cards/charlotte_ultimate.tres" id="8_cbo0c"]
 
 [resource]

@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://cst0ty6jx3wqd"]
 
-[ext_resource type="Texture2D" uid="uid://dybx2o1ibqdpd" path="res://Asset/Characters/enemies/4.png" id="1_d4a58"]
+[ext_resource type="SpriteFrames" uid="uid://djsaubq64btn2" path="res://Resources/Animation resourcess/Enemy animations/Enemy4.tres" id="1_d4a58"]
 [ext_resource type="Script" uid="uid://de4ufxbti7lif" path="res://Script/EnemyData.gd" id="1_yrnme"]
 
 [resource]
 script = ExtResource("1_yrnme")
 name = "Gornot4"
-enemy_sprite = ExtResource("1_d4a58")
+idle_animation = ExtResource("1_d4a58")
 max_health = 777
 base_damage = 13
 min_crit_chance = 35

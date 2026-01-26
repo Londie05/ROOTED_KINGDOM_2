@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://dhgj4dae4hy2x"]
 
 [ext_resource type="Script" uid="uid://de4ufxbti7lif" path="res://Script/EnemyData.gd" id="1_kiovc"]
-[ext_resource type="Texture2D" uid="uid://de3vu6immvp4r" path="res://Asset/Characters/enemies/2.png" id="1_vk04e"]
+[ext_resource type="SpriteFrames" uid="uid://blgbnhgrhy26j" path="res://Resources/Animation resourcess/Enemy animations/Enemy2.tres" id="1_vk04e"]
 
 [resource]
 script = ExtResource("1_kiovc")
 name = "Enemy2"
-enemy_sprite = ExtResource("1_vk04e")
+idle_animation = ExtResource("1_vk04e")
 max_health = 435
 base_damage = 12
 min_crit_chance = 40

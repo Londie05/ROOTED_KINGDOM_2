@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CharacterData" load_steps=9 format=3 uid="uid://b4141yupqysbg"]
+[gd_resource type="Resource" script_class="CharacterData" load_steps=10 format=3 uid="uid://b4141yupqysbg"]
 
 [ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="1_r141m"]
 [ext_resource type="Texture2D" uid="uid://c1dlxvo3qpnlr" path="res://Asset/Characters/Arlene/Arlene.jpg" id="1_vxghk"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://dhh82yst46iew" path="res://Resources/Common cards resources/Ice barrage.tres" id="4_7vmdm"]
 [ext_resource type="Resource" uid="uid://qn54dvyfdrjc" path="res://Resources/Common cards resources/Warm Touch.tres" id="5_st0tk"]
 [ext_resource type="Resource" uid="uid://bvhpgffxipn01" path="res://Resources/Common cards resources/Magic Blast.tres" id="6_4bc3a"]
+[ext_resource type="SpriteFrames" uid="uid://cw8yb2o4uqbcv" path="res://Resources/Animation resourcess/Hero animations/Arlene.tres" id="7_a3b3a"]
 [ext_resource type="Resource" uid="uid://7ojtheqef82v" path="res://Resources/Signature cards/Arlene_Ultimate.tres" id="8_3u8k0"]
 
 [resource]
@@ -17,4 +18,5 @@ character_illustration = ExtResource("1_vxghk")
 unique_card = ExtResource("8_3u8k0")
 common_cards = Array[ExtResource("1_r141m")]([ExtResource("4_7vmdm"), ExtResource("5_st0tk"), ExtResource("6_4bc3a")])
 is_locked = true
+idle_animation = ExtResource("7_a3b3a")
 metadata/_custom_type_script = "uid://dcjbbujtui8uu"

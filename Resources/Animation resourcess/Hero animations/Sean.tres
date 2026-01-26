@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://w0iejs6gfv0g"]
+
+[ext_resource type="Texture2D" uid="uid://oj6anwmw8riv" path="res://Asset/Sean-removebg-preview.png" id="1_i5djm"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_i5djm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

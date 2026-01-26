@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://cw8yb2o4uqbcv"]
+
+[ext_resource type="Texture2D" uid="uid://574p8fl6toy2" path="res://Asset/Characters/Arlene/Arlene_char-removebg-preview.png" id="1_utdh1"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_utdh1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

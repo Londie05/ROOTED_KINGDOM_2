@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CharacterData" load_steps=9 format=3 uid="uid://bgu42lalfpfe1"]
+[gd_resource type="Resource" script_class="CharacterData" load_steps=10 format=3 uid="uid://bgu42lalfpfe1"]
 
 [ext_resource type="Texture2D" uid="uid://ceauwhfsbqpfh" path="res://Asset/Julian.jpg" id="1_ck40k"]
 [ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="1_q2phu"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://bf2bciwkcq40g" path="res://Resources/Common cards resources/Parry.tres" id="4_5if1j"]
 [ext_resource type="Resource" uid="uid://cei5i8cmjhpqy" path="res://Resources/Common cards resources/slash.tres" id="5_y8lat"]
 [ext_resource type="Resource" uid="uid://bpx0gk4fwgevj" path="res://Resources/Common cards resources/Thrust.tres" id="6_pr37i"]
+[ext_resource type="SpriteFrames" uid="uid://cyidnvmoyejjg" path="res://Resources/Animation resourcess/Hero animations/Jullian.tres" id="7_bksev"]
 [ext_resource type="Resource" uid="uid://c0dac4le7uft2" path="res://Resources/Signature cards/Jullian_ultimate.tres" id="8_uoa73"]
 
 [resource]
@@ -18,4 +19,5 @@ max_health = 115
 unique_card = ExtResource("8_uoa73")
 common_cards = Array[ExtResource("1_q2phu")]([ExtResource("4_5if1j"), ExtResource("5_y8lat"), ExtResource("6_pr37i")])
 is_locked = true
+idle_animation = ExtResource("7_bksev")
 metadata/_custom_type_script = "uid://dcjbbujtui8uu"

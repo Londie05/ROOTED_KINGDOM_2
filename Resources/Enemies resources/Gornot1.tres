@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://dqqua2af16pfl"]
 
-[ext_resource type="SpriteFrames" uid="uid://dap8ajcpv1g4d" path="res://Resources/Animation resourcess/Enemy1.tres" id="1_j73hr"]
+[ext_resource type="SpriteFrames" uid="uid://dap8ajcpv1g4d" path="res://Resources/Animation resourcess/Enemy animations/Enemy1.tres" id="1_j73hr"]
 [ext_resource type="Script" uid="uid://de4ufxbti7lif" path="res://Script/EnemyData.gd" id="1_om1pg"]
 
 [resource]
