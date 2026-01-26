@@ -1,4 +1,3 @@
-# Enemy.gd
 extends BattleCharacter
 
 func setup_enemy(data: EnemyData):
@@ -6,25 +5,33 @@ func setup_enemy(data: EnemyData):
 		hide()
 		return
 		
+	# 1. Setup Stats
 	char_name = data.name
 	max_health = data.max_health
 	current_health = max_health
 	base_damage = data.base_damage
 	current_shield = data.base_shield
 	
-	# --- NEW: Set Random Crit and AOE from Data ---
+	# 2. Setup AI Rules
 	critical_chance = randi_range(data.min_crit_chance, data.max_crit_chance)
 	is_aoe = data.is_aoe
 	max_aoe_targets = data.aoe_targets
-	# ----------------------------------------------
 	
-	# Update Visuals
-	if sprite_2d and data.enemy_sprite:
-		sprite_2d.texture = data.enemy_sprite
-		sprite_2d.flip_h = true 
-		var texture_size = sprite_2d.texture.get_size()
-		var scale_factor = target_height / texture_size.y
-		sprite_2d.scale = Vector2(scale_factor, scale_factor)
+	# 3. FIX: Setup Animation & Scaling
+	# We use 'sprite_frames' now, not 'texture'
+	if anim_sprite and data.idle_animation:
+		anim_sprite.sprite_frames = data.idle_animation
+		anim_sprite.play("default")
+		anim_sprite.flip_h = true # Flip enemies to face left
+		
+		# CALCULATE SIZE
+		# We get the size of the first frame of the animation
+		var first_frame = data.idle_animation.get_frame_texture("default", 0)
+		if first_frame:
+			var t_size = first_frame.get_size()
+			# This math ensures they grow/shrink to match your Target Height
+			var scale_factor = target_height / t_size.y
+			anim_sprite.scale = Vector2(scale_factor, scale_factor)
 	
-	update_ui() 
+	update_ui()
 	show()

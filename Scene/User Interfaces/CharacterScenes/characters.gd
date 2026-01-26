@@ -15,7 +15,6 @@ extends Control
 @onready var unlock_btn = $DetailPanel/UnlockButton
 
 
-
 var selection_card_scene = preload("res://Scene/User Interfaces/CharacterScenes/SelectionCard.tscn")
 var card_ui_scene = preload("res://Scene/CardUI.tscn")
 
@@ -36,7 +35,15 @@ func _ready():
 	if unlock_btn:
 		unlock_btn.pressed.connect(_on_unlock_hero_pressed)
 		unlock_btn.hide()
-
+	
+	if Global.from_tower_mode == false:
+		var team_panel = $TeamPanel
+		var scroll = $ScrollContainer
+		scroll.position.y = 150 
+		scroll.size.y = 850 
+		
+		team_panel.hide()
+		
 func update_currency_ui():
 	# Display the values from Global
 	small_gem_label.text = str(Global.small_gems)

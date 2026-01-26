@@ -1,9 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://c383wxvj0hh7q"]
+[gd_scene load_steps=14 format=3 uid="uid://c383wxvj0hh7q"]
 
-[ext_resource type="Texture2D" uid="uid://uidjcdf62vif" path="res://Asset/Characters/Beatrix/charlotte-removebg-preview.png" id="1_4y0t7"]
 [ext_resource type="PackedScene" uid="uid://bplpwpncwxjh4" path="res://Scene/CardUI.tscn" id="1_fxwnf"]
 [ext_resource type="Script" uid="uid://1mh1lv3r2q5c" path="res://Script/BattleManager.gd" id="1_vsh2u"]
-[ext_resource type="Texture2D" uid="uid://cmpprcr84ive7" path="res://Asset/Characters/enemies/1.png" id="2_fxwnf"]
 [ext_resource type="Script" uid="uid://de4ufxbti7lif" path="res://Script/EnemyData.gd" id="2_nqr2r"]
 [ext_resource type="Resource" uid="uid://dqqua2af16pfl" path="res://Resources/Enemies resources/Gornot1.tres" id="3_4l1qv"]
 [ext_resource type="Texture2D" uid="uid://ccclxldrmru4w" path="res://Asset/Backgrounds/background 1.jpg" id="3_tkjg1"]
@@ -13,10 +11,7 @@
 [ext_resource type="Script" uid="uid://dafxw2p825bmt" path="res://Script/Enemy.gd" id="6_f2o1h"]
 [ext_resource type="Resource" uid="uid://cst0ty6jx3wqd" path="res://Resources/Enemies resources/Gornot4.tres" id="6_jxk86"]
 [ext_resource type="Resource" uid="uid://cqmjjngvfv0m6" path="res://Resources/Enemies resources/Floor5Boss.tres" id="7_3314g"]
-[ext_resource type="Texture2D" uid="uid://de3vu6immvp4r" path="res://Asset/Characters/enemies/2.png" id="8_ehisa"]
-[ext_resource type="Texture2D" uid="uid://h8k4v6mepfq8" path="res://Asset/Characters/enemies/3.png" id="9_36gl3"]
 [ext_resource type="PackedScene" uid="uid://bsv08pscmpght" path="res://Scene/DamagePopup.tscn" id="10_4x6d6"]
-[ext_resource type="Texture2D" uid="uid://dybx2o1ibqdpd" path="res://Asset/Characters/enemies/4.png" id="14_4l1qv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vsh2u"]
 size = Vector2(311.5, 317.5)
@@ -50,10 +45,9 @@ script = ExtResource("4_y8d5v")
 damage_node = ExtResource("10_4x6d6")
 target_height = 210.0
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerTeam/Dummy1"]
+[node name="AnimSprite" type="AnimatedSprite2D" parent="PlayerTeam/Dummy1"]
 position = Vector2(255, 314)
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("1_4y0t7")
 
 [node name="HealthBar" type="ProgressBar" parent="PlayerTeam/Dummy1"]
 offset_left = 205.0
@@ -91,10 +85,9 @@ script = ExtResource("4_y8d5v")
 damage_node = ExtResource("10_4x6d6")
 target_height = 210.0
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerTeam/Dummy2"]
+[node name="AnimSprite" type="AnimatedSprite2D" parent="PlayerTeam/Dummy2"]
 position = Vector2(359, 421)
 scale = Vector2(0.7, 0.685)
-texture = ExtResource("1_4y0t7")
 
 [node name="HealthBar" type="ProgressBar" parent="PlayerTeam/Dummy2"]
 offset_left = 313.0
@@ -132,10 +125,9 @@ script = ExtResource("4_y8d5v")
 damage_node = ExtResource("10_4x6d6")
 target_height = 210.0
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerTeam/Dummy3"]
+[node name="AnimSprite" type="AnimatedSprite2D" parent="PlayerTeam/Dummy3"]
 position = Vector2(127.00001, 397)
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("1_4y0t7")
 
 [node name="HealthBar" type="ProgressBar" parent="PlayerTeam/Dummy3"]
 offset_left = 77.0
@@ -229,10 +221,9 @@ char_name = "Enemy1"
 is_enemy = true
 target_height = 250.0
 
-[node name="Sprite2D" type="Sprite2D" parent="EnemyTeam/Enemy"]
+[node name="AnimSprite" type="AnimatedSprite2D" parent="EnemyTeam/Enemy"]
 position = Vector2(1.9999733, 357)
 scale = Vector2(-0.5, 0.445)
-texture = ExtResource("2_fxwnf")
 
 [node name="HealthBar" type="ProgressBar" parent="EnemyTeam/Enemy"]
 offset_left = -62.0
@@ -279,10 +270,9 @@ char_name = "Enemy2"
 is_enemy = true
 target_height = 250.0
 
-[node name="Sprite2D" type="Sprite2D" parent="EnemyTeam/Enemy2"]
+[node name="AnimSprite" type="AnimatedSprite2D" parent="EnemyTeam/Enemy2"]
 position = Vector2(55.74997, 459)
 scale = Vector2(-0.5, 0.445)
-texture = ExtResource("8_ehisa")
 
 [node name="HealthBar" type="ProgressBar" parent="EnemyTeam/Enemy2"]
 offset_left = 8.999991
@@ -329,10 +319,9 @@ char_name = "Enemy3"
 is_enemy = true
 target_height = 250.0
 
-[node name="Sprite2D" type="Sprite2D" parent="EnemyTeam/Enemy3"]
+[node name="AnimSprite" type="AnimatedSprite2D" parent="EnemyTeam/Enemy3"]
 position = Vector2(-628.24994, 391)
 scale = Vector2(-0.5, 0.445)
-texture = ExtResource("9_36gl3")
 
 [node name="HealthBar" type="ProgressBar" parent="EnemyTeam/Enemy3"]
 offset_left = -692.24994
@@ -379,10 +368,9 @@ char_name = "Enemy3"
 is_enemy = true
 target_height = 250.0
 
-[node name="Sprite2D" type="Sprite2D" parent="EnemyTeam/Enemy4"]
+[node name="AnimSprite" type="AnimatedSprite2D" parent="EnemyTeam/Enemy4"]
 position = Vector2(-875.94, 467.46875)
 scale = Vector2(-0.42941666, 0.37955877)
-texture = ExtResource("14_4l1qv")
 
 [node name="HealthBar" type="ProgressBar" parent="EnemyTeam/Enemy4"]
 offset_left = -923.0

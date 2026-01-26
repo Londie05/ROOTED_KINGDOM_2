@@ -47,4 +47,4 @@ func _on_floor_selected(floor_num: int, description: String):
 	desc_label.text = text
 
 func _on_choose_characters_pressed():
-	get_tree().change_scene_to_file("res://Scene/User Interfaces/CharacterScenes/CharacterSelection.tscn")
+	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/start_battle.tscn")

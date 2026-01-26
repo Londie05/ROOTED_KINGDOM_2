@@ -1,8 +1,8 @@
 extends Node2D
 
-@onready var cheat_input = $"../VBoxContainer/CheatInput"
-@onready var redeem_btn = $"../VBoxContainer/RedeemButton"
-@onready var feedback_lbl = $"../VBoxContainer/FeedbackLabel"
+@onready var cheat_input = $VBoxContainer/CheatInput
+@onready var redeem_btn = $VBoxContainer/RedeemButton
+@onready var feedback_lbl = $VBoxContainer/FeedbackLabel
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	redeem_btn.pressed.connect(_on_redeem_pressed)
