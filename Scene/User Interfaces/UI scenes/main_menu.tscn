@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://qde0e5mwnany"]
+[gd_scene load_steps=18 format=3 uid="uid://qde0e5mwnany"]
 
 [ext_resource type="Script" uid="uid://bxn5segpvyh4e" path="res://Scene/User Interfaces/UI Scripts/button_manager.gd" id="1_kxbd2"]
+[ext_resource type="Texture2D" uid="uid://io3a4q46b3pk" path="res://Asset/User Interface/Title_Banner_v1.png" id="1_qelcm"]
 [ext_resource type="Texture2D" uid="uid://cdfpkjhi1gi77" path="res://Asset/User Interface/button_ui.png" id="2_eh1oq"]
 [ext_resource type="FontFile" uid="uid://dtdw2k1jvjn37" path="res://Asset/Fonts/times.ttf" id="2_jykwv"]
 [ext_resource type="Texture2D" uid="uid://dcm4yl4kcn7wn" path="res://Asset/Backgrounds/gem_1.webp" id="4_87orj"]
@@ -29,6 +30,11 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xyor1"]
 
 [node name="MainMenu" type="Node2D"]
+
+[node name="Title" type="TextureRect" parent="."]
+offset_right = 605.0
+offset_bottom = 125.0
+texture = ExtResource("1_qelcm")
 
 [node name="ButtonManager" type="Control" parent="."]
 layout_mode = 3

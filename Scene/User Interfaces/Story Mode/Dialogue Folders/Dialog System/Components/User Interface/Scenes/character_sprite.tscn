@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dux857js8wmmc"]
+
+[ext_resource type="Script" uid="uid://balfk181g31ia" path="res://Dialog System/Components/User Interface/Scripts/character_sprite.gd" id="1_q2s33"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q2tkq"]
+
+[node name="Character Sprite" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_q2tkq")
+script = ExtResource("1_q2s33")

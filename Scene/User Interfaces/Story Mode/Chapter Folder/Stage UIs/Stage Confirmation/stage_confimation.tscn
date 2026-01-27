@@ -1,13 +1,15 @@
-[gd_scene load_steps=22 format=3 uid="uid://rmdg2sxyff1i"]
+[gd_scene load_steps=23 format=3 uid="uid://rmdg2sxyff1i"]
 
 [ext_resource type="Texture2D" uid="uid://cao4jwwshsvv3" path="res://Asset/images.png" id="1_6eyf2"]
 [ext_resource type="Script" uid="uid://bdjqqhpvad4c1" path="res://Scene/User Interfaces/Story Mode/Chapter Folder/Stage UIs/Stage Confirmation/stage_confimation.gd" id="1_kla3i"]
 [ext_resource type="Texture2D" uid="uid://cdfpkjhi1gi77" path="res://Asset/User Interface/button_ui.png" id="2_xh8vs"]
 [ext_resource type="FontFile" uid="uid://dtdw2k1jvjn37" path="res://Asset/Fonts/times.ttf" id="3_iht3i"]
+[ext_resource type="Texture2D" uid="uid://l45mprnx01t8" path="res://Asset/User Interface/pause.png" id="3_tb3dc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kfu43"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_stea2"]
+font = ExtResource("3_iht3i")
 font_size = 64
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iht3i"]
@@ -66,12 +68,32 @@ offset_right = 1595.0
 offset_bottom = 849.0
 texture = ExtResource("1_6eyf2")
 
-[node name="Stage Title" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 10.0
-offset_right = 1897.0
-offset_bottom = 247.0
+[node name="Stage Titles" type="Control" parent="Panel"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 3.0000002
+offset_top = 3.2359686
+offset_right = 1896.4259
+offset_bottom = 218.96729
+
+[node name="Stage Tittle Banner" type="TextureRect" parent="Panel/Stage Titles"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -29.13434
+offset_bottom = 29.134338
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_tb3dc")
+
+[node name="Stage Title Label" type="Label" parent="Panel/Stage Titles"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_kfu43")
 text = "Stage Title"
 label_settings = SubResource("LabelSettings_stea2")
@@ -132,4 +154,5 @@ icon = ExtResource("2_xh8vs")
 icon_alignment = 1
 expand_icon = true
 
+[connection signal="pressed" from="Panel/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Panel/Back" to="." method="_on_back_pressed"]
