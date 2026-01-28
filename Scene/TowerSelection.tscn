@@ -1,4 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnjv8y2vfxphv"]
+[gd_scene load_steps=5 format=3 uid="uid://cnjv8y2vfxphv"]
+
+[ext_resource type="Texture2D" uid="uid://dnxuvdehf47bo" path="res://Asset/User Interface/tower_mod_background_v2.webp" id="1_22r1l"]
+[ext_resource type="Texture2D" uid="uid://deoilkueygt75" path="res://Asset/User Interface/button.png" id="1_p0bcw"]
+[ext_resource type="Texture2D" uid="uid://l45mprnx01t8" path="res://Asset/User Interface/pause.png" id="2_scn5v"]
 
 [sub_resource type="GDScript" id="GDScript_yggx8"]
 script/source = "extends Control
@@ -55,8 +59,6 @@ func _on_choose_characters_pressed():
 	get_tree().change_scene_to_file(\"res://Scene/User Interfaces/CharacterScenes/CharacterSelection.tscn\")
 
 
-
-
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file(\"res://Scene/User Interfaces/UI scenes/start_battle.tscn\")
 "
@@ -65,6 +67,11 @@ func _on_back_pressed() -> void:
 layout_mode = 3
 anchors_preset = 0
 script = SubResource("GDScript_yggx8")
+
+[node name="TowerModBackgroundV2" type="Sprite2D" parent="."]
+position = Vector2(581.9785, 327.49335)
+scale = Vector2(2.1128056, 1.9206275)
+texture = ExtResource("1_22r1l")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
@@ -82,64 +89,165 @@ layout_mode = 2
 size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 25
 
-[node name="Floor1" type="Button" parent="ScrollContainer/VBox"]
+[node name="Floor1" type="TextureButton" parent="ScrollContainer/VBox"]
 custom_minimum_size = Vector2(400, 90)
 layout_mode = 2
-theme_override_constants/h_separation = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor1"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
 text = "Floor 1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Floor2" type="Button" parent="ScrollContainer/VBox"]
+[node name="Floor2" type="TextureButton" parent="ScrollContainer/VBox"]
 custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor2"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
 text = "Floor 2"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Floor3" type="Button" parent="ScrollContainer/VBox"]
+[node name="Floor3" type="TextureButton" parent="ScrollContainer/VBox"]
 custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
-text = "Floor 3
-"
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Floor4" type="Button" parent="ScrollContainer/VBox"]
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor3"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor4" type="TextureButton" parent="ScrollContainer/VBox"]
 custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
-text = "Floor 4
-"
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Floor5" type="Button" parent="ScrollContainer/VBox"]
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor4"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor5" type="TextureButton" parent="ScrollContainer/VBox"]
 custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
-text = "Floor 5
-"
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Floor6" type="Button" parent="ScrollContainer/VBox"]
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor5"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor6" type="TextureButton" parent="ScrollContainer/VBox"]
 custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
-text = "Floor 6
-"
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Floor7" type="Button" parent="ScrollContainer/VBox"]
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor6"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor7" type="TextureButton" parent="ScrollContainer/VBox"]
 custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
-text = "Floor 7
-"
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Floor8" type="Button" parent="ScrollContainer/VBox"]
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor7"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor8" type="TextureButton" parent="ScrollContainer/VBox"]
 custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
-text = "Floor 8
-"
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Floor9" type="Button" parent="ScrollContainer/VBox"]
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor8"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 8"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor9" type="TextureButton" parent="ScrollContainer/VBox"]
 custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
-text = "Floor 9
-"
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Floor10" type="Button" parent="ScrollContainer/VBox"]
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor9"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor10" type="TextureButton" parent="ScrollContainer/VBox"]
 custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
-text = "Floor 10
-"
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor10"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 10"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="DescriptionPanel" type="Panel" parent="."]
 layout_mode = 0
@@ -157,19 +265,27 @@ fit_content = true
 
 [node name="StartBattleButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 190.0
-offset_top = 555.0
-offset_right = 314.0
-offset_bottom = 629.0
+offset_left = 161.0
+offset_top = 541.0
+offset_right = 366.0
+offset_bottom = 624.0
 text = "Start battle"
+icon = ExtResource("1_p0bcw")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Back" type="Button" parent="."]
 layout_mode = 0
-offset_left = 11.0
-offset_top = 22.0
-offset_right = 95.0
-offset_bottom = 65.0
+offset_right = 132.0
+offset_bottom = 52.0
 text = "Back
 "
+icon = ExtResource("1_p0bcw")
+flat = true
+autowrap_mode = 2
+icon_alignment = 1
+expand_icon = true
 
+[connection signal="pressed" from="ScrollContainer/VBox/Floor1" to="." method="_on_floor_1_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

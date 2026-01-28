@@ -1,17 +1,5 @@
-[gd_scene load_steps=17 format=3 uid="uid://bjr25em7jm6c"]
+[gd_scene load_steps=5 format=3 uid="uid://bjr25em7jm6c"]
 
-[ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="2_o6gij"]
-[ext_resource type="Resource" uid="uid://c55c341gbenxw" path="res://Resources/Common cards resources/Gun Down.tres" id="3_0dhn2"]
-[ext_resource type="Resource" uid="uid://dhh82yst46iew" path="res://Resources/Common cards resources/Ice barrage.tres" id="4_6kr27"]
-[ext_resource type="Resource" uid="uid://bvhpgffxipn01" path="res://Resources/Common cards resources/Magic Blast.tres" id="5_5yfo5"]
-[ext_resource type="Resource" uid="uid://bf2bciwkcq40g" path="res://Resources/Common cards resources/Parry.tres" id="6_pmh16"]
-[ext_resource type="Resource" uid="uid://ce2o1btwte4i6" path="res://Resources/Common cards resources/Pierce.tres" id="7_l8sbb"]
-[ext_resource type="Resource" uid="uid://bq43e1owpaudj" path="res://Resources/Common cards resources/Poison dart.tres" id="8_0cgxv"]
-[ext_resource type="Resource" uid="uid://c1n53h5gfnv83" path="res://Resources/Common cards resources/Shield.tres" id="9_gipxf"]
-[ext_resource type="Resource" uid="uid://cei5i8cmjhpqy" path="res://Resources/Common cards resources/slash.tres" id="10_7io22"]
-[ext_resource type="Resource" uid="uid://bg41rywf50mm2" path="res://Resources/Common cards resources/Stun.tres" id="11_uhlfd"]
-[ext_resource type="Resource" uid="uid://bpx0gk4fwgevj" path="res://Resources/Common cards resources/Thrust.tres" id="12_nq2mc"]
-[ext_resource type="Resource" uid="uid://qn54dvyfdrjc" path="res://Resources/Common cards resources/Warm Touch.tres" id="13_3la2d"]
 [ext_resource type="PackedScene" uid="uid://diw3xv0en0ynt" path="res://Scene/User Interfaces/UI Asset Components/background_i.tscn" id="14_5yfo5"]
 [ext_resource type="Texture2D" uid="uid://dcm4yl4kcn7wn" path="res://Asset/Backgrounds/gem_1.webp" id="14_6kr27"]
 [ext_resource type="Texture2D" uid="uid://rjoebry8l2at" path="res://Asset/Backgrounds/gem_3.webp" id="15_5yfo5"]
@@ -138,7 +126,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_6kr27")
-all_cards_in_game = Array[ExtResource("2_o6gij")]([ExtResource("3_0dhn2"), ExtResource("4_6kr27"), ExtResource("5_5yfo5"), ExtResource("6_pmh16"), ExtResource("7_l8sbb"), ExtResource("8_0cgxv"), ExtResource("9_gipxf"), ExtResource("10_7io22"), ExtResource("11_uhlfd"), ExtResource("12_nq2mc"), ExtResource("13_3la2d")])
 
 [node name="Background2" type="Control" parent="."]
 anchors_preset = 0

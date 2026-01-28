@@ -207,16 +207,24 @@ func play_button_sfx():
 		sfx_player.play()
 		
 func _on_node_added(node: Node):
-	if node is Button:
+	if node is BaseButton:
 		_connect_button(node)
 
 func connect_buttons_recursive(node: Node):
-	if node is Button:
+	if node is BaseButton:
 		_connect_button(node)
 	for child in node.get_children():
 		connect_buttons_recursive(child)
 		
-func _connect_button(btn: Button):
+func _connect_button(btn: BaseButton):
+	if not btn.pressed.is_connected(play_button_sfx):
+		btn.pressed.connect(play_button_sfx)
+	
+	# NEW: Add a visual "shiver" or scale effect when clicked
+	if not btn.button_down.is_connected(_on_button_down.bind(btn)):
+		btn.button_down.connect(_on_button_down.bind(btn))
+	if not btn.button_up.is_connected(_on_button_up.bind(btn)):
+		btn.button_up.connect(_on_button_up.bind(btn))
 	if not btn.pressed.is_connected(play_button_sfx):
 		btn.pressed.connect(play_button_sfx)
 
@@ -270,3 +278,13 @@ func upgrade_character(data: CharacterData) -> bool:
 		return true
 	else:
 		return false
+
+func _on_button_down(btn: BaseButton):
+	btn.modulate = Color(0.7, 0.7, 0.7) # Darken the button when pressed
+	btn.scale = Vector2(0.95, 0.95)
+	
+	
+func _on_button_up(btn: BaseButton):
+	btn.modulate = Color(1, 1, 1)       # Return to normal
+	btn.scale = Vector2(1, 1)
+	

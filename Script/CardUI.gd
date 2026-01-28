@@ -23,11 +23,9 @@ func setup(data: CardData):
 	
 	play_button.text = "Play (" + str(data.mana_cost) + ")"
 	
-	# Only try to set text if the label actually exists
 	if desc_label:
 		desc_label.text = data.description
 	elif desc_panel:
-		# Maybe the label is inside a VBoxContainer? Let's check common mistakes.
 		var potential_label = desc_panel.get_node_or_null("VBoxContainer/DescriptionLabel")
 		if potential_label:
 			potential_label.text = data.description
