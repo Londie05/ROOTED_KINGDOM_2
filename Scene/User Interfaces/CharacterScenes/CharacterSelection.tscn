@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cy6a1v8pg016g"]
+[gd_scene load_steps=12 format=3 uid="uid://cy6a1v8pg016g"]
 
 [ext_resource type="Script" uid="uid://idrjdgnxmgon" path="res://Scene/User Interfaces/CharacterScenes/characters.gd" id="1_omqtn"]
 [ext_resource type="Script" uid="uid://dcjbbujtui8uu" path="res://Script/CharacterData.gd" id="2_kxk3n"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://b4141yupqysbg" path="res://Resources/Arlene.tres" id="5_b6bgg"]
 [ext_resource type="Resource" uid="uid://bgu42lalfpfe1" path="res://Resources/Jullian.tres" id="6_khyj0"]
 [ext_resource type="Resource" uid="uid://d1f60p8trj2rh" path="res://Resources/Sean.tres" id="7_tsn11"]
+[ext_resource type="PackedScene" uid="uid://diw3xv0en0ynt" path="res://Scene/User Interfaces/UI Asset Components/background_i.tscn" id="8_6ekvw"]
 [ext_resource type="Texture2D" uid="uid://dcm4yl4kcn7wn" path="res://Asset/Backgrounds/gem_1.webp" id="9_tvwgx"]
 [ext_resource type="Texture2D" uid="uid://rjoebry8l2at" path="res://Asset/Backgrounds/gem_3.webp" id="10_6ekvw"]
 
@@ -21,6 +22,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_omqtn")
 available_heroes = Array[ExtResource("2_kxk3n")]([ExtResource("3_b6bgg"), ExtResource("4_khyj0"), ExtResource("5_b6bgg"), ExtResource("6_khyj0"), ExtResource("7_tsn11")])
+
+[node name="Background" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 651.0
+
+[node name="Background I" parent="Background" instance=ExtResource("8_6ekvw")]
+layout_mode = 1
 
 [node name="Button Manager" type="Control" parent="."]
 anchors_preset = 0
@@ -36,12 +45,6 @@ offset_right = 153.0
 offset_bottom = 102.0
 text = "Back
 "
-
-[node name="Background" type="TextureRect" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 560.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0

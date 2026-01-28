@@ -39,5 +39,5 @@ func update_player_info():
 	player_name_label.text = Global.player_name
 	
 func _on_quit_pressed() -> void:
-	Global.save_data() # FINAL SAVE BEFORE EXIT
+	Global.save_game() # FINAL SAVE BEFORE EXIT
 	get_tree().quit()
