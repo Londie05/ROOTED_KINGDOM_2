@@ -29,8 +29,7 @@ func setup(data: CardData):
 		var potential_label = desc_panel.get_node_or_null("VBoxContainer/DescriptionLabel")
 		if potential_label:
 			potential_label.text = data.description
-
-# --- THE FUNCTION CALLED BY BATTLEMANAGER ---
+			
 func set_description_visible(is_visible: bool):
 	if desc_panel:
 		desc_panel.visible = is_visible
