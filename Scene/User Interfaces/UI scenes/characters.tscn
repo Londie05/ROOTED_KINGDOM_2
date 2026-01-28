@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bksl2a7ppswlg"]
+[gd_scene load_steps=5 format=3 uid="uid://chd3t1whhe052"]
 
 [ext_resource type="Script" uid="uid://idrjdgnxmgon" path="res://Scene/User Interfaces/CharacterScenes/characters.gd" id="1_abjc7"]
 [ext_resource type="Script" uid="uid://dpofwsfae5sxx" path="res://Scene/User Interfaces/UI Scripts/button_manager_characters.gd" id="1_v3w5k"]

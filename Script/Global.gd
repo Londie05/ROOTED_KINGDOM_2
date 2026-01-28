@@ -36,14 +36,18 @@ var floor_rewards = {
 	10: { "small": 1000, "crystal": 5 },
 }
 
+var character_levels: Dictionary = {} # Stores {"HeroName": 0, "AnotherHero": 2}
+# You can adjust these growth numbers to balance your game
+const HP_GROWTH_PER_LEVEL = 20 
+const UPGRADE_COST_BASE = 100
+const UPGRADE_COST_MULTIPLIER = 1.5
+
+
 func _ready() -> void:
-	# 1. Setup Audio first
 	setup_audio_node()
 	
-	# 2. Load Data (This will overwrite the variables above with saved data)
 	load_game()
 	
-	# 3. Connect buttons
 	get_tree().node_added.connect(_on_node_added)
 	connect_buttons_recursive(get_tree().root)
 
@@ -69,7 +73,6 @@ func grant_floor_reward(floor_num: int):
 		print("Victory! Gained: ", reward["small"], " Gems and ", reward["crystal"], " Crystals")
 		save_game()
 
-# --- THIS WAS MISSING! ---
 func unlock_hero(hero_name: String):
 	if not unlocked_heroes.has(hero_name):
 		unlocked_heroes.append(hero_name)
@@ -97,8 +100,6 @@ func get_card_mana(data: CardData) -> int:
 	return data.mana_gain + (data.mana_gain * lvl)
 	
 func get_card_level_number(data: CardData) -> int:
-	# FIXED: Removed save_game() from here. 
-	# Getters should never save, they just read data.
 	return card_levels.get(data.card_name, 0) + 1 
 	
 func attempt_upgrade(data: CardData) -> bool:
@@ -139,6 +140,7 @@ func try_redeem_code(code: String) -> String:
 func save_game():
 	var config = ConfigFile.new()
 	
+	config.set_value("Progression", "character_levels", character_levels)
 	config.set_value("Progression", "player_name", player_name)
 	
 	config.set_value("Progression", "small_gems", small_gems)
@@ -161,6 +163,7 @@ func load_game():
 	if err != OK: return 
 	
 	# 1. LOAD THE NAME
+	character_levels = config.get_value("Progression", "character_levels", {})
 	player_name = config.get_value("Progression", "player_name", "")
 	
 	# 2. LOAD THE REST
@@ -181,6 +184,7 @@ func reset_player_data():
 	card_levels = {}
 	current_tower_floor = 1
 	floors_cleared = []
+	character_levels = {}
 	
 	# Delete the physical file from your computer
 	if FileAccess.file_exists(SAVE_PATH):
@@ -191,7 +195,6 @@ func reset_player_data():
 func setup_audio_node():
 	sfx_player = AudioStreamPlayer.new()
 	add_child(sfx_player)
-	# Default to Master if SFX bus doesn't exist to prevent errors
 	if AudioServer.get_bus_index("SFX") != -1:
 		sfx_player.bus = "SFX"
 	else:
@@ -226,3 +229,44 @@ func get_player_data_as_dict() -> Dictionary:
 		"current_floor": current_tower_floor,
 		"card_levels": card_levels
 	}
+
+func get_character_level(char_name: String) -> int:
+	return character_levels.get(char_name, 0)
+
+func get_character_max_hp(data: CharacterData) -> int:
+	var lvl = get_character_level(data.name)
+	return data.max_health + (lvl * HP_GROWTH_PER_LEVEL)
+	
+func get_upgrade_cost(char_name: String) -> int:
+	var lvl = get_character_level(char_name)
+	# Level 0->1 costs 100, Level 1->2 costs 150, etc.
+	return int(UPGRADE_COST_BASE * pow(UPGRADE_COST_MULTIPLIER, lvl))
+
+
+func upgrade_character(data: CharacterData) -> bool:
+	var cost = get_upgrade_cost(data.name)
+	
+	if small_gems >= cost:
+		small_gems -= cost
+		
+		# 1. Increase Character Level
+		if not character_levels.has(data.name):
+			character_levels[data.name] = 0
+		character_levels[data.name] += 1
+		
+		# 2. Increase Level of ALL their cards
+		# This fulfills your requirement: "Increase effects of cards they hold"
+		var all_cards = []
+		if data.unique_card: all_cards.append(data.unique_card)
+		all_cards.append_array(data.common_cards)
+		
+		for card in all_cards:
+			if not card_levels.has(card.card_name):
+				card_levels[card.card_name] = 0
+			card_levels[card.card_name] += 1
+			
+		save_game()
+		print("Upgraded " + data.name + " to Level " + str(character_levels[data.name]))
+		return true
+	else:
+		return false
