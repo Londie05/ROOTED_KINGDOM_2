@@ -21,7 +21,7 @@ func _on_start_battle_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/start_battle.tscn")
 
 func _on_inventory_and_shop_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scene/CardUpgradeUI.tscn")
+	get_tree().change_scene_to_file("res://Scene/CharacterUpgradeUI.tscn")
 	
 func _on_characters_pressed() -> void:
 	Global.from_tower_mode = false # Just looking at characters
@@ -36,7 +36,7 @@ func _on_settings_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/settings.tscn")
 
 func update_player_info():
-	player_name_label.text = Global.player_name
+	player_name_label.text = Global.player_name + ":"
 	
 func _on_quit_pressed() -> void:
 	Global.save_game() # FINAL SAVE BEFORE EXIT

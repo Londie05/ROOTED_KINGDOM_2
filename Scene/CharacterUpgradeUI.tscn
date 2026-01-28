@@ -1,0 +1,275 @@
+[gd_scene load_steps=12 format=3 uid="uid://bhswe8ptq26ol"]
+
+[ext_resource type="Script" uid="uid://jx5qpdltre8s" path="res://Scene/CharacterUpgradeUI.gd" id="1_gnkuu"]
+[ext_resource type="Script" uid="uid://dcjbbujtui8uu" path="res://Script/CharacterData.gd" id="2_ig2xo"]
+[ext_resource type="Texture2D" uid="uid://dcm4yl4kcn7wn" path="res://Asset/Backgrounds/gem_1.webp" id="2_l62vr"]
+[ext_resource type="Resource" uid="uid://b4141yupqysbg" path="res://Resources/Arlene.tres" id="3_pbrkd"]
+[ext_resource type="Texture2D" uid="uid://rjoebry8l2at" path="res://Asset/Backgrounds/gem_3.webp" id="3_shup1"]
+[ext_resource type="Resource" uid="uid://cev2gr7ft7bvl" path="res://Resources/Beatrice.tres" id="4_yy5vg"]
+[ext_resource type="Resource" uid="uid://cib8qbfhl2fg1" path="res://Resources/Charlotte.tres" id="5_i5161"]
+[ext_resource type="Resource" uid="uid://bgu42lalfpfe1" path="res://Resources/Jullian.tres" id="6_6eweq"]
+[ext_resource type="Resource" uid="uid://d1f60p8trj2rh" path="res://Resources/Sean.tres" id="7_up8j7"]
+[ext_resource type="Texture2D" uid="uid://dnxuvdehf47bo" path="res://Asset/User Interface/tower_mod_background_v2.webp" id="8_pbrkd"]
+[ext_resource type="Texture2D" uid="uid://l45mprnx01t8" path="res://Asset/User Interface/pause.png" id="9_yy5vg"]
+
+[node name="CharacterUpgradeUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gnkuu")
+all_available_heroes = Array[ExtResource("2_ig2xo")]([ExtResource("3_pbrkd"), ExtResource("4_yy5vg"), ExtResource("5_i5161"), ExtResource("6_6eweq"), ExtResource("7_up8j7")])
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_pbrkd")
+
+[node name="SelectionScroll" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 331.0
+offset_top = -252.0
+offset_right = -321.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+follow_focus = true
+draw_focus_border = true
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 0
+
+[node name="HeroHBox" type="HBoxContainer" parent="SelectionScroll"]
+custom_minimum_size = Vector2(500, 220)
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="UpgradePanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -177.0
+offset_top = -222.0
+offset_right = 430.0
+offset_bottom = 228.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UpgradePanel"]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 607.0
+offset_bottom = 450.0
+
+[node name="StatsVBox" type="VBoxContainer" parent="UpgradePanel/HBoxContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+
+[node name="Cancel" type="Button" parent="UpgradePanel/HBoxContainer/StatsVBox"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "CANCEL"
+
+[node name="CharPreview" type="TextureRect" parent="UpgradePanel/HBoxContainer/StatsVBox"]
+custom_minimum_size = Vector2(300, 250)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="UpgradePanel/HBoxContainer/StatsVBox"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LevelLabel" type="Label" parent="UpgradePanel/HBoxContainer/StatsVBox"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HPUpgradeLabel" type="Label" parent="UpgradePanel/HBoxContainer/StatsVBox"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="UpgradeCharButton" type="Button" parent="UpgradePanel/HBoxContainer/StatsVBox"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Upgrade"
+
+[node name="ShowCards" type="Button" parent="UpgradePanel/HBoxContainer/StatsVBox"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Show cards"
+
+[node name="CardsVBox" type="VBoxContainer" parent="UpgradePanel/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="CardScroll" type="ScrollContainer" parent="UpgradePanel/HBoxContainer/CardsVBox"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 0
+
+[node name="CardHBox" type="HBoxContainer" parent="UpgradePanel/HBoxContainer/CardsVBox/CardScroll"]
+custom_minimum_size = Vector2(350, 250)
+layout_mode = 2
+
+[node name="CardDetailVBox" type="VBoxContainer" parent="UpgradePanel/HBoxContainer/CardsVBox"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="CardNameLabel" type="Label" parent="UpgradePanel/HBoxContainer/CardsVBox/CardDetailVBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="CardLvlLabel" type="Label" parent="UpgradePanel/HBoxContainer/CardsVBox/CardDetailVBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="CardDmgLabel" type="Label" parent="UpgradePanel/HBoxContainer/CardsVBox/CardDetailVBox"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="UpgradeCardButton" type="Button" parent="UpgradePanel/HBoxContainer/CardsVBox/CardDetailVBox"]
+custom_minimum_size = Vector2(0, 47)
+layout_mode = 2
+
+[node name="BackButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1153.0
+offset_top = 7.0
+offset_right = -973.0
+offset_bottom = 98.0
+grow_horizontal = 0
+texture_normal = ExtResource("9_yy5vg")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="BackButton"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = -4.0
+offset_right = 172.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrenciesBackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -338.0
+offset_top = -29.0
+offset_right = 32.0
+offset_bottom = 117.0
+grow_horizontal = 0
+texture = ExtResource("9_yy5vg")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CurrenciesBackground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = -53.5
+offset_right = 155.0
+offset_bottom = 53.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CurrenciesBackground/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="SmallGemHolder" type="HBoxContainer" parent="CurrenciesBackground/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="CurrenciesBackground/MarginContainer/HBoxContainer/SmallGemHolder"]
+custom_minimum_size = Vector2(60, 40)
+layout_mode = 2
+texture = ExtResource("2_l62vr")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SmallGemLabel" type="Label" parent="CurrenciesBackground/MarginContainer/HBoxContainer/SmallGemHolder"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6539801, 0.044738613, 0.70056635, 1)
+theme_override_font_sizes/font_size = 25
+text = "0"
+
+[node name="CrystalGemHolder" type="HBoxContainer" parent="CurrenciesBackground/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="CurrenciesBackground/MarginContainer/HBoxContainer/CrystalGemHolder"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+texture = ExtResource("3_shup1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CrystalLabel" type="Label" parent="CurrenciesBackground/MarginContainer/HBoxContainer/CrystalGemHolder"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.654902, 0.043137256, 0.7019608, 1)
+theme_override_font_sizes/font_size = 25
+text = "0"
+
+[node name="Shop" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 908.0
+offset_top = 520.0
+offset_right = 1111.0
+offset_bottom = 608.0
+texture_normal = ExtResource("9_yy5vg")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Shop"]
+layout_mode = 0
+offset_top = 3.0
+offset_right = 202.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Buy character"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="UpgradePanel/HBoxContainer/StatsVBox/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Shop" to="." method="_on_shop_pressed"]

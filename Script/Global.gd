@@ -280,11 +280,16 @@ func upgrade_character(data: CharacterData) -> bool:
 		return false
 
 func _on_button_down(btn: BaseButton):
-	btn.modulate = Color(0.7, 0.7, 0.7) # Darken the button when pressed
+	btn.set_meta("previous_color", btn.modulate)
+	
+	btn.modulate = btn.get_meta("previous_color") * 0.8
 	btn.scale = Vector2(0.95, 0.95)
 	
-	
 func _on_button_up(btn: BaseButton):
-	btn.modulate = Color(1, 1, 1)       # Return to normal
+	if btn.has_meta("previous_color"):
+		btn.modulate = btn.get_meta("previous_color")
+	else:
+		btn.modulate = Color(1, 1, 1) 
+		
 	btn.scale = Vector2(1, 1)
 	

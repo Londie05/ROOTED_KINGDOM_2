@@ -108,7 +108,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_4mbs0")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_nbfal")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_sxgnl")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_80nln")
-text = "Cards"
+text = "Upgrades"
 icon = ExtResource("2_eh1oq")
 icon_alignment = 1
 expand_icon = true
@@ -185,10 +185,10 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_left = 154.0
-offset_top = 14.0
-offset_right = 481.0
-offset_bottom = 94.0
+offset_left = 118.0
+offset_top = 21.0
+offset_right = 428.0
+offset_bottom = 101.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -237,15 +237,17 @@ theme_override_font_sizes/font_size = 25
 text = "0"
 
 [node name="Profile" type="MarginContainer" parent="."]
-modulate = Color(0.37055278, 0.13907841, 0.21781474, 1)
-offset_left = 43.0
-offset_top = 38.0
-offset_right = 117.0
-offset_bottom = 82.0
+modulate = Color(1, 0.07999998, 0.8619999, 1)
+self_modulate = Color(18.892157, 2.7287061, 2.7287061, 0.93333334)
+offset_left = 23.0
+offset_top = 29.0
+offset_right = 129.0
+offset_bottom = 96.0
 
 [node name="PlayerNameLabel" type="Label" parent="Profile"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.45, 0, 0.09000012, 1)
+theme_override_colors/font_color = Color(0.7360002, 0, 0.92, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9843137)
 theme_override_font_sizes/font_size = 30
 text = "Name"
 label_settings = SubResource("LabelSettings_bsri0")
