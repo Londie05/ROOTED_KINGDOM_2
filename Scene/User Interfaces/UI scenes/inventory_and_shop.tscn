@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://whd5cf2nocco"]
+[gd_scene load_steps=6 format=3 uid="uid://chqa2n1oj7vgv"]
 
 [ext_resource type="Script" uid="uid://bgujr7thbisqm" path="res://Scene/User Interfaces/UI Scripts/button_manager_inventory.gd" id="1_vauk6"]
 [ext_resource type="FontFile" uid="uid://dtdw2k1jvjn37" path="res://Asset/Fonts/times.ttf" id="2_86g2i"]
