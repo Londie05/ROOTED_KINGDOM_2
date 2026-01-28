@@ -13,6 +13,13 @@ extends Control
 func _ready() -> void:
 	$"Interface/Stage Button".text = Stage_number
 	stage_image.img.texture = Stage_img
+	if Scene_type == "Story":
+		$Interface/Frame.texture = load("res://Asset/User Interface/stage_slot_frame_story.png")
+	elif Scene_type == "Battle":
+		$Interface/Frame.texture = load("res://Asset/User Interface/stage_slot_frame_tower.png")
+	else:
+		print("Scene_type is null or the texture of the Frame is absent.")
+	
 	# $"Stage Slot bg".texture = Stage_img
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:

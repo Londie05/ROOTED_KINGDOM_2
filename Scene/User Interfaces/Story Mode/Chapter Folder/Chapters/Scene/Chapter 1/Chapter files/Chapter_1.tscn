@@ -64,7 +64,7 @@ script = ExtResource("4_ulxka")
 layout_mode = 0
 offset_top = 334.0
 offset_right = 1152.0
-offset_bottom = 601.0
+offset_bottom = 606.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_sjonj")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Stage Manager/ScrollContainer"]

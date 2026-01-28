@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bi4fmeelgp436"]
+[gd_scene load_steps=7 format=3 uid="uid://bi4fmeelgp436"]
 
 [ext_resource type="Script" uid="uid://bm2un4qtoc7da" path="res://Scene/User Interfaces/Story Mode/Chapter Folder/Stage UIs/stage_slot.gd" id="1_f8eut"]
 [ext_resource type="PackedScene" uid="uid://cpbalixgroyd1" path="res://Scene/User Interfaces/UI Asset Components/Stage Images/Source/stage_image.tscn" id="2_28qhb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sd7k4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wefkc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0bi6n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qaj2h"]
 
 [node name="Stage Slot" type="Control"]
 layout_mode = 3
@@ -32,7 +40,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 64
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_sd7k4")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wefkc")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_0bi6n")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qaj2h")
 icon_alignment = 1
 expand_icon = true
+
+[node name="Frame" type="TextureRect" parent="Interface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_behavior_recursive = 1
+mouse_filter = 2
+mouse_behavior_recursive = 2
+expand_mode = 1
 
 [connection signal="pressed" from="Interface/Stage Button" to="." method="_on_stage_button_pressed"]
