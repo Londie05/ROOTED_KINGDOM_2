@@ -22,8 +22,6 @@ var from_tower_mode: bool = false
 # Dictionaries for levels
 var card_levels: Dictionary = {} 
 var character_levels: Dictionary = {}
-
-const HERO_DATABASE = preload("res://Resources/GameHeroList.tres")
 var roaster_list: Array = []
 
 var floor_rewards = {
@@ -44,10 +42,7 @@ const UPGRADE_COST_BASE = 100
 const UPGRADE_COST_MULTIPLIER = 1.5
 
 func _ready() -> void:
-	if HERO_DATABASE:
-		roaster_list.assign(HERO_DATABASE.all_heroes)
-		print("Global: Preloaded ", roaster_list.size(), " heroes.")
-	
+	reset_player_data()
 	setup_audio_node()
 	load_game()
 	

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqcqptdmvmh2a"]
+[gd_scene load_steps=3 format=3 uid="uid://dqcqptdmvmh2a"]
 
 [ext_resource type="Script" uid="uid://dq48pm6j1b8p4" path="res://Scene/User Interfaces/UI scenes/NameEntry.gd" id="1_0d5iv"]
+[ext_resource type="Texture2D" uid="uid://dnxuvdehf47bo" path="res://Asset/User Interface/tower_mod_background_v2.webp" id="2_hrmmw"]
 
 [node name="NameEntry" type="Control"]
 layout_mode = 3
@@ -11,11 +12,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0d5iv")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 1160.0
-offset_bottom = 648.0
-color = Color(1, 1, 1, 0)
+offset_bottom = 720.0
+texture = ExtResource("2_hrmmw")
 
 [node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
 layout_mode = 0
@@ -28,16 +29,23 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(18.892157, 18.892157, 18.892157, 1)
 text = "Enter your name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="NameInput" type="LineEdit" parent="ColorRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="ConfirmButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+theme_override_colors/font_color = Color(2.1598642, 0.8807043, 0.8807043, 1)
+theme_override_colors/font_focus_color = Color(18.892157, 18.892157, 18.892157, 1)
+theme_override_colors/font_pressed_color = Color(18.892157, 18.892157, 18.892157, 1)
 text = "Confirm"
 
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]

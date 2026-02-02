@@ -229,17 +229,17 @@ offset_bottom = 65.0
 text = "Menu"
 
 [node name="EnergyLabel" type="Label" parent="CanvasLayer"]
-offset_left = 1007.0
-offset_top = 566.0
+offset_left = 999.0
+offset_top = 553.0
 offset_right = 1119.0
-offset_bottom = 612.0
+offset_bottom = 594.0
 theme_override_font_sizes/font_size = 25
 
 [node name="EndTurnButton" type="Button" parent="CanvasLayer"]
-offset_left = 1005.0
-offset_top = 592.0
-offset_right = 1134.0
-offset_bottom = 623.0
+offset_left = 992.0
+offset_top = 642.0
+offset_right = 1121.0
+offset_bottom = 673.0
 text = "End Turn"
 
 [node name="CardSlots" type="HBoxContainer" parent="CanvasLayer"]
@@ -252,10 +252,10 @@ offset_right = 413.0
 offset_bottom = 160.76
 
 [node name="GlobalInfoButton" type="Button" parent="CanvasLayer"]
-offset_left = 1001.0
-offset_top = 548.0
-offset_right = 1124.0
-offset_bottom = 579.0
+offset_left = 993.0
+offset_top = 604.0
+offset_right = 1119.0
+offset_bottom = 635.0
 text = "Show card info"
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="CanvasLayer"]

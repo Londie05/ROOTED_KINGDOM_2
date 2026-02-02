@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HeroRegistry" load_steps=7 format=3 uid="uid://dwhqfb7kxcnif"]
+[gd_resource type="Resource" script_class="HeroRegistry" load_steps=8 format=3 uid="uid://dwhqfb7kxcnif"]
 
 [ext_resource type="Script" uid="uid://dcjbbujtui8uu" path="res://Script/CharacterData.gd" id="1_ho3fg"]
 [ext_resource type="Script" uid="uid://cl5qnfoea75g3" path="res://Script/HeroRegistry.gd" id="2_j122i"]
@@ -6,8 +6,9 @@
 [ext_resource type="Resource" uid="uid://cev2gr7ft7bvl" path="res://Resources/Beatrice.tres" id="3_gfp87"]
 [ext_resource type="Resource" uid="uid://cib8qbfhl2fg1" path="res://Resources/Charlotte.tres" id="4_fasjh"]
 [ext_resource type="Resource" uid="uid://bgu42lalfpfe1" path="res://Resources/Jullian.tres" id="5_4300c"]
+[ext_resource type="Resource" uid="uid://d1f60p8trj2rh" path="res://Resources/Sean.tres" id="6_l648e"]
 
 [resource]
 script = ExtResource("2_j122i")
-all_heroes = Array[ExtResource("1_ho3fg")]([ExtResource("2_l648e"), ExtResource("3_gfp87"), ExtResource("4_fasjh"), ExtResource("5_4300c")])
+all_heroes = Array[ExtResource("1_ho3fg")]([ExtResource("2_l648e"), ExtResource("3_gfp87"), ExtResource("4_fasjh"), ExtResource("5_4300c"), ExtResource("6_l648e")])
 metadata/_custom_type_script = "uid://cl5qnfoea75g3"
