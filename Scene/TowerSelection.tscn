@@ -44,7 +44,7 @@ layout_mode = 0
 offset_right = 399.4516
 offset_bottom = 89.566574
 theme_override_font_sizes/font_size = 25
-text = "Floor 1"
+text = "Stage 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -60,7 +60,7 @@ layout_mode = 0
 offset_right = 399.4516
 offset_bottom = 89.566574
 theme_override_font_sizes/font_size = 25
-text = "Floor 2"
+text = "Stage 2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -76,7 +76,7 @@ layout_mode = 0
 offset_right = 399.4516
 offset_bottom = 89.566574
 theme_override_font_sizes/font_size = 25
-text = "Floor 3"
+text = "Stage 3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -92,7 +92,7 @@ layout_mode = 0
 offset_right = 399.4516
 offset_bottom = 89.566574
 theme_override_font_sizes/font_size = 25
-text = "Floor 4"
+text = "Stage 4"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -108,7 +108,7 @@ layout_mode = 0
 offset_right = 399.4516
 offset_bottom = 89.566574
 theme_override_font_sizes/font_size = 25
-text = "Floor 5"
+text = "Stage 5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -124,7 +124,7 @@ layout_mode = 0
 offset_right = 399.4516
 offset_bottom = 89.566574
 theme_override_font_sizes/font_size = 25
-text = "Floor 6"
+text = "Stage 6"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -140,7 +140,7 @@ layout_mode = 0
 offset_right = 399.4516
 offset_bottom = 89.566574
 theme_override_font_sizes/font_size = 25
-text = "Floor 7"
+text = "Stage 7"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -156,7 +156,7 @@ layout_mode = 0
 offset_right = 399.4516
 offset_bottom = 89.566574
 theme_override_font_sizes/font_size = 25
-text = "Floor 8"
+text = "Stage 8"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -172,7 +172,7 @@ layout_mode = 0
 offset_right = 399.4516
 offset_bottom = 89.566574
 theme_override_font_sizes/font_size = 25
-text = "Floor 9"
+text = "Stage 9"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -188,7 +188,167 @@ layout_mode = 0
 offset_right = 399.4516
 offset_bottom = 89.566574
 theme_override_font_sizes/font_size = 25
-text = "Floor 10"
+text = "Stage 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor11" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor11"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Stage 11"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor12" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor12"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Stage 12"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor13" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor13"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Stage 13"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor14" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor14"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Stage 14"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor15" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor15"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Stage 15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor16" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor16"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Stage 16"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor17" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor17"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Stage 17"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor18" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor18"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Stage 18"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor19" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor19"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Stage 19"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor20" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor20"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Stage 20"
 horizontal_alignment = 1
 vertical_alignment = 1
 

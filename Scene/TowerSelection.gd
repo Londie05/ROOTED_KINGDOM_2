@@ -21,6 +21,16 @@ func _ready():
 	container.get_node("Floor8").pressed.connect(_on_floor_selected.bind(8, "Floor 8: The benevolent"))
 	container.get_node("Floor9").pressed.connect(_on_floor_selected.bind(9, "Floor 9: The benevolent"))
 	container.get_node("Floor10").pressed.connect(_on_floor_selected.bind(10, "Floor 10: The benevolent"))
+	container.get_node("Floor11").pressed.connect(_on_floor_selected.bind(11, "Floor 11: One Grunt"))
+	container.get_node("Floor12").pressed.connect(_on_floor_selected.bind(12, "Floor 12: Two Grunts"))
+	container.get_node("Floor13").pressed.connect(_on_floor_selected.bind(13, "Floor 13: The Trio"))
+	container.get_node("Floor14").pressed.connect(_on_floor_selected.bind(14, "Floor 14: The four enemies"))
+	container.get_node("Floor15").pressed.connect(_on_floor_selected.bind(15, "Floor 15: The Mid-Boss"))
+	container.get_node("Floor16").pressed.connect(_on_floor_selected.bind(16, "Floor 16: The benevolent"))
+	container.get_node("Floor17").pressed.connect(_on_floor_selected.bind(17, "Floor 17: The benevolent"))
+	container.get_node("Floor18").pressed.connect(_on_floor_selected.bind(18, "Floor 18: The benevolent"))
+	container.get_node("Floor19").pressed.connect(_on_floor_selected.bind(19, "Floor 19: The benevolent"))
+	container.get_node("Floor20").pressed.connect(_on_floor_selected.bind(20, "Floor 20: The benevolent"))
 	
 	# Redirect the button to the Character Selection scene
 	$StartBattleButton.text = "Choose Characters" # Optional: Change button text
@@ -63,7 +73,7 @@ func lock_floors():
 	var container = $ScrollContainer/VBox
 	
 	# Iterate through Floor 1 to 10
-	for i in range(1, 11):
+	for i in range(1, 21):
 		var node_name = "Floor" + str(i)
 		
 		# Check if the button exists to avoid errors

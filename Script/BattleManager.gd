@@ -10,6 +10,16 @@ extends Node2D
 @export var floor_8_enemies: Array[EnemyData] = []
 @export var floor_9_enemies: Array[EnemyData] = []
 @export var floor_10_enemies: Array[EnemyData] = []
+@export var floor_11_enemies: Array[EnemyData] = []
+@export var floor_12_enemies: Array[EnemyData] = []
+@export var floor_13_enemies: Array[EnemyData] = []
+@export var floor_14_enemies: Array[EnemyData] = []
+@export var floor_15_enemies: Array[EnemyData] = []
+@export var floor_16_enemies: Array[EnemyData] = []
+@export var floor_17_enemies: Array[EnemyData] = []
+@export var floor_18_enemies: Array[EnemyData] = []
+@export var floor_19_enemies: Array[EnemyData] = []
+@export var floor_20_enemies: Array[EnemyData] = []
 # --- 1. NODE LINKS ---
 @onready var slot_container = %CardSlots
 @onready var player_team = $PlayerTeam
@@ -233,7 +243,6 @@ func _on_card_played(data: CardData, card_node: Node):
 	
 	if card_node.has_method("set_description_visible"):
 		card_node.set_description_visible(false)
-	# ----------------------------------------------------
 	
 	# 2. Add to Slot Logic
 	slotted_cards.append(data)
@@ -441,7 +450,16 @@ func setup_tower_enemies():
 		8: selected_floor_data = floor_8_enemies
 		9: selected_floor_data = floor_9_enemies
 		10: selected_floor_data = floor_10_enemies
-
+		11: selected_floor_data = floor_11_enemies
+		12: selected_floor_data = floor_12_enemies
+		13: selected_floor_data = floor_13_enemies
+		14: selected_floor_data = floor_14_enemies
+		15: selected_floor_data = floor_15_enemies
+		16: selected_floor_data = floor_16_enemies
+		17: selected_floor_data = floor_17_enemies
+		18: selected_floor_data = floor_18_enemies
+		19: selected_floor_data = floor_19_enemies
+		20: selected_floor_data = floor_20_enemies
 		
 	for node in enemy_nodes:
 		node.hide()

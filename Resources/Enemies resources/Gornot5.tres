@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://b04a3km80vv7m"]
+
+[ext_resource type="SpriteFrames" uid="uid://cbqwstgifpxg1" path="res://Resources/Animation resourcess/Enemy animations/Enemy5.tres" id="1_duuli"]
+[ext_resource type="Script" uid="uid://de4ufxbti7lif" path="res://Script/EnemyData.gd" id="1_wch68"]
+
+[resource]
+script = ExtResource("1_wch68")
+name = "Gornot5"
+idle_animation = ExtResource("1_duuli")
+max_health = 1000
+base_damage = 40
+min_crit_chance = 25
+max_crit_chance = 45
+is_aoe = true
+aoe_targets = 2
+metadata/_custom_type_script = "uid://de4ufxbti7lif"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c383wxvj0hh7q"]
+[gd_scene load_steps=26 format=3 uid="uid://c383wxvj0hh7q"]
 
 [ext_resource type="PackedScene" uid="uid://bplpwpncwxjh4" path="res://Scene/CardUI.tscn" id="1_fxwnf"]
 [ext_resource type="Script" uid="uid://1mh1lv3r2q5c" path="res://Script/BattleManager.gd" id="1_vsh2u"]
@@ -10,7 +10,8 @@
 [ext_resource type="Resource" uid="uid://bv3ypd5hxbalt" path="res://Resources/Enemies resources/Gornot3.tres" id="5_3314g"]
 [ext_resource type="Script" uid="uid://dafxw2p825bmt" path="res://Script/Enemy.gd" id="6_f2o1h"]
 [ext_resource type="Resource" uid="uid://cst0ty6jx3wqd" path="res://Resources/Enemies resources/Gornot4.tres" id="6_jxk86"]
-[ext_resource type="Resource" uid="uid://cqmjjngvfv0m6" path="res://Resources/Enemies resources/Floor5Boss.tres" id="7_3314g"]
+[ext_resource type="Resource" uid="uid://b04a3km80vv7m" path="res://Resources/Enemies resources/Gornot5.tres" id="7_3314g"]
+[ext_resource type="Resource" uid="uid://cqmjjngvfv0m6" path="res://Resources/Enemies resources/Floor5Boss.tres" id="8_4x6d6"]
 [ext_resource type="PackedScene" uid="uid://bsv08pscmpght" path="res://Scene/DamagePopup.tscn" id="10_4x6d6"]
 [ext_resource type="Shader" uid="uid://dc3w3hg2ro5dg" path="res://Scene/shaders/Enemy1.gdshader" id="13_4l1qv"]
 [ext_resource type="Shader" uid="uid://dus4tb4wupj8i" path="res://Scene/shaders/Enemy2.gdshader" id="14_4l1qv"]
@@ -57,10 +58,20 @@ floor_3_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("5_3314g")])
 floor_4_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("6_jxk86")])
 floor_5_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("3_4l1qv"), ExtResource("4_jxk86")])
 floor_6_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("5_3314g"), ExtResource("4_jxk86")])
-floor_7_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("6_jxk86"), ExtResource("5_3314g")])
-floor_8_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("3_4l1qv"), ExtResource("4_jxk86"), ExtResource("5_3314g")])
-floor_9_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("3_4l1qv"), ExtResource("4_jxk86"), ExtResource("5_3314g"), ExtResource("6_jxk86")])
+floor_7_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("4_jxk86"), ExtResource("5_3314g")])
+floor_8_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("3_4l1qv"), ExtResource("5_3314g")])
+floor_9_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("6_jxk86"), ExtResource("4_jxk86")])
 floor_10_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("7_3314g")])
+floor_11_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("6_jxk86"), ExtResource("4_jxk86")])
+floor_12_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("3_4l1qv"), ExtResource("5_3314g"), ExtResource("4_jxk86")])
+floor_13_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("5_3314g"), ExtResource("6_jxk86"), ExtResource("4_jxk86")])
+floor_14_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("5_3314g"), ExtResource("5_3314g")])
+floor_15_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("4_jxk86"), ExtResource("3_4l1qv"), ExtResource("3_4l1qv")])
+floor_16_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("4_jxk86"), ExtResource("4_jxk86"), ExtResource("5_3314g")])
+floor_17_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("3_4l1qv"), ExtResource("7_3314g")])
+floor_18_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("6_jxk86")])
+floor_19_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("6_jxk86"), ExtResource("5_3314g")])
+floor_20_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("8_4x6d6")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(576.00006, 369)
