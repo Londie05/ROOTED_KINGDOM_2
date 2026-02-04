@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var stage_count_label = $CanvasLayer/StageCount
+
 @export var floor_1_enemies: Array[EnemyData] = []
 @export var floor_2_enemies: Array[EnemyData] = []
 @export var floor_3_enemies: Array[EnemyData] = []
@@ -50,7 +52,7 @@ var current_mana: int = 4  # Starting Mana
 var mana_regen: int = 4
 
 # Card Slots
-var slotted_cards: Array = [] 
+var slotted_nodes: Array = []
 var max_slots: int = 3
 
 
@@ -87,7 +89,11 @@ func _ready():
 	
 	# Play the selected track
 	bgm_player.play()
-			
+	
+	if stage_count_label:
+		# This uses your existing global variable to show "Stage: 1", "Stage: 2", etc.
+		stage_count_label.text = "Stage: " + str(Global.current_tower_floor)
+		
 	setup_player_team()
 	build_deck_from_team()
 	setup_tower_enemies()
@@ -158,6 +164,14 @@ func execute_enemy_ai():
 		if alive_heroes.is_empty():
 			break
 		
+		if enemy.has_method("process_stun_turn"):
+			if enemy.process_stun_turn():
+				# If true, they are stunned. 
+				# Wait a bit so the player sees they skipped their turn.
+				print(enemy.name + " skips turn due to stun.")
+				await get_tree().create_timer(0.5).timeout
+				continue # Skip to the next enemy immediately
+				
 		# --- 1. Calculate Damage & Crit ---
 		var damage_to_deal = enemy.base_damage
 		var is_crit = false
@@ -219,10 +233,17 @@ func create_card_instance(data: CardData):
 	hand_container.add_child(new_card)
 	new_card.setup(data)
 	
+	new_card.modulate.a = 0
+	new_card.position.y += 50
+	
+	var tween = create_tween().set_parallel(true)
+	tween.tween_property(new_card, "modulate:a", 1.0, 0.3)
+	tween.tween_property(new_card, "position:y", 0, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	
 	if new_card.has_method("toggle_info_capability"):
 		new_card.toggle_info_capability(true)
-	new_card.get_node("VBoxContainer/PlayButton").pressed.connect(_on_card_played.bind(data, new_card))
-
+	new_card.get_node("Visuals/VBoxContainer/PlayButton").pressed.connect(_on_card_played.bind(data, new_card))
+	
 func end_current_phase():
 	check_battle_status()
 	current_phase_index += 1
@@ -235,7 +256,17 @@ func end_current_phase():
 
 func _on_card_played(data: CardData, card_node: Node):
 	if phases[current_phase_index] != "player": return
-	if slotted_cards.size() >= max_slots: return 
+	
+	if current_mana < data.mana_cost:
+		if card_node.has_method("animate_error"):
+			card_node.animate_error() # Visual feedback for "No Mana"
+		return
+
+	# If we have mana, play the card
+	if card_node.has_method("animate_play"):
+		card_node.animate_play()
+		
+	if slotted_nodes.size() >= max_slots: return 
 	if current_mana < data.mana_cost: return
 
 	# 1. Deduct Mana
@@ -245,13 +276,13 @@ func _on_card_played(data: CardData, card_node: Node):
 		card_node.set_description_visible(false)
 	
 	# 2. Add to Slot Logic
-	slotted_cards.append(data)
+	slotted_nodes.append(card_node)
 	
 	# 3. Move Visuals to Slot
 	card_node.get_parent().remove_child(card_node)
 	slot_container.add_child(card_node)
 	
-	var btn = card_node.get_node("VBoxContainer/PlayButton")
+	var btn = card_node.get_node("Visuals/VBoxContainer/PlayButton")
 	
 	if btn.pressed.is_connected(_on_card_played):
 		btn.pressed.disconnect(_on_card_played)
@@ -272,7 +303,7 @@ func return_card_to_hand(data: CardData, card_node: Node):
 	current_mana = min(current_mana, max_mana)
 
 	# 2. Remove from Slot Logic
-	slotted_cards.erase(data)
+	slotted_nodes.erase(data)
 	
 	# 3. Move Visuals back to Hand
 	card_node.get_parent().remove_child(card_node)
@@ -280,7 +311,7 @@ func return_card_to_hand(data: CardData, card_node: Node):
 	
 	
 	# 4. SWAP SIGNAL: Change button from "Return" to "Play"
-	var btn = card_node.get_node("VBoxContainer/PlayButton")
+	var btn = card_node.get_node("Visuals/VBoxContainer/PlayButton")
 	
 	if btn.pressed.is_connected(return_card_to_hand):
 		btn.pressed.disconnect(return_card_to_hand)
@@ -317,8 +348,8 @@ func update_mana_ui():
 	for card in hand_container.get_children():
 		if "card_data" in card and card.card_data != null:
 			var cost = card.card_data.mana_cost
-			var btn = card.get_node("VBoxContainer/PlayButton")
-			var content = card.get_node("VBoxContainer") # The visual content
+			var btn = card.get_node("Visuals/VBoxContainer/PlayButton")
+			var content = card.get_node("Visuals/VBoxContainer") # The visual content
 			
 			if not is_player_phase or cost > current_mana:
 				btn.disabled = true
@@ -330,8 +361,8 @@ func update_mana_ui():
 	# Slotted cards should always be bright
 	for card in slot_container.get_children():
 		card.modulate = Color(1, 1, 1)
-		var btn = card.get_node("VBoxContainer/PlayButton")
-		var content = card.get_node("VBoxContainer")
+		var btn = card.get_node("Visuals/VBoxContainer/PlayButton")
+		var content = card.get_node("Visuals/VBoxContainer")
 		content.modulate = Color(1, 1, 1)
 		btn.disabled = false
 
@@ -361,25 +392,31 @@ func advance_round():
 func execute_slotted_actions():
 	is_processing_turn = true
 	
-	for data in slotted_cards:
+	for card_node in slotted_nodes:
+		if not is_instance_valid(card_node): continue
+		
+		var data = card_node.card_data # Get the resource from the node
+		
+		# --- ANIMATION START ---
+		if card_node.has_method("animate_as_active"):
+			card_node.animate_as_active()
+		
+		# Give a tiny pause for the card to "pop" before the sound/damage
+		await get_tree().create_timer(0.2).timeout
+		# --- ANIMATION END ---
+
 		if data.sound_effect and sfx_player:
 			sfx_player.stream = data.sound_effect
-			sfx_player.pitch_scale = randf_range(0.95, 1.05) 
 			sfx_player.play()
 		
-		# Give the player 0.15 seconds to hear the start of the sound 
-		await get_tree().create_timer(0.15).timeout
-
-		# 1. Damage
+		# 1. Damage Logic
 		if data.damage > 0:
 			var targets = get_targets_for_action(data.is_aoe, data.aoe_targets)
 			if not targets.is_empty():
 				var final_damage = Global.get_card_damage(data)
 				var is_crit = randi() % 100 < data.critical_chance
-				if is_crit: final_damage = int(final_damage * 1.5)
-				
 				for target in targets:
-					target.take_damage(final_damage, is_crit)
+					target.take_damage(final_damage if not is_crit else int(final_damage * 1.5), is_crit)
 
 		# 2. Shield
 		if data.shield > 0:
@@ -413,14 +450,27 @@ func execute_slotted_actions():
 				else:
 					targets.sort_custom(func(a, b): return a.current_health < b.current_health)
 					targets[0].heal(final_heal)
-
+		
+		# 5. Stun Logic
+		if data.stuns_enemy:
+			print("--- DEBUG: Card '", data.card_name, "' has stuns_enemy = TRUE")
+			var targets = get_targets_for_action(data.is_aoe, data.aoe_targets)
+			
+			if not targets.is_empty():
+				for target in targets:
+					if target.has_method("apply_stun"):
+						print("--- DEBUG: Calling apply_stun on ", target.char_name)
+						target.apply_stun(data.stun_duration)
+			else:
+				print("--- DEBUG: Stun failed - No targets found!")
+						
 		discard_pile.append(data)
 		await get_tree().create_timer(1).timeout
 
 	for child in slot_container.get_children():
 		child.queue_free()
 		
-	slotted_cards.clear()
+	slotted_nodes.clear()
 	check_battle_status()
 
 

@@ -261,6 +261,7 @@ offset_left = 3.0
 offset_top = 3.0
 offset_right = 413.0
 offset_bottom = 160.76
+theme_override_constants/separation = 20
 
 [node name="GlobalInfoButton" type="Button" parent="CanvasLayer"]
 offset_left = 993.0
@@ -275,6 +276,19 @@ volume_db = -7.829
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="CanvasLayer"]
 volume_db = -13.796
 autoplay = true
+
+[node name="StageCount" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -115.5
+offset_right = 115.5
+offset_bottom = 86.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.68, 0.68, 1)
+theme_override_font_sizes/font_size = 35
+text = "Stage Count"
+horizontal_alignment = 1
 
 [node name="EnemyTeam" type="Node2D" parent="."]
 

@@ -129,7 +129,7 @@ func load_hero_cards(hero: CharacterData):
 		card_node.setup(card)
 		
 		# Ensure we can select it
-		var btn = card_node.get_node("VBoxContainer/PlayButton")
+		var btn = card_node.get_node("Visuals/VBoxContainer/PlayButton")
 		btn.text = "Select"
 		
 		# If this card is currently selected, highlight it

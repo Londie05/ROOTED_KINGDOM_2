@@ -21,11 +21,16 @@ var max_aoe_targets: int = 1
 @onready var hp_label = $HealthBar/HPLabel
 @onready var hp_bar = $HealthBar
 @onready var shield_label = $ShieldLabel
-# -------------
+
 var is_locked_target: bool = false
 
+# For stun
+var stun_turns_left: int = 0
+var original_color: Color = Color.WHITE
+
 func _ready():
-	# We wait a frame to ensure UI nodes are ready before updating
+	# Capture the starting color so we can reset after stun
+	original_color = modulate
 	await get_tree().process_frame
 	update_ui()
 
@@ -35,7 +40,6 @@ func spawn_popup(amount: int, color: Color, is_critical: bool = false):
 	var popup = damage_node.instantiate()
 	get_tree().current_scene.add_child(popup)
 	
-	# Use anim_sprite position
 	if anim_sprite:
 		var spawn_pos = anim_sprite.global_position
 		spawn_pos.y -= (target_height / 2.0)
@@ -51,12 +55,10 @@ func setup_character(data: CharacterData):
 	current_health = max_health
 	base_damage = data.base_damage
 	
-	# 1. Assign the SpriteFrames from Data to the Node
 	if anim_sprite and data.idle_animation:
 		anim_sprite.sprite_frames = data.idle_animation
 		anim_sprite.play("default")
 		
-		# 2. Scale logic
 		var first_frame_texture = data.idle_animation.get_frame_texture("default", 0)
 		if first_frame_texture:
 			var texture_size = first_frame_texture.get_size()
@@ -84,7 +86,6 @@ func take_damage(amount: int, is_critical: bool = false):
 			current_shield = 0
 	
 	current_health -= damage_to_hp
-	
 	flash_character(Color(2.5, 0.5, 0.5))
 	spawn_popup(amount, Color.RED, is_critical)
 	
@@ -121,25 +122,36 @@ func die():
 
 func set_target_lock(should_lock: bool):
 	is_locked_target = should_lock
-	
-	is_locked_target = should_lock
-	
 	if anim_sprite and anim_sprite.material:
 		var mat = anim_sprite.material
 		var tween = create_tween()
-		
-		
 		if should_lock:
-			# Smoothly grow the outline to 3.0 thickness over 0.2 seconds
 			tween.tween_method(set_outline_thickness, 0.0, 3.0, 0.2)
-			# Change color to yellow/gold for the target
 			mat.set_shader_parameter("line_color", Color(1.0, 0.9, 0.3, 1.0))
 		else:
-			# Smoothly shrink the outline back to 0
 			tween.tween_method(set_outline_thickness, 3.0, 0.0, 0.2)
 		
-
 func set_outline_thickness(value: float):
 	if anim_sprite and anim_sprite.material:
 		anim_sprite.material.set_shader_parameter("line_thickness", value)
 		
+func apply_stun(duration: int):
+	print("--- DEBUG: apply_stun called for ", char_name, " with duration: ", duration)
+	if duration <= 0: 
+		print("--- DEBUG: Stun failed because duration is 0 or less")
+		return
+	
+	stun_turns_left += duration
+	modulate = Color(0.3, 1.0, 1.0, 0.8) 
+	print("--- DEBUG: ", char_name, " stun_turns_left is now: ", stun_turns_left)
+
+func process_stun_turn() -> bool:
+	if stun_turns_left > 0:
+		stun_turns_left -= 1
+		print("--- DEBUG: Processing stun for ", char_name, ". Remaining: ", stun_turns_left)
+		
+		if stun_turns_left <= 0:
+			modulate = original_color
+			print("--- DEBUG: ", char_name, " is no longer stunned.")
+		return true # Yes, skip turn
+	return false # No, attack normally
