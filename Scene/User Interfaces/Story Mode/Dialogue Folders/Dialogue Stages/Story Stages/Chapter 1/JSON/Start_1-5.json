@@ -1,0 +1,120 @@
+{
+    "Stage": "1-5",
+    "Dialogue": [
+        {
+            "": ["After the introduction, Beatrice, and Charlotte, the two sorceresses that saved you, began scavenging the camp. You volunteered to help, but they scavenged for objects with the help of magic.",
+
+            "And before you knew it, Beatrice and Charlotte approached you."],
+
+            "Charlotte": ["You can stop now. We got all we needed."]
+        },
+
+            { 
+                "": ["This somewhat ruined your moment. All you got is a ruined sword that was stabbed from a goblin's corpse, and even that took you a lot of courage.",
+
+            "But you noticed, they are not carrying a lot of objects, aside from a pouch that Beatrice carries."],
+
+            "Me": ["Where are the things you scavenge?"] 
+        },
+        {
+            "": ["Beatrice pulled up the pouch she was holding, which shook you."],
+            
+            "Beatrice": ["All of them are here"]
+        },
+            {
+            "": ["From your eyes, the pouch is as big as your hand. It should be called a \"purse\" at this point. Only the coins would fit on it."],
+
+            "Me": ["Oh, we're just collecting coins. I thought we were gonna take everything, even though you guys said we were gonna scavenge"],
+
+            "Beatrice": ["We did scavenge, though? Does the word \"scavenge\" have a different meaning in your world?"]
+            },
+            {
+                "Me": ["Scavenge is a scavenge, and you guys call yourself 'scavengers.' I just thought we're actually gonna scavenge everything..."],
+
+                "": ["You showed the sword you have been holding towards them."]
+            },     
+            {
+                "Me": ["This is all I got. This goblin has no coins on him"],
+
+                "": ["Beatrice looked at you with the same awe on her face, now with confusion."],
+                
+                "Beatrice": ["{{Name}}, honestly, what are you talking about?"]
+            },
+            {
+                "": ["You became more confused. Meanwhile, Charlotte took the sword from your hand and placed it in the \"purse.\" Despite its size, the sword didn't poke out at the bottom when it went in.",
+
+                "Beatrice closed the \"purse\" and looked at him."],
+                
+                "Beatrice": ["Thank you for helping us, {{Name}}"],
+
+                "Charlotte": ["Don't worry, you'll get a part of the reward once we arrive at the Republic"]
+            },
+            {
+                "": "You frowned. You are flabbergasted. So lost in words that you want to jump just to finish the joke. The sword is clearly longer than the \"purse\" and it seemed to fit.",
+
+                "Me": "W-What the hell is that thing??!!"
+            },
+            {
+                "": "Charlotte looked at you with confusion, but she nonetheless replied.",
+            
+                "Charlotte": "This is Schrodinger's purse. This can store objects endlessly. The twist is that it gets heavy the more you add objects on it",
+
+                "Me": "Of course, it will" 
+            },
+            {
+                "Charlotte": "W-What is that tone?? What I mean is that you will feel heavy emotionally!",
+
+                "Me": "Don't you think it should be called a Hawking pouch instead?"
+            },
+            {
+                "Charlotte": "Hawking? What are you talking about?",
+
+                "": "Beatrice scratched her cheek, awed by the banter.",
+                
+                "Beatrice": "W-Well, he just got summoned in this world. So, give him some slack."
+            },
+            {
+                "Charlotte": "I'm not doing anything though...",
+
+                "Narrator": ["Moments later, you and the two ladies left the ruined camp and started walking in the grass field. Beatrice walked first, with you and Charlotte following her.",
+
+                "Beatrice seemed to know her path, as she never turned around and asked about directions and Charlotte seemed to trust her. But to you, this is just three of you wandering without a clue."],
+
+                "Me": "How can she tell the path in this grassy field?"
+            },
+            {
+                "Charlotte": "She has a mental compass. It's not just her intuition, she is using magic to precisely know the path to the place she wants to go",
+
+                "Me": "That sounds like a cheat. But, isn't that tiring?"
+            },
+            {
+            "Charlotte": "Oh, don't worry about her mental fortitude. She has the highest mental fortitude with a huge mana capacity. She's a real deal", 
+
+            "Me": ["Actually, I have been wondering for a long time, but where are we going specifically?","I don't think you have to use that mental compass if we are near the Republic that you're talking about"]
+            },
+            {
+                "Me": "You're right about that. We're too far from the Republic. The Goblin Zone is a big area, you know. So, we're looking for a goblin camp with an airboat. It's our old habit",
+
+                "Charlotte": "It seems to me that I just became an inconvenience"
+            },
+            {
+                "Charlotte": "I mean... you are. But, it's not something for Beatrice and I to care about",
+
+                "Me": "...",
+
+                "Narrator": "As you went silent, Beatrice stopped her steps.",
+                
+                "Beatrice": "Everyone, there's a group of goblins nearby."
+            },
+            {
+                "Me": "That's quite... convenient",
+
+                "": "Charlotte left your side and went before Beatrice.",
+
+                "Charlotte": "Leave it to me."
+            },
+            {
+                "Narrator": ["Charlotte swiftly approached the marching goblins.", "The orb on her glowed as she ran and swayed the staff towards the goblins.", "From the orb, a ball of magic appeared and shot to the goblins, and a smoke blew that engulfed them and also obscured their presence.", "And Charlotte approached the growing smoke with a quick swift."]
+            }
+        ]
+    }

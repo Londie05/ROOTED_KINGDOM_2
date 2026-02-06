@@ -82,10 +82,7 @@ offset_bottom = 651.0
 
 [node name="Background I" parent="Background" instance=ExtResource("1_nbfal")]
 layout_mode = 1
-offset_left = 7.0
-offset_top = -52.0
-offset_right = 7.0
-offset_bottom = 89.0
+offset_bottom = 0.0
 
 [node name="ButtonManager" type="Control" parent="."]
 layout_mode = 1
