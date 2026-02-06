@@ -1,0 +1,85 @@
+[gd_scene load_steps=3 format=3 uid="uid://nbb3dskrjq7w"]
+
+[ext_resource type="Script" uid="uid://tg07uedak3d2" path="res://Scene/User Interfaces/UI scenes/QuitPopup.gd" id="1_cb2ph"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trt3v"]
+bg_color = Color(0.32, 0.32, 0.32, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.36, 0.36, 0.36, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="CustomQuitPopup" type="CanvasLayer"]
+script = ExtResource("1_cb2ph")
+
+[node name="Dimmer" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -38.0
+offset_right = 123.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44, 0.44, 0.44, 0.6392157)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -40.0
+offset_right = 124.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PopupBox" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_trt3v")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PopupBox"]
+custom_minimum_size = Vector2(240, 100)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PopupBox/MarginContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/PopupBox/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8039216)
+theme_override_font_sizes/font_size = 14
+text = "Are you sure you want to quit?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PopupBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 110
+alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="CenterContainer/PopupBox/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="CancelButton" type="Button" parent="CenterContainer/PopupBox/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="pressed" from="CenterContainer/PopupBox/MarginContainer/VBoxContainer/HBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PopupBox/MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

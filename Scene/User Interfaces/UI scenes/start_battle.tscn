@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://qmnutdlpk68l"]
 
-[ext_resource type="PackedScene" uid="uid://diw3xv0en0ynt" path="res://Scene/User Interfaces/UI Asset Components/background_i.tscn" id="1_2sahd"]
+[ext_resource type="Texture2D" uid="uid://bq3mv1chiqmla" path="res://Asset/Backgrounds/Main_Menu_Background.jpg" id="1_2sahd"]
 [ext_resource type="Script" uid="uid://dg4em0ukvp7ku" path="res://Scene/User Interfaces/UI Scripts/button_manager_start.gd" id="1_nfl2a"]
 [ext_resource type="PackedScene" uid="uid://3dgl7l1vwjcq" path="res://Scene/User Interfaces/Story Mode/Story Mode UIs/start_battle_slot.tscn" id="2_t4b46"]
 [ext_resource type="FontFile" uid="uid://dtdw2k1jvjn37" path="res://Asset/Fonts/times.ttf" id="2_ygvaf"]
@@ -12,20 +12,27 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_objsq"]
 
-[node name="Start_Battle" type="Node2D"]
-
-[node name="Background" type="Control" parent="."]
+[node name="Start_Battle" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 651.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Background I" parent="Background" instance=ExtResource("1_2sahd")]
+[node name="Background2" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1000, 0)
 layout_mode = 1
-offset_bottom = 0.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2sahd")
+expand_mode = 1
 
 [node name="ButtonManager" type="Control" parent="."]
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -58,15 +65,16 @@ mode = 1
 availability = true
 
 [node name="Back" type="Button" parent="ButtonManager"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = 922.0
-offset_top = 21.0
-offset_right = 1117.0
-offset_bottom = 101.0
-grow_horizontal = 0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 966.0
+offset_top = -630.0
+offset_right = 1139.0
+offset_bottom = -551.0
+grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_ygvaf")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_2sahd")

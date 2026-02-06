@@ -1,12 +1,13 @@
-[gd_scene load_steps=35 format=3 uid="uid://qde0e5mwnany"]
+[gd_scene load_steps=36 format=3 uid="uid://qde0e5mwnany"]
 
 [ext_resource type="Script" uid="uid://bxn5segpvyh4e" path="res://Scene/User Interfaces/UI Scripts/button_manager.gd" id="1_kxbd2"]
-[ext_resource type="PackedScene" uid="uid://diw3xv0en0ynt" path="res://Scene/User Interfaces/UI Asset Components/background_i.tscn" id="1_nbfal"]
+[ext_resource type="PackedScene" uid="uid://nbb3dskrjq7w" path="res://Scene/User Interfaces/UI scenes/CustomQuitPopup.tscn" id="1_nbfal"]
 [ext_resource type="Texture2D" uid="uid://cdfpkjhi1gi77" path="res://Asset/User Interface/button_ui.png" id="2_eh1oq"]
 [ext_resource type="FontFile" uid="uid://dtdw2k1jvjn37" path="res://Asset/Fonts/times.ttf" id="2_jykwv"]
 [ext_resource type="Texture2D" uid="uid://io3a4q46b3pk" path="res://Asset/User Interface/Title_Banner_v1.png" id="2_nbfal"]
 [ext_resource type="Texture2D" uid="uid://dcm4yl4kcn7wn" path="res://Asset/Backgrounds/gem_1.webp" id="4_87orj"]
 [ext_resource type="Texture2D" uid="uid://rjoebry8l2at" path="res://Asset/Backgrounds/gem_3.webp" id="5_qelcm"]
+[ext_resource type="Texture2D" uid="uid://bq3mv1chiqmla" path="res://Asset/Backgrounds/Main_Menu_Background.jpg" id="7_qrawm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bsri0"]
 
@@ -36,13 +37,13 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_77lu8"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eh1oq"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lqnyc"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4wod1"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xyor1"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d8y1c"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gbfi8"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cntet"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_okapm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qelcm"]
 
@@ -52,13 +53,13 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_csd3b"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lqnyc"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eh1oq"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xyor1"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4wod1"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gbfi8"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d8y1c"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_okapm"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cntet"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bsri0"]
 font = ExtResource("2_jykwv")
@@ -75,14 +76,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 651.0
+[node name="CustomQuitPopup" parent="." instance=ExtResource("1_nbfal")]
 
-[node name="Background I" parent="Background" instance=ExtResource("1_nbfal")]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
-offset_bottom = 0.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_qrawm")
+expand_mode = 1
 
 [node name="ButtonManager" type="Control" parent="."]
 layout_mode = 1
@@ -171,16 +175,17 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_77lu8")
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Tutorial" type="Button" parent="ButtonManager/PanelContainer2/HBoxContainer"]
+[node name="Quit" type="Button" parent="ButtonManager/PanelContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jykwv")
 theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxEmpty_eh1oq")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_4wod1")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_d8y1c")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_cntet")
-text = "Tutorial
+theme_override_styles/normal = SubResource("StyleBoxEmpty_87orj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lqnyc")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xyor1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gbfi8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_okapm")
+text = "Quit
 "
 icon = ExtResource("2_eh1oq")
 icon_alignment = 1
@@ -200,17 +205,16 @@ icon = ExtResource("2_eh1oq")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Quit" type="Button" parent="ButtonManager/PanelContainer2/HBoxContainer"]
+[node name="Tutorial" type="Button" parent="ButtonManager/PanelContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jykwv")
 theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxEmpty_87orj")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_lqnyc")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_xyor1")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_gbfi8")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_okapm")
-text = "Quit
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eh1oq")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_4wod1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_d8y1c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cntet")
+text = "Tutorial
 "
 icon = ExtResource("2_eh1oq")
 icon_alignment = 1
@@ -321,6 +325,6 @@ expand_mode = 1
 [connection signal="pressed" from="ButtonManager/PanelContainer/VBoxContainer/Start Battle" to="ButtonManager" method="_on_start_battle_pressed"]
 [connection signal="pressed" from="ButtonManager/PanelContainer/VBoxContainer/Cards" to="ButtonManager" method="_on_inventory_and_shop_pressed"]
 [connection signal="pressed" from="ButtonManager/PanelContainer/VBoxContainer/Characters" to="ButtonManager" method="_on_characters_pressed"]
-[connection signal="pressed" from="ButtonManager/PanelContainer2/HBoxContainer/Tutorial" to="ButtonManager" method="_on_tutorial_pressed"]
-[connection signal="pressed" from="ButtonManager/PanelContainer2/HBoxContainer/Settings" to="ButtonManager" method="_on_settings_pressed"]
 [connection signal="pressed" from="ButtonManager/PanelContainer2/HBoxContainer/Quit" to="ButtonManager" method="_on_quit_pressed"]
+[connection signal="pressed" from="ButtonManager/PanelContainer2/HBoxContainer/Settings" to="ButtonManager" method="_on_settings_pressed"]
+[connection signal="pressed" from="ButtonManager/PanelContainer2/HBoxContainer/Tutorial" to="ButtonManager" method="_on_tutorial_pressed"]

@@ -1,12 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4brm6bfcgm2u"]
+[gd_scene load_steps=3 format=3 uid="uid://b4brm6bfcgm2u"]
 
 [ext_resource type="Script" uid="uid://xggo1xt41vg1" path="res://Scene/User Interfaces/LoadingScene.gd" id="1_igoep"]
-[ext_resource type="Texture2D" uid="uid://dvqx32t66s3mc" path="res://Asset/Backgrounds/Story Mode/gaia_sky.jpg" id="2_uvq4n"]
-[ext_resource type="FontFile" uid="uid://dtdw2k1jvjn37" path="res://Asset/Fonts/times.ttf" id="3_uvq4n"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_uvq4n"]
-font = ExtResource("3_uvq4n")
-font_size = 32
+[ext_resource type="Texture2D" uid="uid://cc5m44e6ot5vn" path="res://Asset/Backgrounds/Illustrationn.webp" id="2_ybeqp"]
 
 [node name="LoadingScene" type="Control"]
 layout_mode = 3
@@ -17,54 +12,38 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_igoep")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="LoadingScreenBackGround" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_uvq4n")
+texture = ExtResource("2_ybeqp")
 expand_mode = 1
 
 [node name="LoadingBar" type="ProgressBar" parent="."]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -301.5
-offset_top = -115.39502
-offset_right = 301.5
-offset_bottom = -65.89502
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+offset_left = 303.0
+offset_top = 536.0
+offset_right = 906.0
+offset_bottom = 585.5
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(18.892157, 18.892157, 18.892157, 1)
-theme_override_fonts/font = ExtResource("3_uvq4n")
 theme_override_font_sizes/font_size = 24
 
 [node name="StatusLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -218.5
-offset_top = -58.98999
-offset_right = 218.5
-offset_bottom = -22.98999
-grow_horizontal = 2
-grow_vertical = 0
+layout_mode = 0
+offset_left = 397.0
+offset_top = 586.0
+offset_right = 834.0
+offset_bottom = 620.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(18.892157, 18.892157, 18.892157, 0)
 theme_override_colors/font_outline_color = Color(18.892157, 18.892157, 18.892157, 1)
 theme_override_constants/line_spacing = 10
 theme_override_font_sizes/font_size = 24
 text = "TEXT..."
-label_settings = SubResource("LabelSettings_uvq4n")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
