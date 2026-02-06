@@ -13,6 +13,5 @@ shield = 17
 mana_cost = 2
 is_aoe = true
 aoe_targets = 3
-shield_growth = 3
 sound_effect = ExtResource("3_yn7dl")
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

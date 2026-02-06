@@ -2,7 +2,6 @@ extends Resource
 class_name CharacterData
 
 @export var name: String = "Hero"
-# DELETE the old texture lines if you don't use them anymore, or keep them for UI
 @export var character_sprite: Texture2D 
 @export var character_illustration: Texture2D
 
@@ -18,6 +17,4 @@ class_name CharacterData
 @export var is_locked: bool = false 
 @export var unlock_cost: int = 1000
 
-# --- THE IMPORTANT NEW PART ---
 @export var idle_animation: SpriteFrames 
-# ------------------------------

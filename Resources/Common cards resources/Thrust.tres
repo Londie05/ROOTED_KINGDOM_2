@@ -12,6 +12,5 @@ damage = 15
 mana_cost = 1
 aoe_targets = 1
 critical_chance = 30
-damage_growth = 3
 sound_effect = ExtResource("3_g8jic")
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

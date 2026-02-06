@@ -13,8 +13,8 @@ var selected_team: Array[CharacterData] = []
 var player_team: Array = []
 
 var upgrade_materials: int = 500
-var small_gems: int = 5000
-var crystal_gems: int = 100
+var small_gems: int = 50000
+var crystal_gems: int = 5000
 
 var unlocked_heroes: Array[String] = ["Hero"]
 var from_tower_mode: bool = false
@@ -39,9 +39,10 @@ var floor_rewards = {
 	10: { "small": 1000, "crystal": 5 },
 }
 
-const HP_GROWTH_PER_LEVEL = 20
-const UPGRADE_COST_BASE = 100
-const UPGRADE_COST_MULTIPLIER = 1.5
+const HP_GROWTH_PER_LEVEL = 5
+
+const UPGRADE_COST_BASE = 2 
+const UPGRADE_COST_MULTIPLIER = 1.2
 
 func _ready() -> void:
 	setup_audio_node()
@@ -50,6 +51,16 @@ func _ready() -> void:
 	get_tree().node_added.connect(_on_node_added)
 	connect_buttons_recursive(get_tree().root)
 
+
+# --- CARD STAT CALCULATIONS ---
+func get_card_upgrade_cost(data: CardData) -> int:
+	var lvl = card_levels.get(data.card_name, 0)
+	# Logic: Increase by 2x every 5 levels
+	var steps = int(lvl / 5)
+	
+	# Formula: BaseCost * (2 ^ steps)
+	var multiplier = pow(2, steps)
+	return int(data.upgrade_cost * multiplier)
 
 func get_card_damage(data: CardData) -> int:
 	var lvl = card_levels.get(data.card_name, 0)
@@ -65,10 +76,14 @@ func get_card_heal(data: CardData) -> int:
 
 func get_card_mana(data: CardData) -> int:
 	var lvl = card_levels.get(data.card_name, 0)
-	return data.mana_gain + (data.mana_gain * lvl)
+	# Logic: Only increase by 1 every 5 levels
+	var extra_mana = int(lvl / 5) 
+	return data.mana_gain + extra_mana
 	
 func get_card_level_number(data: CardData) -> int:
 	return card_levels.get(data.card_name, 0) + 1
+
+# --- CHARACTER STAT CALCULATIONS ---
 
 func get_character_level(char_name: String) -> int:
 	return character_levels.get(char_name, 0)
@@ -102,15 +117,18 @@ func try_redeem_code(code: String) -> String:
 # --- ACTION LOGIC ---
 
 func attempt_upgrade(data: CardData) -> bool:
-	if small_gems >= data.upgrade_cost:
-		small_gems -= data.upgrade_cost
+	# Calculate dynamic cost
+	var dynamic_cost = get_card_upgrade_cost(data)
+	
+	if small_gems >= dynamic_cost:
+		small_gems -= dynamic_cost
 		
 		if not card_levels.has(data.card_name):
 			card_levels[data.card_name] = 0
 		
 		card_levels[data.card_name] += 1
 		
-		print("Card Upgrade Successful! Saved.")
+		print("Card Upgrade Successful! Cost: ", dynamic_cost)
 		save_game()
 		return true
 	else:
@@ -119,8 +137,8 @@ func attempt_upgrade(data: CardData) -> bool:
 func upgrade_character(data: CharacterData) -> bool:
 	var cost = get_upgrade_cost(data.name)
 	
-	if small_gems >= cost:
-		small_gems -= cost
+	if crystal_gems >= cost:
+		crystal_gems -= cost
 		
 		if not character_levels.has(data.name):
 			character_levels[data.name] = 0
@@ -256,6 +274,9 @@ func mark_floor_cleared(floor_num: int):
 		save_game()
 		
 func grant_floor_reward(floor_num: int):
+	if floors_cleared.has(floor_num):
+		print("Floor ", floor_num, " already cleared. No duplicate rewards.")
+		return
 	var reward = floor_rewards.get(floor_num, {"small": 0, "crystal": 0})
 	small_gems += reward["small"]
 	crystal_gems += reward["crystal"]

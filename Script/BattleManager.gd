@@ -364,6 +364,9 @@ func execute_slotted_actions():
 	is_processing_turn = true
 	
 	for card_node in slotted_nodes:
+		if get_alive_enemies().is_empty():
+			break 
+		
 		if not is_instance_valid(card_node): continue
 		
 		var data = card_node.card_data 
@@ -377,7 +380,7 @@ func execute_slotted_actions():
 			sfx_player.stream = data.sound_effect
 			sfx_player.play()
 		
-		# 1. Damage Logic
+		# Damage Logic
 		if data.damage > 0:
 			var targets = get_targets_for_action(data.is_aoe, data.aoe_targets)
 			if not targets.is_empty():
@@ -385,8 +388,7 @@ func execute_slotted_actions():
 				var is_crit = randi() % 100 < data.critical_chance
 				for target in targets:
 					target.take_damage(final_damage if not is_crit else int(final_damage * 1.5), is_crit)
-
-		# 2. Shield
+		
 		if data.shield > 0:
 			var targets = get_alive_players()
 			if not targets.is_empty():
@@ -399,14 +401,12 @@ func execute_slotted_actions():
 					targets.sort_custom(func(a, b): return a.current_health < b.current_health)
 					targets[0].add_shield(final_shield)
 					
-		# 3. Mana
 		if data.mana_gain > 0:
 			var gain = Global.get_card_mana(data)
 			current_mana = min(current_mana + gain, max_mana)
 			spawn_mana_popup(gain)
 			update_mana_ui()
 			
-		# 4. Heal
 		if data.heal_amount > 0:
 			var targets = get_alive_players()
 			if not targets.is_empty():
@@ -419,22 +419,26 @@ func execute_slotted_actions():
 					targets.sort_custom(func(a, b): return a.current_health < b.current_health)
 					targets[0].heal(final_heal)
 		
-		# 5. Stun Logic
 		if data.stuns_enemy:
 			var targets = get_targets_for_action(data.is_aoe, data.aoe_targets)
-			
 			if not targets.is_empty():
 				for target in targets:
 					if target.has_method("apply_stun"):
 						target.apply_stun(data.stun_duration)
 						
 		discard_pile.append(data)
+		
+		if get_alive_enemies().is_empty():
+			await get_tree().create_timer(1.2).timeout 
+			break
+			
 		await get_tree().create_timer(1).timeout
-
+		
 	for child in slot_container.get_children():
 		child.queue_free()
 		
 	slotted_nodes.clear()
+	
 	check_battle_status()
 
 
@@ -448,6 +452,10 @@ func get_alive_enemies() -> Array:
 func setup_tower_enemies():
 	var enemy_nodes = enemy_team.get_children()
 	var selected_floor_data: Array[EnemyData] = []
+	
+	# --- 1. CALCULATE GROWTH ---
+	var growth_percent = 0.05 
+	var growth_multiplier = 1.0 + (Global.current_tower_floor * growth_percent)
 	
 	match Global.current_tower_floor:
 		1: selected_floor_data = floor_1_enemies
@@ -478,7 +486,23 @@ func setup_tower_enemies():
 	for i in range(selected_floor_data.size()):
 		if i < enemy_nodes.size():
 			var enemy_resource = selected_floor_data[i]
+			
+			# Load base stats
 			enemy_nodes[i].setup_enemy(enemy_resource)
+			
+			# Apply scaling
+			var new_max_hp = int(enemy_nodes[i].max_health * growth_multiplier)
+			var new_dmg = int(enemy_nodes[i].base_damage * growth_multiplier)
+			
+			enemy_nodes[i].max_health = new_max_hp
+			enemy_nodes[i].current_health = new_max_hp 
+			enemy_nodes[i].base_damage = new_dmg
+			
+			if enemy_nodes[i].has_method("update_ui"):
+				enemy_nodes[i].update_ui()
+			
+			print("Stage ", Global.current_tower_floor, " | Enemy HP: ", new_max_hp, " (Mult: ", growth_multiplier, ")")
+			
 			enemy_nodes[i].show() 
 			
 			if not enemy_nodes[i].enemy_selected.is_connected(_on_enemy_clicked):
@@ -495,10 +519,12 @@ func check_battle_status():
 		return
 		
 	if alive_enemies.is_empty():
+		await get_tree().create_timer(0.5).timeout
+		
 		if Global.current_tower_floor > 0:
 			Global.mark_floor_cleared(Global.current_tower_floor) 
 			fade_out_music()
-			GlobalMenu.show_victory_menu() 
+			GlobalMenu.show_victory_menu()
 	
 func get_alive_players() -> Array:
 	var alive = []

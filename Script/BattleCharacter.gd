@@ -51,7 +51,7 @@ func setup_character(data: CharacterData):
 		return
 		
 	char_name = data.name
-	max_health = data.max_health
+	max_health = Global.get_character_max_hp(data)
 	current_health = max_health
 	base_damage = data.base_damage
 	

@@ -113,7 +113,8 @@ func update_hero_stats_ui():
 	hp_label.text = "HP: " + str(cur_hp) + " -> " + str(next_hp)
 	
 	var cost = Global.get_upgrade_cost(selected_hero.name)
-	$UpgradePanel/HBoxContainer/StatsVBox/UpgradeCharButton.text = "Upgrade (" + str(cost) + " Gems)"
+	# --- Display Crystal cost ---
+	$UpgradePanel/HBoxContainer/StatsVBox/UpgradeCharButton.text = "Upgrade (" + str(cost) + " Crystals)"
 
 func load_hero_cards(hero: CharacterData):
 	for child in card_hbox.get_children():
@@ -128,20 +129,18 @@ func load_hero_cards(hero: CharacterData):
 		card_hbox.add_child(card_node)
 		card_node.setup(card)
 		
-		# Ensure we can select it
 		var btn = card_node.get_node("Visuals/VBoxContainer/PlayButton")
 		btn.text = "Select"
 		
-		# If this card is currently selected, highlight it
 		if selected_card and selected_card.card_name == card.card_name:
 			card_node.modulate = Color(1.5, 1.5, 1.5)
 			
 		btn.pressed.connect(_on_card_selected.bind(card))
 
-# --- THIS IS THE FIX FOR THE "DAMAGE ONLY" BUG ---
 func _on_card_selected(card: CardData):
 	selected_card = card
-	var cur_lvl = Global.get_card_level_number(card)
+	var cur_lvl = Global.get_card_level_number(card) 
+	var internal_lvl = Global.card_levels.get(card.card_name, 0) 
 	
 	card_name_lbl.text = card.card_name
 	$UpgradePanel/HBoxContainer/CardsVBox/CardDetailVBox/CardLvlLabel.text = "Level: " + str(cur_lvl)
@@ -149,35 +148,31 @@ func _on_card_selected(card: CardData):
 	# --- DYNAMIC STAT STRING BUILDING ---
 	var stats_text = ""
 	
-	# 1. CHECK DAMAGE
 	if card.damage > 0:
 		var cur_dmg = Global.get_card_damage(card)
 		var next_dmg = cur_dmg + card.damage_growth
 		stats_text += "Dmg: " + str(cur_dmg) + " -> " + str(next_dmg) + "\n"
 		
-	# 2. CHECK SHIELD
 	if card.shield > 0:
 		var cur_shd = Global.get_card_shield(card)
 		var next_shd = cur_shd + card.shield_growth
 		stats_text += "Shld: " + str(cur_shd) + " -> " + str(next_shd) + "\n"
 		
-	# 3. CHECK HEAL
 	if card.heal_amount > 0:
 		var cur_heal = Global.get_card_heal(card)
 		var next_heal = cur_heal + card.heal_growth
 		stats_text += "Heal: " + str(cur_heal) + " -> " + str(next_heal) + "\n"
 		
-	# 4. CHECK MANA (Optional)
 	if card.mana_gain > 0:
 		var cur_mana = Global.get_card_mana(card)
-		var next_mana = cur_mana + card.mana_gain_growth # Assuming you added growth for mana
+		var next_mana = card.mana_gain + int((internal_lvl + 1) / 5)
 		stats_text += "Mana: " + str(cur_mana) + " -> " + str(next_mana)
 	
 	card_stats_lbl.text = stats_text
 	
-	$UpgradePanel/HBoxContainer/CardsVBox/CardDetailVBox/UpgradeCardButton.text = "Upgrade (" + str(card.upgrade_cost) + ")"
+	var dynamic_cost = Global.get_card_upgrade_cost(card)
+	$UpgradePanel/HBoxContainer/CardsVBox/CardDetailVBox/UpgradeCardButton.text = "Upgrade (" + str(dynamic_cost) + ")"
 	
-	# Refresh visuals to show selection highlight
 	load_hero_cards(selected_hero)
 
 func update_currency_display():
@@ -191,14 +186,14 @@ func _on_upgrade_char_pressed():
 		update_hero_stats_ui()
 		update_currency_display()
 		
-		# Reload cards because upgrading Hero also upgrades Cards (per your logic)
 		if selected_card:
 			_on_card_selected(selected_card)
 		
 		load_hero_cards(selected_hero)
 		print("Hero Upgraded!")
 	else:
-		print("Not enough Gems for Hero Upgrade!")
+		# --- CHANGED: Update error message ---
+		print("Not enough Crystals for Hero Upgrade!")
 		
 func _on_upgrade_card_pressed():
 	if not selected_card: return

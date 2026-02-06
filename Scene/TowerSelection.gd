@@ -31,33 +31,41 @@ func _ready():
 	container.get_node("Floor18").pressed.connect(_on_floor_selected.bind(18, "Floor 18: The benevolent"))
 	container.get_node("Floor19").pressed.connect(_on_floor_selected.bind(19, "Floor 19: The benevolent"))
 	container.get_node("Floor20").pressed.connect(_on_floor_selected.bind(20, "Floor 20: The benevolent"))
-	
-	# Redirect the button to the Character Selection scene
-	$StartBattleButton.text = "Choose Characters" # Optional: Change button text
+	container.get_node("Floor21").pressed.connect(_on_floor_selected.bind(21, "Floor 21: On Going"))
+	$StartBattleButton.text = "Choose Characters" 
 	$StartBattleButton.pressed.connect(_on_choose_characters_pressed)
 	
-	# --- NEW ADDITION: Lock the floors based on save data ---
 	lock_floors()
 
 func _on_floor_selected(floor_num: int, description: String):
 	selected_floor = floor_num
 	Global.current_tower_floor = floor_num
 	
-	# 1. Get the reward data from Global
 	var reward = Global.floor_rewards.get(floor_num, {"small": 0, "crystal": 0})
 	
-	# 2. Build the Text with Icons
-	# We use [img=30] to set the size of the icon to 30 pixels
+	# --- NEW: Check if already cleared ---
+	var is_cleared = Global.floors_cleared.has(floor_num)
+	
 	var text = "[b]" + description + "[/b]\n\n"
-	text += "Rewards:\n"
 	
-	if reward["small"] > 0:
-		text += "[img=25]%s[/img] %d  " % [GEM_ICON_PATH, reward["small"]]
-		
-	if reward["crystal"] > 0:
-		text += "[img=25]%s[/img] %d" % [CRYSTAL_ICON_PATH, reward["crystal"]]
+	if is_cleared:
+		# Notification for already gotten rewards
+		text += "Rewards: [color=green][CLAIMED][/color]\n"
+		# Optional: Show what the rewards were but gray them out
+		text += "[color=gray]"
+		if reward["small"] > 0:
+			text += "[img=25]%s[/img] %d  " % [GEM_ICON_PATH, reward["small"]]
+		if reward["crystal"] > 0:
+			text += "[img=25]%s[/img] %d" % [CRYSTAL_ICON_PATH, reward["crystal"]]
+		text += "[/color]"
+	else:
+		# Standard reward display
+		text += "Rewards:\n"
+		if reward["small"] > 0:
+			text += "[img=25]%s[/img] %d  " % [GEM_ICON_PATH, reward["small"]]
+		if reward["crystal"] > 0:
+			text += "[img=25]%s[/img] %d" % [CRYSTAL_ICON_PATH, reward["crystal"]]
 	
-	# 3. Update the Label
 	desc_label.text = text
 
 func _on_choose_characters_pressed():
@@ -68,32 +76,23 @@ func _on_choose_characters_pressed():
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/start_battle.tscn")
 
-# --- NEW FUNCTION: LOCK LOGIC ---
 func lock_floors():
 	var container = $ScrollContainer/VBox
 	
-	# Iterate through Floor 1 to 10
-	for i in range(1, 21):
+	for i in range(1, 22):
 		var node_name = "Floor" + str(i)
-		
-		# Check if the button exists to avoid errors
+			
 		if container.has_node(node_name):
 			var btn = container.get_node(node_name)
 			var is_unlocked = false
-			
-			# Logic: 
-			# Floor 1 is always unlocked.
-			# Other floors (i) are unlocked only if the PREVIOUS floor (i-1) is in Global.floors_cleared
 			if i == 1:
 				is_unlocked = true
 			elif Global.floors_cleared.has(i - 1):
 				is_unlocked = true
 			
-			# Apply the lock state
 			btn.disabled = not is_unlocked
 			
-			# VISUAL FEEDBACK: Darken the button if it is locked
 			if is_unlocked:
-				btn.modulate = Color(1, 1, 1) # Normal color
+				btn.modulate = Color(1, 1, 1) 
 			else:
-				btn.modulate = Color(0.5, 0.5, 0.5) # Dark grey to indicate locked
+				btn.modulate = Color(0.5, 0.5, 0.5) 
