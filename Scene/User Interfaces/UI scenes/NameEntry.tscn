@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqcqptdmvmh2a"]
+[gd_scene load_steps=4 format=3 uid="uid://dqcqptdmvmh2a"]
 
 [ext_resource type="Script" uid="uid://dq48pm6j1b8p4" path="res://Scene/User Interfaces/UI scenes/NameEntry.gd" id="1_0d5iv"]
 [ext_resource type="Texture2D" uid="uid://dnxuvdehf47bo" path="res://Asset/User Interface/tower_mod_background_v2.webp" id="2_hrmmw"]
+[ext_resource type="PackedScene" uid="uid://nbb3dskrjq7w" path="res://Scene/User Interfaces/UI scenes/CustomQuitPopup.tscn" id="3_bf2b2"]
 
 [node name="NameEntry" type="Control"]
 layout_mode = 3
@@ -11,6 +12,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0d5iv")
+
+[node name="CustomQuitPopup" parent="." instance=ExtResource("3_bf2b2")]
+visible = false
 
 [node name="ColorRect" type="TextureRect" parent="."]
 layout_mode = 1

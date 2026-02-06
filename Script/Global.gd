@@ -45,6 +45,7 @@ const UPGRADE_COST_BASE = 2
 const UPGRADE_COST_MULTIPLIER = 1.2
 
 func _ready() -> void:
+	reset_player_data()
 	setup_audio_node()
 	load_game()
 	

@@ -4,8 +4,14 @@ extends Control
 @onready var crystal_label = $"../MarginContainer/HBoxContainer/CrystalGemHolder/CrystalLabel"
 @onready var player_name_label = $"../Profile/PlayerNameLabel"
 
+# 1. LINK THE NEW DIALOG NODE
+@onready var uit_popup = $"../CustomQuitPopup"
 
 func _ready() -> void:
+	# 2. CONNECT THE "OK" BUTTON SIGNAL
+	# When the user clicks "OK" on the popup, run the actual quit function
+	uit_popup.confirmed.connect(_on_confirmed_quit)
+	
 	if Global.player_name == "":
 		get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/NameEntry.tscn")
 		return
@@ -15,7 +21,7 @@ func _ready() -> void:
 func update_currency_ui():
 	# Display the values from Global
 	small_gem_label.text = "Gem: " + str(Global.small_gems)
-	crystal_label.text =  "Crystal: " + str(Global.crystal_gems)
+	crystal_label.text = "Crystal: " + str(Global.crystal_gems)
 
 func _on_start_battle_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/start_battle.tscn")
@@ -37,7 +43,13 @@ func _on_settings_pressed() -> void:
 
 func update_player_info():
 	player_name_label.text = Global.player_name
-	
+
+# 3. CHANGE THE BUTTON BEHAVIOR
 func _on_quit_pressed() -> void:
-	Global.save_game() # FINAL SAVE BEFORE EXIT
+	# Show our pretty new custom popup
+	uit_popup.show_popup()
+
+# 4. THE ACTUAL QUIT FUNCTION
+func _on_confirmed_quit() -> void:
+	Global.save_game()
 	get_tree().quit()
