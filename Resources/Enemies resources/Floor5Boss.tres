@@ -7,7 +7,7 @@
 script = ExtResource("1_cbvff")
 name = "Nah'rgot"
 idle_animation = ExtResource("1_q4icm")
-max_health = 1200
+max_health = 1500
 base_damage = 15
 min_crit_chance = 70
 max_crit_chance = 100

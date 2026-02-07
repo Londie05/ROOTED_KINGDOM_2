@@ -1,5 +1,28 @@
 extends Node
 
+var bgm_player: AudioStreamPlayer
+var current_bgm_track_name: String = "Music 1" # Default
+
+var master_volume: float = 1.0
+
+# --- MUSIC TRACKS ---
+var bgm_tracks: Dictionary = {
+	"Music 1": "res://Asset/Backgrounds/Story Mode/bgMusic2.mp3",
+	"Music 2": "res://Asset/Backgrounds/Story Mode/bgMusic.mp3",
+	"None": ""
+}
+
+# --- ALLOWED SCENES ---
+var allowed_bgm_scenes: Array[String] = [
+	"Settings",      
+	"CharacterSelection", 
+	"MainMenu",           
+	"Start_Battle",     
+	"TowerSelection",
+	"CharacterUpgradeUi",
+	"Tutorial"
+]
+
 var player_name: String = ""
 const SAVE_PATH = "user://player_data.save"
 
@@ -45,21 +68,86 @@ const UPGRADE_COST_BASE = 2
 const UPGRADE_COST_MULTIPLIER = 1.2
 
 func _ready() -> void:
-	reset_player_data()
 	setup_audio_node()
-	load_game()
+	
+	bgm_player = AudioStreamPlayer.new()
+	add_child(bgm_player)
+	bgm_player.bus = "Master" 
+	
+	load_game() 
 	
 	get_tree().node_added.connect(_on_node_added)
+	
+	get_tree().tree_changed.connect(_on_scene_changed)
 	connect_buttons_recursive(get_tree().root)
 
 
+	await get_tree().process_frame
+	if get_tree().current_scene:
+		print("Global: Initial Scene is ", get_tree().current_scene.name)
+		check_and_play_bgm(get_tree().current_scene.name)
+
+func _on_scene_changed():
+	var tree = get_tree()
+	if not tree: 
+		return
+	
+	await tree.process_frame
+	
+	if not is_inside_tree() or get_tree() == null: 
+		return
+
+	var current_scene = get_tree().current_scene
+	if current_scene:
+		print("Global: Scene switched to ", current_scene.name)
+		check_and_play_bgm(current_scene.name)
+
+func check_and_play_bgm(scene_name: String):
+	if scene_name in allowed_bgm_scenes:
+		print("Global: Music ALLOWED for ", scene_name)
+		play_selected_bgm()
+	else:
+		print("Global: Music STOPPED (Scene not in allow list: ", scene_name, ")")
+		bgm_player.stop()
+
+func play_selected_bgm():
+	print("Global: Attempting to play track: ", current_bgm_track_name)
+	
+	if current_bgm_track_name == "None" or current_bgm_track_name == "":
+		bgm_player.stop()
+		return
+		
+	var track_path = bgm_tracks.get(current_bgm_track_name, "")
+	if track_path == "":
+		print("Global: Track path not found for ", current_bgm_track_name)
+		bgm_player.stop()
+		return
+		
+	# If the correct song is already playing, don't restart it
+	if bgm_player.playing and bgm_player.stream and bgm_player.stream.resource_path == track_path:
+		return
+		
+	var stream = load(track_path)
+	if stream:
+		bgm_player.stream = stream
+		bgm_player.play()
+		print("Global: Now Playing ", current_bgm_track_name)
+	else:
+		print("Global: ERROR - Could not load file at ", track_path)
+
+func set_bgm_preference(track_name: String):
+	current_bgm_track_name = track_name
+	save_game()
+	
+	# Re-check immediately
+	if get_tree().current_scene:
+		check_and_play_bgm(get_tree().current_scene.name)
+
+# --- (The rest of your script is unchanged below) ---
 # --- CARD STAT CALCULATIONS ---
 func get_card_upgrade_cost(data: CardData) -> int:
 	var lvl = card_levels.get(data.card_name, 0)
-	# Logic: Increase by 2x every 5 levels
 	var steps = int(lvl / 5)
-	
-	# Formula: BaseCost * (2 ^ steps)
 	var multiplier = pow(2, steps)
 	return int(data.upgrade_cost * multiplier)
 
@@ -77,7 +165,6 @@ func get_card_heal(data: CardData) -> int:
 
 func get_card_mana(data: CardData) -> int:
 	var lvl = card_levels.get(data.card_name, 0)
-	# Logic: Only increase by 1 every 5 levels
 	var extra_mana = int(lvl / 5) 
 	return data.mana_gain + extra_mana
 	
@@ -85,7 +172,6 @@ func get_card_level_number(data: CardData) -> int:
 	return card_levels.get(data.card_name, 0) + 1
 
 # --- CHARACTER STAT CALCULATIONS ---
-
 func get_character_level(char_name: String) -> int:
 	return character_levels.get(char_name, 0)
 
@@ -116,19 +202,13 @@ func try_redeem_code(code: String) -> String:
 			return "Invalid Code"
 			
 # --- ACTION LOGIC ---
-
 func attempt_upgrade(data: CardData) -> bool:
-	# Calculate dynamic cost
 	var dynamic_cost = get_card_upgrade_cost(data)
-	
 	if small_gems >= dynamic_cost:
 		small_gems -= dynamic_cost
-		
 		if not card_levels.has(data.card_name):
 			card_levels[data.card_name] = 0
-		
 		card_levels[data.card_name] += 1
-		
 		print("Card Upgrade Successful! Cost: ", dynamic_cost)
 		save_game()
 		return true
@@ -137,10 +217,8 @@ func attempt_upgrade(data: CardData) -> bool:
 
 func upgrade_character(data: CharacterData) -> bool:
 	var cost = get_upgrade_cost(data.name)
-	
 	if crystal_gems >= cost:
 		crystal_gems -= cost
-		
 		if not character_levels.has(data.name):
 			character_levels[data.name] = 0
 		character_levels[data.name] += 1
@@ -163,7 +241,6 @@ func upgrade_character(data: CharacterData) -> bool:
 # --- SYSTEM (SAVE/LOAD) ---
 func save_game():
 	var config = ConfigFile.new()
-	
 	config.set_value("Progression", "character_levels", character_levels)
 	config.set_value("Progression", "player_name", player_name)
 	config.set_value("Progression", "small_gems", small_gems)
@@ -172,6 +249,9 @@ func save_game():
 	config.set_value("Progression", "current_floor", current_tower_floor)
 	config.set_value("Progression", "card_levels", card_levels)
 	config.set_value("Progression", "floors_cleared", floors_cleared)
+	
+	# Saving the Settings
+	config.set_value("settings", "master_volume", master_volume)
 	
 	var err = config.save(SAVE_PATH)
 	if err == OK:
@@ -182,7 +262,6 @@ func save_game():
 func load_game():
 	var config = ConfigFile.new()
 	var err = config.load(SAVE_PATH)
-	
 	if err != OK: return
 	
 	character_levels = config.get_value("Progression", "character_levels", {})
@@ -194,6 +273,20 @@ func load_game():
 	card_levels = config.get_value("Progression", "card_levels", {})
 	floors_cleared = config.get_value("Progression", "floors_cleared", [])
 	
+	master_volume = config.get_value("settings", "master_volume", 1.0)
+	
+	apply_master_volume(master_volume)
+
+func apply_master_volume(value: float):
+	var bus_index = AudioServer.get_bus_index("Master")
+	if value > 0:
+		# Using your specific math: value * value * 3
+		var volume_curve = value * value * 2
+		AudioServer.set_bus_volume_db(bus_index, linear_to_db(volume_curve))
+		AudioServer.set_bus_mute(bus_index, false)
+	else:
+		AudioServer.set_bus_mute(bus_index, true)
+		
 func reset_player_data():
 	player_name = ""
 	small_gems = small_gems
@@ -203,7 +296,6 @@ func reset_player_data():
 	character_levels = {}
 	current_tower_floor = 1
 	floors_cleared = []
-	
 	if FileAccess.file_exists(SAVE_PATH):
 		DirAccess.remove_absolute(SAVE_PATH)
 
@@ -250,7 +342,6 @@ func connect_buttons_recursive(node: Node):
 func _connect_button(btn: BaseButton):
 	if not btn.pressed.is_connected(play_button_sfx):
 		btn.pressed.connect(play_button_sfx)
-	
 	if not btn.button_down.is_connected(_on_button_down.bind(btn)):
 		btn.button_down.connect(_on_button_down.bind(btn))
 	if not btn.button_up.is_connected(_on_button_up.bind(btn)):

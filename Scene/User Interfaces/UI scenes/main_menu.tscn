@@ -1,66 +1,17 @@
-[gd_scene load_steps=37 format=3 uid="uid://qde0e5mwnany"]
+[gd_scene load_steps=12 format=3 uid="uid://qde0e5mwnany"]
 
 [ext_resource type="Script" uid="uid://bxn5segpvyh4e" path="res://Scene/User Interfaces/UI Scripts/button_manager.gd" id="1_kxbd2"]
 [ext_resource type="PackedScene" uid="uid://nbb3dskrjq7w" path="res://Scene/User Interfaces/UI scenes/CustomQuitPopup.tscn" id="1_nbfal"]
-[ext_resource type="Texture2D" uid="uid://cdfpkjhi1gi77" path="res://Asset/User Interface/button_ui.png" id="2_eh1oq"]
-[ext_resource type="FontFile" uid="uid://dtdw2k1jvjn37" path="res://Asset/Fonts/times.ttf" id="2_jykwv"]
 [ext_resource type="Texture2D" uid="uid://io3a4q46b3pk" path="res://Asset/User Interface/Title_Banner_v1.png" id="2_nbfal"]
+[ext_resource type="PackedScene" uid="uid://diw3xv0en0ynt" path="res://Scene/User Interfaces/UI scenes/background_i.tscn" id="2_yu5iq"]
 [ext_resource type="Texture2D" uid="uid://dcm4yl4kcn7wn" path="res://Asset/Backgrounds/gem_1.webp" id="4_87orj"]
+[ext_resource type="Texture2D" uid="uid://deoilkueygt75" path="res://Asset/User Interface/button.png" id="4_nbfal"]
 [ext_resource type="Texture2D" uid="uid://rjoebry8l2at" path="res://Asset/Backgrounds/gem_3.webp" id="5_qelcm"]
-[ext_resource type="Texture2D" uid="uid://bq3mv1chiqmla" path="res://Asset/Backgrounds/Main_Menu_Background.jpg" id="7_qrawm"]
 [ext_resource type="Texture2D" uid="uid://d0x8it3nqvktq" path="res://Asset/Icons/Beatrice_Profile-removebg-preview.png" id="8_yu5iq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bsri0"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jykwv"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qrawm"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tce8e"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r0e6h"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4mbs0"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nbfal"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sxgnl"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_80nln"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_87orj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yu5iq"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t3k3t"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8sg52"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_77lu8"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lqnyc"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xyor1"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gbfi8"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_okapm"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qelcm"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mdbvn"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e5jgt"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_csd3b"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eh1oq"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4wod1"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d8y1c"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cntet"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bsri0"]
 font_size = 30
@@ -81,21 +32,15 @@ grow_vertical = 2
 [node name="CustomQuitPopup" parent="." instance=ExtResource("1_nbfal")]
 visible = false
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background I" parent="." instance=ExtResource("2_yu5iq")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_qrawm")
-expand_mode = 1
 
 [node name="ButtonManager" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kxbd2")
@@ -107,62 +52,133 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -207.0
-offset_top = -104.0
+offset_left = -345.0
+offset_top = -118.0
 offset_right = -2.0
-offset_bottom = 196.0
+offset_bottom = 293.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_bsri0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ButtonManager/PanelContainer"]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
 size_flags_stretch_ratio = 20.0
-theme_override_constants/separation = 30
+theme_override_constants/separation = 10
 
-[node name="Start Battle" type="Button" parent="ButtonManager/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 80)
+[node name="Play" type="TextureButton" parent="ButtonManager/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_jykwv")
-theme_override_font_sizes/font_size = 26
-theme_override_styles/normal = SubResource("StyleBoxEmpty_jykwv")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_qrawm")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_tce8e")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_r0e6h")
-text = "Start/Battle
-"
-icon = ExtResource("2_eh1oq")
-icon_alignment = 1
-expand_icon = true
+texture_normal = ExtResource("4_nbfal")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Cards" type="Button" parent="ButtonManager/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_jykwv")
-theme_override_font_sizes/font_size = 26
-theme_override_styles/normal = SubResource("StyleBoxEmpty_4mbs0")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_nbfal")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_sxgnl")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_80nln")
-text = "Upgrades"
-icon = ExtResource("2_eh1oq")
-icon_alignment = 1
-expand_icon = true
+[node name="PlayLabel" type="Label" parent="ButtonManager/PanelContainer/VBoxContainer/Play"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 7.0
+offset_right = 328.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 25
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
-[node name="Characters" type="Button" parent="ButtonManager/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 80)
+[node name="Characters" type="TextureButton" parent="ButtonManager/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_jykwv")
-theme_override_font_sizes/font_size = 26
-theme_override_styles/normal = SubResource("StyleBoxEmpty_87orj")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_yu5iq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_t3k3t")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8sg52")
+texture_normal = ExtResource("4_nbfal")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CharactersLabel" type="Label" parent="ButtonManager/PanelContainer/VBoxContainer/Characters"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 7.0
+offset_right = 332.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 25
 text = "Characters"
-icon = ExtResource("2_eh1oq")
-icon_alignment = 1
-expand_icon = true
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Cards" type="TextureButton" parent="ButtonManager/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+texture_normal = ExtResource("4_nbfal")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CardsLabel" type="Label" parent="ButtonManager/PanelContainer/VBoxContainer/Cards"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 7.0
+offset_right = 337.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 25
+text = "Card Upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Tutorial" type="TextureButton" parent="ButtonManager/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+texture_normal = ExtResource("4_nbfal")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TutorialLabel" type="Label" parent="ButtonManager/PanelContainer/VBoxContainer/Tutorial"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 7.0
+offset_right = 331.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 25
+text = "Tutorial"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Settings" type="TextureButton" parent="ButtonManager/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+texture_normal = ExtResource("4_nbfal")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="SettingsLabel" type="Label" parent="ButtonManager/PanelContainer/VBoxContainer/Settings"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 7.0
+offset_right = 332.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 25
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Quit" type="TextureButton" parent="ButtonManager/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+texture_normal = ExtResource("4_nbfal")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="QuitLabel" type="Label" parent="ButtonManager/PanelContainer/VBoxContainer/Quit"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 7.0
+offset_right = 331.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 25
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PanelContainer2" type="PanelContainer" parent="ButtonManager"]
 layout_mode = 1
@@ -177,51 +193,6 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_77lu8")
 [node name="HBoxContainer" type="HBoxContainer" parent="ButtonManager/PanelContainer2"]
 layout_mode = 2
 theme_override_constants/separation = 10
-
-[node name="Quit" type="Button" parent="ButtonManager/PanelContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_jykwv")
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxEmpty_87orj")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_lqnyc")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_xyor1")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_gbfi8")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_okapm")
-text = "Quit
-"
-icon = ExtResource("2_eh1oq")
-icon_alignment = 1
-expand_icon = true
-
-[node name="Settings" type="Button" parent="ButtonManager/PanelContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_jykwv")
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxEmpty_qelcm")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_mdbvn")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_e5jgt")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_csd3b")
-text = "Settings"
-icon = ExtResource("2_eh1oq")
-icon_alignment = 1
-expand_icon = true
-
-[node name="Tutorial" type="Button" parent="ButtonManager/PanelContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_jykwv")
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxEmpty_eh1oq")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_4wod1")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_d8y1c")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_cntet")
-text = "Tutorial
-"
-icon = ExtResource("2_eh1oq")
-icon_alignment = 1
-expand_icon = true
 
 [node name="Profile" type="MarginContainer" parent="."]
 top_level = true
@@ -319,18 +290,18 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -341.0
+offset_left = -348.0
 offset_top = 2.0
 offset_right = 5.0
-offset_bottom = 128.0
+offset_bottom = 176.0
 grow_horizontal = 0
 texture = ExtResource("2_nbfal")
 expand_mode = 1
 
-[connection signal="pressed" from="ButtonManager/PanelContainer/VBoxContainer/Start Battle" to="ButtonManager" method="_on_start_battle_pressed"]
-[connection signal="pressed" from="ButtonManager/PanelContainer/VBoxContainer/Cards" to="ButtonManager" method="_on_inventory_and_shop_pressed"]
+[connection signal="pressed" from="ButtonManager/PanelContainer/VBoxContainer/Play" to="ButtonManager" method="_on_start_battle_pressed"]
 [connection signal="pressed" from="ButtonManager/PanelContainer/VBoxContainer/Characters" to="ButtonManager" method="_on_characters_pressed"]
-[connection signal="pressed" from="ButtonManager/PanelContainer2/HBoxContainer/Quit" to="ButtonManager" method="_on_quit_pressed"]
-[connection signal="pressed" from="ButtonManager/PanelContainer2/HBoxContainer/Settings" to="ButtonManager" method="_on_settings_pressed"]
-[connection signal="pressed" from="ButtonManager/PanelContainer2/HBoxContainer/Tutorial" to="ButtonManager" method="_on_tutorial_pressed"]
+[connection signal="pressed" from="ButtonManager/PanelContainer/VBoxContainer/Cards" to="ButtonManager" method="_on_inventory_and_shop_pressed"]
+[connection signal="pressed" from="ButtonManager/PanelContainer/VBoxContainer/Tutorial" to="ButtonManager" method="_on_tutorial_pressed"]
+[connection signal="pressed" from="ButtonManager/PanelContainer/VBoxContainer/Settings" to="ButtonManager" method="_on_settings_pressed"]
+[connection signal="pressed" from="ButtonManager/PanelContainer/VBoxContainer/Quit" to="ButtonManager" method="_on_quit_pressed"]
 [connection signal="pressed" from="Profile/HBoxContainer/ProfileButton" to="ButtonManager" method="_on_profile_button_pressed"]

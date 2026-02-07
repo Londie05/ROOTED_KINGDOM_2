@@ -50,37 +50,45 @@ shader_parameter/line_thickness = 0.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxk86"]
 size = Vector2(167.54832, 227.93532)
 
-[node name="Battlefield" type="Node2D"]
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_vsh2u")
 floor_1_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("3_4l1qv")])
 floor_2_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("4_jxk86")])
 floor_3_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("5_3314g")])
 floor_4_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("6_jxk86")])
-floor_5_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("3_4l1qv"), ExtResource("4_jxk86")])
-floor_6_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("5_3314g"), ExtResource("4_jxk86")])
-floor_7_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("4_jxk86"), ExtResource("5_3314g")])
-floor_8_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("3_4l1qv"), ExtResource("5_3314g")])
-floor_9_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("6_jxk86"), ExtResource("4_jxk86")])
-floor_10_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("7_3314g")])
-floor_11_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("6_jxk86"), ExtResource("4_jxk86")])
-floor_12_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("3_4l1qv"), ExtResource("5_3314g"), ExtResource("4_jxk86")])
-floor_13_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("5_3314g"), ExtResource("6_jxk86"), ExtResource("4_jxk86")])
-floor_14_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("5_3314g"), ExtResource("5_3314g")])
-floor_15_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("4_jxk86"), ExtResource("3_4l1qv"), ExtResource("3_4l1qv")])
-floor_16_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("4_jxk86"), ExtResource("4_jxk86"), ExtResource("5_3314g")])
-floor_17_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("3_4l1qv"), ExtResource("7_3314g")])
-floor_18_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("6_jxk86")])
-floor_19_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("6_jxk86"), ExtResource("5_3314g")])
+floor_5_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("7_3314g")])
+floor_6_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("3_4l1qv"), ExtResource("4_jxk86")])
+floor_7_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("3_4l1qv"), ExtResource("5_3314g")])
+floor_8_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("4_jxk86"), ExtResource("5_3314g")])
+floor_9_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("5_3314g"), ExtResource("6_jxk86")])
+floor_10_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("6_jxk86"), ExtResource("7_3314g")])
+floor_11_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("7_3314g"), ExtResource("5_3314g")])
+floor_12_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("7_3314g"), ExtResource("3_4l1qv"), ExtResource("5_3314g")])
+floor_13_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("5_3314g"), ExtResource("5_3314g"), ExtResource("6_jxk86")])
+floor_14_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("6_jxk86"), ExtResource("3_4l1qv"), ExtResource("7_3314g")])
+floor_15_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("5_3314g"), ExtResource("3_4l1qv"), ExtResource("3_4l1qv")])
+floor_16_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("7_3314g"), ExtResource("6_jxk86"), ExtResource("5_3314g")])
+floor_17_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("7_3314g"), ExtResource("3_4l1qv"), ExtResource("4_jxk86")])
+floor_18_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("5_3314g"), ExtResource("6_jxk86"), ExtResource("7_3314g")])
+floor_19_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("3_4l1qv"), ExtResource("4_jxk86"), ExtResource("5_3314g"), ExtResource("7_3314g")])
 floor_20_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("8_4x6d6")])
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(576.00006, 369)
-scale = Vector2(1.7017673, 1.7761904)
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("3_tkjg1")
-
-[node name="Background" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, 1)
 
 [node name="PlayerTeam" type="Node2D" parent="."]
 
@@ -240,17 +248,17 @@ offset_bottom = 65.0
 text = "Menu"
 
 [node name="EnergyLabel" type="Label" parent="CanvasLayer"]
-offset_left = 999.0
-offset_top = 553.0
-offset_right = 1119.0
-offset_bottom = 594.0
+offset_left = 993.0
+offset_top = 497.0
+offset_right = 1113.0
+offset_bottom = 538.0
 theme_override_font_sizes/font_size = 25
 
 [node name="EndTurnButton" type="Button" parent="CanvasLayer"]
-offset_left = 992.0
-offset_top = 642.0
-offset_right = 1121.0
-offset_bottom = 673.0
+offset_left = 994.0
+offset_top = 593.0
+offset_right = 1123.0
+offset_bottom = 624.0
 text = "End Turn"
 
 [node name="CardSlots" type="HBoxContainer" parent="CanvasLayer"]
@@ -265,9 +273,9 @@ theme_override_constants/separation = 20
 
 [node name="GlobalInfoButton" type="Button" parent="CanvasLayer"]
 offset_left = 993.0
-offset_top = 604.0
+offset_top = 551.0
 offset_right = 1119.0
-offset_bottom = 635.0
+offset_bottom = 582.0
 text = "Show card info"
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="CanvasLayer"]
@@ -293,7 +301,7 @@ horizontal_alignment = 1
 [node name="EnemyTeam" type="Node2D" parent="."]
 
 [node name="Enemy" type="Node2D" parent="EnemyTeam"]
-position = Vector2(799, -6)
+position = Vector2(799, -18)
 script = ExtResource("6_f2o1h")
 damage_node = ExtResource("10_4x6d6")
 char_name = "Enemy1"
@@ -343,7 +351,7 @@ scale = Vector2(0.9999997, 1)
 shape = SubResource("RectangleShape2D_vsh2u")
 
 [node name="Enemy2" type="Node2D" parent="EnemyTeam"]
-position = Vector2(799, -6)
+position = Vector2(799, -18)
 script = ExtResource("6_f2o1h")
 damage_node = ExtResource("10_4x6d6")
 char_name = "Enemy2"
@@ -387,11 +395,11 @@ text = "Shield:0"
 position = Vector2(55, 456)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTeam/Enemy2/ClickArea"]
-position = Vector2(-9, 24.25)
+position = Vector2(-9, 12.25)
 shape = SubResource("RectangleShape2D_nqr2r")
 
 [node name="Enemy3" type="Node2D" parent="EnemyTeam"]
-position = Vector2(1598, -12)
+position = Vector2(1598, -24)
 script = ExtResource("6_f2o1h")
 damage_node = ExtResource("10_4x6d6")
 char_name = "Enemy3"
@@ -441,7 +449,7 @@ scale = Vector2(0.9999997, 1)
 shape = SubResource("RectangleShape2D_4l1qv")
 
 [node name="Enemy4" type="Node2D" parent="EnemyTeam"]
-position = Vector2(1598, -12)
+position = Vector2(1598, -24)
 script = ExtResource("6_f2o1h")
 damage_node = ExtResource("10_4x6d6")
 char_name = "Enemy3"
@@ -492,4 +500,3 @@ shape = SubResource("RectangleShape2D_jxk86")
 
 [connection signal="pressed" from="CanvasLayer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/GlobalInfoButton" to="." method="_on_global_info_button_pressed"]

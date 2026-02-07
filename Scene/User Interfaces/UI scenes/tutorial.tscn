@@ -1,8 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://b3qsqy5r6pe1i"]
 
-[ext_resource type="PackedScene" uid="uid://diw3xv0en0ynt" path="res://Scene/User Interfaces/UI Asset Components/background_i.tscn" id="1_7bjc4"]
+[ext_resource type="PackedScene" uid="uid://diw3xv0en0ynt" path="res://Scene/User Interfaces/UI scenes/background_i.tscn" id="1_7bjc4"]
 [ext_resource type="Script" uid="uid://ute0x4yw2loi" path="res://Scene/User Interfaces/UI Scripts/button_manager_tutorial.gd" id="1_vlpxj"]
 [ext_resource type="Texture2D" uid="uid://cdfpkjhi1gi77" path="res://Asset/User Interface/button_ui.png" id="3_ddhwr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ddhwr"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bhgoa"]
 
@@ -12,47 +14,41 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ylv1p"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dlkr4"]
-
-[node name="Tutorial" type="Node2D"]
-
-[node name="User Interface" type="Control" parent="."]
+[node name="Tutorial" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1151.0
 offset_bottom = 644.0
 
-[node name="Background" type="Control" parent="User Interface"]
+[node name="Background" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 651.0
 
-[node name="Background I" parent="User Interface/Background" instance=ExtResource("1_7bjc4")]
+[node name="Background I" parent="Background" instance=ExtResource("1_7bjc4")]
 layout_mode = 1
-offset_top = -19.0
 offset_bottom = 67.0
 
-[node name="Button Manager" type="Control" parent="User Interface"]
+[node name="Button Manager" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_vlpxj")
 
-[node name="Back" type="Button" parent="User Interface/Button Manager"]
+[node name="Back" type="Button" parent="Button Manager"]
 layout_mode = 0
-offset_left = 31.0
-offset_top = 47.0
-offset_right = 256.0
-offset_bottom = 164.0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_bhgoa")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_rs8hv")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_atkp4")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_ylv1p")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_dlkr4")
+offset_top = 40.0
+offset_right = 225.0
+offset_bottom = 116.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ddhwr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_bhgoa")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_rs8hv")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_atkp4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ylv1p")
 text = "Back
 "
 icon = ExtResource("3_ddhwr")
 icon_alignment = 1
 expand_icon = true
 
-[connection signal="pressed" from="User Interface/Button Manager/Back" to="User Interface/Button Manager" method="_on_back_pressed"]
+[connection signal="pressed" from="Button Manager/Back" to="Button Manager" method="_on_back_pressed"]

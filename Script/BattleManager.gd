@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 @onready var stage_count_label = $CanvasLayer/StageCount
 
@@ -227,8 +227,6 @@ func create_card_instance(data: CardData):
 	new_card.get_node("Visuals/VBoxContainer/PlayButton").pressed.connect(_on_card_played.bind(data, new_card))
 	
 func end_current_phase():
-	# --- SOUND KILL-SWITCH ---
-	# This stops any attack SFX from playing when we switch turns
 	if sfx_player:
 		sfx_player.stop()
 		

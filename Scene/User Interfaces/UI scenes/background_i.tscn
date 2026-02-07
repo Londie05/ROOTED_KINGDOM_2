@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0m3he5e86rs"]
+[gd_scene load_steps=2 format=3 uid="uid://diw3xv0en0ynt"]
 
 [ext_resource type="Texture2D" uid="uid://bq3mv1chiqmla" path="res://Asset/Backgrounds/Main_Menu_Background.jpg" id="1_otcew"]
 
@@ -15,6 +15,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_otcew")

@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjr25em7jm6c"]
+[gd_scene load_steps=5 format=3 uid="uid://cpq1bk7hf2i5t"]
 
-[ext_resource type="PackedScene" uid="uid://diw3xv0en0ynt" path="res://Scene/User Interfaces/UI Asset Components/background_i.tscn" id="14_5yfo5"]
+[ext_resource type="PackedScene" uid="uid://diw3xv0en0ynt" path="res://Scene/User Interfaces/UI scenes/background_i.tscn" id="14_5yfo5"]
 [ext_resource type="Texture2D" uid="uid://dcm4yl4kcn7wn" path="res://Asset/Backgrounds/gem_1.webp" id="14_6kr27"]
 [ext_resource type="Texture2D" uid="uid://rjoebry8l2at" path="res://Asset/Backgrounds/gem_3.webp" id="15_5yfo5"]
 
