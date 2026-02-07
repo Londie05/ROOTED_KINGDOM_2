@@ -7,6 +7,7 @@ signal cancelled
 @onready var confirm_btn = $CenterContainer/PopupBox/MarginContainer/VBoxContainer/HBoxContainer/ConfirmButton
 @onready var cancel_btn = $CenterContainer/PopupBox/MarginContainer/VBoxContainer/HBoxContainer/CancelButton
 
+
 func _ready() -> void:
 	hide()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://qde0e5mwnany"]
+[gd_scene load_steps=37 format=3 uid="uid://qde0e5mwnany"]
 
 [ext_resource type="Script" uid="uid://bxn5segpvyh4e" path="res://Scene/User Interfaces/UI Scripts/button_manager.gd" id="1_kxbd2"]
 [ext_resource type="PackedScene" uid="uid://nbb3dskrjq7w" path="res://Scene/User Interfaces/UI scenes/CustomQuitPopup.tscn" id="1_nbfal"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dcm4yl4kcn7wn" path="res://Asset/Backgrounds/gem_1.webp" id="4_87orj"]
 [ext_resource type="Texture2D" uid="uid://rjoebry8l2at" path="res://Asset/Backgrounds/gem_3.webp" id="5_qelcm"]
 [ext_resource type="Texture2D" uid="uid://bq3mv1chiqmla" path="res://Asset/Backgrounds/Main_Menu_Background.jpg" id="7_qrawm"]
+[ext_resource type="Texture2D" uid="uid://d0x8it3nqvktq" path="res://Asset/Icons/Beatrice_Profile-removebg-preview.png" id="8_yu5iq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bsri0"]
 
@@ -62,11 +63,12 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cntet"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bsri0"]
-font = ExtResource("2_jykwv")
-font_size = 32
-outline_size = 12
-outline_color = Color(18.892157, 18.892157, 18.892157, 1)
-shadow_size = 15
+font_size = 30
+font_color = Color(0.91, 0.2548, 0.2548, 1)
+outline_size = 13
+outline_color = Color(0.26770002, 0.3, 0.186, 1)
+shadow_size = 18
+shadow_color = Color(0.22, 0.22, 0.22, 0)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -77,6 +79,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CustomQuitPopup" parent="." instance=ExtResource("1_nbfal")]
+visible = false
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -104,10 +107,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -331.51
-offset_top = -20.0
-offset_right = -123.59009
-offset_bottom = 112.0
+offset_left = -207.0
+offset_top = -104.0
+offset_right = -2.0
+offset_bottom = 196.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_bsri0")
@@ -220,34 +223,61 @@ icon = ExtResource("2_eh1oq")
 icon_alignment = 1
 expand_icon = true
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Profile" type="MarginContainer" parent="."]
+top_level = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+offset_left = 26.0
+offset_top = 2.0
+offset_right = 739.0
+offset_bottom = 102.0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 100
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Profile"]
+custom_minimum_size = Vector2(330, 100)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ProfileButton" type="TextureButton" parent="Profile/HBoxContainer"]
+self_modulate = Color(1, 0.97, 0.97, 1)
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+texture_normal = ExtResource("8_yu5iq")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="PlayerNameLabel" type="Label" parent="Profile/HBoxContainer"]
+layout_mode = 2
+text = "1234567890"
+label_settings = SubResource("LabelSettings_bsri0")
+
+[node name="MarginContainer" type="MarginContainer" parent="Profile/HBoxContainer"]
 texture_filter = 1
-layout_mode = 0
-offset_top = 52.0
-offset_right = 335.0
-offset_bottom = 160.0
+layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Profile/HBoxContainer/MarginContainer"]
 modulate = Color(1, 0.87, 0.87, 1)
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="SmallGemHolder" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="SmallGemHolder" type="HBoxContainer" parent="Profile/HBoxContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/SmallGemHolder"]
+[node name="TextureRect" type="TextureRect" parent="Profile/HBoxContainer/MarginContainer/HBoxContainer/SmallGemHolder"]
 custom_minimum_size = Vector2(60, 40)
 layout_mode = 2
 texture = ExtResource("4_87orj")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SmallGemLabel" type="Label" parent="MarginContainer/HBoxContainer/SmallGemHolder"]
+[node name="SmallGemLabel" type="Label" parent="Profile/HBoxContainer/MarginContainer/HBoxContainer/SmallGemHolder"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6539801, 0.044738613, 0.70056635, 1)
@@ -257,21 +287,21 @@ theme_override_constants/shadow_offset_x = 6
 theme_override_constants/shadow_offset_y = 6
 theme_override_constants/outline_size = 9
 theme_override_constants/shadow_outline_size = 7
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 22
 text = "Gem: 0"
 
-[node name="CrystalGemHolder" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="CrystalGemHolder" type="HBoxContainer" parent="Profile/HBoxContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/CrystalGemHolder"]
+[node name="TextureRect" type="TextureRect" parent="Profile/HBoxContainer/MarginContainer/HBoxContainer/CrystalGemHolder"]
 custom_minimum_size = Vector2(30, 40)
 layout_mode = 2
 texture = ExtResource("5_qelcm")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="CrystalLabel" type="Label" parent="MarginContainer/HBoxContainer/CrystalGemHolder"]
+[node name="CrystalLabel" type="Label" parent="Profile/HBoxContainer/MarginContainer/HBoxContainer/CrystalGemHolder"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.654902, 0.043137256, 0.7019608, 1)
@@ -284,40 +314,15 @@ theme_override_constants/shadow_outline_size = 7
 theme_override_font_sizes/font_size = 25
 text = "Crystal: 0"
 
-[node name="Profile" type="MarginContainer" parent="."]
-modulate = Color(1, 0.07999998, 0.8619999, 1)
-self_modulate = Color(0, 0, 0, 1)
-top_level = true
-layout_mode = 1
-offset_left = 27.0
-offset_top = 2.0
-offset_right = 275.0
-offset_bottom = 77.0
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 100
-
-[node name="PlayerNameLabel" type="Label" parent="Profile"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_constants/line_spacing = 5
-theme_override_constants/paragraph_spacing = 5
-theme_override_constants/shadow_offset_x = 5
-theme_override_constants/shadow_offset_y = 10
-theme_override_constants/outline_size = 15
-theme_override_constants/shadow_outline_size = 5
-theme_override_font_sizes/font_size = 30
-text = "Name"
-label_settings = SubResource("LabelSettings_bsri0")
-
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -478.0
-offset_top = 38.72
-offset_bottom = 223.72
+offset_left = -341.0
+offset_top = 2.0
+offset_right = 5.0
+offset_bottom = 128.0
 grow_horizontal = 0
 texture = ExtResource("2_nbfal")
 expand_mode = 1
@@ -328,3 +333,4 @@ expand_mode = 1
 [connection signal="pressed" from="ButtonManager/PanelContainer2/HBoxContainer/Quit" to="ButtonManager" method="_on_quit_pressed"]
 [connection signal="pressed" from="ButtonManager/PanelContainer2/HBoxContainer/Settings" to="ButtonManager" method="_on_settings_pressed"]
 [connection signal="pressed" from="ButtonManager/PanelContainer2/HBoxContainer/Tutorial" to="ButtonManager" method="_on_tutorial_pressed"]
+[connection signal="pressed" from="Profile/HBoxContainer/ProfileButton" to="ButtonManager" method="_on_profile_button_pressed"]

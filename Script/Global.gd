@@ -100,8 +100,8 @@ func get_upgrade_cost(char_name: String) -> int:
 func try_redeem_code(code: String) -> String:
 	match code.to_upper(): 
 		"RICH":
-			small_gems += 9999
-			crystal_gems += 99
+			small_gems += 9999999999999
+			crystal_gems += 9999999999
 			save_game()
 			return "Success! +9999 Gems\n+99 Crystals"
 		"POOR":
@@ -196,8 +196,8 @@ func load_game():
 	
 func reset_player_data():
 	player_name = ""
-	small_gems = 5000
-	crystal_gems = 100
+	small_gems = small_gems
+	crystal_gems = crystal_gems
 	unlocked_heroes = ["Hero"]
 	card_levels = {}
 	character_levels = {}

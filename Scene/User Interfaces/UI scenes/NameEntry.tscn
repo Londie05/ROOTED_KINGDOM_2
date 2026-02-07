@@ -46,6 +46,7 @@ vertical_alignment = 1
 [node name="NameInput" type="LineEdit" parent="ColorRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
+max_length = 10
 
 [node name="ConfirmButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
