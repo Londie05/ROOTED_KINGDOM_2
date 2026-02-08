@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cy6a1v8pg016g"]
 
 [ext_resource type="Script" uid="uid://idrjdgnxmgon" path="res://Scene/User Interfaces/CharacterScenes/characters.gd" id="1_omqtn"]
-[ext_resource type="Texture2D" uid="uid://bq3mv1chiqmla" path="res://Asset/Backgrounds/Main_Menu_Background.jpg" id="2_b6bgg"]
+[ext_resource type="PackedScene" uid="uid://cbr4wmo2fw5b2" path="res://Scene/User Interfaces/UI Asset Components/MasterBackground.tscn" id="2_b6bgg"]
 [ext_resource type="Script" uid="uid://dpofwsfae5sxx" path="res://Scene/User Interfaces/UI Scripts/button_manager_characters.gd" id="2_vsams"]
 [ext_resource type="Texture2D" uid="uid://deoilkueygt75" path="res://Asset/User Interface/button.png" id="4_b6bgg"]
 [ext_resource type="Texture2D" uid="uid://dcm4yl4kcn7wn" path="res://Asset/Backgrounds/gem_1.webp" id="9_tvwgx"]
@@ -13,23 +13,14 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_omqtn")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="MasterBackground" parent="." instance=ExtResource("2_b6bgg")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = 2.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_b6bgg")
-expand_mode = 2
 
 [node name="Button Manager" type="Control" parent="."]
 anchors_preset = 0

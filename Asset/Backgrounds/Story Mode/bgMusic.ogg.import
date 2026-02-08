@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b8ku2u2c2xvkp"
+path="res://.godot/imported/bgMusic.ogg-fb5478966ff02f60d14abde5b046a612.oggvorbisstr"
+
+[deps]
+
+source_file="res://Asset/Backgrounds/Story Mode/bgMusic.ogg"
+dest_files=["res://.godot/imported/bgMusic.ogg-fb5478966ff02f60d14abde5b046a612.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.5
+bpm=0.0
+beat_count=0
+bar_beats=4

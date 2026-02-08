@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bxn5segpvyh4e" path="res://Scene/User Interfaces/UI Scripts/button_manager.gd" id="1_kxbd2"]
 [ext_resource type="PackedScene" uid="uid://nbb3dskrjq7w" path="res://Scene/User Interfaces/UI scenes/CustomQuitPopup.tscn" id="1_nbfal"]
 [ext_resource type="Texture2D" uid="uid://io3a4q46b3pk" path="res://Asset/User Interface/Title_Banner_v1.png" id="2_nbfal"]
-[ext_resource type="PackedScene" uid="uid://diw3xv0en0ynt" path="res://Scene/User Interfaces/UI scenes/background_i.tscn" id="2_yu5iq"]
+[ext_resource type="PackedScene" uid="uid://cbr4wmo2fw5b2" path="res://Scene/User Interfaces/UI Asset Components/MasterBackground.tscn" id="2_yu5iq"]
 [ext_resource type="Texture2D" uid="uid://dcm4yl4kcn7wn" path="res://Asset/Backgrounds/gem_1.webp" id="4_87orj"]
 [ext_resource type="Texture2D" uid="uid://deoilkueygt75" path="res://Asset/User Interface/button.png" id="4_nbfal"]
 [ext_resource type="Texture2D" uid="uid://rjoebry8l2at" path="res://Asset/Backgrounds/gem_3.webp" id="5_qelcm"]
@@ -32,7 +32,7 @@ grow_vertical = 2
 [node name="CustomQuitPopup" parent="." instance=ExtResource("1_nbfal")]
 visible = false
 
-[node name="Background I" parent="." instance=ExtResource("2_yu5iq")]
+[node name="MasterBackground" parent="." instance=ExtResource("2_yu5iq")]
 layout_mode = 1
 
 [node name="ButtonManager" type="Control" parent="."]
@@ -285,7 +285,7 @@ theme_override_constants/shadow_outline_size = 7
 theme_override_font_sizes/font_size = 25
 text = "Crystal: 0"
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Logo" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0

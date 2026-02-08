@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckqg6qgs6grgd"]
+[gd_scene load_steps=13 format=3 uid="uid://ckqg6qgs6grgd"]
 
 [ext_resource type="Script" uid="uid://dksxk1y3frgek" path="res://Scene/User Interfaces/UI Scripts/button_manager_settings.gd" id="1_5gvj4"]
 [ext_resource type="Script" uid="uid://h5eph3mecfu1" path="res://Scene/User Interfaces/UI scenes/Settings.gd" id="1_vpxuq"]
-[ext_resource type="PackedScene" uid="uid://diw3xv0en0ynt" path="res://Scene/User Interfaces/UI scenes/background_i.tscn" id="2_jh0e1"]
+[ext_resource type="PackedScene" uid="uid://cbr4wmo2fw5b2" path="res://Scene/User Interfaces/UI Asset Components/MasterBackground.tscn" id="2_6ajvw"]
+[ext_resource type="Texture2D" uid="uid://bq3mv1chiqmla" path="res://Asset/Backgrounds/Main_Menu_Background.jpg" id="4_6ajvw"]
 [ext_resource type="FontFile" uid="uid://dtdw2k1jvjn37" path="res://Asset/Fonts/times.ttf" id="4_jh0e1"]
+[ext_resource type="Texture2D" uid="uid://dfpc1w50saul7" path="res://Asset/Backgrounds/Main_Menu_Background_dark.jpg" id="5_g0o0o"]
 [ext_resource type="Texture2D" uid="uid://cdfpkjhi1gi77" path="res://Asset/User Interface/button_ui.png" id="5_pf4lj"]
+[ext_resource type="Texture2D" uid="uid://ditqevbsah1hr" path="res://Asset/Characters/game_over_screen.webp" id="6_g0o0o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jh0e1"]
 content_margin_left = 64.0
@@ -30,7 +33,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vpxuq")
 
-[node name="Background I" parent="." instance=ExtResource("2_jh0e1")]
+[node name="MasterBackground" parent="." instance=ExtResource("2_6ajvw")]
 layout_mode = 1
 
 [node name="User Interface" type="Control" parent="."]
@@ -96,6 +99,37 @@ text = "Background Music:"
 [node name="BGMSelect" type="OptionButton" parent="User Interface/Options/VBoxContainer/BackgroundSound"]
 custom_minimum_size = Vector2(230, 0)
 layout_mode = 2
+
+[node name="BackgroundLabel" type="Label" parent="User Interface/Options/VBoxContainer"]
+layout_mode = 2
+text = "Choose Background:"
+
+[node name="BgContainer" type="HBoxContainer" parent="User Interface/Options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Btn_Default" type="TextureButton" parent="User Interface/Options/VBoxContainer/BgContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture_normal = ExtResource("4_6ajvw")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Btn_Dark" type="TextureButton" parent="User Interface/Options/VBoxContainer/BgContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture_normal = ExtResource("5_g0o0o")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Btn_Sword" type="TextureButton" parent="User Interface/Options/VBoxContainer/BgContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture_normal = ExtResource("6_g0o0o")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="Button Manager" type="Control" parent="."]
 anchors_preset = 0

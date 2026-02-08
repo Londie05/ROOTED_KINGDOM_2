@@ -7,8 +7,10 @@ var master_volume: float = 1.0
 
 # --- MUSIC TRACKS ---
 var bgm_tracks: Dictionary = {
-	"Music 1": "res://Asset/Backgrounds/Story Mode/bgMusic2.mp3",
-	"Music 2": "res://Asset/Backgrounds/Story Mode/bgMusic.mp3",
+	"Music 1": "res://Asset/Backgrounds/Story Mode/bgMusic2.ogg",
+	"Music 2": "res://Asset/Backgrounds/Story Mode/bgMusic.ogg",
+	"Music 3": "res://Asset/Backgrounds/Story Mode/music3.mp3",
+	"Music 4": "res://Asset/Backgrounds/Story Mode/music4.mp3",
 	"None": ""
 }
 
@@ -20,9 +22,15 @@ var allowed_bgm_scenes: Array[String] = [
 	"Start_Battle",     
 	"TowerSelection",
 	"CharacterUpgradeUi",
-	"Tutorial"
+	"Tutorial",
+	"Chapter_Selection"
 ]
 
+# For backgrounds
+var current_bg_name: String = "Default"
+signal background_changed(bg_name: String)
+
+# Save data
 var player_name: String = ""
 const SAVE_PATH = "user://player_data.save"
 
@@ -87,6 +95,12 @@ func _ready() -> void:
 		print("Global: Initial Scene is ", get_tree().current_scene.name)
 		check_and_play_bgm(get_tree().current_scene.name)
 
+func set_background(bg_name: String):
+	current_bg_name = bg_name
+	emit_signal("background_changed", bg_name)
+	save_game()
+	print("Global: Background changed to ", bg_name)
+		
 func _on_scene_changed():
 	var tree = get_tree()
 	if not tree: 
@@ -111,30 +125,33 @@ func check_and_play_bgm(scene_name: String):
 		bgm_player.stop()
 
 func play_selected_bgm():
-	print("Global: Attempting to play track: ", current_bgm_track_name)
-	
 	if current_bgm_track_name == "None" or current_bgm_track_name == "":
-		bgm_player.stop()
+		if bgm_player:
+			bgm_player.stop()
 		return
-		
+	
 	var track_path = bgm_tracks.get(current_bgm_track_name, "")
 	if track_path == "":
-		print("Global: Track path not found for ", current_bgm_track_name)
-		bgm_player.stop()
+		print("Global: Track path not found!")
+		if bgm_player:
+			bgm_player.stop()
 		return
 		
-	# If the correct song is already playing, don't restart it
-	if bgm_player.playing and bgm_player.stream and bgm_player.stream.resource_path == track_path:
-		return
+	if bgm_player.playing and bgm_player.stream:
+		if bgm_player.stream.resource_path == track_path:
+			return
 		
 	var stream = load(track_path)
 	if stream:
+		if stream is AudioStreamMP3 or stream is AudioStreamOggVorbis:
+			stream.loop = true 
+			
 		bgm_player.stream = stream
 		bgm_player.play()
 		print("Global: Now Playing ", current_bgm_track_name)
 	else:
-		print("Global: ERROR - Could not load file at ", track_path)
-
+		print("Global: Failed to load stream at ", track_path)
+		
 func set_bgm_preference(track_name: String):
 	current_bgm_track_name = track_name
 	save_game()
@@ -143,7 +160,6 @@ func set_bgm_preference(track_name: String):
 	if get_tree().current_scene:
 		check_and_play_bgm(get_tree().current_scene.name)
 
-# --- (The rest of your script is unchanged below) ---
 # --- CARD STAT CALCULATIONS ---
 func get_card_upgrade_cost(data: CardData) -> int:
 	var lvl = card_levels.get(data.card_name, 0)
@@ -250,6 +266,9 @@ func save_game():
 	config.set_value("Progression", "card_levels", card_levels)
 	config.set_value("Progression", "floors_cleared", floors_cleared)
 	
+	config.set_value("settings", "bgm_track_name", current_bgm_track_name)
+	
+	config.set_value("settings", "bg_name", current_bg_name)
 	# Saving the Settings
 	config.set_value("settings", "master_volume", master_volume)
 	
@@ -272,6 +291,10 @@ func load_game():
 	current_tower_floor = config.get_value("Progression", "current_floor", 1)
 	card_levels = config.get_value("Progression", "card_levels", {})
 	floors_cleared = config.get_value("Progression", "floors_cleared", [])
+	
+	current_bg_name = config.get_value("settings", "bg_name", current_bg_name)
+	
+	current_bgm_track_name = config.get_value("settings", "bgm_track_name", current_bgm_track_name)
 	
 	master_volume = config.get_value("settings", "master_volume", 1.0)
 	
@@ -296,6 +319,8 @@ func reset_player_data():
 	character_levels = {}
 	current_tower_floor = 1
 	floors_cleared = []
+	current_bg_name = "Default"
+	current_bgm_track_name = "Music 1"
 	if FileAccess.file_exists(SAVE_PATH):
 		DirAccess.remove_absolute(SAVE_PATH)
 
