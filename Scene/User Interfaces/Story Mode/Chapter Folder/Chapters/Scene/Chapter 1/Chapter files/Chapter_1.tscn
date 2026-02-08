@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cv20pydghwwqy" path="res://Scene/User Interfaces/Story Mode/Chapter Folder/Chapters/Script/chapter_stage_select_.gd" id="1_8lauh"]
 [ext_resource type="FontFile" uid="uid://dtdw2k1jvjn37" path="res://Asset/Fonts/times.ttf" id="2_2s5pc"]
-[ext_resource type="PackedScene" uid="uid://diw3xv0en0ynt" path="res://Scene/User Interfaces/UI scenes/background_i.tscn" id="2_5bbb6"]
+[ext_resource type="PackedScene" uid="uid://daoiee6s68xd0" path="res://Scene/User Interfaces/UI scenes/background_i.tscn" id="2_5bbb6"]
 [ext_resource type="Texture2D" uid="uid://cdfpkjhi1gi77" path="res://Asset/User Interface/button_ui.png" id="3_sjonj"]
 [ext_resource type="Script" uid="uid://b1ifmqw0neycm" path="res://Scene/User Interfaces/Story Mode/Chapter Folder/Stage UIs/stage_manager.gd" id="4_ulxka"]
 [ext_resource type="PackedScene" uid="uid://bi4fmeelgp436" path="res://Scene/User Interfaces/Story Mode/Chapter Folder/Stage UIs/stage_slot.tscn" id="5_vui1m"]
