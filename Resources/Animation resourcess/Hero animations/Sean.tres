@@ -1,14 +1,67 @@
-[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://w0iejs6gfv0g"]
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://w0iejs6gfv0g"]
 
-[ext_resource type="Texture2D" uid="uid://oj6anwmw8riv" path="res://Asset/Characters/Sean-removebg-preview.png" id="1_i5djm"]
+[ext_resource type="Texture2D" uid="uid://dyo0hojrb6lh3" path="res://Asset/Characters/sean_left.webp" id="1_i5djm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqbaw"]
+atlas = ExtResource("1_i5djm")
+region = Rect2(0, 0, 242, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iksht"]
+atlas = ExtResource("1_i5djm")
+region = Rect2(242, 0, 242, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epsrf"]
+atlas = ExtResource("1_i5djm")
+region = Rect2(484, 0, 242, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdkhi"]
+atlas = ExtResource("1_i5djm")
+region = Rect2(0, 300, 242, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emfdb"]
+atlas = ExtResource("1_i5djm")
+region = Rect2(242, 300, 242, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ini5h"]
+atlas = ExtResource("1_i5djm")
+region = Rect2(484, 300, 242, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vh5oy"]
+atlas = ExtResource("1_i5djm")
+region = Rect2(0, 600, 242, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c1ai"]
+atlas = ExtResource("1_i5djm")
+region = Rect2(242, 600, 242, 300)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_i5djm")
+"texture": SubResource("AtlasTexture_gqbaw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iksht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epsrf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdkhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emfdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ini5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vh5oy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4c1ai")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 8.0
 }]

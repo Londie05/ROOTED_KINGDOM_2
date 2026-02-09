@@ -15,5 +15,7 @@ is_aoe = true
 aoe_targets = 2
 critical_chance = 30
 damage_growth = 2
+shield_growth = 0
+heal_growth = 0
 sound_effect = ExtResource("3_pu6pm")
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

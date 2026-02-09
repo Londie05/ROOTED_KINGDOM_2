@@ -8,6 +8,7 @@
 script = ExtResource("2_fc3r1")
 card_name = "Slash"
 card_image = ExtResource("1_wbie6")
+description = "Deals 12 damage to single enemy"
 damage = 12
 shield = 1
 heal_amount = 1
@@ -15,5 +16,7 @@ mana_cost = 1
 aoe_targets = 1
 critical_chance = 30
 damage_growth = 2
+shield_growth = 0
+heal_growth = 0
 sound_effect = ExtResource("3_fc3r1")
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

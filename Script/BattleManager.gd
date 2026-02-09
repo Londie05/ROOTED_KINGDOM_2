@@ -90,7 +90,7 @@ func _ready():
 	bgm_player.play()
 	
 	if stage_count_label:
-		stage_count_label.text = "Stage: " + str(Global.current_tower_floor)
+		stage_count_label.text = "Floor: " + str(Global.current_tower_floor)
 		
 	setup_player_team()
 	build_deck_from_team()

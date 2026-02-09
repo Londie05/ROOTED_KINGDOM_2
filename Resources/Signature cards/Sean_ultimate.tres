@@ -8,11 +8,13 @@
 script = ExtResource("1_6jplm")
 card_name = "Sharpshooter of death"
 card_image = ExtResource("1_ys7tt")
-description = "Deals 35 damage to a signle enemy"
-damage = 45
-heal_amount = 11
-mana_cost = 5
+description = "Deals 70 damage to a single enemy with 70% chance of dealing critical damage"
+damage = 70
+mana_cost = 7
 aoe_targets = 1
 critical_chance = 70
+shield_growth = 0
+heal_growth = 0
+upgrade_cost = 100
 sound_effect = ExtResource("3_bmnps")
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

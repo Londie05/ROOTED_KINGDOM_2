@@ -19,304 +19,52 @@ texture = ExtResource("1_22r1l")
 z_index = 2
 layout_mode = 0
 offset_left = 354.99997
-offset_top = 35.0
+offset_top = 14.999998
 offset_right = 774.64856
-offset_bottom = 739.31903
+offset_bottom = 620.59216
 scale = Vector2(0.891222, 0.98250943)
+follow_focus = true
+scroll_vertical = 100
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
 [node name="VBox" type="VBoxContainer" parent="ScrollContainer"]
-custom_minimum_size = Vector2(400, 400)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 25
+alignment = 2
 
-[node name="Floor1" type="TextureButton" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(400, 90)
-layout_mode = 2
-texture_normal = ExtResource("2_scn5v")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor1"]
-layout_mode = 0
-offset_right = 399.4516
-offset_bottom = 89.566574
-theme_override_font_sizes/font_size = 25
-text = "Stage 1"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Floor2" type="TextureButton" parent="ScrollContainer/VBox"]
+[node name="Floor21" type="TextureButton" parent="ScrollContainer/VBox"]
 custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
 texture_normal = ExtResource("2_scn5v")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor2"]
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor21"]
 layout_mode = 0
 offset_right = 399.4516
 offset_bottom = 89.566574
 theme_override_font_sizes/font_size = 25
-text = "Stage 2"
+text = "Next Update..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Floor3" type="TextureButton" parent="ScrollContainer/VBox"]
+[node name="Floor20" type="TextureButton" parent="ScrollContainer/VBox"]
 custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_scn5v")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor3"]
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor20"]
 layout_mode = 0
 offset_right = 399.4516
 offset_bottom = 89.566574
 theme_override_font_sizes/font_size = 25
-text = "Stage 3"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Floor4" type="TextureButton" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(250, 90)
-layout_mode = 2
-texture_normal = ExtResource("2_scn5v")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor4"]
-layout_mode = 0
-offset_right = 399.4516
-offset_bottom = 89.566574
-theme_override_font_sizes/font_size = 25
-text = "Stage 4"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Floor5" type="TextureButton" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(250, 90)
-layout_mode = 2
-texture_normal = ExtResource("2_scn5v")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor5"]
-layout_mode = 0
-offset_right = 399.4516
-offset_bottom = 89.566574
-theme_override_font_sizes/font_size = 25
-text = "Stage 5"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Floor6" type="TextureButton" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(250, 90)
-layout_mode = 2
-texture_normal = ExtResource("2_scn5v")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor6"]
-layout_mode = 0
-offset_right = 399.4516
-offset_bottom = 89.566574
-theme_override_font_sizes/font_size = 25
-text = "Stage 6"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Floor7" type="TextureButton" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(250, 90)
-layout_mode = 2
-texture_normal = ExtResource("2_scn5v")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor7"]
-layout_mode = 0
-offset_right = 399.4516
-offset_bottom = 89.566574
-theme_override_font_sizes/font_size = 25
-text = "Stage 7"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Floor8" type="TextureButton" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(250, 90)
-layout_mode = 2
-texture_normal = ExtResource("2_scn5v")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor8"]
-layout_mode = 0
-offset_right = 399.4516
-offset_bottom = 89.566574
-theme_override_font_sizes/font_size = 25
-text = "Stage 8"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Floor9" type="TextureButton" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(250, 90)
-layout_mode = 2
-texture_normal = ExtResource("2_scn5v")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor9"]
-layout_mode = 0
-offset_right = 399.4516
-offset_bottom = 89.566574
-theme_override_font_sizes/font_size = 25
-text = "Stage 9"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Floor10" type="TextureButton" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(250, 90)
-layout_mode = 2
-texture_normal = ExtResource("2_scn5v")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor10"]
-layout_mode = 0
-offset_right = 399.4516
-offset_bottom = 89.566574
-theme_override_font_sizes/font_size = 25
-text = "Stage 10"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Floor11" type="TextureButton" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(250, 90)
-layout_mode = 2
-texture_normal = ExtResource("2_scn5v")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor11"]
-layout_mode = 0
-offset_right = 399.4516
-offset_bottom = 89.566574
-theme_override_font_sizes/font_size = 25
-text = "Stage 11"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Floor12" type="TextureButton" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(250, 90)
-layout_mode = 2
-texture_normal = ExtResource("2_scn5v")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor12"]
-layout_mode = 0
-offset_right = 399.4516
-offset_bottom = 89.566574
-theme_override_font_sizes/font_size = 25
-text = "Stage 12"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Floor13" type="TextureButton" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(250, 90)
-layout_mode = 2
-texture_normal = ExtResource("2_scn5v")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor13"]
-layout_mode = 0
-offset_right = 399.4516
-offset_bottom = 89.566574
-theme_override_font_sizes/font_size = 25
-text = "Stage 13"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Floor14" type="TextureButton" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(250, 90)
-layout_mode = 2
-texture_normal = ExtResource("2_scn5v")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor14"]
-layout_mode = 0
-offset_right = 399.4516
-offset_bottom = 89.566574
-theme_override_font_sizes/font_size = 25
-text = "Stage 14"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Floor15" type="TextureButton" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(250, 90)
-layout_mode = 2
-texture_normal = ExtResource("2_scn5v")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor15"]
-layout_mode = 0
-offset_right = 399.4516
-offset_bottom = 89.566574
-theme_override_font_sizes/font_size = 25
-text = "Stage 15"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Floor16" type="TextureButton" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(250, 90)
-layout_mode = 2
-texture_normal = ExtResource("2_scn5v")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor16"]
-layout_mode = 0
-offset_right = 399.4516
-offset_bottom = 89.566574
-theme_override_font_sizes/font_size = 25
-text = "Stage 16"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Floor17" type="TextureButton" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(250, 90)
-layout_mode = 2
-texture_normal = ExtResource("2_scn5v")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor17"]
-layout_mode = 0
-offset_right = 399.4516
-offset_bottom = 89.566574
-theme_override_font_sizes/font_size = 25
-text = "Stage 17"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Floor18" type="TextureButton" parent="ScrollContainer/VBox"]
-custom_minimum_size = Vector2(250, 90)
-layout_mode = 2
-texture_normal = ExtResource("2_scn5v")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor18"]
-layout_mode = 0
-offset_right = 399.4516
-offset_bottom = 89.566574
-theme_override_font_sizes/font_size = 25
-text = "Stage 18"
+text = "Floor 20"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -332,39 +80,295 @@ layout_mode = 0
 offset_right = 399.4516
 offset_bottom = 89.566574
 theme_override_font_sizes/font_size = 25
-text = "Stage 19"
+text = "Floor 19"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Floor20" type="TextureButton" parent="ScrollContainer/VBox"]
+[node name="Floor18" type="TextureButton" parent="ScrollContainer/VBox"]
 custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
 texture_normal = ExtResource("2_scn5v")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor20"]
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor18"]
 layout_mode = 0
 offset_right = 399.4516
 offset_bottom = 89.566574
 theme_override_font_sizes/font_size = 25
-text = "Stage 20"
+text = "Floor 18"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Floor21" type="TextureButton" parent="ScrollContainer/VBox"]
+[node name="Floor17" type="TextureButton" parent="ScrollContainer/VBox"]
 custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
 texture_normal = ExtResource("2_scn5v")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor21"]
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor17"]
 layout_mode = 0
 offset_right = 399.4516
 offset_bottom = 89.566574
 theme_override_font_sizes/font_size = 25
-text = "Next Update..."
+text = "Floor 17"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor16" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor16"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 16"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor15" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor15"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor14" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor14"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 14"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor13" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor13"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 13"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor12" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor12"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 12"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor11" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor11"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 11"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor10" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor10"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor9" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor9"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor8" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor8"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 8"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor7" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor7"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor6" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor6"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor5" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor5"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor4" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor4"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor3" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor3"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor2" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(250, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor2"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 89.566574
+theme_override_font_sizes/font_size = 25
+text = "Floor 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Floor1" type="TextureButton" parent="ScrollContainer/VBox"]
+custom_minimum_size = Vector2(400, 90)
+layout_mode = 2
+texture_normal = ExtResource("2_scn5v")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBox/Floor1"]
+layout_mode = 0
+offset_right = 399.4516
+offset_bottom = 86.64551
+theme_override_font_sizes/font_size = 25
+text = "Floor 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -384,10 +388,10 @@ fit_content = true
 
 [node name="StartBattleButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 89.0
-offset_top = 575.0
-offset_right = 294.0
-offset_bottom = 660.0
+offset_left = 1.0
+offset_top = 528.0
+offset_right = 176.0
+offset_bottom = 610.0
 text = "Start battle"
 icon = ExtResource("1_p0bcw")
 flat = true

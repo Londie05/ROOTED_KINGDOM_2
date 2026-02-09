@@ -60,16 +60,26 @@ var roaster_list: Array = []
 var loading_target_scene: String = ""
 
 var floor_rewards = {
-	1: { "small": 100, "crystal": 0 },
-	2: { "small": 150, "crystal": 0 },
-	3: { "small": 200, "crystal": 1 },
-	4: { "small": 250, "crystal": 1 },
-	5: { "small": 500, "crystal": 1 },
-	6: { "small": 100, "crystal": 1 },
-	7: { "small": 150, "crystal": 1 },
-	8: { "small": 200, "crystal": 1 },
-	9: { "small": 250, "crystal": 1 },
-	10: { "small": 1000, "crystal": 5 },
+	1: { "small": 100, "crystal": 5 },
+	2: { "small": 150, "crystal": 5 },
+	3: { "small": 200, "crystal": 5 },
+	4: { "small": 250, "crystal": 5 },
+	5: { "small": 500, "crystal": 5 },
+	6: { "small": 100, "crystal": 5 },
+	7: { "small": 150, "crystal": 5 },
+	8: { "small": 200, "crystal": 5 },
+	9: { "small": 250, "crystal": 5 },
+	10: { "small": 300, "crystal": 5 },
+	11: { "small": 350, "crystal": 10 },
+	12: { "small": 400, "crystal": 10 },
+	13: { "small": 450, "crystal": 10 },
+	14: { "small": 500, "crystal": 10 },
+	15: { "small": 550, "crystal": 10 },
+	16: { "small": 600, "crystal": 10 },
+	17: { "small": 650, "crystal": 10 },
+	18: { "small": 700, "crystal": 10 },
+	19: { "small": 750, "crystal": 15 },
+	20: { "small": 1500, "crystal": 30 },
 }
 
 const HP_GROWTH_PER_LEVEL = 5
@@ -325,8 +335,8 @@ func apply_master_volume(value: float):
 		
 func reset_player_data():
 	player_name = ""
-	small_gems = small_gems
-	crystal_gems = crystal_gems
+	small_gems = 5000
+	crystal_gems = 5000
 	unlocked_heroes = ["Hero"]
 	card_levels = {}
 	character_levels = {}

@@ -8,10 +8,12 @@
 script = ExtResource("2_yn7dl")
 card_name = "Sacred Barrier"
 card_image = ExtResource("1_mkp88")
-description = "Give 8% shield to all heroes on the field"
+description = "Give 17 shield to all heroes on the field"
 shield = 17
 mana_cost = 2
 is_aoe = true
 aoe_targets = 3
+damage_growth = 0
+heal_growth = 0
 sound_effect = ExtResource("3_yn7dl")
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

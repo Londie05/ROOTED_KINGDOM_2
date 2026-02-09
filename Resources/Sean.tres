@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="1_sfxpx"]
 [ext_resource type="Script" uid="uid://dcjbbujtui8uu" path="res://Script/CharacterData.gd" id="2_bm437"]
 [ext_resource type="Texture2D" uid="uid://oj6anwmw8riv" path="res://Asset/Characters/Sean-removebg-preview.png" id="2_wm0gg"]
-[ext_resource type="Resource" uid="uid://c1n53h5gfnv83" path="res://Resources/Common cards resources/Shield.tres" id="4_nhrkq"]
 [ext_resource type="Resource" uid="uid://c55c341gbenxw" path="res://Resources/Common cards resources/Gun Down.tres" id="5_3il1l"]
 [ext_resource type="Resource" uid="uid://ce2o1btwte4i6" path="res://Resources/Common cards resources/Pierce.tres" id="6_5eh0q"]
+[ext_resource type="Resource" uid="uid://bq43e1owpaudj" path="res://Resources/Common cards resources/Poison dart.tres" id="6_wm0gg"]
 [ext_resource type="SpriteFrames" uid="uid://w0iejs6gfv0g" path="res://Resources/Animation resourcess/Hero animations/Sean.tres" id="7_wm0gg"]
 [ext_resource type="Resource" uid="uid://bkmqdfk1cob5s" path="res://Resources/Signature cards/Sean_ultimate.tres" id="8_0yx83"]
 
@@ -16,7 +16,7 @@ name = "Sean"
 character_sprite = ExtResource("2_wm0gg")
 character_illustration = ExtResource("1_j67uh")
 unique_card = ExtResource("8_0yx83")
-common_cards = Array[ExtResource("1_sfxpx")]([ExtResource("4_nhrkq"), ExtResource("5_3il1l"), ExtResource("6_5eh0q")])
+common_cards = Array[ExtResource("1_sfxpx")]([ExtResource("5_3il1l"), ExtResource("6_5eh0q"), ExtResource("6_wm0gg")])
 is_locked = true
 idle_animation = ExtResource("7_wm0gg")
 metadata/_custom_type_script = "uid://dcjbbujtui8uu"

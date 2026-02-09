@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="1_fogen"]
 [ext_resource type="Texture2D" uid="uid://dux2bf8i4324q" path="res://Asset/Characters/Charlotte/Charlotte 4 cards/card 1.jpg" id="1_nhdel"]
 [ext_resource type="Script" uid="uid://dcjbbujtui8uu" path="res://Script/CharacterData.gd" id="2_levea"]
+[ext_resource type="Resource" uid="uid://qn54dvyfdrjc" path="res://Resources/Common cards resources/Warm Touch.tres" id="3_rrj0s"]
+[ext_resource type="Resource" uid="uid://c1n53h5gfnv83" path="res://Resources/Common cards resources/Shield.tres" id="4_kbv2t"]
 [ext_resource type="Resource" uid="uid://bg41rywf50mm2" path="res://Resources/Common cards resources/Stun.tres" id="5_kbv2t"]
-[ext_resource type="Resource" uid="uid://bvhpgffxipn01" path="res://Resources/Common cards resources/Magic Blast.tres" id="5_rrj0s"]
-[ext_resource type="Resource" uid="uid://dhh82yst46iew" path="res://Resources/Common cards resources/Ice barrage.tres" id="6_rrj0s"]
 [ext_resource type="SpriteFrames" uid="uid://cywakqpa2mvgy" path="res://Resources/Animation resourcess/Hero animations/Charlotte.tres" id="7_kbv2t"]
 [ext_resource type="Resource" uid="uid://71ifm4u8c2xh" path="res://Resources/Signature cards/charlotte_ultimate.tres" id="8_cbo0c"]
 
@@ -14,6 +14,6 @@ script = ExtResource("2_levea")
 name = "Charlotte"
 character_illustration = ExtResource("1_nhdel")
 unique_card = ExtResource("8_cbo0c")
-common_cards = Array[ExtResource("1_fogen")]([ExtResource("5_rrj0s"), ExtResource("6_rrj0s"), ExtResource("5_kbv2t")])
+common_cards = Array[ExtResource("1_fogen")]([ExtResource("3_rrj0s"), ExtResource("4_kbv2t"), ExtResource("5_kbv2t")])
 idle_animation = ExtResource("7_kbv2t")
 metadata/_custom_type_script = "uid://dcjbbujtui8uu"

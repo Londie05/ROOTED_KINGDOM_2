@@ -8,12 +8,12 @@
 script = ExtResource("1_0hm0l")
 card_name = "Magic Blast"
 card_image = ExtResource("1_ra1yf")
-description = "Deals 12 damage to all enemies on the field and has a 30% chance to deal critical damage"
+description = "Deals 12 damage to all enemies on the field and has a 50% chance to deal critical damage"
 damage = 12
 mana_cost = 2
 is_aoe = true
 aoe_targets = 4
-critical_chance = 30
+critical_chance = 59
 damage_growth = 2
 sound_effect = ExtResource("3_vwg4p")
 metadata/_custom_type_script = "uid://olc2cw5uohq6"
