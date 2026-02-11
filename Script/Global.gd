@@ -52,11 +52,14 @@ var crystal_gems: int = 5000
 var unlocked_heroes: Array[String] = ["Hero"]
 var from_tower_mode: bool = false
 
+# Tower Variable but I placed it
+var current_tower_unlocked = ""
+
 # Story Mode
 var from_story_mode: bool = false
 var _CURRENTLY_PLAYING_CHAPTER:= -1
 var _current_playing_on_stage:= -1
-var stages_cleared:= ["1-1"]
+var stages_unlocked:= ["1-1"]
 
 # Dictionaries for levels
 var card_levels: Dictionary = {} 
@@ -290,7 +293,7 @@ func save_game():
 	config.set_value("Progression", "floors_cleared", floors_cleared)
 	
 	# Story Mode
-	config.set_value("Progression", "finished_stage_scale", stages_cleared)
+	config.set_value("Progression", "finished_stage_scale", stages_unlocked)
 	
 	config.set_value("settings", "bgm_track_name", current_bgm_track_name)
 	
@@ -320,7 +323,7 @@ func load_game():
 	floors_cleared = config.get_value("Progression", "floors_cleared", [])
 	
 	# Story Mode
-	stages_cleared = config.get_value("Progression", "finished_stage_scale", [])
+	stages_unlocked = config.get_value("Progression", "finished_stage_scale", [])
 	
 	current_bg_name = config.get_value("settings", "bg_name", current_bg_name)
 	
@@ -356,7 +359,7 @@ func reset_player_data():
 	floors_cleared = []
 	current_bg_name = "Default"
 	current_bgm_track_name = "Music 1"
-	stages_cleared = ["1-1"]
+	stages_unlocked = ["1-1"]
 	if FileAccess.file_exists(SAVE_PATH):
 		DirAccess.remove_absolute(SAVE_PATH)
 
@@ -458,13 +461,13 @@ func bring_to_current_chapter_ui():
 	if Global._CURRENTLY_PLAYING_CHAPTER == 1:
 		get_tree().change_scene_to_file("res://Scene/User Interfaces/Story Mode/Chapter Folder/Chapters/Scene/Chapter 1/Chapter files/Chapter_1.tscn")
 
-func set_stage_in_clear(value: String):
-	if not stages_cleared.has(value):
-		stages_cleared.append(value)
+func set_stage_unlocked(value: String):
+	if not stages_unlocked.has(value):
+		stages_unlocked.append(value)
 		save_game()
 		
 func grant_battle_stage_reward(Stage: String):
-	if stages_cleared.has(Stage):
+	if stages_unlocked.has(Stage):
 		print("Stage ", Stage, " already cleared. No duplicate rewards.")
 		return
 	var reward = StoryMode.rewards.get(Stage, {"small": 0, "crystal": 0})

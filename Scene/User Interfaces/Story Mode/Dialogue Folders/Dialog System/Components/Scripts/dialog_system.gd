@@ -142,7 +142,7 @@ func play_collage(_num: int, _bg: String):
 	
 func finish_chapter():
 	Global.bring_to_current_chapter_ui()
-	Global.set_stage_in_clear(StoryMode.next_stage())
+	Global.set_stage_unlocked(StoryMode.next_stage())
 # Inputs
 # func _input(event: InputEvent) -> void:
 	

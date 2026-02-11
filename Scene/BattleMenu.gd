@@ -83,7 +83,7 @@ func show_victory_menu():
 		var stage_label = StoryMode.stage_label()
 		var reward = StoryMode.rewards.get(stage_label, {"small": 0, "crystal": 0})
 		Global.grant_battle_stage_reward(stage_label)
-		Global.set_stage_in_clear(StoryMode.next_stage())
+		Global.set_stage_unlocked(StoryMode.next_stage())
 
 		reward_label.show()
 		reward_label.bbcode_enabled = true

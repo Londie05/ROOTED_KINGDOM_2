@@ -20,7 +20,7 @@ func _ready() -> void:
 	for stage in stage_list:
 		var Stage_name = str(chp_number) + "-" + str(stage.Stage_number)
 		stage.get_node("Interface/Stage Button").text = str(chp_number) + " - " + str(stage.Stage_number)
-		if not Global.stages_cleared.has(Stage_name):
+		if not Global.stages_unlocked.has(Stage_name):
 			stage.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
