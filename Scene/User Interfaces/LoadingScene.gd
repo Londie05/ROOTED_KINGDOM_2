@@ -38,7 +38,7 @@ func _process(delta):
 	loading_bar.value = min(time_ratio, data_ratio) * 100
 
 	# --- DYNAMIC TEXT BASED ON DESTINATION ---
-	if next_scene_path.contains("battlefield"):
+	if next_scene_path.contains("battlefield") or  next_scene_path.contains("Story_Mode_battle"):
 		_update_battle_text()
 	elif Global.player_name == "":
 		_update_new_player_text()

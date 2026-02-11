@@ -1,7 +1,7 @@
 [gd_scene load_steps=26 format=3 uid="uid://c383wxvj0hh7q"]
 
 [ext_resource type="PackedScene" uid="uid://bplpwpncwxjh4" path="res://Scene/CardUI.tscn" id="1_fxwnf"]
-[ext_resource type="Script" uid="uid://1mh1lv3r2q5c" path="res://Script/BattleManager.gd" id="1_vsh2u"]
+[ext_resource type="Script" uid="uid://1mh1lv3r2q5c" path="res://Scene/BattleManager.gd" id="1_vsh2u"]
 [ext_resource type="Script" uid="uid://de4ufxbti7lif" path="res://Script/EnemyData.gd" id="2_nqr2r"]
 [ext_resource type="Resource" uid="uid://dqqua2af16pfl" path="res://Resources/Enemies resources/Gornot1.tres" id="3_4l1qv"]
 [ext_resource type="Texture2D" uid="uid://ccclxldrmru4w" path="res://Asset/Backgrounds/background 1.jpg" id="3_tkjg1"]

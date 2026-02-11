@@ -141,8 +141,8 @@ func play_collage(_num: int, _bg: String):
 		print("Image Unavaiable")
 	
 func finish_chapter():
-	if StoryMode._CURRENTLY_PLAYING_CHAPTER == 1:
-		get_tree().change_scene_to_file("res://Scene/User Interfaces/Story Mode/Chapter Folder/Chapters/Scene/Chapter 1/Chapter files/Chapter_1.tscn")
+	Global.bring_to_current_chapter_ui()
+	Global.set_stage_in_clear(StoryMode.next_stage())
 # Inputs
 # func _input(event: InputEvent) -> void:
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bi4fmeelgp436"]
+[gd_scene load_steps=9 format=3 uid="uid://bi4fmeelgp436"]
 
 [ext_resource type="Script" uid="uid://bm2un4qtoc7da" path="res://Scene/User Interfaces/Story Mode/Chapter Folder/Stage UIs/stage_slot.gd" id="1_f8eut"]
 [ext_resource type="PackedScene" uid="uid://cpbalixgroyd1" path="res://Scene/User Interfaces/UI Asset Components/Stage Images/Source/stage_image.tscn" id="2_28qhb"]
@@ -11,6 +11,9 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0bi6n"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qaj2h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sd7k4"]
+bg_color = Color(0.6, 0.6, 0, 0.44705883)
 
 [node name="Stage Slot" type="Control"]
 custom_minimum_size = Vector2(225, 200)
@@ -64,5 +67,19 @@ focus_behavior_recursive = 1
 mouse_filter = 2
 mouse_behavior_recursive = 2
 expand_mode = 1
+
+[node name="Label" type="Label" parent="Interface"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_sd7k4")
+text = "UNAVAILABLE"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Interface/Stage Button" to="." method="_on_stage_button_pressed"]

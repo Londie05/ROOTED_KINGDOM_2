@@ -76,42 +76,46 @@ size_flags_stretch_ratio = 0.0
 [node name="Stage 1" parent="Stage Manager/ScrollContainer/HBoxContainer" instance=ExtResource("5_vui1m")]
 layout_mode = 2
 Stage = ExtResource("6_2s5pc")
-Stage_number = "1-1"
+Stage_number = 1
 Stage_img = ExtResource("8_elif7")
 Scene_type = "Story"
+availability = true
 
 [node name="Stage 2" parent="Stage Manager/ScrollContainer/HBoxContainer" instance=ExtResource("5_vui1m")]
 layout_mode = 2
-Stage_number = "1-2"
+Stage_number = 2
 Scene_type = "Battle"
+Objective = "Defeat one goblin."
+availability = true
 
 [node name="Stage 3" parent="Stage Manager/ScrollContainer/HBoxContainer" instance=ExtResource("5_vui1m")]
 layout_mode = 2
 Stage = ExtResource("9_ulxka")
-Stage_number = "1-3"
+Stage_number = 3
 Stage_img = ExtResource("10_vui1m")
 Scene_type = "Story"
+availability = true
 
 [node name="Stage 4" parent="Stage Manager/ScrollContainer/HBoxContainer" instance=ExtResource("5_vui1m")]
 layout_mode = 2
-Stage_number = "1-4"
+Stage_number = 4
 Scene_type = "Battle"
 
 [node name="Stage 5" parent="Stage Manager/ScrollContainer/HBoxContainer" instance=ExtResource("5_vui1m")]
 layout_mode = 2
 Stage = ExtResource("9_bhkcx")
-Stage_number = "1-5"
+Stage_number = 5
 Scene_type = "Story"
 
 [node name="Stage 6" parent="Stage Manager/ScrollContainer/HBoxContainer" instance=ExtResource("5_vui1m")]
 layout_mode = 2
-Stage_number = "1-6"
+Stage_number = 6
 Scene_type = "Battle"
 
 [node name="Stage 7" parent="Stage Manager/ScrollContainer/HBoxContainer" instance=ExtResource("5_vui1m")]
 layout_mode = 2
 Stage = ExtResource("10_sat6q")
-Stage_number = "1-7"
+Stage_number = 7
 Scene_type = "Story"
 
 [node name="UI Manager" type="Control" parent="."]
