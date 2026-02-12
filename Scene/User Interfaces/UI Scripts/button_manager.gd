@@ -32,6 +32,7 @@ func _on_inventory_and_shop_pressed() -> void:
 	
 func _on_characters_pressed() -> void:
 	Global.from_tower_mode = false # Just looking at characters
+	Global.from_story_mode = false
 	get_tree().change_scene_to_file("res://Scene/User Interfaces/CharacterScenes/CharacterSelection.tscn")
 
 

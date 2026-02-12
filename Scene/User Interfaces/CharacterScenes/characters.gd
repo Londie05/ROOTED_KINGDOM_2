@@ -26,8 +26,10 @@ func _ready():
 	update_currency_ui()
 	
 	# Only show the confirm button if we came from Tower Mode
-	if Global.from_tower_mode or Global.from_tower_mode:
+	if Global.from_tower_mode or Global.from_story_mode:
 		confirm_button.visible = true
+	else:
+		confirm_button.visible = false # Made this to made it divisible when not true - Postiko
 	
 	$ConfirmButton.pressed.connect(_on_confirm_battle_pressed)
 	if unlock_btn:
