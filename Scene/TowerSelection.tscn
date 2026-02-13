@@ -3,16 +3,26 @@
 [ext_resource type="Texture2D" uid="uid://deoilkueygt75" path="res://Asset/User Interface/button.png" id="1_p0bcw"]
 [ext_resource type="Script" uid="uid://cl30yucb15jeq" path="res://Scene/TowerSelection.gd" id="1_tbygq"]
 [ext_resource type="Texture2D" uid="uid://l45mprnx01t8" path="res://Asset/User Interface/pause.png" id="2_scn5v"]
-[ext_resource type="Texture2D" uid="uid://6kmgs5s1swcl" path="res://Asset/User Interface/tower_mod_background_v2.jpg" id="2_tbygq"]
+[ext_resource type="Texture2D" uid="uid://dnxuvdehf47bo" path="res://Asset/User Interface/tower_mod_background_v2.webp" id="2_tbygq"]
 
 [node name="TowerSelection" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_tbygq")
 
-[node name="TowerModBackgroundV2" type="Sprite2D" parent="."]
-position = Vector2(572, 326.00003)
-scale = Vector2(0.4369622, 0.40326482)
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_tbygq")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]

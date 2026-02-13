@@ -128,7 +128,6 @@ func _ready() -> void:
 
 	await get_tree().process_frame
 	if get_tree().current_scene:
-		print("Global: Initial Scene is ", get_tree().current_scene.name)
 		check_and_play_bgm(get_tree().current_scene.name)
 
 func toggle_mute():
@@ -140,7 +139,6 @@ func set_background(bg_name: String):
 	current_bg_name = bg_name
 	emit_signal("background_changed", bg_name)
 	save_game()
-	print("Global: Background changed to ", bg_name)
 		
 func _on_scene_changed():
 	var tree = get_tree()
@@ -154,15 +152,12 @@ func _on_scene_changed():
 
 	var current_scene = get_tree().current_scene
 	if current_scene:
-		print("Global: Scene switched to ", current_scene.name)
 		check_and_play_bgm(current_scene.name)
 
 func check_and_play_bgm(scene_name: String):
 	if scene_name in allowed_bgm_scenes:
-		print("Global: Music ALLOWED for ", scene_name)
 		play_selected_bgm()
 	else:
-		print("Global: Music STOPPED (Scene not in allow list: ", scene_name, ")")
 		bgm_player.stop()
 
 func play_selected_bgm():
@@ -173,7 +168,6 @@ func play_selected_bgm():
 	
 	var track_path = bgm_tracks.get(current_bgm_track_name, "")
 	if track_path == "":
-		print("Global: Track path not found!")
 		if bgm_player:
 			bgm_player.stop()
 		return
@@ -189,9 +183,6 @@ func play_selected_bgm():
 			
 		bgm_player.stream = stream
 		bgm_player.play()
-		print("Global: Now Playing ", current_bgm_track_name)
-	else:
-		print("Global: Failed to load stream at ", track_path)
 		
 func set_bgm_preference(track_name: String):
 	current_bgm_track_name = track_name
@@ -266,7 +257,6 @@ func attempt_upgrade(data: CardData) -> bool:
 		if not card_levels.has(data.card_name):
 			card_levels[data.card_name] = 0
 		card_levels[data.card_name] += 1
-		print("Card Upgrade Successful! Cost: ", dynamic_cost)
 		save_game()
 		return true
 	else:
@@ -290,7 +280,6 @@ func upgrade_character(data: CharacterData) -> bool:
 			card_levels[card.card_name] += 1
 			
 		save_game()
-		print("Character Upgrade Successful!")
 		return true
 	else:
 		return false
@@ -444,17 +433,14 @@ func _on_button_up(btn: BaseButton):
 func mark_floor_cleared(floor_num: int):
 	if not floors_cleared.has(floor_num):
 		floors_cleared.append(floor_num)
-		print("Floor ", floor_num, " marked as cleared!")
 		save_game()
 		
 func grant_floor_reward(floor_num: int):
 	if floors_cleared.has(floor_num):
-		print("Floor ", floor_num, " already cleared. No duplicate rewards.")
 		return
 	var reward = floor_rewards.get(floor_num, {"small": 0, "crystal": 0})
 	small_gems += reward["small"]
 	crystal_gems += reward["crystal"]
-	print("Granted Reward: ", reward)
 	save_game()
 
 # CURRENT CHAPTER FUNCTIONS
@@ -485,10 +471,8 @@ func set_stage_unlocked(value: String):
 		
 func grant_battle_stage_reward(Stage: String):
 	if stages_unlocked.has(Stage):
-		print("Stage ", Stage, " already cleared. No duplicate rewards.")
 		return
 	var reward = StoryMode.rewards.get(Stage, {"small": 0, "crystal": 0})
 	small_gems += reward["small"]
 	crystal_gems += reward["crystal"]
-	print("Granted Reward from Story Mode: ", reward)
 	save_game()

@@ -38,15 +38,43 @@ func _ready():
 	
 	start_btn.disabled = true
 	start_btn.modulate = Color(0.5, 0.5, 0.5) 
-	
-	await get_tree().process_frame
-	await get_tree().process_frame
-	await get_tree().process_frame
-	
-	$ScrollContainer/VBox/Floor1.grab_focus()
-	
 	lock_floors()
+	await get_tree().process_frame
+	await get_tree().process_frame
+	await get_tree().process_frame
+	
+	focus_and_scroll_to_latest_floor()
+	
 
+func focus_and_scroll_to_latest_floor():
+	var next_floor = 1
+	
+	# Find the highest floor cleared and add 1 to get the next locked floor
+	if Global.floors_cleared.size() > 0:
+		next_floor = Global.floors_cleared.max() + 1
+		
+	# Cap it at 21 so it doesn't look for Floor 22
+	if next_floor > 21:
+		next_floor = 21
+		
+	var target_btn_name = "Floor" + str(next_floor)
+	var container = $ScrollContainer/VBox
+	
+	if container.has_node(target_btn_name):
+		var target_btn = container.get_node(target_btn_name)
+		
+		# Focus the button
+		target_btn.grab_focus()
+		
+		# Force the ScrollContainer to jump to this button's position
+		$ScrollContainer.ensure_control_visible(target_btn)
+		
+		# Optional: Automatically "click" the floor so the rewards description panel updates right away!
+		var desc = "Floor " + str(next_floor)
+		if next_floor == 21:
+			desc = "Floor 21: On Going..."
+		_on_floor_selected(next_floor, desc)
+		
 func _on_floor_selected(floor_num: int, description: String):
 	selected_floor = floor_num
 	Global.current_tower_floor = floor_num
@@ -79,7 +107,6 @@ func _on_choose_characters_pressed():
 	# CHANGE 4: Extra safety check
 	if selected_floor == 0:
 		return 
-	print("Select a character")
 	
 	Global.from_tower_mode = true
 	get_tree().change_scene_to_file("res://Scene/User Interfaces/CharacterScenes/CharacterSelection.tscn")

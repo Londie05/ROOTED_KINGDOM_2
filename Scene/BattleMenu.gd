@@ -156,7 +156,7 @@ func _on_action_button_pressed():
 		get_tree().paused = false 
 		Global.current_tower_floor += 1
 		hide()
-		if Global.current_tower_floor <= 10:
+		if Global.current_tower_floor <= 20:
 			get_tree().reload_current_scene()
 		else:
 			get_tree().change_scene_to_file("res://Scene/TowerSelection.tscn")

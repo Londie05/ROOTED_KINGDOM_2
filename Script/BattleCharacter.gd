@@ -6,7 +6,7 @@ class_name BattleCharacter
 @export var char_name: String = ""
 @export var is_enemy: bool = false
 @export var target_height: float = 350.0
-
+var character_data: CharacterData
 var current_health: int = 100
 var current_shield: int = 0
 var max_health: int = 100
@@ -46,6 +46,7 @@ func spawn_popup(amount: int, color: Color, is_critical: bool = false):
 		popup.setup(amount, spawn_pos, color, is_critical)
 	
 func setup_character(data: CharacterData):
+	character_data = data
 	if data == null:
 		hide()
 		return

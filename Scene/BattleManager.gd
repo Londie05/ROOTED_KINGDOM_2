@@ -507,6 +507,8 @@ func setup_tower_enemies():
 				enemy_nodes[i].enemy_selected.connect(_on_enemy_clicked)
 				
 func check_battle_status():
+	purge_dead_cards()
+	
 	var alive_enemies = get_alive_enemies()
 	var alive_players = get_alive_players()
 	
@@ -595,3 +597,43 @@ func _on_menu_button_pressed() -> void:
 func _on_restart_button_pressed():
 	get_tree().reload_current_scene()
 	
+
+func purge_dead_cards():
+	# 1. Create a list of CharacterData for heroes that are actually ALIVE in the scene
+	var alive_hero_data: Array = []
+	
+	for hero in player_team.get_children():
+		# Safety check: ensures we only look at living BattleCharacter nodes
+		if is_instance_valid(hero) and hero.current_health > 0:
+			# We assume your BattleCharacter script has a 'character_data' variable 
+			# assigned during setup_character()
+			if hero.get("character_data"):
+				alive_hero_data.append(hero.character_data)
+	
+	# 2. Helper function to check if a card belongs to any of the alive heroes
+	var card_is_valid = func(card_res: CardData):
+		for data in alive_hero_data:
+			# Check if it's the signature card
+			if data.unique_card == card_res:
+				return true
+			# Check if it's one of the common cards
+			if card_res in data.common_cards:
+				return true
+		return false
+
+	# 3. Filter the Arrays
+	deck = deck.filter(card_is_valid)
+	discard_pile = discard_pile.filter(card_is_valid)
+	
+	# 4. Remove dead cards from the Hand UI
+	for card_node in hand_container.get_children():
+		if is_instance_valid(card_node) and card_node.card_data:
+			if not card_is_valid.call(card_node.card_data):
+				card_node.queue_free()
+				
+	# 5. Remove dead cards from Slots UI
+	for card_node in slotted_nodes.duplicate():
+		if is_instance_valid(card_node) and card_node.card_data:
+			if not card_is_valid.call(card_node.card_data):
+				slotted_nodes.erase(card_node)
+				card_node.queue_free()
