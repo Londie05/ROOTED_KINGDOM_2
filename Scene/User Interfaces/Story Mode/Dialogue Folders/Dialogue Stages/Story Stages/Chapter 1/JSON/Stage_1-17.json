@@ -2,125 +2,92 @@
     "Stage": "1-17",
     "Dialogue": [
         {
-            "Narrator": ["It was night, yet the streets were bustling. Lamplighters began igniting the streetlamps.", "Carriages and wagons roamed on the brick roads. Pedestrians and passersby walking along the sidewalks.",
+            "Narrator": ["From a slumber, you woke up.",
 
-                        "This place is clearly living in the medieval ages.",
+            "Opening your eyes, you found yourself lying on a bed, facing under the bed railings. The light from the morning sun.",
 
-                        "And you are currently standing on the same street with Beatrice and Charlotte. You are still holding your stomach from the airsickness you felt."],
+            "You pondered and thought. This is your first morning in another world.",
 
-            "Me": "I’m good with elevation… but that place is just too high and too windy…",
+            "Everything that happened earlier is not a dream.",
 
-            "Charlotte": "Are you sure you don’t want Beatrice’s healing?"
+            "You yawned as you raised and stretched your body.",
+
+            "And as your eyes glanced at the space of the room, you noticed two ladies having breakfast.",
+
+            "Fried eggs, bread, and dried fish are prepared on the table.",
+
+            "But then, you saw the greatest crime in eating etiquette. Both of them are wearing their uniforms."],
+
+            "Me": ["Y-You two…", "You two are wearing your outfits while eating?"]
         },
         {
-            "Me": "I’m a man. This is nothing.",
+            "Narrator": "The two women stopped the meal they were eating and looked at each other, dumbfounded.",
 
-            "Charlotte": "Ah, men and their pride",
-
-            "Narrator": "As you succumbed furthermore to the aftermath of airsickness, a carriage stopped suddenly before you."
+            "Charlotte": "What are you talking about? Do you want us to eat naked?"
         },
         {
-            "Me": "I haven’t even raised my hand yet",
+            "Me": ["NO!", "Rather, why are you wearing your casual clothes? Wouldn't it be pajamas or any outfit indoors?"],
 
-            "Narrator": "The driver stepped out of his seat and greeted the two ladies.",
-        
-            "Driver": "Good evening, Lady Beatrice and Charlotte. Nice to meet the two of you once again."
+            "Charlotte": "Well… we just use our outfit in every scenario"
         },
         {
-            "Narrator": "You noticed the formality of his words, so you asked the two.",
+            "Me": "Urgh, you guys gotta be stinky as hell",
 
-            "Me": "Are you two noble?"
-        },
-        {
-            "Narrator": ["The two jolted.", "Beatrice frantically looked around and Charlotte covered your mouth in a swift."],
-
-            "Charlotte": "You gotta shut that mouth of yours."
-        },
-        {
-            "Narrator": "Your voice is muffled with her hand, but you managed to ask.",
-
-            "Me": "What now?!! What’s wrong with what I asked??!!",
-
-            "Charlotte": "Just shut up and get in the carriage!"
-        },
-        {
-            "Narrator": "She tossed you to the wagon. The two quickly joined you inside.",
+            "Narrator": "Charlotte jolted from her seat, her face flustered.",
             
-            "Charlotte": "Driver, take us to the Aethelfrith Palace!"
+            "Charlotte": "W-What are you saying?!! Beatrice and I cleansed ourselves everyday!"
         },
         {
-            "Narrator": "As the wagon began to move, Charlotte let go of your mouth.",
+            "Me": "You guys use magic even for hygiene?",
+
+            "Narrator": "You looked at Beatrice, expecting an answer from her, her face flustered as well. She simply nodded."
+        },
+        {
+            "Me": "Well…that's something",
+
+            "Narrator": ["As you contemplated the way of living of humanity in this world, you heard a grating sound.",
+
+            "The one who caused the sound, Beatrice, spoke."],
             
-            "Charlotte": "Can’t you just not ask about it out of nowhere?",
-
-            "Me": "I have no idea what you’re talking about"
+            "Beatrice": "Anyways, have a seat…"
         },
         {
-            "Charlotte": ["Don’t ask us if we’re nobles!", "...", "Not many, especially the public, know we’re nobles. We’re not even planning to tell you"],
+            "Me": "Not gonna lie, I’m still not used to this world",
 
-            "Me": "Then, why did the driver greet you like one right in the open?"
+            "Beatrice": "Worry about it later…just join us for breakfast"
         },
         {
-            "Charlotte": "He is a dunderhead. Don’t mind him.",
+            "Me": "Sure… I’m hungry anyways",
 
-            "Me": "No one says dunderhead anymore…"
-        },
-        {
-            "Charlotte": "You—!",
-
-            "Narrator": "Charlotte slapped you on the shoulder. It did not hurt you, but you still feel it.",
-
-            "Me": "Beatrice, she’s getting violent on me!"
-        },
-        {
-            "Narrator": "Beatrice looked at you with anguish, seemingly bothered by your actions earlier.",
-
-            "Beatrice": "W-Well, you kind of deserved it?",
-
-            "Me": "What the hell?"
-        },
-        {
-            "Narrator": ["Despite the humorous banter, Beatrice’s eyes became downcast.",
-
-            "You looked at Charlotte and asked." ],
-
-            "Me": "Charlotte, did I mess up?",
-
-            "Charlotte": ["Well, while we’re sensitive to our nobility being known, our reason for it is quite in huge contrast.","I’m just hiding it because I don’t want to be surrounded by people, but to Beatrice, it’s different.",
-
-            "You don’t want to hear it from me, right?"]
-        },
-        {
-            "Narrator": "You scratched your head, regretting your actions earlier.",
-
-            "Me": "I understand. I won’t pry on it."
-        },
-        {
-            "Narrator": [
-            "Just like that, the time passed, and the carriage stopped at the Aethelfrith Palace.",
-            "Charlotte went out first.",
-
-            "Beatrice also stood up and stepped outside.",
-
-            "Then, you stepped out last. But seeing Beatrice’s face, you can’t help but apologize."],
+            "Narrator": "You sat on the remaining seat, facing both Beatrice and Charlotte."
             
-            "Me": "Beatrice, I’m sorry—"
         },
         {
-            "Narrator": "Before you finished your words, Beatrice turned her back before you.",
+            "Me": "Fried eggs, bread, and dried fish…what a sad meal in the good morning. It almost put me into tears.",
 
-            "Beatrice": ["It’s fine. You’re not at fault in the first place.", "It’s just that… I became sensitive to my identity being revealed.", "But now that you know, don’t tell everyone, okay?"],
-
-            "Me": "I won’t tell anyone. I swear in Charlotte’s name."
+            "Beatrice": "Hey now, no complaining about food. Just be thankful that we have something to eat"
         },
         {
-            "Charlotte": "What the hell? Take it back!",
+            "Me": "Yeah, I think so. I'm thankful we have something to eat at all.",
 
-            "Narrator": ["As the three of you walked along the brick walkway, you looked around the place’s extravagance.", "A vast garden with beautiful trees and shrubs. Some clearly blossomed various flowers.", "This garden is more of a park with the area seemingly divided into squares, each with benches on all sides, and bandstands in the center.",
+            "Narrator": "Charlotte stifled a laugh.",
+            
+            "Charlotte": "Why are you acting like we're struggling in life? I can't—!"
+        },
+        {
+            "Narrator": ["Charlotte gave in and burst out laughing.",
 
-            "After a long walk, the three of you managed to reach the entrance. The palace is made with medieval architecture. Its walls and floors are made from stones.",
+            "Beatrice followed suit, laughing in a meek giggle. All you can do is just make a smirk."],
 
-            "Two guards are stationed at the entrance door. They opened the wooden door before the three of you."]
+            "Me": "Well, since things are lively, bon appetit."
+        },
+        {
+            "Narrator": ["You took the bread and then sliced it in half.", "You stuffed an egg in between and started munching it."], 
+            
+            "Me": "Now, this is something."
+        },
+        {
+            "Narrator": "And just like that, the three of you had breakfast. A peaceful time, the light from the sun brightened the room, and the sound of conversation made it lively."
         }
     ]
 }

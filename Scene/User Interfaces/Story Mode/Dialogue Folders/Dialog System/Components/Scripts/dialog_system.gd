@@ -4,6 +4,10 @@ extends Node2D
 @onready var d_interface = $"Dialog Manager/Dialogue Interface"
 @onready var d_bg = $"Dialog Manager/Dialogue Background"
 @onready var dialogue_flow_component = $"Dialogue Story Flow Component"
+
+@onready var chr_1 = $"Dialog Manager/Character Manager/Character"
+@onready var chr_2 = $"Dialog Manager/Character Manager/Character2"
+@onready var chr_3 = $"Dialog Manager/Character Manager/Character3"
 # @onready var Character_Manager = $CharacterManger
 # @onready var character_1 = $"Dialog Manager/Character Manager/Character"
 
@@ -28,11 +32,16 @@ var Dialogue_lines_arr_value # -- AS LINES THIS TIME ARE IN ARRAYS
 var dialogue_lines_arr_value_index:= 0
 var lines # For managing lines; not the lines themselves
 
+var dialogue_counter:= 0
+
 var UI_ARE_HIDDEN:= false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if JSON_file != "":
 		load_JSON()
+	chr_1.set_character_position(0.0,0.0)
+	chr_2.set_character_position(393.0, 0.0)
+	chr_3.set_character_position(764.38, 0.0)
 
 func load_JSON():
 	json_as_text = FileAccess.get_file_as_string(JSON_file)
@@ -45,6 +54,7 @@ func load_JSON():
 	play_dialogue()
 
 func play_dialogue():
+	
 	# character_1.slide("center")
 	# Dialogue_stanza_name = Dialogue_stanza_name_arr[Dialogue_stanza_index]
 	# Dialogue_stanza 
@@ -80,14 +90,17 @@ func play_dialogue():
 				Dialogue_lines_arr_value = Dialogue_lines_arr[Dialogue_index]
 				
 				#if dialogue_lines_arr_value_index <= Dialogue_lines_arr.size() - 1:
-				dialogue_flow_component.main_play_reaction(Dialogue_index)
-				dialogue_flow_component.main_play_collage(Dialogue_index)
+				dialogue_flow_component.main_play_reaction(dialogue_counter)
+				dialogue_flow_component.main_play_collage(dialogue_counter)
+				dialogue_flow_component.set_character_to_darken(Dialogue_array_name)
 				d_interface.animate_text = true
 				d_interface.Dialogue_ui.visible_ratio = 0.0
 				# d_interface.Dialogue_speaker.text = Dialogue_array_name
 				d_interface.set_speaker_name(Dialogue_array_name)
 				d_interface.Dialogue_ui.text = Dialogue_lines_arr_value.replace("{{Name}}", Global.player_name)
+				# USE THIS WHEN DEBUGGING OR TRYING TO TELL THE DIALOGUE'S POSITION print( " (" + str(Dialogue_stanza_index) + "/" + str(dialogue_counter) + ")")
 				# print(Dialogue_lines_arr_value)
+				dialogue_counter += 1
 				Dialogue_index += 1
 				#else:
 				#	if dialogue_lines_arr_value_index > Dialogue_lines_arr.size():

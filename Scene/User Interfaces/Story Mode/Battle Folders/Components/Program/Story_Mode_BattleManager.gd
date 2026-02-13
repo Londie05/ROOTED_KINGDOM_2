@@ -3,6 +3,7 @@ extends Control
 @onready var stage_count_label = $CanvasLayer/StageCount
 
 @export var battle_1_2: Array[EnemyData] = []
+@export var battle_1_4: Array[EnemyData] = []
 
 # --- 1. NODE LINKS ---
 @onready var slot_container = %CardSlots
@@ -438,6 +439,7 @@ func setup_tower_enemies():
 	
 	match Global._current_playing_on_stage:
 		2: selected_stage_data = battle_1_2
+		4: selected_stage_data = battle_1_4
 		
 	for node in enemy_nodes:
 		node.hide()

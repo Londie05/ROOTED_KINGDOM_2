@@ -1,117 +1,78 @@
 {
     "Stage": "1-9",
-    "Dialogue": [
-        {          
-            "": ["You heard explosions from the location that Beatrice and Charlotte went.",
+    "Dialogue":[
+        {    
+            "": ["Within the smoke, Beatrice cast a spell. Her hands glowed a violet hue, a manifestation of magic, and blasted it against the goblin.",
 
-            "Sweat ran through your forehead. You have been walking through the mounds.",
+            "The goblin parried it with a barrier from its hand and took a stance.",
 
-            "Going up and down in a sequence wore you down.",
+            "A white glow manifested on its other hand and blasted it towards Beatrice.",
 
-            "Now, you seek rest more than anything else, but the field is dangerous.", 
+            "Despite the intense surge, Beatrice did nothing but stood against the incoming blast.",
 
-            "You gasped for breath.",
+            "It hit her, the light warped through the crevices of her body.",
 
-            "And stop.",
-
-            "A little bit of a pause is fine.", 
-
-            "However, you felt a wind behind you.", 
-
-            "Sure, a vast steppe with mounds has winds.",
-
-            "But the wind came from the direction you are facing.", 
-
-            "And with a peek, you looked behind you.",
-
-            "And your eyes widened, as the sight behind you is the usual steppe, with a goblin standing.",
-
-            "Unlike the goblins on your first encounter with them, this one wore an adorned outfit.",
-
-            "Aside from the fabric wrapped around its body, it also wears a stole with the symbol; which is more of a stamp of a stone with a paint.",
-
-            "It is also holding a staff with an orb embedded in it.",
-
-            "You did not bother by its unusual outfit and immediately ran.",
-
-            "But as you took a step forward, you slipped.",
-
-            "Head first, your face was dragged across the field.",
-
-            "As you befall, you look at your lower body.",
-
-            "And you discovered translucent chains are tied to your ankles. You saw the goblin with the orb on its staff  glowing. It raised its arm and faced its palm before you.",
-
-            "The goblin simply cast a spell on you, and a ball of flame hit your face, and you screamed as its searing heat raced through its skin."],
-
-            "Me": "AHHHHHHHHHHHHH"
+            "When the blast dissipated, Beatrice remained standing, unscathed."],
+            
+            "Beatrice": "You're underestimating me."
         },
         {
-            "": ["You cannot handle the anguish and cowered.",
+        "": "The goblin jolted upon hearing those words. Perhaps he realized who he is against. Beatrice raised her staff and its orb radiated a green hue.",
 
-            "And while you succumbed to agony, the goblin spoke. Even with the jagged and monotonous voice, it spoke to  you with confidence."],
-
-            "Goblin Shaman": "Whatchu doin' here, outsider? Ain't ya supposed to be eaten now?"
+        "Beatrice": "I'm trained to be a healer, but you see, every mage is trained to be versatile."
         },
         {
-            "": ["You replied with another scream from your anguish.",
+        "": ["A luminous magic circle appeared before her, hovering on her palm.",
 
-            "But the goblin didn't mind."],
+        "Her presence became intense, the wind gone wild and everything around fluttered intensely, even her clothes.",
 
-            "Goblin Shaman": "Is this how ya humans talk?"
+        "Yet, with a single word, the intensity of her surroundings have gone stale. The wind became calm.",
+
+        "But from the sky, a hole was made from the clouds, illuminating the steppe with sunlight.",
+
+        "Beatrice gasped and sighed."], 
+        
+        "Beatrice": "Impact"
         },
         {
-            "": ["It began holding its staff with two hands, and it smashed the ground with its tip.",
+        "": ["[And an intense beam surged from the heavens, and eradicated the goblin in one piece.",
 
-            "The ground shook and you were thrown away. Your body reached the peak of the mound and you rolled over the slope.",
+        "The intensity created a smoke that engulfed the surroundings, including Beatrice.",
 
-            "You continued rolling on the ground and eventually hit the bottom of another mound.",
+        "From a distance, you saw it in a thin light. Yet, its impact reached your position.",
 
-            "The goblin jumped to the position before you."],
+        "Then, just like thunder, the beam dissipated. But it left a gap in the sky, a small price to pay.",
 
-            "Goblin Shaman": "Ya're odd. Ya are too weak than humans I fight! Ya are an outsider! HAHAHAHAHA"
+        "...",
+
+        "The smoke dissipated, and you saw Beatrice standing. She defeated the goblin.",
+
+        "You jolted as you heard another step.",
+
+        "Even Beatrice raised her staff.", 
+
+        "But as you look beyond your head, from the mound, Charlotte emerges full of blood on her body.",
+
+        "She waved at the two of you with vigor."],
+    
+        "Beatrice": "Hey there, everyone. Is everything good there?"
         },
         {
-            "": ["It began laughing hysterically. Its face showed a twisted and uncanny grin. It is having fun with you.",
+            "": "She stopped her steps as she noticed your situation.",
+            
+            "Charlotte":"Hey, are you good? Did something happen to him?",
 
-            "Then, you heard a scream of a woman. A scream so strong it burst on your ears."],
-
-            "???": "YOU GOBLIN—!!!" 
+            "Beatrice": "He's fine. I healed him." 
         },
         {
-            "": ["You heard a splash as the ground trembled.",
+            "Charlotte": "Okay then",
 
-            "You have no idea what is going on, so you cowered in fear once again and covered your head. ",
+            "": ["Charlotte rummaged through the purse that Beatrice is supposed to carry and took something.",
 
-            "But you felt a touch of warmth. It spreads throughout your body. You felt calm.",
-
-            "You opened your eyes that have been shutting, and looked above you.",
-
-            "It was Beatrice, touching your arm, facing the goblin that caused you agony.",
-
-            "She is looking at you with such tender eyes."],
-
-            "Beatrice": "How do you do?"
+            "Upon showing it, you found out it is a key."]
         },
         {
-            "": "You're lost for an answer. The agony you felt is still vivid. And yet, she assured you.",
-
-            "Beatrice": "You don't have to answer, but you can trust me. I can handle this"
-        },
-        {
-            "": "After healing you, she stood up and approached the goblin.",
-
-            "Beatrice": "Pardon me but...this day will be your last"
-        }, 
-        {
-           "": ["Luminous sigils began appearing around her body, hovering around in a circular motion.",
-
-            "Watching from your position, you can't help but react with disbelief."],
-
-            "Me": "Just how overpowered you two are?"
-        }, 
-        {
-            "": "Beatrice dashed forward towards the goblin and a smoke exuded from their position, obscuring them."
+            "Charlotte": "I found their airboat!"
         }
     ]
 }

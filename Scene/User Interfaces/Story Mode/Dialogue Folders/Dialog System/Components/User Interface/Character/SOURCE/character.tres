@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://tql35t8n28ye"]
+
+[ext_resource type="Texture2D" uid="uid://bt1iuv1k4owd5" path="res://Asset/User Interface/%Storymode%/beatrice.png" id="1_pbvys"]
+[ext_resource type="Script" uid="uid://cahcrisu7tfny" path="res://Scene/User Interfaces/Story Mode/Dialogue Folders/Dialog System/Components/User Interface/Character/SOURCE/character_anim.gd" id="2_cr028"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbvys"]
+atlas = ExtResource("1_pbvys")
+region = Rect2(0, 0, 652, 1355)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbvys")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"mad",
+"speed": 5.0
+}]
+script = ExtResource("2_cr028")

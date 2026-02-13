@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://3dgl7l1vwjcq"]
+[gd_scene load_steps=13 format=3 uid="uid://3dgl7l1vwjcq"]
 
 [ext_resource type="Script" uid="uid://c2svi3hqold06" path="res://Scene/User Interfaces/Story Mode/Story Mode UIs/start_battle_slot.gd" id="1_uwob4"]
 [ext_resource type="Texture2D" uid="uid://cao4jwwshsvv3" path="res://Asset/Characters/images.png" id="1_xa1ml"]
@@ -6,13 +6,13 @@
 [ext_resource type="FontFile" uid="uid://dtdw2k1jvjn37" path="res://Asset/Fonts/times.ttf" id="3_ox3et"]
 [ext_resource type="Texture2D" uid="uid://bq3mv1chiqmla" path="res://Asset/Backgrounds/Main_Menu_Background.jpg" id="5_nbeqq"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uwob4"]
-content_margin_left = 14.0
-content_margin_top = 14.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_bsmg4"]
-font = ExtResource("2_3fshj")
-font_size = 64
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nbeqq"]
+bg_color = Color(0, 0, 0, 0.53333336)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.8666667, 0.14509805, 0, 0.26666668)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nbeqq"]
 content_margin_top = 14.0
@@ -22,6 +22,14 @@ content_margin_bottom = 14.0
 [sub_resource type="LabelSettings" id="LabelSettings_llp7a"]
 font = ExtResource("3_ox3et")
 font_size = 24
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uwob4"]
+content_margin_left = 14.0
+content_margin_top = 14.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_bsmg4"]
+font = ExtResource("2_3fshj")
+font_size = 64
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwob4"]
 content_margin_top = 14.0
@@ -60,31 +68,47 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nbeqq")
 
-[node name="Title" type="Label" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 79.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_uwob4")
-text = "Title Scene"
-label_settings = SubResource("LabelSettings_bsmg4")
-vertical_alignment = 1
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
-[node name="Current Stage-Level" type="Label" parent="."]
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Current Stage-Level" type="Label" parent="MarginContainer/Control"]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -315.0
 offset_top = -56.0
-grow_horizontal = 2
+grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_nbeqq")
 text = "Currently in Stage 0 - 0"
 label_settings = SubResource("LabelSettings_llp7a")
 horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="MarginContainer/Control"]
+layout_mode = 0
+offset_right = 891.0
+offset_bottom = 79.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uwob4")
+text = "Title Scene"
+label_settings = SubResource("LabelSettings_bsmg4")
 vertical_alignment = 1
 
 [node name="Availability Label" type="Label" parent="."]

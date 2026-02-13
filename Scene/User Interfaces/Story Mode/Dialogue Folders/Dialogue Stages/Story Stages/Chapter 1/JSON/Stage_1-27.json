@@ -2,74 +2,83 @@
     "Stage": "1-27",
     "Dialogue": [
         {
-            "Narrator": "The discussion went on a while, with you understanding nothing. They were using a bunch of new words.",
+            "Narrator": "…",
 
-            "Me": "Are they still using the same language as I do?"
+            "Me": "—!"
         },
         {
-            "Narrator": ["You can feel your legs ache, your brain seemingly exhausted from listening.",
-
-            "You are lost in thought. Your head feels empty.",
-
-            "Then, a voice of the king woke you up, and you looked around to see what had happened.",
-
-            "And there, you saw the President speaking, his voice echoing throughout the room."],
+            "Narrator": "You gasped for breath. Your eyes widened and you fell down to your knees.",
             
-            "Frederick of Masons": ["…And with the existence of the Outsider, and the ongoing rumors, I hereby declare Beatrice and company’s testimony legitimate.", "The Outsider, being the sole survivor of the goblin’s summoning, he will be put into house arrest.", "HOWEVER—",
-
-            "As the Outsider lacks citizenship, has no residence and has no known records whatsoever, he will be granted asylum after interrogation from the Investigations Bureau.", "Therefore, before granting asylum, the Outsider will be under the Investigations Bureau’s custody."]
+            "Me": "This is too much, isn’t it?"
         },
         {
-            "Narrator": ["With the gavel slammed against the sound block, the meeting ended just like that.",
+            "Narrator": "You decided to take a rest, until you heard a loud rumbling.",
 
-            "Everyone stood up from their seats and began having a conversation with each other. ", "Meanwhile, you were pulled by Beatrice and left the room with Charlotte.", "The three of you moved to a more secluded place, the backyard, currently sitting on a bench together.",
-
-            "Beatrice talked first."], 
-            
-            "Beatrice": "Sorry, {{Name}}, I can’t help you regarding your identity. You lack records, after all. To their eyes, you’re an immigrant.",
-
-            "Me": "It’s fine, as long as I don’t die…"
+            "Me": "What the hell??!!! This is too far, you know???!!"
         },
         {
-            "Narrator": "You laughed awkwardly while expecting Beatrice’s response, and she gave none.",
-            
-            "Me": "Erm… am I gonna die in there?",
+            "Narrator": ["You turned around and ran away. Knowing that the gigantic monster came from behind, it is certain that the path where it came from must be safe.",
 
-            "Beatrice": "N-No, it’s just that… it will be unpleasant."
+            "However, you cannot learn about it that easily. The huge root creature managed to catch up on you in a sprint.",
+
+            "As it tried to stop, it tripped and bumped on you.",
+
+            "With your body way lighter than the root creature, it took you with it and slammed together on the ground. It killed you instantly.",
+
+            "…",
+
+            "……",
+
+            "………",
+
+            "…………",
+
+            "Fifty times.",
+
+            "It has been fifty times that you died. You also began to be covered in thin black roots on your body.", "You have not noticed it because it is rooted from the chest, where your heart is.",
+
+            "Nevertheless, you figured out how this resurrection works.",
+
+            "Currently, you just got resurrected from your last death.",
+
+            "But you learned a lot from your encounter with the giant root creature.",
+
+            "It is about to reach you once again.",
+
+            "But you climbed on the walls until you reached the ceiling.",
+
+            "As the giant reached you, it tried to stop, but due to momentum, it slipped once again.",
+
+            "You dropped on the ground. And unlike last time, you approached the giant with confidence.",
+
+            "You took a rusty sword from the ground, which came from the ruckus both you and the giant made.",
+
+            "As you reached the lying giant, you pierced the sword through its torso.",
+
+            "Finally, after attempting to jump into the ceiling, waiting for the giant to make a hard slip, and managed to stab it, you finally completed them.",
+
+            "After trying over and over, you finally killed the giant.",
+
+            "From there, you pondered how long it has been since you got here, and if there are more enemies.",
+
+            "Nevertheless, you learned something.",
+
+            "The giant root creature disintegrated into roots, which detached from each other and spread through the ground and the bottom side of the wall, like worms crawling away.", 
+
+            "After growing far enough from each other, they seemed to embed themselves to the surface.",
+
+            "Despite all of that, you knelt before the root wedge, and touched it with your hand.",
+
+            "Its tiny and thin roots attached to your hand for a moment, then let go."],
+
+            "Me": "Respawn point set."
         },
         {
-            "Me": "How unpleasant it could be?",
+            "Narrator": ["Earlier, as you attempted to avoid the giant, you began to find black roots embedded in the walls and the floor.", "And touching you makes you resurrect to that location of the root you touched.", "Touching other root wedges also updates the \"respawn point.\"",
 
-            "Narrator": ["As Beatrice was about to answer, two individuals approached you.", "They wear a typical tuxedo suit.",
-            "One of them spoke to you with a solemn voice."],
+            "You still have no idea why you respawned at the beginning earlier though.",
 
-            "Matthew": "Greetings, ladies and a gentleman. We are Matthew and Marshall, a team from the Investigation Bureau. We are taking the Outsider into custody."
-        },
-        {
-            "Narrator": "You stood up and looked at the ladies, and sighed.",
-            
-            "Me": "Well, see you next time, I guess…"
-        },      
-        {
-            "Narrator": ["The investigation team walked away.", "And as you followed suit, you saw Charlotte comforting the clearly disturbed Beatrice."],
-            
-            "Me": "Is it that bad?"
-        },
-        {
-            "Narrator": ["The three of you left the Palace and went to the Investigation Bureau Headquarters with a carriage.", "It is a building with medieval architecture, similar to a hub.", "Upon arriving, the three of you stayed in a room, where the team immediately began asking questions."],
-
-            "Matthew": "Outsider, we’re not here to interrogate about the event yesterday. We’re just asking you about your personal information. Tell me your name.",
-
-            "Me": "{{Name}}."
-        },
-        {
-            "Matthew": "Gender.",
-
-            "Me": "Male.",
-            
-            "Narrator": ["The interrogation went on with Matthew asking questions and Marshall writing every detail.", "It went well, at least, in your opinion.", "They have not second-guessed your answers, after all.",
-
-            "Afterwards, Marshall and Matthew brought you to an asylum.", "After going places to places, you begin to feel tired."]
+            "Nonetheless, you did it.", "And before you went further, you scavenged for weapons and gears through the wreckage and pile of trash around.", "After a while, you touched the root wedge made from giant once again, and ventured further down the dungeon."]
         }
     ]
 }

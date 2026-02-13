@@ -61,6 +61,21 @@ var _CURRENTLY_PLAYING_CHAPTER:= -1
 var _current_playing_on_stage:= -1
 var stages_unlocked:= ["1-1"]
 
+# Story Mode Sequence Flow Variables
+enum background_options {
+	Nothingness,
+	Rolling_Plains
+}
+enum bg_anim_options {
+	Fade_transition,
+	Fade_In,
+	Fade_Out
+}
+var Character_Animations = {
+	"Beatrice": "res://Scene/User Interfaces/Story Mode/Dialogue Folders/Dialog System/Components/User Interface/Character/BEATRICE/Beatrice_dialogue_anim.tres",
+	"Charlotte": "res://Scene/User Interfaces/Story Mode/Dialogue Folders/Dialog System/Components/User Interface/Character/CHARLOTTE/Charlotte_dialogue_anim.tres"
+}
+
 # Dictionaries for levels
 var card_levels: Dictionary = {} 
 var character_levels: Dictionary = {}

@@ -8,11 +8,15 @@ extends Button
 @export_enum("Story Mode", "Tower Mode") var mode
 @export var availability: bool
 
-@onready var CURRENT_STAGE_LEVEL = $"Current Stage-Level"
+
+@onready var CURRENT_STAGE_LEVEL = $"MarginContainer/Control/Current Stage-Level"
+@onready var title_label = $MarginContainer/Control/Title
+@onready var image_rect = $Image
+@onready var availability_label = $"Availability Label"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Title.text = title
-	$Image.texture = image
+	title_label.text = title
+	image_rect.texture = image
 	if mode == 0:
 		CURRENT_STAGE_LEVEL.text = "Current Stage " + " - " + Global.stages_unlocked.back()
 	elif mode == 1:	
@@ -22,7 +26,8 @@ func _ready() -> void:
 	
 	# THIS DECIDEDS IF THE BUTTON IS CLICKABLE OR NOT
 	if availability:
-		$"Availability Label".visible = false
+		availability_label.visible = false
+		$".".disabled = false
 	else:
-		$"Availability Label".visible = true
+		availability_label.visible = true
 		$".".disabled = true

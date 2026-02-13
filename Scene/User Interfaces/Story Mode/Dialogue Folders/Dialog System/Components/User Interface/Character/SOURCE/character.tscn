@@ -1,153 +1,7 @@
-[gd_scene load_steps=28 format=3 uid="uid://cyky44ageweol"]
+[gd_scene load_steps=13 format=3 uid="uid://cyky44ageweol"]
 
 [ext_resource type="Script" uid="uid://urj47kl2yubo" path="res://Scene/User Interfaces/Story Mode/Dialogue Folders/Dialog System/Components/User Interface/Character/SOURCE/character.gd" id="1_vlpk7"]
-[ext_resource type="Texture2D" uid="uid://dxe1er5qnj465" path="res://Asset/User Interface/Beatrix animation.png" id="2_5mich"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fya37"]
-atlas = ExtResource("2_5mich")
-region = Rect2(0, 0, 120, 148)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lqvii"]
-atlas = ExtResource("2_5mich")
-region = Rect2(120, 0, 120, 148)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0hple"]
-atlas = ExtResource("2_5mich")
-region = Rect2(240, 0, 120, 148)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_asmar"]
-atlas = ExtResource("2_5mich")
-region = Rect2(360, 0, 120, 148)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3nrs8"]
-atlas = ExtResource("2_5mich")
-region = Rect2(0, 148, 120, 148)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vt4l4"]
-atlas = ExtResource("2_5mich")
-region = Rect2(120, 148, 120, 148)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ai5th"]
-atlas = ExtResource("2_5mich")
-region = Rect2(240, 148, 120, 148)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cncc6"]
-atlas = ExtResource("2_5mich")
-region = Rect2(360, 148, 120, 148)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_upoy5"]
-atlas = ExtResource("2_5mich")
-region = Rect2(0, 296, 120, 148)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8koch"]
-atlas = ExtResource("2_5mich")
-region = Rect2(120, 296, 120, 148)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_585f2"]
-atlas = ExtResource("2_5mich")
-region = Rect2(240, 296, 120, 148)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_acmja"]
-atlas = ExtResource("2_5mich")
-region = Rect2(360, 296, 120, 148)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nckwh"]
-atlas = ExtResource("2_5mich")
-region = Rect2(0, 444, 120, 148)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ockgl"]
-atlas = ExtResource("2_5mich")
-region = Rect2(120, 444, 120, 148)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rys4d"]
-atlas = ExtResource("2_5mich")
-region = Rect2(240, 444, 120, 148)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0a81s"]
-atlas = ExtResource("2_5mich")
-region = Rect2(360, 444, 120, 148)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_cixe7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fya37")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lqvii")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0hple")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_asmar")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3nrs8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vt4l4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ai5th")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cncc6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_upoy5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8koch")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_585f2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_acmja")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nckwh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ockgl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rys4d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0a81s")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"happy",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"mad",
-"speed": 5.0
-}]
-
-[sub_resource type="Animation" id="Animation_vy74j"]
-resource_name = "slide_to_center_from_left"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(400, 0)]
-}
+[ext_resource type="SpriteFrames" uid="uid://tql35t8n28ye" path="res://Scene/User Interfaces/Story Mode/Dialogue Folders/Dialog System/Components/User Interface/Character/SOURCE/character.tres" id="2_vy74j"]
 
 [sub_resource type="Animation" id="Animation_5mich"]
 length = 0.001
@@ -174,6 +28,86 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3nrs8"]
+resource_name = "darkens"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Reactions:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.5958281, 0.5958281, 0.5958281, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_asmar"]
+resource_name = "fade_in"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Reactions:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0hple"]
+resource_name = "fade_out"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Reactions:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vt4l4"]
+resource_name = "revert_dark"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Reactions:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.59607846, 0.59607846, 0.59607846, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vy74j"]
+resource_name = "slide_to_center_from_left"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(400, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_w3vsc"]
@@ -224,43 +158,13 @@ tracks/0/keys = {
 "values": [Vector2(400, 0), Vector2(700, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_0hple"]
-resource_name = "fade_out"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Reactions:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_asmar"]
-resource_name = "fade_in"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Reactions:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5mich"]
 _data = {
 &"RESET": SubResource("Animation_5mich"),
+&"darkens": SubResource("Animation_3nrs8"),
 &"fade_in": SubResource("Animation_asmar"),
 &"fade_out": SubResource("Animation_0hple"),
+&"revert_dark": SubResource("Animation_vt4l4"),
 &"slide_to_center_from_left": SubResource("Animation_vy74j"),
 &"slide_to_center_from_right": SubResource("Animation_w3vsc"),
 &"slide_to_left": SubResource("Animation_fya37"),
@@ -277,9 +181,10 @@ grow_vertical = 2
 script = ExtResource("1_vlpk7")
 
 [node name="Reactions" type="AnimatedSprite2D" parent="."]
-position = Vector2(220.5, 370.5)
-scale = Vector2(3.675, 3.7499995)
-sprite_frames = SubResource("SpriteFrames_cixe7")
+position = Vector2(258.18106, 550)
+scale = Vector2(0.8031255, 0.6273063)
+sprite_frames = ExtResource("2_vy74j")
+animation = &"happy"
 
 [node name="PropertyAnimations" type="AnimationPlayer" parent="."]
 libraries = {

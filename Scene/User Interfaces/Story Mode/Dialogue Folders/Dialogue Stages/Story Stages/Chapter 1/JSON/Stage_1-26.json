@@ -1,0 +1,75 @@
+{
+    "Stage": "1-26",
+    "Dialogue": [
+        {
+            "Me": "What just happened to me?",
+
+            "Narrator": ["You have realized. You have died and returned. You could say that the clerk is half right.",
+
+            "But this is the second time you fell into your demise."]
+        },
+        { 
+            "Me": "I’m not going there again.",
+
+            "Narrator": ["So, you turned around and decided to go to the other side.",
+
+            "But you stopped on your tracks, and your face widened.",
+
+            "Beyond the hallway are three root creatures walking towards you.",
+
+            "Unlike the creature earlier, these three have legs. Therefore, they are capable of walking."]
+        },
+        {
+            "Me": "Okay now, this is not looking great.",
+
+            "Narrator": ["Despite their numbers, you noticed them struggling to walk in the hallway, due to their size and walking together at the same time.",
+
+            "You took this opportunity and turned around. As you started running, you heard a rumble behind you.",
+
+            "Even though you do not want to look back, you still did and looked back at what transpired behind you.",
+
+            "Over there, the three root creatures seemed to stumble, and all of them laid atop each other.",
+
+            "You made a smirk."]
+        },
+        { 
+            "Me": "Kinda dumb…",
+
+            "Narrator": ["But, as if betraying your confidence, the root creatures merged like roots tangling together.", "They formed into a huge humanoid. An amalgamation of the three root creatures."]
+        },
+        {
+            "Me": "Are you kidding me?",
+
+            "Narrator": ["Without further ado, you began running away.",
+
+            "The huge root creature followed suit. Every step made the dungeon tremble.", 
+
+            "You reached a pile of garbage and made an attempt to climb past it.",
+
+            "But the root creature immediately reached you with its speed and dashed on you. You, with the pile of garbage, are thrown away with the momentum.",
+
+            "You fell to the ground and rolled down with the trash, with some debris and glass shards piercing through your body.",
+
+            "And when the momentum on your body disappeared, the root creature reached you and kicked your body, throwing you away.",
+
+            "Your body hit on wreckage, scattering it into debris as you roll down the ground once again.",
+
+            "As soon as the momentum is lost, you try to get on your knees.",
+
+            "But the root creature reached your position once again, and it gave you another kick and sent you flying.",
+
+            "Your body hit a wall, suddenly stopping it, and broke everything inside you at once.",
+
+            "Your body slid and slumped on the ground, leaning towards the wall, and coughed a blood.",
+
+            "With little strength remained on you, you shouted your complaint."]  
+        },
+        { 
+            "Me": "Isn’t this trial too difficult??!!! Isn’t this too much just to get asylum??!!",
+
+            "Narrator": ["The root creature reached your position and suddenly stopped before your body. It moved up its leg and kicked your body.",
+
+            "It was instant. You died instantly."]
+        }
+    ]
+}

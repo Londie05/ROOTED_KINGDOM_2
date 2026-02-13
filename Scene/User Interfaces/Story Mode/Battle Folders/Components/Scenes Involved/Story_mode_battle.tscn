@@ -55,6 +55,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_0yk27")
 battle_1_2 = Array[ExtResource("2_nqr2r")]([ExtResource("3_4l1qv")])
+battle_1_4 = Array[ExtResource("2_nqr2r")]([ExtResource("3_4l1qv")])
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1

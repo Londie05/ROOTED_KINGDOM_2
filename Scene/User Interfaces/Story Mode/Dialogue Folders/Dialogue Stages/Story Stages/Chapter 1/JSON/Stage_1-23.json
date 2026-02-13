@@ -1,73 +1,103 @@
 {
     "Stage": "1-23",
     "Dialogue": [
-        {
-            "Narrator": ["After breakfast, the three of you left immediately, which caught you off guard.", "You have not taken a bath. Nor brushed your teeth and changed clothes.", "But in the carriage you're currently riding, Beatrice cast out a spell on you and cleansed you, with Charlotte sitting beside her"],
+        {               
+            "Narrator": ["You entered the asylum and met a clerk that led you to a room.", "Upon going inside, you found out it is a room in complete darkness, only illuminated with the light from a portal, hovering from the ground.",
 
-            "Beatrice": "Would that suffice?",
+            "The clerk spoke."], 
             
-            "Charlotte": "See? She is good at using magic. She can use [ Sacred Touch ] with ease when most are struggling."
+            "Male Clerk": ["Mr. {{Name}}. This is the Trial Room.", "The portal will send you to an authorized dungeon within the Rooted Kingdom.", "As an immigrant, you will be put into a Trial.", "Trial, in simpler terms, is a test of commitment to the Republic."]
         },
         {
-            "Narrator": "You sniffed your clothes and your armpits, and found out there's no smell. As if the clothes you're wearing are newly bought.",
+            "Narrator": "As he was about to continue, you interjected.",
             
-            "Me": "Damn. you really resetted me into a new person",
+            "Me": "Hold on, I’m not dying there, am I?",
 
-            "Charlotte": "Right? No one can be compared to her. She's one of a kind.",
-
-            "Beatrice": "You two are teasing me again!"
+            "Male Clerk": ["Be assured, Mr. {{Name}}.", "While there are dangers, you will not be killed. I would say, you will suffer.", "But, just so you know, not going to the trial will not grant you citizenship in the Republic."]
         },
         {
-            "Narrator": ["Laughter echoed throughout the carriage.",
+            "Me": "Okay, fine. I don’t have anything to lose in the first place.",
 
-            "But then, you got curious.",
+            "Male Clerk": "Well then, Mr. {{Name}}. Please enter the portal. Good luck.",
 
-            "The three of you are going to the meeting with \"His Excellency,\"", "Frederick of Masons. He is the president of this place, the Republic of Aethelfrith.", "The purpose is to bring up the rumors about goblins summoning humans for food."],
+            "Narrator": ["The clerk patted you on your shoulder, but actually, you became nervous.",
 
-            "Me": "Hey, Beatrice, Charlotte. How would the meeting usually go here?",
+            "You began contemplating everything that transpired.", "The first encounter with the goblins, first encounter with Beatrice and Charlotte, and your first step on the Aethelfrith Republic.",
 
-            "Charlotte": ["Well, since it's a meeting with His Excellency, it will involve both the Senate and Factions.", "Since you're in the boundary of an immigrant and outsider, Ser Gregory will be the one representing you, with Beatrice and I as benefactors.",
+            "Now that you thought about it, you were just following along them, like a moss following the current.",
 
-            "A representative of each faction will ask you questions, on which you will be the one answering.", "Then, you will be asked by the adviser on His Excellency’s behalf, which both Beatrice and I answer on your behalf.", "The Senate will be the ones making a decision."]
+            "At this point, you can’t go back. Beatrice will be anguished and Charlotte might be disappointed.",
+
+            "With a step, you made a decision.",
+
+            "You approached the portal and started to feel a force from it that is pulling you in.",
+
+            "As you were about to reach the portal, you closed your eyes and went in.",
+
+            "The portal consumed you—and you found yourself in a hallway of a dungeon, full of wreckage of carriages"]
         },
         {
-            "Narrator": "You thought about her words, and found out it is more of a hearing than a meeting. You are basically going to be interrogated.",
+            "Me": "What on earth happened here?",
 
-            "Me": "It seems to me that there's still some doubt from them. This setup is more of an interrogation.",
+            "Narrator": ["Considering that this is a part of the Trial, you ventured further from the wreckage.",
 
-            "Charlotte": "Don't take it too seriously. We already have enough evidence to prove the rumors are true."
+            "You stumbled upon more wreckage and a pile of garbage, on which you climbed over to go to the other side.",
+
+            "Their smell is strong. You began to hold your nose to avoid smelling this strong foul odor.",
+
+            "And as you ventured further, you began seeing more and more wreckage, and you began to notice some wreckage with objects made of gold and rusted weapons.",
+
+            "After looking for a while, you decided to investigate a wreckage nearby. It has a golden chest, which could be a trap. But, according to the clerk, he can’t die.",
+
+            "After garnering a bit of courage, you decided to open the chest.",
+
+            "You were about to touch it, but it suddenly opened and a creature sprang from the inside.",
+
+            "It is coated—or in better description—seemingly made of roots.",
+
+            "You moved back as it sprang. But—",
+
+            "Before assessing the situation, you heard a snap, like a crack of a whip.",
+
+            "Your vision began tilting, despite not tilting your head.",
+
+            "You haven’t felt anything wrong.",
+
+            "But you can’t feel your body. Nor your mind.",
+
+            "Your vision seemed to be slipping.",
+
+            "And suddenly, you dropped to the ground, at least what was lost from your body.",
+
+            "Then, you saw your body slumped to the ground, right before you.",
+
+            "You began losing yourself.",
+
+            "Eventually, you succumbed to nothingness.",
+
+            "You died.",
+
+            "…",
+
+            "……",
+
+            "………"]
         },
         {
-            "Me": "I think they will be interested in me more than the rumors. I don't like attention for something trivial, just saying.",
+            "Me": "—!",
 
-            "Charlotte": "What are you talking about?"
+            "Narrator": "Your head started aching, so bad, you knelt on the ground."
         },
         {
-            "Me": "Well, I don't mind if it's the ladies.",
+            "Me": "It hurts! It hurts! It hurts! It hurts! It hurts! It hurts! It hurts! It hurts! It hurts! It hurts! It hurts!It hurts—!",
 
-            "Charlotte": "Urgh…you're a man alright",
+            "Narrator": ["You began uttering the words of excruciating pain.",
 
-            "Narrator": ["And, moments later, the carriage arrived before the Palace, at the backyard.", "As the three of you went out, you saw the Palace in daylight.", "Maids sprinkling the grasses and the shrubs, and guards standing before the pathway.", "As the three of you walk along the path, you can't help but feel intimated, while Beatrice and Charlotte walk with grandeur and elegance.",
+            "The pain inflicted on you is too much to handle. You began hyperventilating.",
 
-            "You entered the Palace with them, and went to the Courtroom. Currently, the three of you are standing before a door that leads inside.",
+            "Somehow, you found yourself back to where you began.",
 
-            "Beatrice asked you."], 
-            
-            "Beatrice": "#Name, are you ready?" 
-        },
-        {
-            "Narrator": "You smirked.",
-            
-            "Me": "Of course, I am. I have no idea what would transpire inside at all" 
-        },
-        {
-            "Narrator": "Beatrice gave a short giggle.",
-            "Beatrice": "Well, whatever gives you confidence. Just remember, we're at your side."
-        },
-        {
-            "Narrator": ["With that, the door opens, revealing the interior, similar to the Senate courtroom on Earth.", "In fact, you could say it is the Senate courtroom.",
-
-            "Inside, the Senate occupied the left side of the President, while the Factions occupied the right side.", "The President is sitting in a chair facing the three of you."]
+            "At this point, the Trial has just begun."]
         }
     ]
 }

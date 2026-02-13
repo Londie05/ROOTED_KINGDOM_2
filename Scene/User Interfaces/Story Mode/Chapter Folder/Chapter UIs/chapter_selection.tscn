@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cdfpkjhi1gi77" path="res://Asset/User Interface/button_ui.png" id="3_g6080"]
 [ext_resource type="PackedScene" uid="uid://bg08wns7ql4g4" path="res://Scene/User Interfaces/Story Mode/Chapter Folder/Chapter UIs/chapter_panel.tscn" id="4_ntk75"]
 [ext_resource type="Script" uid="uid://bo0elohhqpbmv" path="res://Scene/User Interfaces/Story Mode/Chapter Folder/Chapter UIs/chapter_manager.gd" id="4_oj4gm"]
-[ext_resource type="Texture2D" uid="uid://cao4jwwshsvv3" path="res://Asset/Characters/images.png" id="5_3ywgb"]
 [ext_resource type="PackedScene" uid="uid://c7jklw6ydj26y" path="res://Scene/User Interfaces/Story Mode/Chapter Folder/Chapters/Scene/Chapter 1/Chapter files/Chapter_1.tscn" id="6_oj4gm"]
+[ext_resource type="Texture2D" uid="uid://he3dstfcqlb0" path="res://Asset/User Interface/%Storymode%/Rollings Plains.jpg" id="8_pr2t5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_78ck1"]
 
@@ -79,7 +79,7 @@ offset_right = 455.0
 offset_bottom = 587.0
 chp_title = "The World of Magic"
 chp_number = 1
-chp_img = ExtResource("5_3ywgb")
+chp_img = ExtResource("8_pr2t5")
 chp_scene = ExtResource("6_oj4gm")
 
 [connection signal="pressed" from="User Interface/Back" to="." method="_on_back_pressed"]

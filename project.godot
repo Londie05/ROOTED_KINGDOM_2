@@ -26,7 +26,3 @@ window/size/mode=3
 window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-
-[rendering]
-
-textures/canvas_textures/default_texture_filter=0
