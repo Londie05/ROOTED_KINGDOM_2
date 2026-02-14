@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c383wxvj0hh7q"]
+[gd_scene load_steps=27 format=3 uid="uid://c383wxvj0hh7q"]
 
 [ext_resource type="PackedScene" uid="uid://bplpwpncwxjh4" path="res://Scene/CardUI.tscn" id="1_fxwnf"]
 [ext_resource type="Script" uid="uid://1mh1lv3r2q5c" path="res://Scene/BattleManager.gd" id="1_vsh2u"]
@@ -17,14 +17,11 @@
 [ext_resource type="Shader" uid="uid://dus4tb4wupj8i" path="res://Scene/shaders/Enemy2.gdshader" id="14_4l1qv"]
 [ext_resource type="Shader" uid="uid://b0i6r2sa125wn" path="res://Scene/shaders/Enemy3.gdshader" id="15_jxk86"]
 [ext_resource type="Shader" uid="uid://sg6ate85e70j" path="res://Scene/shaders/Enemy4.gdshader" id="16_3314g"]
-[ext_resource type="SpriteFrames" uid="uid://bx4np5blq5ol6" path="res://Resources/Animation resourcess/Enemy animations/FloorBoss10.tres" id="18_bkjeu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4x6d6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vsh2u"]
 size = Vector2(168.61078, 176.06259)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_bkjeu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3314g"]
 shader = ExtResource("13_4l1qv")
@@ -193,7 +190,6 @@ target_height = 210.0
 [node name="AnimSprite" type="AnimatedSprite2D" parent="PlayerTeam/Dummy3"]
 position = Vector2(127.00001, 397)
 scale = Vector2(0.7, 0.7)
-sprite_frames = SubResource("SpriteFrames_bkjeu")
 
 [node name="HealthBar" type="ProgressBar" parent="PlayerTeam/Dummy3"]
 offset_left = 77.0
@@ -460,8 +456,6 @@ target_height = 250.0
 material = SubResource("ShaderMaterial_hjqj7")
 position = Vector2(-875.94, 467.46875)
 scale = Vector2(-0.42941666, 0.37955877)
-sprite_frames = ExtResource("18_bkjeu")
-frame_progress = 0.9015187
 
 [node name="HealthBar" type="ProgressBar" parent="EnemyTeam/Enemy4"]
 offset_left = -923.0
