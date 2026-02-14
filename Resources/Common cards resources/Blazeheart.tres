@@ -8,13 +8,12 @@
 script = ExtResource("1_hcvod")
 card_name = "Blaze heart"
 card_image = ExtResource("1_hhpro")
-description = "Deals 20 damage to enemy and stunning it for 1 turn"
+description = "Deals 25 damage to two enemies on the  field"
 damage = 25
-stuns_enemy = true
 mana_cost = 2
-aoe_targets = 1
+is_aoe = true
+aoe_targets = 2
 critical_chance = 30
-stun_duration = 1
 shield_growth = 0
 heal_growth = 0
 sound_effect = ExtResource("3_cfun6")

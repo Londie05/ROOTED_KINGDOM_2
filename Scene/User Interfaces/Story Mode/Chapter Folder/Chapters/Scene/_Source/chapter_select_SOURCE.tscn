@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://djtci6ehgyraf"]
 
 [ext_resource type="Script" uid="uid://cv20pydghwwqy" path="res://Scene/User Interfaces/Story Mode/Chapter Folder/Chapters/Script/chapter_stage_select_.gd" id="1_aduyx"]
-[ext_resource type="PackedScene" uid="uid://diw3xv0en0ynt" path="res://Scene/User Interfaces/UI scenes/background_i.tscn" id="2_u7fcg"]
+[ext_resource type="PackedScene" uid="uid://daoiee6s68xd0" path="res://Scene/User Interfaces/UI scenes/background_i.tscn" id="2_u7fcg"]
 [ext_resource type="FontFile" uid="uid://dtdw2k1jvjn37" path="res://Asset/Fonts/times.ttf" id="3_f4mfh"]
 [ext_resource type="Texture2D" uid="uid://cdfpkjhi1gi77" path="res://Asset/User Interface/button_ui.png" id="4_aqaon"]
 [ext_resource type="Script" uid="uid://b1ifmqw0neycm" path="res://Scene/User Interfaces/Story Mode/Chapter Folder/Stage UIs/stage_manager.gd" id="5_wby1f"]
@@ -36,6 +36,7 @@ offset_bottom = 651.0
 
 [node name="Background I" parent="Background" instance=ExtResource("2_u7fcg")]
 layout_mode = 1
+offset_bottom = 76.0
 
 [node name="Back" type="Button" parent="."]
 layout_mode = 0

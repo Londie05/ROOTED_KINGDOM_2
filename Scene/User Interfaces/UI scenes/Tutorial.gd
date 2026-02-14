@@ -123,7 +123,7 @@ func show_page_play():
 	add_text("Select your desired floor from the list. Once a floor is highlighted, click 'Choose Character' to proceed to team selection. (You can also see the reward of the floor at the right side)")
 	
 
-	add_image("res://Scene/User Interfaces/UI scenes/Manual images/Battle Manual/Screenshot 2026-02-09 235115.png") 
+	add_image("res://Scene/User Interfaces/UI scenes/Manual images/Battle Manual/Screenshot 2026-02-09 235130.png") 
 	add_text("Pick a Hero to lead your party. If a character is currently locked, you can unlock them instantly using Gems.")
 	
 	add_image("res://Scene/User Interfaces/UI scenes/Manual images/Battle Manual/Screenshot 2026-02-09 235141.png")
@@ -132,11 +132,11 @@ func show_page_play():
 	add_image("res://Scene/User Interfaces/UI scenes/Manual images/Battle Manual/Screenshot 2026-02-09 235315.png")
 	add_text("Your hand contains the skills available for this turn. Analyze your cards to plan the most effective sequence of attacks and defenses.")
 	
-	add_image("res://Scene/User Interfaces/UI scenes/Manual images/Battle Manual/Screenshot 2026-02-09 235323.png")
-	add_text("Toggle 'Show Card Info' to view detailed descriptions, status effects, and specific mechanics for each card in your hand.")
-	
 	add_image("res://Scene/User Interfaces/UI scenes/Manual images/Battle Manual/Screenshot 2026-02-09 235333.png")
 	add_text("Manage your resources carefully. Each card displays a Mana cost; ensure your current Mana (shown on the right) is sufficient before attempting to play a card into a slot.")
+	
+	add_image("res://Scene/User Interfaces/UI scenes/Manual images/Battle Manual/Screenshot 2026-02-09 235323.png")
+	add_text("Toggle 'Show Card Info' to view detailed descriptions, status effects, and specific mechanics for each card in your hand.")
 	
 	add_image("res://Scene/User Interfaces/UI scenes/Manual images/Battle Manual/Screenshot 2026-02-09 235440.png")
 	add_text("When multiple enemies are present, click on a specific monster to lock your focus. This ensures all single-target abilities hit your intended mark.")
