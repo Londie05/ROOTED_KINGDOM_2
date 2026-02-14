@@ -51,7 +51,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="PlayButton" type="Button" parent="Visuals/VBoxContainer"]
-z_index = 10
+[node name="ManaLabel" type="Label" parent="Visuals/VBoxContainer"]
 layout_mode = 2
-mouse_filter = 1
+theme_override_font_sizes/font_size = 10
+text = "Mana cost: 1"
+horizontal_alignment = 1

@@ -197,7 +197,10 @@ func update_details(data: CharacterData):
 			desc_label.modulate = Color(0.535, 0.899, 0.935, 1.0)
 			desc_label.text = "[COMMON CARD]\n" + c_name + ":" + "\n" + c_desc
 		row.add_child(desc_label)
-
+		
+		var mana_lbl = c_card.get_node_or_null("Visuals/VBoxContainer/ManaLabel")
+		if mana_lbl:
+			mana_lbl.hide()
 
 func _on_upgrades_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scene/CharacterUpgradeUI.tscn")

@@ -113,7 +113,6 @@ func update_hero_stats_ui():
 	hp_label.text = "HP: " + str(cur_hp) + " -> " + str(next_hp)
 	
 	var cost = Global.get_upgrade_cost(selected_hero.name)
-	# --- Display Crystal cost ---
 	$UpgradePanel/HBoxContainer/StatsVBox/UpgradeCharButton.text = "Upgrade (" + str(cost) + " Crystals)"
 
 func load_hero_cards(hero: CharacterData):
@@ -129,21 +128,23 @@ func load_hero_cards(hero: CharacterData):
 		card_hbox.add_child(card_node)
 		card_node.setup(card)
 		
-		card_node.is_playable = false
+		card_node.allow_hover = false
+		card_node.allow_inspect = false 
+		card_node.is_playable = true 
 		
-		var btn = card_node.get_node("Visuals/VBoxContainer/PlayButton")
-		btn.text = "Select"
-		
+		var mana_lbl = card_node.get_node_or_null("Visuals/VBoxContainer/ManaLabel")
+		if mana_lbl: mana_lbl.hide()
+			
 		if selected_card and selected_card.card_name == card.card_name:
 			card_node.modulate = Color(1.5, 1.5, 1.5)
-			
-		btn.pressed.connect(_on_card_selected.bind(card))
+		
+		if not card_node.card_clicked.is_connected(_on_card_selected):
+			card_node.card_clicked.connect(func(_node): _on_card_selected(card))
 
 func _on_card_selected(card: CardData):
 	selected_card = card
 	var cur_lvl = Global.get_card_level_number(card) 
 	var internal_lvl = Global.card_levels.get(card.card_name, 0) 
-	
 	card_name_lbl.text = card.card_name
 	$UpgradePanel/HBoxContainer/CardsVBox/CardDetailVBox/CardLvlLabel.text = "Level: " + str(cur_lvl)
 	

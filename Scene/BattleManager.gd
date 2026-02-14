@@ -214,8 +214,21 @@ func create_card_instance(data: CardData):
 	tween.tween_property(new_card, "modulate:a", 1.0, 0.3)
 	tween.tween_property(new_card, "position:y", 0, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	
-	new_card.get_node("Visuals/VBoxContainer/PlayButton").pressed.connect(_on_card_played.bind(data, new_card))
+	if not new_card.card_clicked.is_connected(_on_card_interaction):
+		new_card.card_clicked.connect(_on_card_interaction)
+
+func _on_card_interaction(card_node: Node):
+	if phases[current_phase_index] != "player": return
+	if is_processing_turn: return
 	
+	var data = card_node.card_data
+	
+	if card_node.is_in_hand:
+		try_play_card_to_slot(data, card_node)
+		
+	elif card_node in slotted_nodes:
+		return_card_to_hand(data, card_node)
+		
 func end_current_phase():
 	if sfx_player:
 		sfx_player.stop()
@@ -229,8 +242,7 @@ func end_current_phase():
 	
 	start_current_phase()
 
-func _on_card_played(data: CardData, card_node: Node):
-	if phases[current_phase_index] != "player": return
+func try_play_card_to_slot(data: CardData, card_node: Node):
 	if slotted_nodes.size() >= max_slots: return 
 	if current_mana < data.mana_cost:
 		if card_node.has_method("animate_error"):
@@ -238,32 +250,16 @@ func _on_card_played(data: CardData, card_node: Node):
 		return
 	
 	current_mana -= data.mana_cost
-	
-
-	if "is_in_hand" in card_node:
-		card_node.is_in_hand = false
+	card_node.is_in_hand = false
 
 	slotted_nodes.append(card_node) 
 	card_node.get_parent().remove_child(card_node)
 	slot_container.add_child(card_node)
+	card_node.reset_visuals_instantly()
+	if card_node.has_method("reset_card_visuals"):
+		card_node.reset_card_visuals()
 	
-	# 3. Reset the color of THIS specific card immediately
-	# We target the 'content' node specifically since that's what turned dark
-	var content = card_node.get_node_or_null("Visuals/VBoxContainer")
-	if content:
-		content.modulate = Color(1, 1, 1)
-	card_node.modulate = Color(1, 1, 1)
-
-	# 4. Now update the rest of the hand
 	update_mana_ui()
-	
-	# 5. Handle the button logic
-	var btn = card_node.get_node("Visuals/VBoxContainer/PlayButton")
-	if btn.pressed.is_connected(_on_card_played):
-		btn.pressed.disconnect(_on_card_played)
-	
-	btn.pressed.connect(return_card_to_hand.bind(data, card_node))
-	btn.text = "Return"
 	
 func return_card_to_hand(data: CardData, card_node: Node):
 	if is_processing_turn: return
@@ -278,14 +274,6 @@ func return_card_to_hand(data: CardData, card_node: Node):
 	
 	if "is_in_hand" in card_node:
 		card_node.is_in_hand = true
-	
-	var btn = card_node.get_node("Visuals/VBoxContainer/PlayButton")
-	if btn.pressed.is_connected(return_card_to_hand):
-		btn.pressed.disconnect(return_card_to_hand)
-		
-	btn.pressed.connect(_on_card_played.bind(data, card_node))
-	
-	btn.text = "Mana Cost:" + str(data.mana_cost)
 	
 	update_mana_ui()
 		
@@ -310,24 +298,18 @@ func update_mana_ui():
 	for card in hand_container.get_children():
 		if "card_data" in card and card.card_data != null:
 			var cost = card.card_data.mana_cost
-			var btn = card.get_node("Visuals/VBoxContainer/PlayButton")
 			var content = card.get_node("Visuals/VBoxContainer") 
 			
 			if not is_player_phase or cost > current_mana:
-				btn.disabled = true
-				content.modulate = Color(0.4, 0.4, 0.4) 
+				content.modulate = Color(0.5, 0.5, 0.5) 
 			else:
-				btn.disabled = false
 				content.modulate = Color(1, 1, 1)
 
 	for card in slot_container.get_children():
 		card.modulate = Color(1, 1, 1)
-		var btn = card.get_node_or_null("Visuals/VBoxContainer/PlayButton")
 		var content = card.get_node_or_null("Visuals/VBoxContainer")
 		if content:
-			content.modulate = Color(1, 1, 1) # Force it to white
-		if btn:
-			btn.disabled = false
+			content.modulate = Color(1, 1, 1)
 
 func reshuffle_discard_into_deck():
 	if discard_pile.is_empty():

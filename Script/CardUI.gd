@@ -1,12 +1,21 @@
 extends MarginContainer
 
+# 1. Add a custom signal so the BattleManager knows when we click this card
+signal card_clicked(card_node)
+
 static var currently_inspecting_card: MarginContainer = null
 
 var card_data: CardData 
 @onready var visuals = $Visuals
 @onready var card_image_node = $Visuals/VBoxContainer/CardImage
-@onready var play_button = $Visuals/VBoxContainer/PlayButton
+# 2. Replaced play_button with mana_label
+@onready var mana_label = $Visuals/VBoxContainer/ManaLabel 
 @onready var desc_label = $Visuals/VBoxContainer/CardImage/MarginContainer/DescriptionLabel
+
+var allow_hover: bool = true
+var click_locked: bool = false
+var current_tween: Tween = null
+var allow_inspect: bool = true
 
 var is_playable: bool = true
 var is_in_hand: bool = true
@@ -23,6 +32,7 @@ func _ready():
 	visuals.pivot_offset = visuals.size / 2
 
 func setup(data: CardData):
+	# Connect mouse signals for hovering
 	if not mouse_entered.is_connected(_on_mouse_entered):
 		mouse_entered.connect(_on_mouse_entered)
 	if not mouse_exited.is_connected(_on_mouse_exited):
@@ -32,38 +42,58 @@ func setup(data: CardData):
 	if data.card_image:
 		card_image_node.texture = data.card_image
 	
-	play_button.text = "Mana cost: " + str(data.mana_cost)
+	if mana_label:
+		mana_label.text = "Mana: " + str(data.mana_cost)
 	
 	if desc_label:
 		desc_label.text = data.description
 
 func _gui_input(event):
-	if not is_playable or not is_in_hand: return
+	if not is_playable or click_locked: return
 	
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.double_click:
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			click_locked = true
+			get_tree().create_timer(0.15).timeout.connect(func(): click_locked = false)
+			
+			if is_inspecting:
+				stop_inspecting()
+			elif currently_inspecting_card == null:
+				card_clicked.emit(self)
+			
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			if not allow_inspect: return 
+			
 			if is_inspecting:
 				stop_inspecting()
 			elif currently_inspecting_card == null:
 				start_inspecting()
 
 func _on_mouse_entered():
-	if not is_playable or is_inspecting or not is_in_hand: return
-	if currently_inspecting_card != null: return
+	if not allow_hover or not is_playable or is_inspecting or not is_in_hand: return
 	
-	z_index = 10
-	var tween = create_tween().set_parallel(true)
-	tween.tween_property(visuals, "scale", HOVER_SCALE, 0.1)
-	tween.tween_property(visuals, "position:y", HOVER_PULL_UP, 0.1)
+	if current_tween: current_tween.kill()
+	current_tween = create_tween().set_parallel(true)
+	current_tween.tween_property(visuals, "scale", HOVER_SCALE, 0.1)
+	current_tween.tween_property(visuals, "position:y", HOVER_PULL_UP, 0.1)
 
 func _on_mouse_exited():
-	if not is_playable or is_inspecting or not is_in_hand: return
+	if not allow_hover or not is_playable or is_inspecting or not is_in_hand: return
 	
-	z_index = 0
-	var tween = create_tween().set_parallel(true)
-	tween.tween_property(visuals, "scale", Vector2.ONE, 0.1)
-	tween.tween_property(visuals, "position:y", 0.0, 0.1)
+	if current_tween: current_tween.kill()
+	current_tween = create_tween().set_parallel(true)
+	current_tween.tween_property(visuals, "scale", Vector2.ONE, 0.1)
+	current_tween.tween_property(visuals, "position:y", 0.0, 0.1)
 
+func reset_visuals_instantly():
+	if current_tween:
+		current_tween.kill()
+	
+	visuals.scale = Vector2.ONE
+	visuals.position = Vector2.ZERO
+	z_index = 0
+	modulate = Color.WHITE
+	
 func start_inspecting():
 	if is_inspecting or currently_inspecting_card != null: return
 	
@@ -73,7 +103,6 @@ func start_inspecting():
 	original_z_index = z_index
 	z_index = 100 
 	pivot_offset = size / 2 
-	play_button.disabled = true
 	
 	spacer_node = Control.new()
 	spacer_node.custom_minimum_size = size
@@ -115,7 +144,6 @@ func _on_stop_inspecting_finished():
 	currently_inspecting_card = null
 	
 	z_index = original_z_index
-	play_button.disabled = false
 	visuals.position = Vector2.ZERO
 	
 	if get_global_rect().has_point(get_global_mouse_position()):
