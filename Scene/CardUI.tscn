@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bplpwpncwxjh4"]
 
 [ext_resource type="Script" uid="uid://dpm51wtebqca4" path="res://Script/CardUI.gd" id="1_kwle2"]
-[ext_resource type="Texture2D" uid="uid://dux2bf8i4324q" path="res://Asset/Characters/Charlotte/Charlotte 4 cards/card 1.jpg" id="2_qh7ip"]
+[ext_resource type="Texture2D" uid="uid://b1ehuwxki08m1" path="res://Asset/Common cards/Slash.webp" id="2_c4gtt"]
 
 [node name="CardUI" type="MarginContainer"]
 custom_minimum_size = Vector2(100, 140)
@@ -25,30 +25,32 @@ mouse_filter = 0
 custom_minimum_size = Vector2(100, 120)
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("2_qh7ip")
+texture = ExtResource("2_c4gtt")
 expand_mode = 5
 stretch_mode = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="Visuals/VBoxContainer/CardImage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 98
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 7
+
+[node name="DescriptionLabel" type="Label" parent="Visuals/VBoxContainer/CardImage/MarginContainer"]
+custom_minimum_size = Vector2(60, 45)
+layout_mode = 2
+size_flags_vertical = 13
+theme_override_constants/line_spacing = 1
+theme_override_font_sizes/font_size = 6
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PlayButton" type="Button" parent="Visuals/VBoxContainer"]
 z_index = 10
 layout_mode = 2
-
-[node name="DescriptionPanel" type="Panel" parent="Visuals"]
-layout_mode = 2
-
-[node name="DescriptionLabel" type="Label" parent="Visuals/DescriptionPanel"]
-layout_mode = 0
-offset_top = 28.0
-offset_right = 97.0
-offset_bottom = 146.0
-theme_override_font_sizes/font_size = 12
-autowrap_mode = 3
-
-[node name="CloseButton" type="Button" parent="Visuals/DescriptionPanel"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -101.0
-offset_bottom = 27.0
-grow_horizontal = 0

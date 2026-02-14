@@ -30,8 +30,6 @@ extends Control
 @onready var hand_container = %Hand
 @onready var mana_label = $CanvasLayer/EnergyLabel
 
-@onready var global_info_button = $CanvasLayer/GlobalInfoButton
-var is_info_mode_on: bool = false
 
 var mana_popup_scene = preload("res://Scene/ManaPopup.tscn") 
 var card_scene = preload("res://Scene/CardUI.tscn")
@@ -74,12 +72,6 @@ func _ready():
 	
 	await get_tree().process_frame 
 	
-	var btn = get_node_or_null("CanvasLayer/GlobalInfoButton")
-	if btn:
-		if not btn.pressed.is_connected(_on_global_info_button_pressed):
-			btn.pressed.connect(_on_global_info_button_pressed)
-	else:
-		print("WARNING: 'GlobalInfoButton' not found in Battlefield Scene")
 	
 	if Global.current_tower_floor == 10:
 		bgm_player.stream = load("res://Asset/Sound effects/background effect3.mp3")
@@ -222,8 +214,6 @@ func create_card_instance(data: CardData):
 	tween.tween_property(new_card, "modulate:a", 1.0, 0.3)
 	tween.tween_property(new_card, "position:y", 0, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	
-	if new_card.has_method("toggle_info_capability"):
-		new_card.toggle_info_capability(true)
 	new_card.get_node("Visuals/VBoxContainer/PlayButton").pressed.connect(_on_card_played.bind(data, new_card))
 	
 func end_current_phase():
@@ -247,13 +237,9 @@ func _on_card_played(data: CardData, card_node: Node):
 			card_node.animate_error() 
 		return
 	
-	# 1. Pay Mana FIRST
 	current_mana -= data.mana_cost
 	
-	# 2. Move the card to the slot BEFORE calling update_mana_ui
-	if card_node.has_method("set_description_visible"):
-		card_node.set_description_visible(false)
-	
+
 	if "is_in_hand" in card_node:
 		card_node.is_in_hand = false
 
@@ -292,10 +278,6 @@ func return_card_to_hand(data: CardData, card_node: Node):
 	
 	if "is_in_hand" in card_node:
 		card_node.is_in_hand = true
-	
-	if card_node.has_method("set_description_visible"):
-		# Show description again if the global info toggle is ON
-		card_node.set_description_visible(is_info_mode_on)
 	
 	var btn = card_node.get_node("Visuals/VBoxContainer/PlayButton")
 	if btn.pressed.is_connected(return_card_to_hand):
@@ -542,16 +524,6 @@ func spawn_mana_popup(amount: int):
 	popup.global_position = mana_label.global_position + Vector2(20, -20)
 	popup.setup(amount)
 
-func _on_global_info_button_pressed():
-	is_info_mode_on = !is_info_mode_on
-	
-	var btn = get_node_or_null("CanvasLayer/GlobalInfoButton")
-	if btn:
-		btn.text = "Hide Card Info" if is_info_mode_on else "Show Card Info"
-
-	for card in hand_container.get_children():
-		if is_instance_valid(card) and card.has_method("set_description_visible"):
-			card.set_description_visible(is_info_mode_on)
 
 func _on_enemy_clicked(clicked_enemy):
 	for enemy in get_alive_enemies():

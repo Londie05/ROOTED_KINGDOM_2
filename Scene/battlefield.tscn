@@ -275,15 +275,8 @@ anchor_bottom = 0.0050000004
 offset_left = 3.0
 offset_top = 3.0
 offset_right = 413.0
-offset_bottom = 160.76
+offset_bottom = 197.76
 theme_override_constants/separation = 20
-
-[node name="GlobalInfoButton" type="Button" parent="CanvasLayer"]
-offset_left = 993.0
-offset_top = 551.0
-offset_right = 1119.0
-offset_bottom = 582.0
-text = "Show card info"
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="CanvasLayer"]
 volume_db = -7.829
