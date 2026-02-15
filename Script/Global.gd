@@ -7,6 +7,12 @@ var master_volume: float = 1.0
 
 var is_muted: bool = false
 
+# Account Management
+var all_accounts: Dictionary = {} # Stores { "unique_id": "Player Name" }
+var current_account_id: String = ""
+var is_renaming_mode: bool = false 
+const MASTER_SAVE_PATH = "user://master_config.save"
+
 # --- MUSIC TRACKS ---
 var bgm_tracks: Dictionary = {
 	"Music 1": "res://Asset/Backgrounds/Story Mode/bgMusic2.ogg",
@@ -25,7 +31,9 @@ var allowed_bgm_scenes: Array[String] = [
 	"TowerSelection",
 	"CharacterUpgradeUi",
 	"Tutorial",
-	"Chapter_Selection"
+	"Chapter_Selection",
+	"NameEntry",
+	"AccountSelection"
 ]
 
 # For backgrounds
@@ -130,6 +138,87 @@ func _ready() -> void:
 	if get_tree().current_scene:
 		check_and_play_bgm(get_tree().current_scene.name)
 
+func get_current_save_path() -> String:
+	if current_account_id == "":
+		return "user://temp_data.save" # Fallback
+	return "user://acc_" + current_account_id + ".save"
+
+func save_master_config():
+	var config = ConfigFile.new()
+	config.set_value("Accounts", "list", all_accounts)
+	config.set_value("Accounts", "last_played_id", current_account_id)
+	config.save(MASTER_SAVE_PATH)
+	
+func load_master_config() -> bool:
+	var config = ConfigFile.new()
+	if config.load(MASTER_SAVE_PATH) != OK:
+		return false
+	
+	all_accounts = config.get_value("Accounts", "list", {})
+	var last_id = config.get_value("Accounts", "last_played_id", "")
+	
+	if current_account_id == "" and last_id != "":
+		current_account_id = last_id
+		load_game()
+		return true
+		
+	return !all_accounts.is_empty()
+	
+func delete_account_data(target_acc_id: String) -> void:
+	# Remove from the Dictionary
+	if all_accounts.has(target_acc_id):
+		all_accounts.erase(target_acc_id)
+	
+	# Delete the actual save file
+	var file_path = "user://acc_" + target_acc_id + ".save"
+	if FileAccess.file_exists(file_path):
+		DirAccess.remove_absolute(file_path)
+		print("Deleted save file: " + file_path)
+	
+	# Update the Master Config so the game forgets this account exists
+	save_master_config()
+	
+func logout():
+	current_account_id = ""
+	player_name = ""
+	# Reset other temporary gameplay data here if needed
+	reset_player_data()
+	
+	# We update the master config so it doesn't try to auto-resume the old ID
+	var config = ConfigFile.new()
+	if config.load(MASTER_SAVE_PATH) == OK:
+		config.set_value("Accounts", "last_played_id", "") 
+		config.save(MASTER_SAVE_PATH)
+		
+func prepare_new_account_creation():
+	# 1. Reset all game variables to default
+	reset_player_data()
+	
+	# 2. Generate a unique ID (Timestamp + Random Number)
+	current_account_id = str(Time.get_unix_time_from_system()) + "_" + str(randi() % 1000)
+	
+	# 3. Set flag so NameEntry knows we are new
+	is_renaming_mode = false
+	
+func complete_account_creation(new_name: String):
+	player_name = new_name
+	
+	# Register in the master list
+	all_accounts[current_account_id] = new_name
+	
+	save_game() # Creates the user://acc_[id].save file
+	save_master_config() # Updates the list of accounts
+	
+func complete_rename(new_name: String):
+	player_name = new_name
+	
+	# Update the name in the master list
+	if all_accounts.has(current_account_id):
+		all_accounts[current_account_id] = new_name
+		
+	save_game()
+	save_master_config()
+	is_renaming_mode = false
 func toggle_mute():
 	is_muted = !is_muted
 	apply_master_volume(master_volume) 
@@ -286,6 +375,8 @@ func upgrade_character(data: CharacterData) -> bool:
 
 # --- SYSTEM (SAVE/LOAD) ---
 func save_game():
+	if current_account_id == "": return
+		
 	var config = ConfigFile.new()
 	config.set_value("Progression", "character_levels", character_levels)
 	config.set_value("Progression", "player_name", player_name)
@@ -306,15 +397,15 @@ func save_game():
 	config.set_value("settings", "master_volume", master_volume)
 	config.set_value("settings", "is_muted", is_muted)
 	
-	var err = config.save(SAVE_PATH)
+	var err = config.save(get_current_save_path())
 	if err == OK:
-		print("Game Saved!")
-	else:
-		print("Error saving game.")
-	
+		print("Game Saved to: " + get_current_save_path())
+		
 func load_game():
+	if current_account_id == "": return
+	
 	var config = ConfigFile.new()
-	var err = config.load(SAVE_PATH)
+	var err = config.load(get_current_save_path())
 	if err != OK: return
 	
 	character_levels = config.get_value("Progression", "character_levels", {})
@@ -341,7 +432,6 @@ func load_game():
 func apply_master_volume(value: float):
 	var bus_index = AudioServer.get_bus_index("Master")
 	
-	# If global mute is ON, force mute the bus
 	if is_muted:
 		AudioServer.set_bus_mute(bus_index, true)
 	else:
@@ -353,6 +443,7 @@ func apply_master_volume(value: float):
 			AudioServer.set_bus_mute(bus_index, true)
 		
 func reset_player_data():
+	# Resets variables only. Does not delete file.
 	player_name = ""
 	small_gems = 5000
 	crystal_gems = 5000
@@ -364,8 +455,7 @@ func reset_player_data():
 	current_bg_name = "Default"
 	current_bgm_track_name = "Music 1"
 	stages_unlocked = ["1-1"]
-	if FileAccess.file_exists(SAVE_PATH):
-		DirAccess.remove_absolute(SAVE_PATH)
+
 
 # --- TEAM ---
 func add_to_team(data: CharacterData):

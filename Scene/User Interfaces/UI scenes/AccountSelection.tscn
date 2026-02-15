@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddc5gmlkuoeve"]
+
+[ext_resource type="Script" uid="uid://daropmj6mtrge" path="res://Scene/User Interfaces/UI scenes/AccountSelection.gd" id="1_yvx2m"]
+[ext_resource type="Texture2D" uid="uid://he3dstfcqlb0" path="res://Asset/User Interface/%Storymode%/Rollings Plains.jpg" id="2_p1cmd"]
+[ext_resource type="PackedScene" uid="uid://nbb3dskrjq7w" path="res://Scene/User Interfaces/UI scenes/CustomQuitPopup.tscn" id="3_p1cmd"]
+
+[node name="AccountSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yvx2m")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_p1cmd")
+expand_mode = 1
+
+[node name="CustomQuitPopup" parent="." instance=ExtResource("3_p1cmd")]
+visible = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="AccountOptionButton" type="OptionButton" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+text = "Play"
+
+[node name="NewAccountButton" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(5, 40)
+layout_mode = 2
+text = "Create new account"
+
+[node name="DeleteButton" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Delete account"

@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://ckqg6qgs6grgd"]
+[gd_scene load_steps=14 format=3 uid="uid://ckqg6qgs6grgd"]
 
 [ext_resource type="Script" uid="uid://dksxk1y3frgek" path="res://Scene/User Interfaces/UI Scripts/button_manager_settings.gd" id="1_5gvj4"]
 [ext_resource type="Script" uid="uid://h5eph3mecfu1" path="res://Scene/User Interfaces/UI scenes/Settings.gd" id="1_vpxuq"]
 [ext_resource type="PackedScene" uid="uid://cbr4wmo2fw5b2" path="res://Scene/User Interfaces/UI Asset Components/MasterBackground.tscn" id="2_6ajvw"]
+[ext_resource type="PackedScene" uid="uid://nbb3dskrjq7w" path="res://Scene/User Interfaces/UI scenes/CustomQuitPopup.tscn" id="3_iva56"]
 [ext_resource type="Texture2D" uid="uid://bq3mv1chiqmla" path="res://Asset/Backgrounds/Main_Menu_Background.jpg" id="4_6ajvw"]
 [ext_resource type="FontFile" uid="uid://dtdw2k1jvjn37" path="res://Asset/Fonts/times.ttf" id="4_jh0e1"]
 [ext_resource type="Texture2D" uid="uid://dfpc1w50saul7" path="res://Asset/Backgrounds/Main_Menu_Background_dark.jpg" id="5_g0o0o"]
@@ -35,6 +36,9 @@ script = ExtResource("1_vpxuq")
 
 [node name="MasterBackground" parent="." instance=ExtResource("2_6ajvw")]
 layout_mode = 1
+
+[node name="CustomQuitPopup" parent="." instance=ExtResource("3_iva56")]
+visible = false
 
 [node name="User Interface" type="Control" parent="."]
 anchors_preset = 0
@@ -140,6 +144,27 @@ theme_override_font_sizes/font_size = 20
 text = "Full screen:"
 expand_icon = true
 
+[node name="AccountManagement" type="HBoxContainer" parent="User Interface/Options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_constants/separation = 23
+alignment = 1
+
+[node name="SwitchAccButton" type="Button" parent="User Interface/Options/VBoxContainer/AccountManagement"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Switch account"
+
+[node name="RenameButton" type="Button" parent="User Interface/Options/VBoxContainer/AccountManagement"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Rename "
+
+[node name="CreateAccButton" type="Button" parent="User Interface/Options/VBoxContainer/AccountManagement"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Create new account"
+
 [node name="Button Manager" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
@@ -162,7 +187,6 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 0
 offset_top = 387.0
 offset_right = 163.0

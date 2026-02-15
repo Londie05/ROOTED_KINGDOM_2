@@ -8,28 +8,31 @@ var next_scene_path = ""
 
 # --- Timer Settings ---
 var bar_fill_duration: float = 3.0
-var post_load_delay: float = 2.0
+var post_load_delay: float = 1.0 
 var time_elapsed: float = 0.0
 var data_loaded: bool = false
 
 func _ready():
+	# 1. Load Master Config
+	var accounts_found = Global.load_master_config()
+	
+	# 2. Determine Destination
 	if Global.loading_target_scene != "":
 		next_scene_path = Global.loading_target_scene
 		Global.loading_target_scene = "" 
 	else:
-		if Global.player_name == "" or not FileAccess.file_exists(Global.SAVE_PATH):
+		if not accounts_found or Global.all_accounts.is_empty():
 			next_scene_path = "res://Scene/User Interfaces/UI scenes/NameEntry.tscn"
 		else:
-			next_scene_path = "res://Scene/User Interfaces/UI scenes/main_menu.tscn"
+			next_scene_path = "res://Scene/User Interfaces/UI scenes/AccountSelection.tscn"
 	
+	# 3. Start Loading
 	ResourceLoader.load_threaded_request(database_path)
 	ResourceLoader.load_threaded_request(next_scene_path)
-	
 	loading_bar.value = 0
 
 func _process(delta):
 	time_elapsed += delta
-	
 	var time_ratio = clamp(time_elapsed / bar_fill_duration, 0.0, 1.0)
 	var progress = []
 	var status = ResourceLoader.load_threaded_get_status(database_path, progress)
@@ -37,17 +40,7 @@ func _process(delta):
 	
 	loading_bar.value = min(time_ratio, data_ratio) * 100
 
-	# --- DYNAMIC TEXT BASED ON DESTINATION ---
-	if next_scene_path.contains("battlefield") or  next_scene_path.contains("Story_mode_battle"):
-		_update_battle_text()
-	elif next_scene_path.contains("Chapter_"):
-		_update_story_mode_loading_text()
-	elif next_scene_path.contains("Stage_Scene_1-1"):
-		_play_first_chapter()
-	elif Global.player_name == "":
-		_update_new_player_text()
-	else:
-		_update_returning_player_text()
+	_update_loading_text()
 
 	if status == ResourceLoader.THREAD_LOAD_LOADED and not data_loaded:
 		if ResourceLoader.load_threaded_get_status(next_scene_path) == ResourceLoader.THREAD_LOAD_LOADED:
@@ -56,32 +49,43 @@ func _process(delta):
 	if data_loaded and time_elapsed >= (bar_fill_duration + post_load_delay):
 		complete_loading()
 
-# --- Helper Functions for Text ---
-func _update_battle_text():
-	if time_elapsed < 1.5:
-		status_label.text = "Preparing for Battle."
-	elif time_elapsed < bar_fill_duration:
-		status_label.text = "Preparing for Battle.."
-	else:
-		status_label.text = "Preparing for Battle..."
+# --- TEXT LOGIC ---
 
-func _update_new_player_text():
-	if time_elapsed < 1.5:
-		status_label.text = "Initializing Data..."
-	else:
-		status_label.text = "Preparing Character Registration..."
-		
-func _update_story_mode_loading_text():
-	if time_elapsed < 1.5:
-		status_label.text = "Stage " + str(Global._CURRENTLY_PLAYING_CHAPTER) + " - " + str(Global._current_playing_on_stage) +  " Complete..."
-	else:
+func _update_loading_text():
+	if next_scene_path.contains("battlefield") or next_scene_path.contains("Story_mode_battle"):
+		_update_battle_text()
+	elif next_scene_path.contains("Chapter_"):
 		status_label.text = "Redirecting to Chapter " + str(Global._CURRENTLY_PLAYING_CHAPTER) + "..."
-
-func _update_returning_player_text():
-	if time_elapsed < 1.2:
-		status_label.text = "Welcome, " + str(Global.player_name) + "!"
+	elif next_scene_path.contains("Stage_Scene_1-1"):
+		status_label.text = "Loading Stage 1-1..."
+	elif next_scene_path.contains("NameEntry"):
+		_update_name_entry_text()
+	elif next_scene_path.contains("AccountSelection"):
+		status_label.text = "Loading Account Records..."
+	elif next_scene_path.contains("settings"):
+		status_label.text = "Saving new profile data..."
 	else:
-		status_label.text = "Preparing Main Menu..."
+		if Global.player_name != "":
+			status_label.text = "Welcome, " + str(Global.player_name) + "!"
+		else:
+			status_label.text = "Loading Game Resources..."
+
+# Restoration of the missing helper functions
+func _update_battle_text():
+	# Creates a cycling "..." animation
+	var dots = "".repeat(int(time_elapsed * 2.0) % 4)
+	status_label.text = "Preparing for Battle" + dots
+
+func _update_name_entry_text():
+	if Global.is_renaming_mode:
+		status_label.text = "Preparing Profile Rename..."
+	else:
+		if time_elapsed < 1.5:
+			status_label.text = "Initializing System..."
+		else:
+			status_label.text = "Awaiting Hero Registration..."
+
+# --- COMPLETION ---
 
 func complete_loading():
 	var loaded_db = ResourceLoader.load_threaded_get(database_path)
@@ -91,9 +95,3 @@ func complete_loading():
 	var packed_scene = ResourceLoader.load_threaded_get(next_scene_path)
 	if packed_scene:
 		get_tree().change_scene_to_packed(packed_scene)
-
-func _play_first_chapter():
-	if time_elapsed < 1.5:
-		status_label.text = "Playing " + str(Global._CURRENTLY_PLAYING_CHAPTER) + " - " + str(Global._current_playing_on_stage) +  "..."
-	else:
-		status_label.text = "Loading Stage 1-1..."
