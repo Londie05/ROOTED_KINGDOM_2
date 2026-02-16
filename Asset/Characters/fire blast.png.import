@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfolhvmo1gnb6"
-path="res://.godot/imported/Ice_freeze.webp-ed832ccf8721b9f06f99ca8a964069c2.ctex"
+uid="uid://05c2743tg1cy"
+path="res://.godot/imported/fire blast.png-72c1a84327944473c016dce559dd9e11.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/Common cards/Ice_freeze.webp"
-dest_files=["res://.godot/imported/Ice_freeze.webp-ed832ccf8721b9f06f99ca8a964069c2.ctex"]
+source_file="res://Asset/Characters/fire blast.png"
+dest_files=["res://.godot/imported/fire blast.png-72c1a84327944473c016dce559dd9e11.ctex"]
 
 [params]
 

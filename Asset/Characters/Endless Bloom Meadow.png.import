@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfolhvmo1gnb6"
-path="res://.godot/imported/Ice_freeze.webp-ed832ccf8721b9f06f99ca8a964069c2.ctex"
+uid="uid://b4t638yguyxa7"
+path="res://.godot/imported/Endless Bloom Meadow.png-22bcc7b7f1a9760869c734f0c2641ee8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/Common cards/Ice_freeze.webp"
-dest_files=["res://.godot/imported/Ice_freeze.webp-ed832ccf8721b9f06f99ca8a964069c2.ctex"]
+source_file="res://Asset/Characters/Endless Bloom Meadow.png"
+dest_files=["res://.godot/imported/Endless Bloom Meadow.png-22bcc7b7f1a9760869c734f0c2641ee8.ctex"]
 
 [params]
 
