@@ -1,16 +1,25 @@
-[gd_scene load_steps=10 format=3 uid="uid://qmnutdlpk68l"]
+[gd_scene load_steps=12 format=3 uid="uid://qmnutdlpk68l"]
 
 [ext_resource type="Script" uid="uid://dg4em0ukvp7ku" path="res://Scene/User Interfaces/UI Scripts/button_manager_start.gd" id="1_nfl2a"]
 [ext_resource type="PackedScene" uid="uid://cbr4wmo2fw5b2" path="res://Scene/User Interfaces/UI Asset Components/MasterBackground.tscn" id="1_tgtv0"]
-[ext_resource type="PackedScene" uid="uid://3dgl7l1vwjcq" path="res://Scene/User Interfaces/Story Mode/Story Mode UIs/start_battle_slot.tscn" id="2_t4b46"]
 [ext_resource type="FontFile" uid="uid://dtdw2k1jvjn37" path="res://Asset/Fonts/times.ttf" id="2_ygvaf"]
 [ext_resource type="Texture2D" uid="uid://cdfpkjhi1gi77" path="res://Asset/User Interface/button_ui.png" id="3_t4b46"]
-[ext_resource type="Texture2D" uid="uid://dvqx32t66s3mc" path="res://Asset/Backgrounds/Story Mode/gaia_sky.jpg" id="4_objsq"]
-[ext_resource type="Texture2D" uid="uid://6kmgs5s1swcl" path="res://Asset/User Interface/tower_mod_background_v2.jpg" id="5_tgtv0"]
+[ext_resource type="Texture2D" uid="uid://dnxuvdehf47bo" path="res://Asset/User Interface/tower_mod_background_v2.webp" id="5_2sahd"]
+[ext_resource type="Texture2D" uid="uid://dn2qmfcsek3p6" path="res://Asset/Backgrounds/BG V2.jpg" id="5_cpss8"]
+[ext_resource type="Script" uid="uid://b8dda3ind0tk" path="res://Scene/User Interfaces/UI scenes/TowerMode.gd" id="6_objsq"]
+[ext_resource type="Texture2D" uid="uid://duwuyb6u5gtli" path="res://Asset/User Interface/game_over_screen.webp" id="8_mfmoi"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2sahd"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_objsq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_objsq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.18, 0.026999997, 0.026999997, 1)
 
 [node name="Start_Battle" type="Control"]
 layout_mode = 3
@@ -31,30 +40,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nfl2a")
-
-[node name="Story Mode" parent="ButtonManager" instance=ExtResource("2_t4b46")]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 18.0
-offset_right = 912.0
-offset_bottom = 299.0
-text = ""
-title = "Story Mode"
-image = ExtResource("4_objsq")
-mode = 0
-availability = true
-
-[node name="Tower Mode" parent="ButtonManager" instance=ExtResource("2_t4b46")]
-layout_mode = 0
-offset_left = 22.0
-offset_top = 342.0
-offset_right = 913.0
-offset_bottom = 627.0
-text = ""
-title = "Tower Mode"
-image = ExtResource("5_tgtv0")
-mode = 1
-availability = true
 
 [node name="Back" type="Button" parent="ButtonManager"]
 custom_minimum_size = Vector2(30, 0)
@@ -77,6 +62,193 @@ icon = ExtResource("3_t4b46")
 icon_alignment = 1
 expand_icon = true
 
-[connection signal="pressed" from="ButtonManager/Story Mode" to="ButtonManager" method="_on_story_mode_pressed"]
-[connection signal="pressed" from="ButtonManager/Tower Mode" to="ButtonManager" method="_on_tower_mode_pressed"]
+[node name="story_mode" type="TextureButton" parent="ButtonManager"]
+modulate = Color(1, 1, 1, 0.8117647)
+self_modulate = Color(0.67, 0.536, 0.536, 0.9019608)
+layout_mode = 0
+offset_left = 58.0
+offset_top = 29.0
+offset_right = 813.0
+offset_bottom = 216.0
+texture_normal = ExtResource("5_cpss8")
+ignore_texture_size = true
+stretch_mode = 6
+script = ExtResource("6_objsq")
+
+[node name="StoryModeBoarder" type="Panel" parent="ButtonManager/story_mode"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_objsq")
+
+[node name="Title" type="Label" parent="ButtonManager/story_mode"]
+layout_mode = 0
+offset_right = 331.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(0.99, 0.90684, 0.7821, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 50
+text = "Story Mode"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+autowrap_trim_flags = 64
+
+[node name="AvailabilityPanel" type="Panel" parent="ButtonManager/story_mode"]
+visible = false
+layout_mode = 0
+offset_right = 755.0
+offset_bottom = 187.0
+
+[node name="AvailableLabel" type="Label" parent="ButtonManager/story_mode/AvailabilityPanel"]
+layout_mode = 0
+offset_right = 755.0
+offset_bottom = 177.0
+theme_override_colors/font_color = Color(0.6815408, 0.6389489, 0.63903445, 1)
+theme_override_colors/font_shadow_color = Color(0.15, 0.033000007, 0.033000007, 0)
+theme_override_constants/shadow_offset_x = 12
+theme_override_constants/shadow_offset_y = 11
+theme_override_constants/outline_size = 11
+theme_override_constants/shadow_outline_size = 16
+theme_override_font_sizes/font_size = 30
+text = "Currently Unavailable"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="tower_mode" type="TextureButton" parent="ButtonManager"]
+modulate = Color(1, 1, 1, 0.8117647)
+self_modulate = Color(0.67, 0.536, 0.536, 0.9019608)
+layout_mode = 0
+offset_left = 58.0
+offset_top = 247.0
+offset_right = 813.0
+offset_bottom = 424.0
+texture_normal = ExtResource("5_2sahd")
+ignore_texture_size = true
+stretch_mode = 6
+script = ExtResource("6_objsq")
+
+[node name="TowerModeBoarder" type="Panel" parent="ButtonManager/tower_mode"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_objsq")
+
+[node name="Title" type="Label" parent="ButtonManager/tower_mode"]
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(0.55, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 50
+text = "Tower Mode"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+autowrap_trim_flags = 64
+
+[node name="AvailabilityPanel" type="Panel" parent="ButtonManager/tower_mode"]
+visible = false
+layout_mode = 0
+offset_right = 755.0
+offset_bottom = 177.0
+
+[node name="AvailableLabel" type="Label" parent="ButtonManager/tower_mode/AvailabilityPanel"]
+layout_mode = 0
+offset_right = 755.0
+offset_bottom = 177.0
+theme_override_colors/font_color = Color(0.6815408, 0.6389489, 0.63903445, 1)
+theme_override_colors/font_shadow_color = Color(0.15, 0.033000007, 0.033000007, 0)
+theme_override_constants/shadow_offset_x = 12
+theme_override_constants/shadow_offset_y = 11
+theme_override_constants/outline_size = 11
+theme_override_constants/shadow_outline_size = 16
+theme_override_font_sizes/font_size = 30
+text = "Currently Unavailable"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="endless_mode" type="TextureButton" parent="ButtonManager"]
+modulate = Color(1, 1, 1, 0.8117647)
+self_modulate = Color(0.67, 0.536, 0.536, 0.9019608)
+layout_mode = 0
+offset_left = 58.0
+offset_top = 458.0
+offset_right = 813.0
+offset_bottom = 635.0
+texture_normal = ExtResource("8_mfmoi")
+ignore_texture_size = true
+stretch_mode = 6
+script = ExtResource("6_objsq")
+
+[node name="EndlessModeBoarder" type="Panel" parent="ButtonManager/endless_mode"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_objsq")
+
+[node name="Title" type="Label" parent="ButtonManager/endless_mode"]
+layout_mode = 0
+offset_right = 378.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(0.97, 0.63826, 0.6014, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 50
+text = "Endless Mode"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+autowrap_trim_flags = 64
+
+[node name="AvailabilityPanel" type="Panel" parent="ButtonManager/endless_mode"]
+visible = false
+layout_mode = 0
+offset_right = 755.0
+offset_bottom = 177.0
+
+[node name="AvailableLabel" type="Label" parent="ButtonManager/endless_mode/AvailabilityPanel"]
+layout_mode = 0
+offset_right = 755.0
+offset_bottom = 177.0
+theme_override_colors/font_color = Color(0.6815408, 0.6389489, 0.63903445, 1)
+theme_override_colors/font_shadow_color = Color(0.15, 0.033000007, 0.033000007, 0)
+theme_override_constants/shadow_offset_x = 12
+theme_override_constants/shadow_offset_y = 11
+theme_override_constants/outline_size = 11
+theme_override_constants/shadow_outline_size = 16
+theme_override_font_sizes/font_size = 30
+text = "Currently Unavailable"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="ButtonManager/Back" to="ButtonManager" method="_on_back_pressed"]
+[connection signal="pressed" from="ButtonManager/story_mode" to="ButtonManager" method="_on_story_mode_pressed"]
+[connection signal="pressed" from="ButtonManager/tower_mode" to="ButtonManager" method="_on_tower_mode_pressed"]
+[connection signal="pressed" from="ButtonManager/endless_mode" to="ButtonManager" method="_on_endless_mode_pressed"]

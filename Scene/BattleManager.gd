@@ -342,8 +342,8 @@ func spawn_vfx(frames: SpriteFrames, anim: String, pos: Vector2, scale_mult: flo
 	get_tree().current_scene.add_child(effect)
 	
 	effect.global_position = pos
-	# Now scale_mult is correctly defined and can be used here
-	effect.scale = Vector2(scale_mult, scale_mult) 
+	effect.scale = Vector2(scale_mult, scale_mult)
+	effect.z_index = z_index # This ensures it's never behind a character
 	effect.play_effect(frames, anim)
 	
 func execute_slotted_actions():
@@ -361,30 +361,40 @@ func execute_slotted_actions():
 		var targets = get_targets_for_action(data.is_aoe, data.aoe_targets)
 		var primary_target = targets[0] if not targets.is_empty() else null
 		
+		# Inside execute_slotted_actions() in BattleManager.gd
+
 		if data.vfx_frames:
-			var spawn_pos = Vector2.ZERO
+			var final_pos = Vector2.ZERO
 			
 			match data.vfx_position_mode:
-				data.VFXPositionMode.SCREEN_CENTER:
-					spawn_pos = Vector2(576, 324) # Adjust these numbers to your screen center
-					spawn_vfx(data.vfx_frames, data.vfx_animation, spawn_pos, data.vfx_scale)
-					
+				data.VFXPositionMode.CASTER_RELATIVE:
+					if is_instance_valid(caster_hero):
+						# 1. Start at hero
+						final_pos = caster_hero.global_position 
+						# 2. Add the custom Vector2 offset (Distance)
+						final_pos += data.vfx_offset 
+						# 3. Subtract the lift to move it UP
+						final_pos.y -= data.vfx_vertical_lift 
+						
 				data.VFXPositionMode.ENEMY_CENTER:
-					# Triggers in the middle of all ALIVE enemies
 					var alive_enemies = get_alive_enemies()
 					if not alive_enemies.is_empty():
+						var total_pos = Vector2.ZERO
 						for e in alive_enemies:
-							spawn_pos += e.global_position
-						spawn_pos /= alive_enemies.size()
-						spawn_pos.y -= 100 # Pull it UP from the feet
-						spawn_vfx(data.vfx_frames, data.vfx_animation, spawn_pos, data.vfx_scale)
+							total_pos += e.global_position
+						final_pos = total_pos / alive_enemies.size()
+						final_pos.y -= data.vfx_vertical_lift
 						
 				data.VFXPositionMode.TARGET:
 					for target in targets:
 						if is_instance_valid(target):
 							var t_pos = target.global_position
-							t_pos.y -= 50 
+							t_pos.y -= data.vfx_vertical_lift
 							spawn_vfx(data.vfx_frames, data.vfx_animation, t_pos, data.vfx_scale)
+					continue # Skip the single spawn below if we already spawned for each target
+
+			# Spawn the effect for CASTER_RELATIVE and ENEMY_CENTER
+			spawn_vfx(data.vfx_frames, data.vfx_animation, final_pos, data.vfx_scale)
 				
 			
 		if card_node.has_method("animate_as_active"):

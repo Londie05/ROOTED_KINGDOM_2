@@ -1,7 +1,7 @@
 extends Resource
 class_name CardData
 
-enum VFXPositionMode { TARGET, ENEMY_CENTER, SCREEN_CENTER }
+enum VFXPositionMode { TARGET, ENEMY_CENTER, SCREEN_CENTER, CASTER_RELATIVE }
 
 @export var card_name: String = ""
 @export var card_image: Texture2D 
@@ -33,3 +33,5 @@ enum VFXPositionMode { TARGET, ENEMY_CENTER, SCREEN_CENTER }
 @export var vfx_animation: String = "slash" # The specific animation to play
 @export var vfx_scale: float = 1.0
 @export var vfx_position_mode: VFXPositionMode = VFXPositionMode.TARGET
+@export var vfx_offset: Vector2 = Vector2(100, 0)
+@export var vfx_vertical_lift: float = 80.0     #  How many pixels to move UP

@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://f7ufc0dhpmur"]
+
+[ext_resource type="Script" uid="uid://bsjyoginr28b2" path="res://Scene/User Interfaces/UI scenes/EndlessMode.gd" id="1_eyd50"]
+[ext_resource type="PackedScene" uid="uid://cbr4wmo2fw5b2" path="res://Scene/User Interfaces/UI Asset Components/MasterBackground.tscn" id="2_p47vn"]
+[ext_resource type="Texture2D" uid="uid://deoilkueygt75" path="res://Asset/User Interface/button.png" id="3_4h6qm"]
+
+[node name="EndlessMode" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eyd50")
+
+[node name="MasterBackground" parent="." instance=ExtResource("2_p47vn")]
+layout_mode = 1
+
+[node name="BackButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 233.0
+offset_bottom = 107.0
+texture_normal = ExtResource("3_4h6qm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="BackButton"]
+layout_mode = 0
+offset_right = 211.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 29
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
