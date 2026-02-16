@@ -3,7 +3,7 @@ extends Control
 @onready var default_art = $Default_Art
 @onready var ruins_art = $Ruins_Art
 @onready var swort_art = $Swort_Art
-
+@onready var grass_art = $Grass_Art
 
 func _ready():
 	
@@ -19,4 +19,5 @@ func _update_visibility(bg_name: String):
 		default_art.visible = (bg_name == "Default")
 		ruins_art.visible = (bg_name == "Ruins")
 		swort_art.visible = (bg_name == "Sword")
+		grass_art.visible = (bg_name == "Grass")
 		print("MasterBackground: Initialized to ", bg_name)

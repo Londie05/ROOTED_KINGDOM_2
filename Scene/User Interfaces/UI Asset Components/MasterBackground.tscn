@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbr4wmo2fw5b2"]
+[gd_scene load_steps=6 format=3 uid="uid://cbr4wmo2fw5b2"]
 
 [ext_resource type="Script" uid="uid://eu6s8fwowm24" path="res://Scene/User Interfaces/UI Asset Components/MasterBackground.gd" id="1_8ayks"]
 [ext_resource type="Texture2D" uid="uid://bq3mv1chiqmla" path="res://Asset/Backgrounds/Main_Menu_Background.jpg" id="2_8ayks"]
 [ext_resource type="Texture2D" uid="uid://dfpc1w50saul7" path="res://Asset/Backgrounds/Main_Menu_Background_dark.jpg" id="3_rea0t"]
 [ext_resource type="Texture2D" uid="uid://ditqevbsah1hr" path="res://Asset/Characters/game_over_screen.webp" id="4_rea0t"]
+[ext_resource type="Texture2D" uid="uid://he3dstfcqlb0" path="res://Asset/User Interface/%Storymode%/Rollings Plains.jpg" id="5_qp2so"]
 
 [node name="MasterBackground" type="Control"]
 layout_mode = 3
@@ -44,4 +45,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_rea0t")
+expand_mode = 2
+
+[node name="Grass_Art" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_qp2so")
 expand_mode = 2

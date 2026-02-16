@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ckqg6qgs6grgd"]
+[gd_scene load_steps=15 format=3 uid="uid://ckqg6qgs6grgd"]
 
 [ext_resource type="Script" uid="uid://dksxk1y3frgek" path="res://Scene/User Interfaces/UI Scripts/button_manager_settings.gd" id="1_5gvj4"]
 [ext_resource type="Script" uid="uid://h5eph3mecfu1" path="res://Scene/User Interfaces/UI scenes/Settings.gd" id="1_vpxuq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dfpc1w50saul7" path="res://Asset/Backgrounds/Main_Menu_Background_dark.jpg" id="5_g0o0o"]
 [ext_resource type="Texture2D" uid="uid://cdfpkjhi1gi77" path="res://Asset/User Interface/button_ui.png" id="5_pf4lj"]
 [ext_resource type="Texture2D" uid="uid://ditqevbsah1hr" path="res://Asset/Characters/game_over_screen.webp" id="6_g0o0o"]
+[ext_resource type="Texture2D" uid="uid://he3dstfcqlb0" path="res://Asset/User Interface/%Storymode%/Rollings Plains.jpg" id="8_hkprg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jh0e1"]
 content_margin_left = 64.0
@@ -127,6 +128,13 @@ texture_normal = ExtResource("6_g0o0o")
 ignore_texture_size = true
 stretch_mode = 5
 
+[node name="Btn_Grass" type="TextureButton" parent="User Interface/Options/VBoxContainer/BgContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture_normal = ExtResource("8_hkprg")
+ignore_texture_size = true
+stretch_mode = 5
+
 [node name="HBoxContainer" type="HBoxContainer" parent="User Interface/Options/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
@@ -158,7 +166,7 @@ text = "Switch account"
 [node name="RenameButton" type="Button" parent="User Interface/Options/VBoxContainer/AccountManagement"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "Rename "
+text = "Rename account"
 
 [node name="CreateAccButton" type="Button" parent="User Interface/Options/VBoxContainer/AccountManagement"]
 custom_minimum_size = Vector2(100, 0)
