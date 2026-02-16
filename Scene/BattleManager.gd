@@ -61,6 +61,8 @@ var current_phase_index: int = 0
 @onready var sfx_player = $CanvasLayer/SFXPlayer
 @onready var bgm_player = $CanvasLayer/BGMPlayer
 
+var vfx_scene = preload("res://Scene/EffectVFX.tscn")
+
 var battle_themes: Array[String] = [
 	"res://Asset/Sound effects/background effect1.mp3",
 	"res://Asset/Sound effects/background effect2.mp3"
@@ -242,6 +244,19 @@ func end_current_phase():
 	
 	start_current_phase()
 
+func find_hero_owner(card_data: CardData) -> BattleCharacter:
+	for hero in player_team.get_children():
+		if not is_instance_valid(hero): continue
+		
+		# Check the Hero's data to see if they own this card
+		var data = hero.character_data
+		if data:
+			if data.unique_card == card_data:
+				return hero
+			if card_data in data.common_cards:
+				return hero
+	return null
+	
 func try_play_card_to_slot(data: CardData, card_node: Node):
 	if slotted_nodes.size() >= max_slots: return 
 	if current_mana < data.mana_cost:
@@ -322,46 +337,102 @@ func reshuffle_discard_into_deck():
 func advance_round():
 	round_number += 1
 
+func spawn_vfx(frames: SpriteFrames, anim: String, pos: Vector2, scale_mult: float):
+	var effect = vfx_scene.instantiate()
+	get_tree().current_scene.add_child(effect)
+	
+	effect.global_position = pos
+	# Now scale_mult is correctly defined and can be used here
+	effect.scale = Vector2(scale_mult, scale_mult) 
+	effect.play_effect(frames, anim)
+	
 func execute_slotted_actions():
 	is_processing_turn = true
 	
 	for card_node in slotted_nodes:
 		if get_alive_enemies().is_empty():
-			break 
+			break
 		
 		if not is_instance_valid(card_node): continue
 		
-		var data = card_node.card_data 
+		var data = card_node.card_data
 		
+		var caster_hero = find_hero_owner(data)
+		var targets = get_targets_for_action(data.is_aoe, data.aoe_targets)
+		var primary_target = targets[0] if not targets.is_empty() else null
+		
+		if data.vfx_frames:
+			var spawn_pos = Vector2.ZERO
+			
+			match data.vfx_position_mode:
+				data.VFXPositionMode.SCREEN_CENTER:
+					spawn_pos = Vector2(576, 324) # Adjust these numbers to your screen center
+					spawn_vfx(data.vfx_frames, data.vfx_animation, spawn_pos, data.vfx_scale)
+					
+				data.VFXPositionMode.ENEMY_CENTER:
+					# Triggers in the middle of all ALIVE enemies
+					var alive_enemies = get_alive_enemies()
+					if not alive_enemies.is_empty():
+						for e in alive_enemies:
+							spawn_pos += e.global_position
+						spawn_pos /= alive_enemies.size()
+						spawn_pos.y -= 100 # Pull it UP from the feet
+						spawn_vfx(data.vfx_frames, data.vfx_animation, spawn_pos, data.vfx_scale)
+						
+				data.VFXPositionMode.TARGET:
+					for target in targets:
+						if is_instance_valid(target):
+							var t_pos = target.global_position
+							t_pos.y -= 50 
+							spawn_vfx(data.vfx_frames, data.vfx_animation, t_pos, data.vfx_scale)
+				
+			
 		if card_node.has_method("animate_as_active"):
 			card_node.animate_as_active()
 		
-		await get_tree().create_timer(0.2).timeout
-
+		if caster_hero and primary_target:
+			caster_hero.play_attack_sequence(primary_target, data.moves_to_target, data.animation_name)
+			
+			await caster_hero.attack_hit_moment
+		else:
+			await get_tree().create_timer(0.2).timeout
+		
 		if data.sound_effect and sfx_player:
 			sfx_player.stream = data.sound_effect
 			sfx_player.play()
 		
-		# Damage Logic
-		if data.damage > 0:
-			var targets = get_targets_for_action(data.is_aoe, data.aoe_targets)
-			if not targets.is_empty():
-				var final_damage = Global.get_card_damage(data)
-				var is_crit = randi() % 100 < data.critical_chance
-				for target in targets:
+		if data.damage > 0 and not targets.is_empty():
+			var final_damage = Global.get_card_damage(data)
+			var is_crit = randi() % 100 < data.critical_chance
+			
+			for target in targets:
+				if is_instance_valid(target):
 					target.take_damage(final_damage if not is_crit else int(final_damage * 1.5), is_crit)
 		
 		if data.shield > 0:
-			var targets = get_alive_players()
-			if not targets.is_empty():
+			var shield_targets = get_alive_players() # Shield targets are players, not enemies
+			if not shield_targets.is_empty():
 				var final_shield = Global.get_card_shield(data)
 				if data.is_aoe:
-					var hits = min(data.aoe_targets, targets.size())
+					var hits = min(data.aoe_targets, shield_targets.size())
 					for i in range(hits):
-						targets[i].add_shield(final_shield)
+						shield_targets[i].add_shield(final_shield)
 				else:
-					targets.sort_custom(func(a, b): return a.current_health < b.current_health)
-					targets[0].add_shield(final_shield)
+					# Helper to find lowest HP or self (modify as needed)
+					shield_targets.sort_custom(func(a, b): return a.current_health < b.current_health)
+					shield_targets[0].add_shield(final_shield)
+
+		if data.heal_amount > 0:
+			var heal_targets = get_alive_players()
+			if not heal_targets.is_empty():
+				var final_heal = Global.get_card_heal(data)
+				if data.is_aoe:
+					var hits = min(data.aoe_targets, heal_targets.size())
+					for i in range(hits):
+						heal_targets[i].heal(final_heal)
+				else:
+					heal_targets.sort_custom(func(a, b): return a.current_health < b.current_health)
+					heal_targets[0].heal(final_heal)
 					
 		if data.mana_gain > 0:
 			var gain = Global.get_card_mana(data)
@@ -369,45 +440,32 @@ func execute_slotted_actions():
 			spawn_mana_popup(gain)
 			update_mana_ui()
 			
-		if data.heal_amount > 0:
-			var targets = get_alive_players()
-			if not targets.is_empty():
-				var final_heal = Global.get_card_heal(data)
-				if data.is_aoe:
-					var hits = min(data.aoe_targets, targets.size())
-					for i in range(hits):
-						targets[i].heal(final_heal)
-				else:
-					targets.sort_custom(func(a, b): return a.current_health < b.current_health)
-					targets[0].heal(final_heal)
-		
-		if data.stuns_enemy:
-			var targets = get_targets_for_action(data.is_aoe, data.aoe_targets)
-			if not targets.is_empty():
-				for target in targets:
-					if target.has_method("apply_stun"):
-						target.apply_stun(data.stun_duration)
-						
+		if data.stuns_enemy and not targets.is_empty():
+			for target in targets:
+				if target.has_method("apply_stun"):
+					target.apply_stun(data.stun_duration)
+					
+		if caster_hero:
+			await caster_hero.attack_finished
+		else:
+			await get_tree().create_timer(0.5).timeout
+			
 		discard_pile.append(data)
 		
-		if get_alive_enemies().is_empty():
-			await get_tree().create_timer(1.2).timeout 
-			break
-			
-		await get_tree().create_timer(1).timeout
+		# Short pause between cards
+		await get_tree().create_timer(0.7).timeout
 		
 	for child in slot_container.get_children():
 		child.queue_free()
 		
 	slotted_nodes.clear()
-	
 	check_battle_status()
 
 
 func get_alive_enemies() -> Array:
 	var alive = []
 	for enemy in enemy_team.get_children():
-		if is_instance_valid(enemy) and enemy.current_health > 0:
+		if is_instance_valid(enemy) and enemy.current_health > 0 and enemy.is_visible_in_tree():
 			alive.append(enemy)
 	return alive
 
@@ -512,6 +570,7 @@ func _on_enemy_clicked(clicked_enemy):
 		enemy.set_target_lock(false)
 	clicked_enemy.set_target_lock(true)
 	
+
 
 func get_targets_for_action(is_aoe: bool, num_targets: int) -> Array:
 	var alive_enemies = get_alive_enemies()

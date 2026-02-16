@@ -95,68 +95,77 @@ texture = ExtResource("9_bkjeu")
 [node name="PlayerTeam" type="Node2D" parent="."]
 
 [node name="Dummy1" type="Node2D" parent="PlayerTeam"]
-position = Vector2(0, 48)
+position = Vector2(203, 362)
 script = ExtResource("4_y8d5v")
 damage_node = ExtResource("10_4x6d6")
 target_height = 210.0
+metadata/_edit_lock_ = true
 
 [node name="AnimSprite" type="AnimatedSprite2D" parent="PlayerTeam/Dummy1"]
-position = Vector2(255, 314)
+position = Vector2(-3.9999695, -2.9999695)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_4x6d6")
+metadata/_edit_lock_ = true
 
 [node name="HealthBar" type="ProgressBar" parent="PlayerTeam/Dummy1"]
-offset_left = 205.0
-offset_top = 186.0
-offset_right = 299.0
-offset_bottom = 213.0
+offset_left = -54.0
+offset_top = -131.0
+offset_right = 40.0
+offset_bottom = -104.0
 step = 1.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="HPLabel" type="Label" parent="PlayerTeam/Dummy1/HealthBar"]
 layout_mode = 0
 offset_right = 93.82709
 offset_bottom = 23.0
+text = "000"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="ShieldLabel" type="Label" parent="PlayerTeam/Dummy1"]
-offset_left = 273.0
-offset_top = 216.0
-offset_right = 334.0
-offset_bottom = 239.0
+offset_left = 14.0
+offset_top = -101.0
+offset_right = 75.0
+offset_bottom = -78.0
 theme_override_colors/font_color = Color(0.007843138, 0, 1, 1)
 text = "Shield:0"
 metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="Area2D" type="Area2D" parent="PlayerTeam/Dummy1"]
-position = Vector2(258, 186)
+position = Vector2(-1, -5)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTeam/Dummy1/Area2D"]
 visible = false
-position = Vector2(113, 218)
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_vsh2u")
+metadata/_edit_lock_ = true
 
 [node name="Dummy2" type="Node2D" parent="PlayerTeam"]
-position = Vector2(0, 48)
+position = Vector2(354, 423)
 script = ExtResource("4_y8d5v")
 damage_node = ExtResource("10_4x6d6")
 target_height = 210.0
 
 [node name="AnimSprite" type="AnimatedSprite2D" parent="PlayerTeam/Dummy2"]
-position = Vector2(359, 421)
+position = Vector2(3, -2)
 scale = Vector2(0.7, 0.685)
+metadata/_edit_lock_ = true
 
 [node name="HealthBar" type="ProgressBar" parent="PlayerTeam/Dummy2"]
-offset_left = 313.0
-offset_top = 291.0
-offset_right = 407.0
-offset_bottom = 318.0
+offset_left = -43.0
+offset_top = -132.0
+offset_right = 51.0
+offset_bottom = -105.0
 value = 100.0
 show_percentage = false
-metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="HPLabel" type="Label" parent="PlayerTeam/Dummy2/HealthBar"]
 layout_mode = 0
@@ -164,40 +173,46 @@ offset_right = 93.82709
 offset_bottom = 23.0
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="ShieldLabel" type="Label" parent="PlayerTeam/Dummy2"]
-offset_left = 386.0
-offset_top = 324.0
-offset_right = 447.0
-offset_bottom = 347.0
+offset_left = 30.0
+offset_top = -99.0
+offset_right = 91.0
+offset_bottom = -76.0
 theme_override_colors/font_color = Color(0, 0.11764706, 1, 1)
 text = "Shield:0"
+metadata/_edit_lock_ = true
 
 [node name="Area2D" type="Area2D" parent="PlayerTeam/Dummy2"]
-position = Vector2(357, 269)
+position = Vector2(3, -7)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTeam/Dummy2/Area2D"]
 visible = false
 position = Vector2(113, 218)
 shape = SubResource("RectangleShape2D_vsh2u")
+metadata/_edit_lock_ = true
 
 [node name="Dummy3" type="Node2D" parent="PlayerTeam"]
-position = Vector2(0, 48)
+position = Vector2(205, 505)
 script = ExtResource("4_y8d5v")
 damage_node = ExtResource("10_4x6d6")
 target_height = 210.0
 
 [node name="AnimSprite" type="AnimatedSprite2D" parent="PlayerTeam/Dummy3"]
-position = Vector2(127.00001, 397)
+position = Vector2(4.0000153, -0.9999695)
 scale = Vector2(0.7, 0.7)
+metadata/_edit_lock_ = true
 
 [node name="HealthBar" type="ProgressBar" parent="PlayerTeam/Dummy3"]
-offset_left = 77.0
-offset_top = 269.0
-offset_right = 171.0
-offset_bottom = 296.0
+offset_left = -46.0
+offset_top = -129.0
+offset_right = 48.0
+offset_bottom = -102.0
 value = 100.0
 show_percentage = false
+metadata/_edit_lock_ = true
 
 [node name="HPLabel" type="Label" parent="PlayerTeam/Dummy3/HealthBar"]
 layout_mode = 0
@@ -205,22 +220,261 @@ offset_right = 93.82709
 offset_bottom = 23.0
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="ShieldLabel" type="Label" parent="PlayerTeam/Dummy3"]
-offset_left = 145.0
-offset_top = 299.0
-offset_right = 206.0
-offset_bottom = 322.0
+offset_left = 22.0
+offset_top = -99.0
+offset_right = 83.0
+offset_bottom = -76.0
 theme_override_colors/font_color = Color(0.007843138, 0, 1, 1)
 text = "Shield:0"
+metadata/_edit_lock_ = true
 
 [node name="Area2D" type="Area2D" parent="PlayerTeam/Dummy3"]
-position = Vector2(145, 267)
+position = Vector2(22, -131)
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTeam/Dummy3/Area2D"]
 visible = false
 position = Vector2(113, 218)
 shape = SubResource("RectangleShape2D_vsh2u")
+metadata/_edit_lock_ = true
+
+[node name="EnemyTeam" type="Node2D" parent="."]
+
+[node name="Enemy" type="Node2D" parent="EnemyTeam"]
+position = Vector2(761, 330)
+scale = Vector2(0.9070809, 0.8992282)
+script = ExtResource("6_f2o1h")
+damage_node = ExtResource("10_4x6d6")
+char_name = "Enemy1"
+is_enemy = true
+target_height = 200.0
+
+[node name="AnimSprite" type="AnimatedSprite2D" parent="EnemyTeam/Enemy"]
+material = SubResource("ShaderMaterial_3314g")
+scale = Vector2(-0.5, 0.445)
+metadata/_edit_lock_ = true
+
+[node name="HealthBar" type="ProgressBar" parent="EnemyTeam/Enemy"]
+offset_left = -51.814495
+offset_top = -81.18072
+offset_right = 42.185505
+offset_bottom = -56.59194
+scale = Vector2(0.8952639, 0.9224108)
+theme_override_colors/font_color = Color(0.79573834, 0, 0.21928853, 1)
+theme_override_colors/font_outline_color = Color(0.8838147, 0.33180755, 1.92523e-07, 1)
+step = 1.0
+value = 100.0
+show_percentage = false
+metadata/_edit_lock_ = true
+
+[node name="HPLabel" type="Label" parent="EnemyTeam/Enemy/HealthBar"]
+layout_mode = 0
+offset_right = 93.82709
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "0000"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="ShieldLabel" type="Label" parent="EnemyTeam/Enemy"]
+offset_left = -123.47293
+offset_top = -51.154976
+offset_right = -62.47293
+offset_bottom = -28.154976
+theme_override_colors/font_color = Color(0, 0.11764706, 1, 1)
+text = "Shield:0"
+metadata/_edit_lock_ = true
+
+[node name="ClickArea" type="Area2D" parent="EnemyTeam/Enemy"]
+scale = Vector2(0.8952639, 0.9224108)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTeam/Enemy/ClickArea"]
+position = Vector2(-1.2314262, -1.2056007)
+scale = Vector2(0.9999997, 1)
+shape = SubResource("RectangleShape2D_vsh2u")
+metadata/_edit_lock_ = true
+
+[node name="Enemy2" type="Node2D" parent="EnemyTeam"]
+position = Vector2(908, 498.99997)
+scale = Vector2(0.93382394, 0.9239756)
+script = ExtResource("6_f2o1h")
+damage_node = ExtResource("10_4x6d6")
+char_name = "Enemy2"
+is_enemy = true
+target_height = 200.0
+
+[node name="AnimSprite" type="AnimatedSprite2D" parent="EnemyTeam/Enemy2"]
+material = SubResource("ShaderMaterial_4x6d6")
+scale = Vector2(-0.5, 0.445)
+metadata/_edit_lock_ = true
+
+[node name="HealthBar" type="ProgressBar" parent="EnemyTeam/Enemy2"]
+offset_left = -32.12597
+offset_top = -62.77222
+offset_right = 61.87403
+offset_bottom = -35.77222
+scale = Vector2(0.8952639, 0.9224108)
+theme_override_colors/font_color = Color(0.79573834, 0, 0.21928853, 1)
+theme_override_colors/font_outline_color = Color(0.8838147, 0.33180755, 1.92523e-07, 1)
+step = 1.0
+value = 100.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="HPLabel" type="Label" parent="EnemyTeam/Enemy2/HealthBar"]
+layout_mode = 0
+offset_right = 93.82709
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "0000"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="ShieldLabel" type="Label" parent="EnemyTeam/Enemy2"]
+offset_left = -89.95272
+offset_top = -27.056992
+offset_right = -28.95272
+offset_bottom = -4.0569916
+theme_override_colors/font_color = Color(0.08627451, 0.039215688, 1, 1)
+text = "Shield:0"
+metadata/_edit_lock_ = true
+
+[node name="ClickArea" type="Area2D" parent="EnemyTeam/Enemy2"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTeam/Enemy2/ClickArea"]
+position = Vector2(12.850393, 23.810158)
+shape = SubResource("RectangleShape2D_nqr2r")
+metadata/_edit_lock_ = true
+
+[node name="Enemy3" type="Node2D" parent="EnemyTeam"]
+position = Vector2(956.99994, 349)
+scale = Vector2(0.93382394, 0.9239756)
+script = ExtResource("6_f2o1h")
+damage_node = ExtResource("10_4x6d6")
+char_name = "Enemy3"
+is_enemy = true
+target_height = 200.0
+
+[node name="AnimSprite" type="AnimatedSprite2D" parent="EnemyTeam/Enemy3"]
+material = SubResource("ShaderMaterial_bkjeu")
+scale = Vector2(-0.5, 0.445)
+metadata/_edit_lock_ = true
+
+[node name="HealthBar" type="ProgressBar" parent="EnemyTeam/Enemy3"]
+offset_left = -33.196835
+offset_top = -71.43046
+offset_right = 60.803165
+offset_bottom = -44.430458
+scale = Vector2(0.8952639, 0.9224108)
+theme_override_colors/font_color = Color(0.79573834, 0, 0.21928853, 1)
+theme_override_colors/font_outline_color = Color(0.8838147, 0.33180755, 1.92523e-07, 1)
+step = 1.0
+value = 100.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="HPLabel" type="Label" parent="EnemyTeam/Enemy3/HealthBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.012724917
+anchor_top = 0.043456182
+anchor_right = 0.012724937
+anchor_bottom = 0.043456182
+offset_right = 93.82709
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "00000"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="ShieldLabel" type="Label" parent="EnemyTeam/Enemy3"]
+offset_left = -91.02359
+offset_top = -42.208908
+offset_right = -30.02359
+offset_bottom = -19.208908
+theme_override_colors/font_color = Color(0.1882353, 0.18039216, 1, 1)
+text = "Shield:0"
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="ClickArea" type="Area2D" parent="EnemyTeam/Enemy3"]
+scale = Vector2(0.8952639, 0.9224108)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTeam/Enemy3/ClickArea"]
+position = Vector2(1.1961453, 1.1733165)
+scale = Vector2(0.9999997, 1)
+shape = SubResource("RectangleShape2D_4l1qv")
+metadata/_edit_lock_ = true
+
+[node name="Enemy4" type="Node2D" parent="EnemyTeam"]
+position = Vector2(765, 511.00003)
+scale = Vector2(0.93382394, 0.9239756)
+script = ExtResource("6_f2o1h")
+damage_node = ExtResource("10_4x6d6")
+char_name = "Enemy3"
+is_enemy = true
+target_height = 200.0
+
+[node name="AnimSprite" type="AnimatedSprite2D" parent="EnemyTeam/Enemy4"]
+material = SubResource("ShaderMaterial_hjqj7")
+scale = Vector2(-0.42941666, 0.37955877)
+metadata/_edit_lock_ = true
+
+[node name="HealthBar" type="ProgressBar" parent="EnemyTeam/Enemy4"]
+offset_left = -47.118153
+offset_top = -128.79128
+offset_right = 60.534863
+offset_bottom = -101.791275
+scale = Vector2(0.8952639, 0.9224108)
+theme_override_colors/font_color = Color(0.79573834, 0, 0.21928853, 1)
+theme_override_colors/font_outline_color = Color(0.8838147, 0.33180755, 1.92523e-07, 1)
+step = 1.0
+value = 100.0
+show_percentage = false
+metadata/_edit_lock_ = true
+
+[node name="HPLabel" type="Label" parent="EnemyTeam/Enemy4/HealthBar"]
+layout_mode = 0
+offset_left = 5.9807253
+offset_top = 1.1733265
+offset_right = 99.807816
+offset_bottom = 25.346666
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "0000"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="ShieldLabel" type="Label" parent="EnemyTeam/Enemy4"]
+offset_left = -129.57481
+offset_top = -102.816574
+offset_right = -68.574814
+offset_bottom = -79.816574
+theme_override_colors/font_color = Color(0.1882353, 0.18039216, 1, 1)
+text = "Shield:0"
+metadata/_edit_lock_ = true
+
+[node name="ClickArea" type="Area2D" parent="EnemyTeam/Enemy4"]
+scale = Vector2(0.8952639, 0.9224108)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTeam/Enemy4/ClickArea"]
+position = Vector2(2.3922188, 0)
+scale = Vector2(0.9999997, 1)
+shape = SubResource("RectangleShape2D_jxk86")
+metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -293,206 +547,6 @@ theme_override_colors/font_color = Color(1, 0.68, 0.68, 1)
 theme_override_font_sizes/font_size = 35
 text = "Floor Count"
 horizontal_alignment = 1
-
-[node name="EnemyTeam" type="Node2D" parent="."]
-
-[node name="Enemy" type="Node2D" parent="EnemyTeam"]
-position = Vector2(799, -18)
-script = ExtResource("6_f2o1h")
-damage_node = ExtResource("10_4x6d6")
-char_name = "Enemy1"
-is_enemy = true
-target_height = 250.0
-
-[node name="AnimSprite" type="AnimatedSprite2D" parent="EnemyTeam/Enemy"]
-material = SubResource("ShaderMaterial_3314g")
-position = Vector2(1.9999733, 357)
-scale = Vector2(-0.5, 0.445)
-
-[node name="HealthBar" type="ProgressBar" parent="EnemyTeam/Enemy"]
-offset_left = -62.0
-offset_top = 252.0
-offset_right = 32.0
-offset_bottom = 279.0
-scale = Vector2(0.8952639, 0.9224108)
-theme_override_colors/font_color = Color(0.79573834, 0, 0.21928853, 1)
-theme_override_colors/font_outline_color = Color(0.8838147, 0.33180755, 1.92523e-07, 1)
-step = 1.0
-value = 100.0
-show_percentage = false
-
-[node name="HPLabel" type="Label" parent="EnemyTeam/Enemy/HealthBar"]
-layout_mode = 0
-offset_right = 93.82709
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ShieldLabel" type="Label" parent="EnemyTeam/Enemy"]
-offset_left = -135.0
-offset_top = 277.0
-offset_right = -74.0
-offset_bottom = 300.0
-theme_override_colors/font_color = Color(0, 0.11764706, 1, 1)
-text = "Shield:0"
-
-[node name="ClickArea" type="Area2D" parent="EnemyTeam/Enemy"]
-position = Vector2(-40, 273.00003)
-scale = Vector2(0.8952639, 0.9224108)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTeam/Enemy/ClickArea"]
-position = Vector2(25.159424, 46.399017)
-scale = Vector2(0.9999997, 1)
-shape = SubResource("RectangleShape2D_vsh2u")
-
-[node name="Enemy2" type="Node2D" parent="EnemyTeam"]
-position = Vector2(799, -18)
-script = ExtResource("6_f2o1h")
-damage_node = ExtResource("10_4x6d6")
-char_name = "Enemy2"
-is_enemy = true
-target_height = 250.0
-
-[node name="AnimSprite" type="AnimatedSprite2D" parent="EnemyTeam/Enemy2"]
-material = SubResource("ShaderMaterial_4x6d6")
-position = Vector2(55.74997, 459)
-scale = Vector2(-0.5, 0.445)
-
-[node name="HealthBar" type="ProgressBar" parent="EnemyTeam/Enemy2"]
-offset_left = 8.999991
-offset_top = 351.0
-offset_right = 102.99999
-offset_bottom = 378.0
-scale = Vector2(0.8952639, 0.9224108)
-theme_override_colors/font_color = Color(0.79573834, 0, 0.21928853, 1)
-theme_override_colors/font_outline_color = Color(0.8838147, 0.33180755, 1.92523e-07, 1)
-step = 1.0
-value = 100.0
-show_percentage = false
-
-[node name="HPLabel" type="Label" parent="EnemyTeam/Enemy2/HealthBar"]
-layout_mode = 0
-offset_right = 93.82709
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ShieldLabel" type="Label" parent="EnemyTeam/Enemy2"]
-offset_left = -38.0
-offset_top = 396.0
-offset_right = 23.0
-offset_bottom = 419.0
-theme_override_colors/font_color = Color(0.08627451, 0.039215688, 1, 1)
-text = "Shield:0"
-
-[node name="ClickArea" type="Area2D" parent="EnemyTeam/Enemy2"]
-position = Vector2(55, 456)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTeam/Enemy2/ClickArea"]
-position = Vector2(-9, 12.25)
-shape = SubResource("RectangleShape2D_nqr2r")
-
-[node name="Enemy3" type="Node2D" parent="EnemyTeam"]
-position = Vector2(1598, -24)
-script = ExtResource("6_f2o1h")
-damage_node = ExtResource("10_4x6d6")
-char_name = "Enemy3"
-is_enemy = true
-target_height = 250.0
-
-[node name="AnimSprite" type="AnimatedSprite2D" parent="EnemyTeam/Enemy3"]
-material = SubResource("ShaderMaterial_bkjeu")
-position = Vector2(-628.24994, 391)
-scale = Vector2(-0.5, 0.445)
-
-[node name="HealthBar" type="ProgressBar" parent="EnemyTeam/Enemy3"]
-offset_left = -692.24994
-offset_top = 286.0
-offset_right = -598.24994
-offset_bottom = 313.0
-scale = Vector2(0.8952639, 0.9224108)
-theme_override_colors/font_color = Color(0.79573834, 0, 0.21928853, 1)
-theme_override_colors/font_outline_color = Color(0.8838147, 0.33180755, 1.92523e-07, 1)
-step = 1.0
-value = 100.0
-show_percentage = false
-
-[node name="HPLabel" type="Label" parent="EnemyTeam/Enemy3/HealthBar"]
-layout_mode = 0
-offset_right = 93.82709
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ShieldLabel" type="Label" parent="EnemyTeam/Enemy3"]
-offset_left = -736.0
-offset_top = 323.0
-offset_right = -675.0
-offset_bottom = 346.0
-theme_override_colors/font_color = Color(0.1882353, 0.18039216, 1, 1)
-text = "Shield:0"
-
-[node name="ClickArea" type="Area2D" parent="EnemyTeam/Enemy3"]
-position = Vector2(-624.00006, 361)
-scale = Vector2(0.8952639, 0.9224108)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTeam/Enemy3/ClickArea"]
-position = Vector2(6.7020116, 37.94406)
-scale = Vector2(0.9999997, 1)
-shape = SubResource("RectangleShape2D_4l1qv")
-
-[node name="Enemy4" type="Node2D" parent="EnemyTeam"]
-position = Vector2(1598, -24)
-script = ExtResource("6_f2o1h")
-damage_node = ExtResource("10_4x6d6")
-char_name = "Enemy3"
-is_enemy = true
-target_height = 250.0
-
-[node name="AnimSprite" type="AnimatedSprite2D" parent="EnemyTeam/Enemy4"]
-material = SubResource("ShaderMaterial_hjqj7")
-position = Vector2(-875.94, 467.46875)
-scale = Vector2(-0.42941666, 0.37955877)
-
-[node name="HealthBar" type="ProgressBar" parent="EnemyTeam/Enemy4"]
-offset_left = -923.0
-offset_top = 343.0
-offset_right = -829.0
-offset_bottom = 370.0
-scale = Vector2(0.8952639, 0.9224108)
-theme_override_colors/font_color = Color(0.79573834, 0, 0.21928853, 1)
-theme_override_colors/font_outline_color = Color(0.8838147, 0.33180755, 1.92523e-07, 1)
-step = 1.0
-value = 100.0
-show_percentage = false
-
-[node name="HPLabel" type="Label" parent="EnemyTeam/Enemy4/HealthBar"]
-layout_mode = 0
-offset_right = 93.82709
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ShieldLabel" type="Label" parent="EnemyTeam/Enemy4"]
-offset_left = -966.75006
-offset_top = 380.0
-offset_right = -905.75006
-offset_bottom = 403.0
-theme_override_colors/font_color = Color(0.1882353, 0.18039216, 1, 1)
-text = "Shield:0"
-
-[node name="ClickArea" type="Area2D" parent="EnemyTeam/Enemy4"]
-position = Vector2(-880.00006, 455.00003)
-scale = Vector2(0.8952639, 0.9224108)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTeam/Enemy4/ClickArea"]
-position = Vector2(-14.520813, 23.714996)
-scale = Vector2(0.9999997, 1)
-shape = SubResource("RectangleShape2D_jxk86")
 
 [connection signal="pressed" from="CanvasLayer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/EndTurnButton" to="." method="_on_end_turn_button_pressed"]

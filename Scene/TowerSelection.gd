@@ -117,7 +117,7 @@ func _on_back_pressed() -> void:
 func lock_floors():
 	var container = $ScrollContainer/VBox
 	
-	for i in range(1, 22):
+	for i in range(1, 1):
 		var node_name = "Floor" + str(i)
 			
 		if container.has_node(node_name):

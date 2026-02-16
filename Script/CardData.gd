@@ -1,6 +1,8 @@
 extends Resource
 class_name CardData
 
+enum VFXPositionMode { TARGET, ENEMY_CENTER, SCREEN_CENTER }
+
 @export var card_name: String = ""
 @export var card_image: Texture2D 
 @export_multiline var description: String = ""
@@ -25,3 +27,9 @@ class_name CardData
 
 @export_group("Visuals & Audio")
 @export var sound_effect: AudioStream
+@export var animation_name: String = "attack" # Default animation name
+@export var moves_to_target: bool = false     # True = Melee, False = Ranged/Magic
+@export var vfx_frames: SpriteFrames # One file containing ALL your common FX
+@export var vfx_animation: String = "slash" # The specific animation to play
+@export var vfx_scale: float = 1.0
+@export var vfx_position_mode: VFXPositionMode = VFXPositionMode.TARGET
