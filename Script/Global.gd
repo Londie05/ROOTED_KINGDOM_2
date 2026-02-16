@@ -33,7 +33,9 @@ var allowed_bgm_scenes: Array[String] = [
 	"Tutorial",
 	"Chapter_Selection",
 	"NameEntry",
-	"AccountSelection"
+	"AccountSelection",
+	"StoryMode",
+	"EndlessMode"
 ]
 
 # For backgrounds
@@ -63,26 +65,6 @@ var from_tower_mode: bool = false
 # Tower Variable but I placed it
 var current_tower_unlocked = ""
 
-# Story Mode
-var from_story_mode: bool = false
-var _CURRENTLY_PLAYING_CHAPTER:= -1
-var _current_playing_on_stage:= -1
-var stages_unlocked:= ["1-1"]
-
-# Story Mode Sequence Flow Variables
-enum background_options {
-	Nothingness,
-	Rolling_Plains
-}
-enum bg_anim_options {
-	Fade_transition,
-	Fade_In,
-	Fade_Out
-}
-var Character_Animations = {
-	"Beatrice": "res://Scene/User Interfaces/Story Mode/Dialogue Folders/Dialog System/Components/User Interface/Character/BEATRICE/Beatrice_dialogue_anim.tres",
-	"Charlotte": "res://Scene/User Interfaces/Story Mode/Dialogue Folders/Dialog System/Components/User Interface/Character/CHARLOTTE/Charlotte_dialogue_anim.tres"
-}
 
 # Dictionaries for levels
 var card_levels: Dictionary = {} 
@@ -387,8 +369,6 @@ func save_game():
 	config.set_value("Progression", "card_levels", card_levels)
 	config.set_value("Progression", "floors_cleared", floors_cleared)
 	
-	# Story Mode
-	config.set_value("Progression", "finished_stage_scale", stages_unlocked)
 	
 	config.set_value("settings", "bgm_track_name", current_bgm_track_name)
 	
@@ -416,10 +396,7 @@ func load_game():
 	current_tower_floor = config.get_value("Progression", "current_floor", 1)
 	card_levels = config.get_value("Progression", "card_levels", {})
 	floors_cleared = config.get_value("Progression", "floors_cleared", [])
-	
-	# Story Mode
-	stages_unlocked = config.get_value("Progression", "finished_stage_scale", [])
-	
+		
 	current_bg_name = config.get_value("settings", "bg_name", current_bg_name)
 	
 	current_bgm_track_name = config.get_value("settings", "bgm_track_name", current_bgm_track_name)
@@ -454,7 +431,6 @@ func reset_player_data():
 	floors_cleared = []
 	current_bg_name = "Default"
 	current_bgm_track_name = "Music 1"
-	stages_unlocked = ["1-1"]
 
 
 # --- TEAM ---
@@ -529,40 +505,6 @@ func grant_floor_reward(floor_num: int):
 	if floors_cleared.has(floor_num):
 		return
 	var reward = floor_rewards.get(floor_num, {"small": 0, "crystal": 0})
-	small_gems += reward["small"]
-	crystal_gems += reward["crystal"]
-	save_game()
-
-# CURRENT CHAPTER FUNCTIONS
-func reset_chapter_I_browse():
-	if _CURRENTLY_PLAYING_CHAPTER > -1:
-		_CURRENTLY_PLAYING_CHAPTER = -1
-		
-func declare_chapter(value: int):
-		_CURRENTLY_PLAYING_CHAPTER = value
-
-func declare_stage(Stage: int):
-	_current_playing_on_stage = Stage
-
-func reset_current_playing_on_stage():
-	if _current_playing_on_stage > -1:
-		_current_playing_on_stage = -1
-		
-func bring_to_current_chapter_ui():
-	if Global._CURRENTLY_PLAYING_CHAPTER == 1:
-		# get_tree().change_scene_to_file("res://Scene/User Interfaces/Story Mode/Chapter Folder/Chapters/Scene/Chapter 1/Chapter files/Chapter_1.tscn")
-		loading_target_scene = "res://Scene/User Interfaces/Story Mode/Chapter Folder/Chapters/Scene/Chapter 1/Chapter files/Chapter_1.tscn"
-	get_tree().change_scene_to_file("res://Scene/User Interfaces/LoadingScene.tscn")
-	
-func set_stage_unlocked(value: String):
-	if not stages_unlocked.has(value):
-		stages_unlocked.append(value)
-		save_game()
-		
-func grant_battle_stage_reward(Stage: String):
-	if stages_unlocked.has(Stage):
-		return
-	var reward = StoryMode.rewards.get(Stage, {"small": 0, "crystal": 0})
 	small_gems += reward["small"]
 	crystal_gems += reward["crystal"]
 	save_game()

@@ -1,0 +1,115 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbhbm36r5gevn"]
+
+[ext_resource type="Script" uid="uid://dtee61lgfjnnk" path="res://Scene/BattleMenu.gd" id="1_xxdim"]
+[ext_resource type="FontFile" uid="uid://dtdw2k1jvjn37" path="res://Asset/Fonts/times.ttf" id="2_h6w2l"]
+[ext_resource type="Texture2D" uid="uid://deoilkueygt75" path="res://Asset/User Interface/button.png" id="3_xxdim"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+process_mode = 3
+layer = 100
+script = ExtResource("1_xxdim")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1152.0
+offset_bottom = 732.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 374.0
+offset_top = 155.0
+offset_right = 794.0
+offset_bottom = 525.0
+
+[node name="Title" type="Label" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_h6w2l")
+theme_override_font_sizes/font_size = 30
+text = "Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActionButton" type="TextureButton" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(50, 70)
+layout_mode = 2
+texture_normal = ExtResource("3_xxdim")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/ActionButton"]
+layout_mode = 0
+offset_left = 135.0
+offset_right = 280.0
+offset_bottom = 70.0
+text = "Resume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitButton" type="TextureButton" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(50, 70)
+layout_mode = 2
+texture_normal = ExtResource("3_xxdim")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/QuitButton"]
+layout_mode = 0
+offset_left = 135.0
+offset_right = 280.0
+offset_bottom = 70.0
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RewardLabel" type="RichTextLabel" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(20, 50)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+bbcode_enabled = true
+text = "++Reward++"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Volume" type="HBoxContainer" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+alignment = 1
+
+[node name="Volume Label" type="Label" parent="Panel/VBoxContainer/Volume"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Volume:"
+vertical_alignment = 1
+
+[node name="Volume Slider" type="HSlider" parent="Panel/VBoxContainer/Volume"]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+max_value = 4.0
+step = 0.001
+value = 1.0
+ticks_position = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="MuteButton" type="CheckButton" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Mute all:"
+
+[node name="Fullscreen Check" type="CheckButton" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_h6w2l")
+theme_override_font_sizes/font_size = 20
+text = "Full screen:"
+expand_icon = true
+
+[connection signal="pressed" from="Panel/VBoxContainer/ActionButton" to="." method="_on_action_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

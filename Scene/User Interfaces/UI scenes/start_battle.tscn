@@ -1,17 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://qmnutdlpk68l"]
+[gd_scene load_steps=9 format=3 uid="uid://qmnutdlpk68l"]
 
 [ext_resource type="Script" uid="uid://dg4em0ukvp7ku" path="res://Scene/User Interfaces/UI Scripts/button_manager_start.gd" id="1_nfl2a"]
 [ext_resource type="PackedScene" uid="uid://cbr4wmo2fw5b2" path="res://Scene/User Interfaces/UI Asset Components/MasterBackground.tscn" id="1_tgtv0"]
-[ext_resource type="FontFile" uid="uid://dtdw2k1jvjn37" path="res://Asset/Fonts/times.ttf" id="2_ygvaf"]
-[ext_resource type="Texture2D" uid="uid://cdfpkjhi1gi77" path="res://Asset/User Interface/button_ui.png" id="3_t4b46"]
+[ext_resource type="Texture2D" uid="uid://deoilkueygt75" path="res://Asset/User Interface/button.png" id="3_tgtv0"]
 [ext_resource type="Texture2D" uid="uid://dnxuvdehf47bo" path="res://Asset/User Interface/tower_mod_background_v2.webp" id="5_2sahd"]
 [ext_resource type="Texture2D" uid="uid://dn2qmfcsek3p6" path="res://Asset/Backgrounds/BG V2.jpg" id="5_cpss8"]
 [ext_resource type="Script" uid="uid://b8dda3ind0tk" path="res://Scene/User Interfaces/UI scenes/TowerMode.gd" id="6_objsq"]
 [ext_resource type="Texture2D" uid="uid://duwuyb6u5gtli" path="res://Asset/User Interface/game_over_screen.webp" id="8_mfmoi"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2sahd"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_objsq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_objsq"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -41,26 +36,33 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nfl2a")
 
-[node name="Back" type="Button" parent="ButtonManager"]
+[node name="Back" type="TextureButton" parent="ButtonManager"]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 982.0
-offset_top = -648.0
-offset_right = 1155.0
-offset_bottom = -593.0
+offset_left = 918.0
+offset_top = -676.0
+offset_right = 1087.0
+offset_bottom = -620.0
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_ygvaf")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_2sahd")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_objsq")
-text = "Back
-"
-icon = ExtResource("3_t4b46")
-icon_alignment = 1
-expand_icon = true
+texture_normal = ExtResource("3_tgtv0")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="ButtonManager/Back"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="story_mode" type="TextureButton" parent="ButtonManager"]
 modulate = Color(1, 1, 1, 0.8117647)
