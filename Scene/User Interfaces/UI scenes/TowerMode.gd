@@ -1,8 +1,13 @@
 extends TextureButton
 
+@export var chapter_title: String = "Chapter 1"
+@export var rewards: String = ""
+@export_file("*.tscn") var target_scene: String = ""
+
 func _ready():
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
+	# Set pivot to center for the scale effect
 	pivot_offset = size / 2 
 
 func _on_mouse_entered():
@@ -12,6 +17,3 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
-
-func _on_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/Chapter Scenes/Chapter1.tscn")

@@ -3,6 +3,8 @@ extends Node
 enum GameMode { TOWER, STORY }
 var current_game_mode: GameMode = GameMode.TOWER
 
+var _CURRENTLY_PLAYING_CHAPTER: int = 1
+
 var last_story_scene_path: String = ""
 var story_line_resume_index: int = 0
 var just_finished_battle: bool = false

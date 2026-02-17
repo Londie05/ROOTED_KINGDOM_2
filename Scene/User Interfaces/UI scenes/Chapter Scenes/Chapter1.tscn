@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1qbxyaej3s7b"]
+[gd_scene load_steps=8 format=3 uid="uid://c1qbxyaej3s7b"]
 
 [ext_resource type="Script" uid="uid://yyyns15mp7ny" path="res://Scene/User Interfaces/UI scenes/Chapter Scenes/Chapter1.gd" id="1_lsa37"]
 [ext_resource type="Texture2D" uid="uid://dqccvkf5014ax" path="res://Asset/User Interface/%Storymode%/black_background.jpg" id="1_r0da8"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://nbb3dskrjq7w" path="res://Scene/User Interfaces/UI scenes/CustomQuitPopup.tscn" id="2_yod8e"]
 [ext_resource type="Texture2D" uid="uid://bt1iuv1k4owd5" path="res://Asset/User Interface/%Storymode%/beatrice.png" id="3_gl4ag"]
 [ext_resource type="Texture2D" uid="uid://cbdtkkfijogvq" path="res://Asset/User Interface/%Storymode%/charlotte.png" id="4_gl4ag"]
+[ext_resource type="Texture2D" uid="uid://deoilkueygt75" path="res://Asset/User Interface/button.png" id="7_4q8aq"]
 
 [node name="Chapter1" type="Control"]
 layout_mode = 3
@@ -57,3 +58,26 @@ texture = ExtResource("4_gl4ag")
 
 [node name="Dialogue Interface" parent="." instance=ExtResource("2_kpefv")]
 layout_mode = 1
+
+[node name="QuitButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 16.0
+offset_right = 196.0
+offset_bottom = 79.0
+texture_normal = ExtResource("7_4q8aq")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="QuitLabel" type="Label" parent="QuitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy6a1v8pg016g"]
+[gd_scene load_steps=8 format=3 uid="uid://cy6a1v8pg016g"]
 
 [ext_resource type="Script" uid="uid://idrjdgnxmgon" path="res://Scene/User Interfaces/CharacterScenes/characters.gd" id="1_omqtn"]
 [ext_resource type="PackedScene" uid="uid://cbr4wmo2fw5b2" path="res://Scene/User Interfaces/UI Asset Components/MasterBackground.tscn" id="2_b6bgg"]
+[ext_resource type="PackedScene" uid="uid://nbb3dskrjq7w" path="res://Scene/User Interfaces/UI scenes/CustomQuitPopup.tscn" id="2_khyj0"]
 [ext_resource type="Script" uid="uid://dpofwsfae5sxx" path="res://Scene/User Interfaces/UI Scripts/button_manager_characters.gd" id="2_vsams"]
 [ext_resource type="Texture2D" uid="uid://deoilkueygt75" path="res://Asset/User Interface/button.png" id="4_b6bgg"]
 [ext_resource type="Texture2D" uid="uid://dcm4yl4kcn7wn" path="res://Asset/Backgrounds/gem_1.webp" id="9_tvwgx"]
@@ -18,6 +19,9 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_omqtn")
+
+[node name="CustomQuitPopup" parent="." instance=ExtResource("2_khyj0")]
+visible = false
 
 [node name="MasterBackground" parent="." instance=ExtResource("2_b6bgg")]
 layout_mode = 1
@@ -47,6 +51,7 @@ text = "Back"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+metadata/_edit_lock_ = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0

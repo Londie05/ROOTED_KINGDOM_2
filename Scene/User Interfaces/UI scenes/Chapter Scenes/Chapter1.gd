@@ -1,12 +1,15 @@
 extends Control
 
+var reward_gems: int = 500
+var reward_crystals: int = 10
+
 # --- NODES ---
 @onready var end_chapter_popup = $EndChapterPopup
 @onready var background: TextureRect = $Background
 @onready var beatrice: TextureRect = $CharContainer/Beatrice
 @onready var charlotte: TextureRect = $CharContainer/Charlotte
 @onready var dialogue_ui = $"Dialogue Interface" 
-
+@onready var quit_button = $QuitButton
 # --- VARIABLES ---
 var min_line_index: int = 0
 
@@ -83,6 +86,9 @@ var story_script = [
 # --- CORE FUNCTIONS ---
 
 func _ready():
+	if quit_button:
+		quit_button.pressed.connect(_on_quit_attempt)
+		
 	if dialogue_ui:
 		dialogue_ui.next_line_requested.connect(_load_next_line)
 		dialogue_ui.prev_line_requested.connect(_load_prev_line)
@@ -94,15 +100,58 @@ func _ready():
 	
 	# --- RESUME LOGIC ---
 	if Global.just_finished_battle:
-		Global.just_finished_battle = false # Reset flag
-		current_line_index = Global.story_line_resume_index + 1 
+		Global.just_finished_battle = false 
+		current_line_index = Global.story_line_resume_index + 1
 		min_line_index = current_line_index
+		
+		# <--- ADD THIS LINE HERE to trigger the flash when returning
+		_trigger_white_flash() 
+		
 	else:
-		# Normal start
 		current_line_index = 0
 	
 	_load_current_line()
 
+func _trigger_white_flash():
+	var flash = ColorRect.new()
+	flash.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	flash.color = Color.WHITE
+	flash.mouse_filter = Control.MOUSE_FILTER_IGNORE 
+	add_child(flash)
+	
+	# Fade out
+	var tween = create_tween()
+	tween.tween_property(flash, "modulate:a", 0.0, 1.0) # Fades out in 1.0 second
+	tween.tween_callback(flash.queue_free) # Delete it when done
+	
+func _on_quit_attempt():
+	# We repurpose the EndChapterPopup for a "Quit Confirmation"
+	# setup_popup(Title, ConfirmText, CancelText, BlurValue)
+	
+	# Disconnect existing signals to prevent double-firing or wrong logic
+	if end_chapter_popup.confirmed.is_connected(_on_next_chapter_pressed):
+		end_chapter_popup.confirmed.disconnect(_on_next_chapter_pressed)
+	if end_chapter_popup.cancelled.is_connected(_on_back_to_menu_pressed):
+		end_chapter_popup.cancelled.disconnect(_on_back_to_menu_pressed)
+		
+	# Connect NEW signals for quitting
+	end_chapter_popup.setup_popup("Quit Chapter? Your progress won't be saved", "Yes, Quit", "Stay", 1.0)
+	
+	end_chapter_popup.confirmed.connect(_confirm_quit)
+	end_chapter_popup.cancelled.connect(_cancel_quit)
+	
+	end_chapter_popup.show_popup()
+
+func _confirm_quit():
+	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/StoryMode.tscn")
+	
+func _cancel_quit():
+	# Just hide the popup, the game continues
+	end_chapter_popup.hide() 
+	# Re-enable UI if you disabled it
+	if dialogue_ui.has_method("set_active"):
+		dialogue_ui.set_active(true)
+		
 func _load_next_line():
 	if is_chapter_finished: return 
 	
@@ -150,9 +199,7 @@ func _load_current_line():
 		if display_speaker == "Hero":
 			display_speaker = Global.player_name
 		dialogue_ui.show_line(display_speaker, display_text)
-		
-		dialogue_ui.show_line(display_speaker, display_text)
-	
+			
 	# 2. Handle Backgrounds
 	if "bg" in data:
 		background.modulate = Color.WHITE 
@@ -184,11 +231,31 @@ func _show_completion_popup():
 	if is_chapter_finished: return
 	is_chapter_finished = true
 	
-	# Disable dialogue buttons so they don't interfere
+	var reward_text = ""
+	
+	# --- ANTI-FARMING LOGIC ---
+	if not Global.floors_cleared.has("Chapter1"): 
+		Global.small_gems += reward_gems
+		Global.crystal_gems += reward_crystals
+		
+		Global.floors_cleared.append("Chapter1")
+		
+		Global.save_game()
+		
+		reward_text = "\nREWARDS EARNED:\n+%d Gems\n+%d Crystals" % [reward_gems, reward_crystals]
+	else:
+		reward_text = "\n(Chapter already cleared - No rewards)"
+
+	# --- UI LOGIC ---
 	if dialogue_ui.has_method("set_active"):
 		dialogue_ui.set_active(false)
 
-	end_chapter_popup.setup_popup("Chapter 1 Complete!", "Next Chapter", "Back to Selection", 1.0)
+	end_chapter_popup.setup_popup(
+		"Chapter 1 Complete!" + reward_text, 
+		"Next Chapter", 
+		"Back to Selection", 
+		1.0
+	)
 	
 	if not end_chapter_popup.confirmed.is_connected(_on_next_chapter_pressed):
 		end_chapter_popup.confirmed.connect(_on_next_chapter_pressed)
@@ -216,6 +283,9 @@ func _apply_focus(speaker_name: String):
 func _play_anim(anim_name: String):
 	var tween = create_tween()
 	match anim_name:
+		"white_flash": # <--- Add this option here too so you can use it in script
+			_trigger_white_flash()
+			
 		"enter_left":
 			beatrice.position.x = -300
 			beatrice.visible = true

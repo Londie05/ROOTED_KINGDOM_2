@@ -7,6 +7,11 @@ extends Control
 @onready var cursed_monster: TextureRect = $CharContainer/CursedMonster 
 @onready var dialogue_ui = $"Dialogue Interface"
 @onready var end_chapter_popup = $EndChapterPopup 
+@onready var quit_button = $QuitButton
+
+# --- REWARDS ---
+var reward_gems: int = 750
+var reward_crystals: int = 15
 
 var min_line_index: int = 0
 var current_line_index: int = 0
@@ -58,6 +63,9 @@ var story_script = [
 ]
 
 func _ready():
+	if quit_button:
+		quit_button.pressed.connect(_on_quit_attempt)
+		
 	if dialogue_ui:
 		dialogue_ui.next_line_requested.connect(_load_next_line)
 		dialogue_ui.prev_line_requested.connect(_load_prev_line)
@@ -70,10 +78,33 @@ func _ready():
 		current_line_index = 0
 		min_line_index = 0
 		
-	# Initial visibility
 	cursed_monster.visible = false
 	_load_current_line()
 
+# --- QUIT LOGIC ---
+func _on_quit_attempt():
+	if dialogue_ui.has_method("set_active"):
+		dialogue_ui.set_active(false)
+		
+	end_chapter_popup.setup_popup("Quit Chapter?", "Yes, Quit", "Stay", 1.0)
+	
+	# Disconnect any old connections to reuse this popup
+	if end_chapter_popup.confirmed.is_connected(_on_next_pressed):
+		end_chapter_popup.confirmed.disconnect(_on_next_pressed)
+	
+	end_chapter_popup.confirmed.connect(_confirm_quit)
+	end_chapter_popup.cancelled.connect(_cancel_quit)
+	end_chapter_popup.show_popup()
+
+func _confirm_quit():
+	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/StoryMode.tscn")
+
+func _cancel_quit():
+	end_chapter_popup.hide()
+	if dialogue_ui.has_method("set_active"):
+		dialogue_ui.set_active(true)
+
+# --- CORE LOGIC ---
 func _load_next_line():
 	if is_chapter_finished: return 
 	
@@ -137,7 +168,6 @@ func _play_anim(anim_name):
 			tween.tween_property(beatrice, "position:x", 150, 0.5).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 		
 		"float_beatrice":
-			# Infinite floating effect
 			var float_tween = create_tween().set_loops()
 			float_tween.tween_property(beatrice, "position:y", beatrice.position.y - 20, 1.0).set_trans(Tween.TRANS_SINE)
 			float_tween.tween_property(beatrice, "position:y", beatrice.position.y, 1.0).set_trans(Tween.TRANS_SINE)
@@ -173,11 +203,26 @@ func start_story_battle(stage_id: String):
 func _show_completion_popup():
 	if is_chapter_finished: return
 	is_chapter_finished = true 
-	end_chapter_popup.setup_popup("Chapter 2 Complete!", "Next Chapter", "Back to Menu", 1.0)
+	
+	var r_text = ""
+	
+	# Anti-Farming check
+	if not Global.floors_cleared.has("Chapter2"):
+		Global.small_gems += reward_gems
+		Global.crystal_gems += reward_crystals
+		Global.floors_cleared.append("Chapter2")
+		Global.save_game()
+		r_text = "\nREWARDS: +%d Gems, +%d Crystals" % [reward_gems, reward_crystals]
+	else:
+		r_text = "\n(Rewards already claimed)"
+	
+	end_chapter_popup.setup_popup("Chapter 2 Complete!" + r_text, "Next Chapter", "Back to Menu", 1.0)
+	
 	if not end_chapter_popup.confirmed.is_connected(_on_next_pressed):
 		end_chapter_popup.confirmed.connect(_on_next_pressed)
 	if not end_chapter_popup.cancelled.is_connected(_on_back_pressed):
 		end_chapter_popup.cancelled.connect(_on_back_pressed)
+		
 	end_chapter_popup.show_popup()
 
 func _on_back_pressed():
