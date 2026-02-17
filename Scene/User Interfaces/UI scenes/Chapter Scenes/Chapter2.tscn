@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://che2qc4b15jth"]
+
+[ext_resource type="Script" uid="uid://3evib0uiqcej" path="res://Scene/User Interfaces/UI scenes/Chapter Scenes/Chapter2.gd" id="1_hsj5b"]
+[ext_resource type="PackedScene" uid="uid://nbb3dskrjq7w" path="res://Scene/User Interfaces/UI scenes/CustomQuitPopup.tscn" id="2_0juve"]
+[ext_resource type="Texture2D" uid="uid://dqccvkf5014ax" path="res://Asset/User Interface/%Storymode%/black_background.jpg" id="3_onsxw"]
+[ext_resource type="Texture2D" uid="uid://bt1iuv1k4owd5" path="res://Asset/User Interface/%Storymode%/beatrice.png" id="4_ey7c0"]
+[ext_resource type="Texture2D" uid="uid://cbdtkkfijogvq" path="res://Asset/User Interface/%Storymode%/charlotte.png" id="5_bowjp"]
+[ext_resource type="PackedScene" uid="uid://dkgrs28nbmk1" path="res://Scene/User Interfaces/Story Mode/dialogue_interface.tscn" id="6_w80r5"]
+
+[node name="Chapter2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hsj5b")
+
+[node name="EndChapterPopup" parent="." instance=ExtResource("2_0juve")]
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_onsxw")
+
+[node name="CharContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Beatrice" type="TextureRect" parent="CharContainer"]
+layout_mode = 0
+offset_left = 40.000023
+offset_top = 162.99997
+offset_right = 692.0
+offset_bottom = 1518.0
+scale = Vector2(0.37730062, 0.2843173)
+texture = ExtResource("4_ey7c0")
+
+[node name="Charlotte" type="TextureRect" parent="CharContainer"]
+layout_mode = 0
+offset_left = 600.00006
+offset_top = 140.0
+offset_right = 1626.0
+offset_bottom = 1735.0
+scale = Vector2(0.37730062, 0.2843173)
+texture = ExtResource("5_bowjp")
+
+[node name="Dialogue Interface" parent="." instance=ExtResource("6_w80r5")]
+layout_mode = 1

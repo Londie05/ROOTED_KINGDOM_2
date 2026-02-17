@@ -7,3 +7,7 @@ func _ready() -> void:
 
 func _on_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/start_battle.tscn")
+
+
+func _on_chapter_2_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/Chapter Scenes/Chapter2.tscn")

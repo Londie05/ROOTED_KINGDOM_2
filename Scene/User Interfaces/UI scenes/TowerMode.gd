@@ -12,3 +12,6 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
+
+func _on_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/Chapter Scenes/Chapter1.tscn")
