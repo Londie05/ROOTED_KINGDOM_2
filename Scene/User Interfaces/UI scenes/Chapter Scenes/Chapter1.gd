@@ -8,6 +8,8 @@ extends Control
 @onready var dialogue_ui = $"Dialogue Interface" 
 
 # --- VARIABLES ---
+var min_line_index: int = 0
+
 var current_line_index: int = 0
 var is_chapter_finished: bool = false
 
@@ -22,7 +24,7 @@ var story_script = [
 	{ "speaker": "", "text": "Your world was engulfed in smoke and obscured your eyes.", "anim": "smoke_effect" },
 	{ "speaker": "", "text": "You covered your eyes to prevent the smoke from touching them." },
 	{ "speaker": "", "text": "And as you contemplated on your own predicament, you began hearing the sounds of metal clashing..." },
-	{ "bg": "battle", "speaker": "", "text": "A battle ensued around you.", "anim": "shake_screen" }, 
+	{ "bg": "battle", "speaker": "", "text": "A battle ensued around you.", "anim": "shake_screen", "action": "start_battle" }, 
 	{ "bg": "ruins", "speaker": "", "text": "The smoke suddenly disappeared. Your vision began seeing the light." },
 	{ "speaker": "", "text": "You looked around and found the place in ruins. Corpses of dead Cursed Monsters laid on the ground—" },
 	{ "speaker": "", "text": "And the remains of wreckage scattered around. It was a full-blown attack." },
@@ -90,10 +92,25 @@ func _ready():
 	beatrice.visible = false
 	charlotte.visible = false
 	
+	# --- RESUME LOGIC ---
+	if Global.just_finished_battle:
+		Global.just_finished_battle = false # Reset flag
+		current_line_index = Global.story_line_resume_index + 1 
+		min_line_index = current_line_index
+	else:
+		# Normal start
+		current_line_index = 0
+	
 	_load_current_line()
 
 func _load_next_line():
-	if is_chapter_finished: return # Safety Lock
+	if is_chapter_finished: return 
+	
+	# Check if CURRENT line was a battle trigger
+	var current_data = story_script[current_line_index]
+	if "action" in current_data and current_data["action"] == "start_battle":
+		start_story_battle()
+		return # Stop loading next line, we are leaving the scene
 	
 	if current_line_index < story_script.size() - 1:
 		current_line_index += 1
@@ -101,10 +118,21 @@ func _load_next_line():
 	else:
 		_show_completion_popup()
 
+func start_story_battle():
+	Global.current_game_mode = Global.GameMode.STORY
+	Global.from_tower_mode = false 
+	Global.last_story_scene_path = self.scene_file_path 
+	Global.story_line_resume_index = current_line_index
+	
+	Global.current_battle_stage = "1-1"
+	
+	Global.loading_target_scene = "res://Scene/User Interfaces/CharacterScenes/CharacterSelection.tscn"
+	get_tree().change_scene_to_file("res://Scene/User Interfaces/LoadingScene.tscn")
+	
 func _load_prev_line():
 	if is_chapter_finished: return # Safety Lock
 	
-	if current_line_index > 0:
+	if current_line_index > min_line_index:
 		current_line_index -= 1
 		_load_current_line()
 
@@ -113,13 +141,17 @@ func _load_current_line():
 	
 	var data = story_script[current_line_index]
 	
-	# 1. Handle Text
-	var display_text = data["text"].replace("#Name", Global.player_name)
-	var display_speaker = data["speaker"].replace("#Name", Global.player_name)
-	if display_speaker == "Hero":
-		display_speaker = Global.player_name
+	# --- CHECK FOR BATTLE ---
+	if "action" in data and data["action"] == "start_battle":
+		dialogue_ui.show_line(data.get("speaker", ""), data["text"])
+	else:
+		var display_text = data["text"].replace("#Name", Global.player_name)
+		var display_speaker = data["speaker"].replace("#Name", Global.player_name)
+		if display_speaker == "Hero":
+			display_speaker = Global.player_name
+		dialogue_ui.show_line(display_speaker, display_text)
 		
-	dialogue_ui.show_line(display_speaker, display_text)
+		dialogue_ui.show_line(display_speaker, display_text)
 	
 	# 2. Handle Backgrounds
 	if "bg" in data:

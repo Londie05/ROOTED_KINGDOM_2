@@ -23,6 +23,11 @@ extends Control
 @export var floor_19_enemies: Array[EnemyData] = []
 @export var floor_20_enemies: Array[EnemyData] = []
 
+@export_group("Story Mode Battles")
+@export var story_ch1_stage_1_1: Array[EnemyData] = []
+@export var story_ch2_stage_1_2: Array[EnemyData] = [] # Drag 3 Goblins here
+@export var story_ch2_stage_1_4: Array[EnemyData] = [] # Drag the Shaman here
+
 # --- 1. NODE LINKS ---
 @onready var slot_container = %CardSlots
 @onready var player_team = $PlayerTeam
@@ -30,6 +35,7 @@ extends Control
 @onready var hand_container = %Hand
 @onready var mana_label = $CanvasLayer/EnergyLabel
 
+var is_battle_ending: bool = false
 
 var mana_popup_scene = preload("res://Scene/ManaPopup.tscn") 
 var card_scene = preload("res://Scene/CardUI.tscn")
@@ -88,7 +94,7 @@ func _ready():
 		
 	setup_player_team()
 	build_deck_from_team()
-	setup_tower_enemies()
+	setup_enemies()
 	update_mana_ui()
 	start_current_phase()
 	
@@ -479,43 +485,53 @@ func get_alive_enemies() -> Array:
 			alive.append(enemy)
 	return alive
 
-func setup_tower_enemies():
+func setup_enemies():
 	var enemy_nodes = enemy_team.get_children()
-	var selected_floor_data: Array[EnemyData] = []
-	
+	var selected_data: Array[EnemyData] = []
+	var growth_multiplier: float = 1.0
 	# --- 1. CALCULATE GROWTH ---
-	var growth_percent = 0.05 
-	var growth_multiplier = 1.0 + (Global.current_tower_floor * growth_percent)
+	if Global.current_game_mode == Global.GameMode.TOWER:
+		# --- TOWER LOGIC (Existing) ---
+		var growth_percent = 0.05 
+		growth_multiplier = 1.0 + (Global.current_tower_floor * growth_percent)
 	
-	match Global.current_tower_floor:
-		1: selected_floor_data = floor_1_enemies
-		2: selected_floor_data = floor_2_enemies
-		3: selected_floor_data = floor_3_enemies
-		4: selected_floor_data = floor_4_enemies
-		5: selected_floor_data = floor_5_enemies
-		6: selected_floor_data = floor_6_enemies
-		7: selected_floor_data = floor_7_enemies
-		8: selected_floor_data = floor_8_enemies
-		9: selected_floor_data = floor_9_enemies
-		10: selected_floor_data = floor_10_enemies
-		11: selected_floor_data = floor_11_enemies
-		12: selected_floor_data = floor_12_enemies
-		13: selected_floor_data = floor_13_enemies
-		14: selected_floor_data = floor_14_enemies
-		15: selected_floor_data = floor_15_enemies
-		16: selected_floor_data = floor_16_enemies
-		17: selected_floor_data = floor_17_enemies
-		18: selected_floor_data = floor_18_enemies
-		19: selected_floor_data = floor_19_enemies
-		20: selected_floor_data = floor_20_enemies
+		match Global.current_tower_floor:
+			1: selected_data = floor_1_enemies
+			2: selected_data = floor_2_enemies
+			3: selected_data = floor_3_enemies
+			4: selected_data = floor_4_enemies
+			5: selected_data = floor_5_enemies
+			6: selected_data = floor_6_enemies
+			7: selected_data = floor_7_enemies
+			8: selected_data = floor_8_enemies
+			9: selected_data = floor_9_enemies
+			10: selected_data = floor_10_enemies
+			11: selected_data = floor_11_enemies
+			12: selected_data = floor_12_enemies
+			13: selected_data = floor_13_enemies
+			14: selected_data = floor_14_enemies
+			15: selected_data = floor_15_enemies
+			16: selected_data = floor_16_enemies
+			17: selected_data = floor_17_enemies
+			18: selected_data = floor_18_enemies
+			19: selected_data = floor_19_enemies
+			20: selected_data = floor_20_enemies
+	elif Global.current_game_mode == Global.GameMode.STORY:
+		growth_multiplier = 1.0 # Keep story battles at intended difficulty
+		print("Story Mode Active. Loading Stage: ", Global.current_battle_stage)
+		# This "match" looks at the ID we sent from the Chapter script
+		match Global.current_battle_stage:
+			"1-1": selected_data = story_ch1_stage_1_1
+			"1-2": selected_data = story_ch2_stage_1_2
+			"1-4": selected_data = story_ch2_stage_1_4
 		
 	for node in enemy_nodes:
 		node.hide()
 		node.current_health = 0 
 
-	for i in range(selected_floor_data.size()):
+	for i in range(selected_data.size()):
 		if i < enemy_nodes.size():
-			var enemy_resource = selected_floor_data[i]
+			var enemy_resource = selected_data[i]
 			
 			# Load base stats
 			enemy_nodes[i].setup_enemy(enemy_resource)
@@ -531,32 +547,52 @@ func setup_tower_enemies():
 			if enemy_nodes[i].has_method("update_ui"):
 				enemy_nodes[i].update_ui()
 			
-			print("Stage ", Global.current_tower_floor, " | Enemy HP: ", new_max_hp, " (Mult: ", growth_multiplier, ")")
-			
 			enemy_nodes[i].show() 
 			
 			if not enemy_nodes[i].enemy_selected.is_connected(_on_enemy_clicked):
 				enemy_nodes[i].enemy_selected.connect(_on_enemy_clicked)
 				
 func check_battle_status():
+	if is_battle_ending: return
+	
 	purge_dead_cards()
 	
 	var alive_enemies = get_alive_enemies()
 	var alive_players = get_alive_players()
 	
+	# --- DEFEAT ---
 	if alive_players.is_empty():
+		is_battle_ending = true
 		await get_tree().create_timer(1.0).timeout
 		fade_out_music()
 		GlobalMenu.show_loss_menu() 
 		return
 		
+	# --- VICTORY ---
 	if alive_enemies.is_empty():
-		await get_tree().create_timer(0.5).timeout
+		is_battle_ending = true # Lock the function
 		
-		if Global.current_tower_floor > 0:
-			Global.mark_floor_cleared(Global.current_tower_floor) 
-			fade_out_music()
-			GlobalMenu.show_victory_menu()
+		await get_tree().create_timer(0.5).timeout
+		if not is_inside_tree(): return 
+
+		# A. STORY MODE VICTORY
+		if Global.current_game_mode == Global.GameMode.STORY:
+			Global.just_finished_battle = true
+			if Global.last_story_scene_path != "":
+				get_tree().change_scene_to_file(Global.last_story_scene_path)
+			else:
+				get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/Chapter Scenes/Chapter1.tscn")
+		
+		# B. TOWER MODE VICTORY (The missing part!)
+		else:
+			# Increment the floor for the next run
+			Global.current_tower_floor += 1
+			# Assuming you have a victory menu in your GlobalMenu system
+			if GlobalMenu.has_method("show_victory_menu"):
+				GlobalMenu.show_victory_menu()
+			else:
+				# Fallback: Just reload the scene to start the next floor
+				get_tree().reload_current_scene()
 	
 func get_alive_players() -> Array:
 	var alive = []

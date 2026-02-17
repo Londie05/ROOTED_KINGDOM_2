@@ -1,10 +1,17 @@
 extends Node
 
+enum GameMode { TOWER, STORY }
+var current_game_mode: GameMode = GameMode.TOWER
+
+var last_story_scene_path: String = ""
+var story_line_resume_index: int = 0
+var just_finished_battle: bool = false
+var current_battle_stage: String = ""
+
+# Background music
 var bgm_player: AudioStreamPlayer
 var current_bgm_track_name: String = "Music 1" # Default
-
 var master_volume: float = 1.0
-
 var is_muted: bool = false
 
 # Account Management
