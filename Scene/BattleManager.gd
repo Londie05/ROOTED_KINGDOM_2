@@ -80,17 +80,25 @@ func _ready():
 	
 	await get_tree().process_frame 
 	
-	
-	if Global.current_tower_floor == 10:
-		bgm_player.stream = load("res://Asset/Sound effects/background effect3.mp3")
+	# --- IMPROVED MUSIC LOGIC ---
+	if Global.current_game_mode == Global.GameMode.TOWER:
+		if Global.current_tower_floor == 10:
+			bgm_player.stream = load("res://Asset/Sound effects/background effect3.mp3")
+		else:
+			var random_track_path = battle_themes.pick_random()
+			bgm_player.stream = load(random_track_path)
 	else:
-		var random_track_path = battle_themes.pick_random()
-		bgm_player.stream = load(random_track_path)
+		# Use a default Story Battle theme or keep current
+		bgm_player.stream = load("res://Asset/Sound effects/background effect1.mp3")
 	
 	bgm_player.play()
 	
+	# --- IMPROVED UI LOGIC ---
 	if stage_count_label:
-		stage_count_label.text = "Floor: " + str(Global.current_tower_floor)
+		if Global.current_game_mode == Global.GameMode.TOWER:
+			stage_count_label.text = "Floor: " + str(Global.current_tower_floor)
+		else:
+			stage_count_label.text = "Stage: " + Global.current_battle_stage
 		
 	setup_player_team()
 	build_deck_from_team()
@@ -570,29 +578,43 @@ func check_battle_status():
 		
 	# --- VICTORY ---
 	if alive_enemies.is_empty():
-		is_battle_ending = true # Lock the function
+		is_battle_ending = true 
 		
 		await get_tree().create_timer(0.5).timeout
 		if not is_inside_tree(): return 
 
 		# A. STORY MODE VICTORY
 		if Global.current_game_mode == Global.GameMode.STORY:
+			# Record story progress
+			if not Global.story_chapters_cleared.has(Global.current_battle_stage):
+				Global.story_chapters_cleared.append(Global.current_battle_stage)
+			
+			Global.save_game() # SAVE PROGRESS
+			
 			Global.just_finished_battle = true
 			if Global.last_story_scene_path != "":
 				get_tree().change_scene_to_file(Global.last_story_scene_path)
 			else:
 				get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/Chapter Scenes/Chapter1.tscn")
 		
-		# B. TOWER MODE VICTORY (The missing part!)
+		# B. TOWER MODE VICTORY
 		else:
-			# Increment the floor for the next run
-			Global.current_tower_floor += 1
-			# Assuming you have a victory menu in your GlobalMenu system
+			# 1. RECORD THE WIN: Add the floor we JUST beat to the cleared list
+			if not Global.floors_cleared.has(Global.current_tower_floor):
+				Global.floors_cleared.append(Global.current_tower_floor)
+			
+			# 2. SAVE TO FILE: This ensures the gap disappears forever
+			Global.save_game()
+			
+			# 3. Increment for the "Next Floor" button logic
+			# We don't change Global.current_tower_floor yet, 
+			# we let the Victory Menu handle the transition.
+			
 			if GlobalMenu.has_method("show_victory_menu"):
 				GlobalMenu.show_victory_menu()
 			else:
-				# Fallback: Just reload the scene to start the next floor
-				get_tree().reload_current_scene()
+				# Fallback: Go back to selection to see the new unlocked floor
+				get_tree().change_scene_to_file("res://Scene/TowerSelection.tscn")
 	
 func get_alive_players() -> Array:
 	var alive = []

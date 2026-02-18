@@ -59,12 +59,13 @@ func _on_start_pressed():
 
 func _update_clear_badges():
 	var container = $ScrollContainer/HBoxContainer
-	# This checks "Chapter1", "Chapter2" etc. keys in Global
+	
 	for i in range(1, 4):
 		var key = "Chapter" + str(i)
-		var node_path = key + "/ClearedBadgePanel" # Ensure your button names match this!
+		var node_path = key + "/ClearedBadgePanel" 
 		
-		if Global.floors_cleared.has(key) and container.has_node(node_path):
+		# CHECK THE NEW VARIABLE
+		if Global.story_chapters_cleared.has(key) and container.has_node(node_path):
 			container.get_node(node_path).visible = true
 
 func _on_back_button_pressed() -> void:

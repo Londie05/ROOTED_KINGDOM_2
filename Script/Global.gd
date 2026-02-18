@@ -3,6 +3,10 @@ extends Node
 enum GameMode { TOWER, STORY }
 var current_game_mode: GameMode = GameMode.TOWER
 
+var current_tower_floor: int = 1
+var floors_cleared: Array = []        # ONLY Integers (Tower)
+var story_chapters_cleared: Array = [] # ONLY Strings (Story) [NEW]
+
 var _CURRENTLY_PLAYING_CHAPTER: int = 1
 
 var last_story_scene_path: String = ""
@@ -59,8 +63,6 @@ var button_click_sfx = preload("res://Asset/Sound effects/button_effects.mp3")
 var sfx_player: AudioStreamPlayer
 
 # --- PROGRESSION VARIABLES ---
-var current_tower_floor: int = 1
-var floors_cleared: Array = []
 var selected_team: Array[CharacterData] = []
 var player_team: Array = []
 
@@ -376,11 +378,9 @@ func save_game():
 	config.set_value("Progression", "unlocked_heroes", unlocked_heroes)
 	config.set_value("Progression", "current_floor", current_tower_floor)
 	config.set_value("Progression", "card_levels", card_levels)
+	config.set_value("Progression", "story_chapters_cleared", story_chapters_cleared)
 	config.set_value("Progression", "floors_cleared", floors_cleared)
-	
-	
 	config.set_value("settings", "bgm_track_name", current_bgm_track_name)
-	
 	config.set_value("settings", "bg_name", current_bg_name)
 	# Saving the Settings
 	config.set_value("settings", "master_volume", master_volume)
@@ -404,12 +404,22 @@ func load_game():
 	unlocked_heroes = config.get_value("Progression", "unlocked_heroes", ["Hero"])
 	current_tower_floor = config.get_value("Progression", "current_floor", 1)
 	card_levels = config.get_value("Progression", "card_levels", {})
-	floors_cleared = config.get_value("Progression", "floors_cleared", [])
-		
+	
+	var raw_tower = config.get_value("Progression", "floors_cleared", [])
+	floors_cleared = []
+	for item in raw_tower:
+		if item is int or item is float:
+			floors_cleared.append(int(item))
+	
+	# 2. Load Story Data and FORCE it to be only Strings
+	var raw_story = config.get_value("Progression", "story_chapters_cleared", [])
+	story_chapters_cleared = []
+	for item in raw_story:
+		if item is String:
+			story_chapters_cleared.append(item)
+
 	current_bg_name = config.get_value("settings", "bg_name", current_bg_name)
-	
 	current_bgm_track_name = config.get_value("settings", "bgm_track_name", current_bgm_track_name)
-	
 	master_volume = config.get_value("settings", "master_volume", 1.0)
 	is_muted = config.get_value("settings", "is_muted", false)
 	
@@ -440,7 +450,9 @@ func reset_player_data():
 	floors_cleared = []
 	current_bg_name = "Default"
 	current_bgm_track_name = "Music 1"
-
+	current_game_mode = GameMode.TOWER
+	current_battle_stage = ""
+	just_finished_battle = false
 
 # --- TEAM ---
 func add_to_team(data: CharacterData):

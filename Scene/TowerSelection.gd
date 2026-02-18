@@ -15,7 +15,7 @@ func _ready():
 		var node_name = "Floor" + str(i)
 		if container.has_node(node_name):
 			var btn = container.get_node(node_name)
-			var floor_desc = "Floor " + str(i)
+			var floor_desc = "Floor" + str(i)
 			if i == 21:
 				floor_desc = "Floor 21: On Going..."
 			
@@ -98,19 +98,27 @@ func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/start_battle.tscn")
 
 func lock_floors():
-	# range(1, 22) ensures Floor 21 is included in the loop
+	# 1. Find the highest floor actually cleared in the list
+	var max_cleared = 0
+	for f in Global.floors_cleared:
+		if f is int:
+			max_cleared = max(max_cleared, f)
+	
+	# 2. The player is allowed to play any floor up to max_cleared + 1
+	var unlock_limit = max_cleared + 1
+
 	for i in range(1, 22):
 		var node_name = "Floor" + str(i)
-			
 		if container.has_node(node_name):
 			var btn = container.get_node(node_name)
 			
-			# Floor 1 is always unlocked. Others unlock if the previous floor number is in Global.floors_cleared
-			var is_unlocked = false
-			if i == 1:
-				is_unlocked = true
-			elif Global.floors_cleared.has(i - 1):
-				is_unlocked = true
+			# A floor is unlocked if its number is <= our limit
+			var is_unlocked = (i <= unlock_limit)
 			
 			btn.disabled = not is_unlocked
-			btn.modulate = Color(1, 1, 1) if is_unlocked else Color(0.5, 0.5, 0.5)
+			
+			# Visual feedback
+			if is_unlocked:
+				btn.modulate = Color(1, 1, 1) # Bright
+			else:
+				btn.modulate = Color(0.3, 0.3, 0.3) # Darkened

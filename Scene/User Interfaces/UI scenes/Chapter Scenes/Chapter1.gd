@@ -233,12 +233,12 @@ func _show_completion_popup():
 	
 	var reward_text = ""
 	
-	# --- ANTI-FARMING LOGIC ---
-	if not Global.floors_cleared.has("Chapter1"): 
+	if not Global.story_chapters_cleared.has("Chapter1"): 
 		Global.small_gems += reward_gems
 		Global.crystal_gems += reward_crystals
 		
-		Global.floors_cleared.append("Chapter1")
+		# SAVE TO THE NEW ARRAY
+		Global.story_chapters_cleared.append("Chapter1")
 		
 		Global.save_game()
 		
