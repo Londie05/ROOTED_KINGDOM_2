@@ -42,7 +42,7 @@ var story_script = [
 	{ "speaker": "Charlotte", "text": "Leave it to me.", "focus": "Charlotte", "anim": "exit_right" },
 	{ "speaker": "", "text": "[ Stage 1-2 Battle Start ]", "stage": "1-2" },
 
-	{ "speaker": "", "text": "The smoke faded. Charlotte stood over the Cursed Monsters, blood on her staff. You began to cower, realizing how weak you are." },
+	{ "speaker": "", "text": "The smoke faded. Charlotte stood over the Cursed Monsters, blood on her staff. You began to cower, realizing how weak you are.", "anim": "white_flash"},
 	{ "speaker": "Hero", "text": "CHARLOTTE! THERE'S A CURSED MONSTER RUN—" },
 	{ "speaker": "Beatrice", "text": "Don't worry about it. That's intentional. He'll lead us to a better camp.", "focus": "Beatrice" },
 
@@ -86,7 +86,7 @@ func _on_quit_attempt():
 	if dialogue_ui.has_method("set_active"):
 		dialogue_ui.set_active(false)
 		
-	end_chapter_popup.setup_popup("Quit Chapter?", "Yes, Quit", "Stay", 1.0)
+	end_chapter_popup.setup_popup("Quit Chapter? Your progress won't be saved", "Yes, Quit", "Stay", 1.0)
 	
 	# Disconnect any old connections to reuse this popup
 	if end_chapter_popup.confirmed.is_connected(_on_next_pressed):

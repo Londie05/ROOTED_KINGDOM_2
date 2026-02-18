@@ -1,6 +1,7 @@
 extends Control
 
 func _on_back_pressed() -> void:
+	Global.current_game_mode = Global.GameMode.TOWER
 	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/main_menu.tscn")
 
 func _on_tower_mode_pressed() -> void:

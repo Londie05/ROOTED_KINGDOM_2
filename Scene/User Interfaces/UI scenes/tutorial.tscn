@@ -1,19 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3qsqy5r6pe1i"]
+[gd_scene load_steps=5 format=3 uid="uid://b3qsqy5r6pe1i"]
 
 [ext_resource type="Script" uid="uid://dktc78pukc7xy" path="res://Scene/User Interfaces/UI scenes/Tutorial.gd" id="1_bhgoa"]
 [ext_resource type="PackedScene" uid="uid://cbr4wmo2fw5b2" path="res://Scene/User Interfaces/UI Asset Components/MasterBackground.tscn" id="1_ddhwr"]
 [ext_resource type="Script" uid="uid://ute0x4yw2loi" path="res://Scene/User Interfaces/UI Scripts/button_manager_tutorial.gd" id="1_vlpxj"]
-[ext_resource type="Texture2D" uid="uid://cdfpkjhi1gi77" path="res://Asset/User Interface/button_ui.png" id="3_ddhwr"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ddhwr"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bhgoa"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rs8hv"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_atkp4"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ylv1p"]
+[ext_resource type="Texture2D" uid="uid://deoilkueygt75" path="res://Asset/User Interface/button.png" id="4_bhgoa"]
 
 [node name="Tutorial" type="Control"]
 layout_mode = 3
@@ -33,21 +23,40 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_vlpxj")
 
-[node name="Back" type="Button" parent="Button Manager"]
+[node name="Back" type="TextureButton" parent="Button Manager"]
 layout_mode = 0
 offset_top = 40.0
 offset_right = 163.0
 offset_bottom = 90.0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ddhwr")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_bhgoa")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_rs8hv")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_atkp4")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ylv1p")
-text = "Back
-"
-icon = ExtResource("3_ddhwr")
-icon_alignment = 1
-expand_icon = true
+texture_normal = ExtResource("4_bhgoa")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="NextLabel" type="Label" parent="Button Manager/Back"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -1.0
+offset_right = -2.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.99, 0.90684, 0.7821, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 20
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+autowrap_trim_flags = 64
+metadata/_edit_lock_ = true
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -76,11 +85,21 @@ grow_vertical = 2
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="ManualLabel" type="Label" parent="Panel/HBoxContainer/Panel/VBoxContainer"]
+[node name="Manual" type="Label" parent="Panel/HBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(0.99, 0.90684, 0.7821, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 33
 text = "Manual"
 horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 64
+metadata/_edit_lock_ = true
 
 [node name="PlayManual" type="Button" parent="Panel/HBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2

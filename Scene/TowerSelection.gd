@@ -21,7 +21,7 @@ func _ready():
 			
 			btn.pressed.connect(_on_floor_selected.bind(i, floor_desc))
 	
-	start_btn.text = "Choose Characters"
+	$StartBattleButton/Label.text = "Choose Characters"
 	start_btn.pressed.connect(_on_choose_characters_pressed)
 	
 	# Initial button state
