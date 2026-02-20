@@ -234,7 +234,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"endless_bloom_shadow",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -254,7 +254,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"fire_blast",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -283,5 +283,5 @@ animations = [{
 }],
 "loop": false,
 "name": &"fire_cast",
-"speed": 7.0
+"speed": 8.0
 }]

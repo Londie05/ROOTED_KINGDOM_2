@@ -84,7 +84,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Blaze_heart",
-"speed": 7.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
