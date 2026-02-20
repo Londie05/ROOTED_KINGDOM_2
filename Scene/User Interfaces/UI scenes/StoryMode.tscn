@@ -1,8 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbivgkhlqit6w"]
+[gd_scene load_steps=11 format=3 uid="uid://dbivgkhlqit6w"]
 
 [ext_resource type="Script" uid="uid://bwg4cg8j30r81" path="res://Scene/User Interfaces/UI scenes/StoryMode.gd" id="1_k8oo6"]
 [ext_resource type="PackedScene" uid="uid://cbr4wmo2fw5b2" path="res://Scene/User Interfaces/UI Asset Components/MasterBackground.tscn" id="2_drjwh"]
+[ext_resource type="PackedScene" uid="uid://nbb3dskrjq7w" path="res://Scene/User Interfaces/UI scenes/CustomQuitPopup.tscn" id="2_f7ccj"]
 [ext_resource type="Texture2D" uid="uid://deoilkueygt75" path="res://Asset/User Interface/button.png" id="3_sx7fj"]
+[ext_resource type="Texture2D" uid="uid://he3dstfcqlb0" path="res://Asset/User Interface/%Storymode%/Rollings Plains.jpg" id="4_icn47"]
+[ext_resource type="Script" uid="uid://b8dda3ind0tk" path="res://Scene/User Interfaces/UI scenes/TowerMode.gd" id="5_vn7st"]
+[ext_resource type="Texture2D" uid="uid://ro4jxvfoys70" path="res://Asset/User Interface/%Storymode%/scene 1.jpg" id="6_f7ccj"]
+[ext_resource type="Texture2D" uid="uid://6kmgs5s1swcl" path="res://Asset/User Interface/tower_mod_background_v2.jpg" id="7_lxdk4"]
+[ext_resource type="Texture2D" uid="uid://cm2xwoy3220ky" path="res://Asset/Backgrounds/illustrationn.jpg" id="8_vn7st"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rf74o"]
+bg_color = Color(0.66, 0.66, 0.66, 0)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(0, 0, 0, 1)
 
 [node name="StoryMode" type="Control"]
 layout_mode = 3
@@ -12,6 +26,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k8oo6")
+
+[node name="CustomQuitPopup" parent="." instance=ExtResource("2_f7ccj")]
+visible = false
 
 [node name="MasterBackground" parent="." instance=ExtResource("2_drjwh")]
 layout_mode = 1
@@ -26,13 +43,434 @@ texture_normal = ExtResource("3_sx7fj")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="BackButton"]
-layout_mode = 0
-offset_right = 211.0
-offset_bottom = 75.0
-theme_override_font_sizes/font_size = 29
+[node name="Back" type="Label" parent="BackButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -14.0
+offset_right = 26.5
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.99, 0.90684, 0.7821, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 26
 text = "Back"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_trim_flags = 64
+metadata/_edit_lock_ = true
+
+[node name="ScrollContainerBoarder" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -139.0
+offset_bottom = 261.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rf74o")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -139.0
+offset_bottom = 249.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(1152, 380)
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Chapter1" type="TextureButton" parent="ScrollContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.8117647)
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+texture_normal = ExtResource("4_icn47")
+ignore_texture_size = true
+stretch_mode = 6
+script = ExtResource("5_vn7st")
+rewards = "Rewards: 500 gem and 10 crystal"
+target_scene = "uid://c1qbxyaej3s7b"
+
+[node name="Chapter1Boarder" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rf74o")
+
+[node name="Title" type="Label" parent="ScrollContainer/HBoxContainer/Chapter1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.99, 0.90684, 0.7821, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "Chapter 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+autowrap_trim_flags = 64
+
+[node name="ClearedBadgePanel" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter1"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = -9.0
+offset_bottom = -279.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ClearedBadgeLabel" type="Label" parent="ScrollContainer/HBoxContainer/Chapter1/ClearedBadgePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.31350005, 0.99, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 27
+text = "Chapter cleared"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+autowrap_trim_flags = 64
+metadata/_edit_lock_ = true
+
+[node name="Chapter2" type="TextureButton" parent="ScrollContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.8117647)
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+texture_normal = ExtResource("6_f7ccj")
+ignore_texture_size = true
+stretch_mode = 6
+script = ExtResource("5_vn7st")
+chapter_title = "Chapter 2"
+rewards = "Rewards: 750 gem and 15 crystal"
+target_scene = "uid://che2qc4b15jth"
+
+[node name="Chapter2Boarder" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rf74o")
+
+[node name="Title" type="Label" parent="ScrollContainer/HBoxContainer/Chapter2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.99, 0.90684, 0.7821, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "Chapter 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+autowrap_trim_flags = 64
+
+[node name="ClearedBadgePanel" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter2"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = -9.0
+offset_bottom = -279.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ClearedBadgeLabel" type="Label" parent="ScrollContainer/HBoxContainer/Chapter2/ClearedBadgePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.31350005, 0.99, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 27
+text = "Chapter cleared"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+autowrap_trim_flags = 64
+metadata/_edit_lock_ = true
+
+[node name="Chapter3" type="TextureButton" parent="ScrollContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.8117647)
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+texture_normal = ExtResource("7_lxdk4")
+ignore_texture_size = true
+stretch_mode = 6
+script = ExtResource("5_vn7st")
+
+[node name="Chapter3Boarder" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rf74o")
+
+[node name="Title" type="Label" parent="ScrollContainer/HBoxContainer/Chapter3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.99, 0.90684, 0.7821, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "Chapter 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+autowrap_trim_flags = 64
+
+[node name="ClearedBadgePanel" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter3"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = -9.0
+offset_bottom = -279.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ClearedBadgeLabel" type="Label" parent="ScrollContainer/HBoxContainer/Chapter3/ClearedBadgePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.31350005, 0.99, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 27
+text = "Chapter cleared"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+autowrap_trim_flags = 64
+metadata/_edit_lock_ = true
+
+[node name="Chapter4" type="TextureButton" parent="ScrollContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.8117647)
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+texture_normal = ExtResource("8_vn7st")
+ignore_texture_size = true
+stretch_mode = 6
+script = ExtResource("5_vn7st")
+
+[node name="Chapter4Boarder" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rf74o")
+
+[node name="Title" type="Label" parent="ScrollContainer/HBoxContainer/Chapter4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.99, 0.90684, 0.7821, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "TBC...
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+autowrap_trim_flags = 64
+
+[node name="ClearedBadgePanel" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter4"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = -9.0
+offset_bottom = -279.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ClearedBadgeLabel" type="Label" parent="ScrollContainer/HBoxContainer/Chapter4/ClearedBadgePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.31350005, 0.99, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 27
+text = "Chapter cleared"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+autowrap_trim_flags = 64
+metadata/_edit_lock_ = true
+
+[node name="ChapterDescriptionPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -234.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TitleLabel" type="Label" parent="ChapterDescriptionPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -162.0
+offset_top = -118.0
+offset_right = 158.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "TITLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RewardLabel" type="Label" parent="ChapterDescriptionPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -162.0
+offset_top = -40.0
+offset_right = 158.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "Reward Label"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="ChapterDescriptionPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 34.0
+offset_right = 90.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "Start"
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/HBoxContainer/Chapter1" to="ScrollContainer/HBoxContainer/Chapter1" method="_on_pressed"]
+[connection signal="pressed" from="ScrollContainer/HBoxContainer/Chapter2" to="." method="_on_chapter_2_pressed"]

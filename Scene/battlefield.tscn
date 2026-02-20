@@ -82,6 +82,9 @@ floor_17_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("7_3314g"), ExtRes
 floor_18_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("5_3314g"), ExtResource("6_jxk86"), ExtResource("7_3314g")])
 floor_19_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("3_4l1qv"), ExtResource("4_jxk86"), ExtResource("5_3314g"), ExtResource("7_3314g")])
 floor_20_enemies = Array[ExtResource("2_nqr2r")]([ExtResource("8_4x6d6")])
+story_ch1_stage_1_1 = Array[ExtResource("2_nqr2r")]([ExtResource("5_3314g")])
+story_ch2_stage_1_2 = Array[ExtResource("2_nqr2r")]([ExtResource("4_jxk86")])
+story_ch2_stage_1_4 = Array[ExtResource("2_nqr2r")]([ExtResource("3_4l1qv")])
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1

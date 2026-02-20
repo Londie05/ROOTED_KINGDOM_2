@@ -50,10 +50,14 @@ func _process(delta):
 		complete_loading()
 
 # --- TEXT LOGIC ---
-
 func _update_loading_text():
 	if next_scene_path.contains("battlefield") or next_scene_path.contains("Story_mode_battle"):
 		_update_battle_text()
+	
+	elif next_scene_path.contains("Chapter2"):
+		status_label.text = "Entering Chapter 2..."
+	elif next_scene_path.contains("StoryMode.tscn"):
+		status_label.text = "Returning to Chapter Selection..."
 	elif next_scene_path.contains("Chapter_"):
 		status_label.text = "Redirecting to Chapter " + str(Global._CURRENTLY_PLAYING_CHAPTER) + "..."
 	elif next_scene_path.contains("Stage_Scene_1-1"):
@@ -62,8 +66,6 @@ func _update_loading_text():
 		_update_name_entry_text()
 	elif next_scene_path.contains("AccountSelection"):
 		status_label.text = "Loading Account Records..."
-	elif next_scene_path.contains("settings"):
-		status_label.text = "Saving new profile data..."
 	else:
 		if Global.player_name != "":
 			status_label.text = "Welcome, " + str(Global.player_name) + "!"
@@ -86,7 +88,6 @@ func _update_name_entry_text():
 			status_label.text = "Awaiting Hero Registration..."
 
 # --- COMPLETION ---
-
 func complete_loading():
 	var loaded_db = ResourceLoader.load_threaded_get(database_path)
 	if loaded_db:
