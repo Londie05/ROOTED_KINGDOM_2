@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://c1n53h5gfnv83"]
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://c1n53h5gfnv83"]
 
 [ext_resource type="Texture2D" uid="uid://b1nyytfaosr8g" path="res://Asset/Common cards/Sacred_Barrier.webp" id="1_yn7dl"]
 [ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="2_yn7dl"]
 [ext_resource type="AudioStream" uid="uid://d2gkalxlrrv20" path="res://Asset/Sound effects/sacred_barrier.mp3" id="3_yn7dl"]
+[ext_resource type="SpriteFrames" uid="uid://cqji16ngfb8ai" path="res://Resources/Card Animations/simple_animation.tres" id="4_dn1mk"]
 
 [resource]
 script = ExtResource("2_yn7dl")
 card_name = "Sacred Barrier"
 card_image = ExtResource("1_yn7dl")
 description = "Give 17 shield to all heroes on the field"
+target_type = 1
 shield = 17
 mana_cost = 2
 is_aoe = true
@@ -16,4 +18,6 @@ aoe_targets = 3
 damage_growth = 0
 heal_growth = 0
 sound_effect = ExtResource("3_yn7dl")
+vfx_frames = ExtResource("4_dn1mk")
+vfx_animation = "Shields"
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

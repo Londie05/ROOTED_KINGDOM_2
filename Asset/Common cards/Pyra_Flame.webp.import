@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjlmdcxn3767p"
-path="res://.godot/imported/Pyra_Flame.webp-1890cb82da590f2adc1589bf08468448.ctex"
+path="res://.godot/imported/Pyra_flame.webp-ea45a2106115334b9c72fa5b802421aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/Common cards/Pyra_Flame.webp"
-dest_files=["res://.godot/imported/Pyra_Flame.webp-1890cb82da590f2adc1589bf08468448.ctex"]
+source_file="res://Asset/Common cards/Pyra_flame.webp"
+dest_files=["res://.godot/imported/Pyra_flame.webp-ea45a2106115334b9c72fa5b802421aa.ctex"]
 
 [params]
 

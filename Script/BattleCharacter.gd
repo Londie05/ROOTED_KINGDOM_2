@@ -120,7 +120,11 @@ func play_attack_sequence(target_node: Node2D, should_move: bool, anim_name: Str
 	attack_hit_moment.emit()
 	
 	if anim_sprite and anim_sprite.sprite_frames.has_animation(anim_name):
-		await anim_sprite.animation_finished
+		var fps = anim_sprite.sprite_frames.get_animation_speed(anim_name)
+		var frames = anim_sprite.sprite_frames.get_frame_count(anim_name)
+		var duration = max((frames / fps) + 0.1, 0.5) if fps > 0 else 1.0
+		
+		await get_tree().create_timer(duration).timeout
 		anim_sprite.play("default")
 	
 	if should_move:

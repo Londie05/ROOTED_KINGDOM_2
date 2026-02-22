@@ -2,10 +2,12 @@ extends Resource
 class_name CardData
 
 enum VFXPositionMode { TARGET, ENEMY_CENTER, SCREEN_CENTER, CASTER_RELATIVE }
+enum TargetType { ENEMY, HERO }
 
 @export var card_name: String = ""
 @export var card_image: Texture2D 
 @export_multiline var description: String = ""
+@export var target_type: TargetType = TargetType.ENEMY
 
 @export_group("Base Stats (Level 1)")
 @export var damage: int = 0

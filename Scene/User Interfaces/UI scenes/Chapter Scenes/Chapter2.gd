@@ -88,7 +88,6 @@ func _on_quit_attempt():
 		
 	end_chapter_popup.setup_popup("Quit Chapter? Your progress won't be saved", "Yes, Quit", "Stay", 1.0)
 	
-	# Disconnect any old connections to reuse this popup
 	if end_chapter_popup.confirmed.is_connected(_on_next_pressed):
 		end_chapter_popup.confirmed.disconnect(_on_next_pressed)
 	
