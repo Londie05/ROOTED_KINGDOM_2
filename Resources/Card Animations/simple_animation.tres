@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=53 format=3 uid="uid://cqji16ngfb8ai"]
+[gd_resource type="SpriteFrames" load_steps=57 format=3 uid="uid://cqji16ngfb8ai"]
 
 [ext_resource type="Texture2D" uid="uid://ber5lcbkqke0t" path="res://Asset/Characters/blaze heart.png" id="1_tgngp"]
 [ext_resource type="Texture2D" uid="uid://baxww8ywkbaxd" path="res://Asset/Characters/heal.png" id="2_gcq1o"]
@@ -188,6 +188,22 @@ region = Rect2(0, 936, 484, 468)
 atlas = ExtResource("7_gcq1o")
 region = Rect2(484, 936, 484, 468)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ci1is"]
+atlas = ExtResource("7_gcq1o")
+region = Rect2(484, 936, 484, 468)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rscf3"]
+atlas = ExtResource("7_gcq1o")
+region = Rect2(0, 936, 484, 468)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mkgc"]
+atlas = ExtResource("7_gcq1o")
+region = Rect2(968, 468, 484, 468)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvh3e"]
+atlas = ExtResource("7_gcq1o")
+region = Rect2(484, 468, 484, 468)
+
 [resource]
 animations = [{
 "frames": [{
@@ -355,6 +371,18 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qce8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ci1is")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rscf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mkgc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvh3e")
 }],
 "loop": false,
 "name": &"Stun",
