@@ -185,9 +185,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8wixn")
 }],
-"loop": false,
+"loop": true,
 "name": &"crimson",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -216,5 +216,5 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 6.0
+"speed": 8.0
 }]

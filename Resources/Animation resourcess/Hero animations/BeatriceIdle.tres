@@ -179,7 +179,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"blaze_heart",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -232,7 +232,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s07tm")
 }],
-"loop": false,
+"loop": true,
 "name": &"endless_bloom_shadow",
 "speed": 8.0
 }, {

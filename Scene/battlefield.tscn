@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c383wxvj0hh7q"]
+[gd_scene load_steps=29 format=3 uid="uid://c383wxvj0hh7q"]
 
 [ext_resource type="PackedScene" uid="uid://bplpwpncwxjh4" path="res://Scene/CardUI.tscn" id="1_fxwnf"]
 [ext_resource type="Script" uid="uid://1mh1lv3r2q5c" path="res://Scene/BattleManager.gd" id="1_vsh2u"]
@@ -17,6 +17,8 @@
 [ext_resource type="Shader" uid="uid://dus4tb4wupj8i" path="res://Scene/shaders/Enemy2.gdshader" id="14_4l1qv"]
 [ext_resource type="Shader" uid="uid://b0i6r2sa125wn" path="res://Scene/shaders/Enemy3.gdshader" id="15_jxk86"]
 [ext_resource type="Shader" uid="uid://sg6ate85e70j" path="res://Scene/shaders/Enemy4.gdshader" id="16_3314g"]
+[ext_resource type="AudioStream" uid="uid://ovjsivaguyxm" path="res://Asset/Sound effects/gundown.mp3" id="19_hjqj7"]
+[ext_resource type="AudioStream" uid="uid://pj3ia1iqn75" path="res://Asset/Sound effects/thesharpshooterofdeath.mp3" id="20_ryew4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4x6d6"]
 
@@ -533,9 +535,11 @@ offset_bottom = 197.76
 theme_override_constants/separation = 20
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource("19_hjqj7")
 volume_db = -7.829
 
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource("20_ryew4")
 volume_db = -13.796
 autoplay = true
 
