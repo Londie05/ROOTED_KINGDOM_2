@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://bg41rywf50mm2"]
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://bg41rywf50mm2"]
 
 [ext_resource type="Texture2D" uid="uid://dxq4rc3dxicsa" path="res://Asset/Common cards/Stun.webp" id="1_j3qua"]
 [ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="2_j3qua"]
 [ext_resource type="AudioStream" uid="uid://0qp7nqibf6xu" path="res://Asset/Sound effects/stun.mp3" id="3_j3qua"]
+[ext_resource type="SpriteFrames" uid="uid://cqji16ngfb8ai" path="res://Resources/Card Animations/simple_animation.tres" id="4_p40ld"]
 
 [resource]
 script = ExtResource("2_j3qua")
@@ -18,4 +19,6 @@ damage_growth = 2
 shield_growth = 0
 heal_growth = 0
 sound_effect = ExtResource("3_j3qua")
+vfx_frames = ExtResource("4_p40ld")
+vfx_animation = "Stun"
 metadata/_custom_type_script = "uid://olc2cw5uohq6"
