@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c383wxvj0hh7q"]
+[gd_scene load_steps=27 format=3 uid="uid://c383wxvj0hh7q"]
 
 [ext_resource type="PackedScene" uid="uid://bplpwpncwxjh4" path="res://Scene/CardUI.tscn" id="1_fxwnf"]
 [ext_resource type="Script" uid="uid://1mh1lv3r2q5c" path="res://Scene/BattleManager.gd" id="1_vsh2u"]
@@ -13,7 +13,6 @@
 [ext_resource type="Resource" uid="uid://cqmjjngvfv0m6" path="res://Resources/Enemies resources/Floor5Boss.tres" id="8_4x6d6"]
 [ext_resource type="Texture2D" uid="uid://ccclxldrmru4w" path="res://Asset/Backgrounds/background 1.jpg" id="9_bkjeu"]
 [ext_resource type="PackedScene" uid="uid://bsv08pscmpght" path="res://Scene/DamagePopup.tscn" id="10_4x6d6"]
-[ext_resource type="SpriteFrames" uid="uid://cywakqpa2mvgy" path="res://Resources/Animation resourcess/Hero animations/Charlotte.tres" id="12_bkjeu"]
 [ext_resource type="Shader" uid="uid://dc3w3hg2ro5dg" path="res://Scene/shaders/Enemy1.gdshader" id="13_4l1qv"]
 [ext_resource type="Shader" uid="uid://dus4tb4wupj8i" path="res://Scene/shaders/Enemy2.gdshader" id="14_4l1qv"]
 [ext_resource type="Shader" uid="uid://b0i6r2sa125wn" path="res://Scene/shaders/Enemy3.gdshader" id="15_jxk86"]
@@ -160,9 +159,7 @@ target_height = 210.0
 [node name="AnimSprite" type="AnimatedSprite2D" parent="PlayerTeam/Dummy2"]
 position = Vector2(3, -2)
 scale = Vector2(0.7, 0.685)
-sprite_frames = ExtResource("12_bkjeu")
 animation = &"crimson"
-frame_progress = 0.3375356
 metadata/_edit_lock_ = true
 
 [node name="HealthBar" type="ProgressBar" parent="PlayerTeam/Dummy2"]
