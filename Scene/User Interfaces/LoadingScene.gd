@@ -86,8 +86,7 @@ func _update_name_entry_text():
 			status_label.text = "Initializing System..."
 		else:
 			status_label.text = "Awaiting Hero Registration..."
-
-# --- COMPLETION ---
+			
 func complete_loading():
 	var loaded_db = ResourceLoader.load_threaded_get(database_path)
 	if loaded_db:
