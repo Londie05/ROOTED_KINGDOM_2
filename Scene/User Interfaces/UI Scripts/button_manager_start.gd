@@ -21,6 +21,7 @@ func _on_story_mode_pressed() -> void:
 	if Global.stages_unlocked.size() - 1 == 0:
 		Global.declare_chapter(1)
 		Global.declare_stage(1)
+		Global.from_story_mode = true
 		Global.loading_target_scene = "res://Scene/User Interfaces/Story Mode/Dialogue Folders/Dialogue Stages/Story Stages/Chapter 1/Stages_Scenes/Stage_Scene_1-1.tscn"
 		get_tree().change_scene_to_file("res://Scene/User Interfaces/LoadingScene.tscn")
 	else:
