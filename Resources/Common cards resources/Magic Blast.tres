@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://bvhpgffxipn01"]
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://bvhpgffxipn01"]
 
 [ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="1_0hm0l"]
 [ext_resource type="Texture2D" uid="uid://dgjlu6nlqqs2a" path="res://Asset/Common cards/Magic_Blast.webp" id="1_vwg4p"]
 [ext_resource type="AudioStream" uid="uid://ddgtab4rsougq" path="res://Asset/Sound effects/Magic Blast.mp3" id="3_vwg4p"]
+[ext_resource type="SpriteFrames" uid="uid://cqji16ngfb8ai" path="res://Resources/Card Animations/simple_animation.tres" id="4_mobb5"]
 
 [resource]
 script = ExtResource("1_0hm0l")
@@ -16,4 +17,10 @@ aoe_targets = 4
 critical_chance = 59
 damage_growth = 2
 sound_effect = ExtResource("3_vwg4p")
+vfx_frames = ExtResource("4_mobb5")
+vfx_animation = "Magic_blast"
+vfx_scale = 2.0
+vfx_position_mode = 3
+vfx_offset = Vector2(600, 0)
+vfx_vertical_lift = 30.0
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

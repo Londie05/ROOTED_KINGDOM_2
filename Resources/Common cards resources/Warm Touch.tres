@@ -1,18 +1,22 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://qn54dvyfdrjc"]
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://qn54dvyfdrjc"]
 
 [ext_resource type="Texture2D" uid="uid://bb3wsm7exi6uj" path="res://Asset/Common cards/Warm_Touch.webp" id="1_1cttj"]
 [ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="2_1cttj"]
 [ext_resource type="AudioStream" uid="uid://bm47tpj6tdltx" path="res://Asset/Sound effects/warm_touch.mp3" id="3_1cttj"]
+[ext_resource type="SpriteFrames" uid="uid://cqji16ngfb8ai" path="res://Resources/Card Animations/simple_animation.tres" id="4_oxppu"]
 
 [resource]
 script = ExtResource("2_1cttj")
 card_name = "Warm Touch"
 card_image = ExtResource("1_1cttj")
 description = "Heals all allies by 30"
+target_type = 1
 heal_amount = 30
 mana_cost = 3
 is_aoe = true
 aoe_targets = 3
 heal_growth = 2
 sound_effect = ExtResource("3_1cttj")
+vfx_frames = ExtResource("4_oxppu")
+vfx_animation = "Heals"
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

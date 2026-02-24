@@ -19,4 +19,5 @@ shield_growth = 0
 heal_growth = 0
 upgrade_cost = 100
 sound_effect = ExtResource("3_eay75")
+animation_name = "endless_bloom_shadow"
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

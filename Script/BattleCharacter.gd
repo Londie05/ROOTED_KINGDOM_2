@@ -1,6 +1,9 @@
 extends Node2D
 class_name BattleCharacter
 
+signal attack_hit_moment # Tells Manager: "Apply damage NOW"
+signal attack_finished   # Tells Manager: "I am back, next card please"
+
 @export var damage_node: PackedScene
 
 @export var char_name: String = ""
@@ -16,6 +19,9 @@ var critical_chance: int = 0
 var is_aoe: bool = false
 var max_aoe_targets: int = 1
 
+var start_position: Vector2
+var original_sprite_scale: Vector2 = Vector2.ONE
+
 # --- NODES ---
 @onready var anim_sprite = $AnimSprite
 @onready var hp_label = $HealthBar/HPLabel
@@ -28,12 +34,113 @@ var is_locked_target: bool = false
 var stun_turns_left: int = 0
 var original_color: Color = Color.WHITE
 
+@export var shake_intensity: float = 15.0
+@export var shake_duration: float = 0.2
+
 func _ready():
-	# Capture the starting color so we can reset after stun
 	original_color = modulate
+	# Wait for the UI and Containers to finish moving everyone
 	await get_tree().process_frame
+	await get_tree().create_timer(0.2).timeout 
+	
+	start_position = global_position 
+	print(char_name, " FINAL START POS: ", start_position)
 	update_ui()
 
+func _save_start_pos():
+	start_position = global_position
+	print(char_name, " ACTUAL start position: ", start_position)
+	
+func shake():
+	if not anim_sprite: return
+	
+	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	var original_pos = anim_sprite.position
+	
+	for i in range(4):
+		var offset = Vector2(randf_range(-shake_intensity, shake_intensity), 0)
+		tween.tween_property(anim_sprite, "position", original_pos + offset, shake_duration / 8.0)
+		tween.tween_property(anim_sprite, "position", original_pos, shake_duration / 8.0)
+		
+func play_attack_sequence(target_node: Node2D, should_move: bool, anim_name: String):
+	if target_node == null or not target_node.is_visible_in_tree():
+		should_move = false
+
+	var current_global_pos = global_position 
+	start_position = current_global_pos 
+	
+	var original_z = z_index
+	z_index = 100 
+
+	if should_move:
+		top_level = true 
+		global_position = current_global_pos
+
+	# MOVE TO ENEMY
+	if should_move and target_node != null:
+		var target_pos = target_node.global_position
+		
+		var stop_distance = 80.0 
+		
+		
+		var direction_vector = (current_global_pos - target_pos).normalized()
+		
+
+		var destination = target_pos + (direction_vector * stop_distance)
+
+		# --- HANDLE FACING DIRECTION ---
+		if anim_sprite:
+
+			if target_pos.x > current_global_pos.x:
+				anim_sprite.flip_h = false 
+			else:
+				anim_sprite.flip_h = true
+
+		spawn_debug_dot(target_pos) 
+		spawn_debug_dot(destination) 
+
+		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+		tween.tween_property(self, "global_position", destination, 0.3)
+		await tween.finished
+	
+	if anim_sprite:
+		if anim_sprite.sprite_frames.has_animation(anim_name):
+			anim_sprite.play(anim_name)
+		else:
+			print("Animation not found: ", anim_name, " playing default.")
+			anim_sprite.play("default")
+			
+			var bump_tween = create_tween()
+			bump_tween.tween_property(anim_sprite, "scale", original_sprite_scale * 1.2, 0.1)
+			bump_tween.tween_property(anim_sprite, "scale", original_sprite_scale, 0.1)
+
+
+	await get_tree().create_timer(0.3).timeout
+	
+	attack_hit_moment.emit()
+	
+	if anim_sprite and anim_sprite.sprite_frames.has_animation(anim_name):
+		var fps = anim_sprite.sprite_frames.get_animation_speed(anim_name)
+		var frames = anim_sprite.sprite_frames.get_frame_count(anim_name)
+		var duration = max((frames / fps) + 0.1, 0.5) if fps > 0 else 1.0
+		
+		await get_tree().create_timer(duration).timeout
+		anim_sprite.play("default")
+	
+	if should_move:
+		if anim_sprite:
+			anim_sprite.flip_h = is_enemy 
+			
+		var return_tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		return_tween.tween_property(self, "global_position", start_position, 0.2)
+		await return_tween.finished
+		
+		top_level = false 
+		global_position = start_position 
+		
+	z_index = original_z 
+	attack_finished.emit()
+	
 func spawn_popup(amount: int, color: Color, is_critical: bool = false):
 	if damage_node == null: return
 	
@@ -64,7 +171,8 @@ func setup_character(data: CharacterData):
 		if first_frame_texture:
 			var texture_size = first_frame_texture.get_size()
 			var scale_factor = target_height / texture_size.y
-			anim_sprite.scale = Vector2(scale_factor, scale_factor)
+			original_sprite_scale = Vector2(scale_factor, scale_factor)
+			anim_sprite.scale = original_sprite_scale 
 	
 	show()
 	update_ui()
@@ -87,14 +195,18 @@ func take_damage(amount: int, is_critical: bool = false):
 			current_shield = 0
 	
 	current_health -= damage_to_hp
-	flash_character(Color(2.5, 0.5, 0.5))
+	
+	flash_character(Color(5.0, 0.5, 0.5)) 
 	spawn_popup(amount, Color.RED, is_critical)
 	
 	update_ui()
 	if current_health <= 0:
 		current_health = 0
 		die()
-
+	
+	shake()
+	
+	
 func heal(amount: int):
 	current_health = min(max_health, current_health + amount)
 	flash_character(Color(0.5, 2.5, 0.5))
@@ -154,5 +266,15 @@ func process_stun_turn() -> bool:
 		if stun_turns_left <= 0:
 			modulate = original_color
 			print("--- DEBUG: ", char_name, " is no longer stunned.")
-		return true # Yes, skip turn
-	return false # No, attack normally
+		return true 
+	return false 
+
+func spawn_debug_dot(world_pos: Vector2):
+	var dot = ColorRect.new()
+	get_tree().root.add_child(dot)
+	dot.color = Color.RED
+	dot.custom_minimum_size = Vector2(10, 10)
+	dot.global_position = world_pos - Vector2(5, 5) 
+	
+	get_tree().create_timer(2.0).timeout.connect(dot.queue_free)
+	

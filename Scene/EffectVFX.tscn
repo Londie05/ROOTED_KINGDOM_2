@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmtb5qmki5cnl"]
+
+[ext_resource type="SpriteFrames" uid="uid://cqji16ngfb8ai" path="res://Resources/Card Animations/simple_animation.tres" id="1_45ouf"]
+[ext_resource type="Script" uid="uid://csf6j5crcajxa" path="res://Scene/EffectVFX.gd" id="1_vm1rk"]
+
+[node name="EffectVFX" type="AnimatedSprite2D"]
+sprite_frames = ExtResource("1_45ouf")
+animation = &"Blaze_heart"
+script = ExtResource("1_vm1rk")

@@ -52,7 +52,6 @@ func show_pause_menu():
 	get_tree().paused = true
 
 func show_victory_menu():
-	
 	volume_slider.visible = false
 	mute_button.visible = false
 	fullscreen_check.visible = false
@@ -75,27 +74,8 @@ func show_victory_menu():
 		if reward["crystal"] > 0:
 			txt += "[img=30]%s[/img] +%d" % [CRYSTAL_ICON_PATH, reward["crystal"]]
 		txt += "[/center]"
-	
 		reward_label.text = txt
-	elif Global.from_story_mode:
-		$Panel/VBoxContainer/ActionButton.visible = false
-		# action_btn_label.text = "Next Floor"
-		var stage_label = StoryMode.stage_label()
-		var reward = StoryMode.rewards.get(stage_label, {"small": 0, "crystal": 0})
-		Global.grant_battle_stage_reward(stage_label)
-		Global.set_stage_unlocked(StoryMode.next_stage())
 
-		reward_label.show()
-		reward_label.bbcode_enabled = true
-		var txt = "[center]Rewards:[/center]\n[center]"
-		if reward["small"] > 0:
-			txt += "[img=30]%s[/img] +%d  " % [GEM_ICON_PATH, reward["small"]]
-		if reward["crystal"] > 0:
-			txt += "[img=30]%s[/img] +%d" % [CRYSTAL_ICON_PATH, reward["crystal"]]
-		txt += "[/center]"
-	
-		reward_label.text = txt
-	
 	refresh_audio_ui() 
 	show()
 	get_tree().paused = true
@@ -160,12 +140,11 @@ func _on_action_button_pressed():
 			get_tree().reload_current_scene()
 		else:
 			get_tree().change_scene_to_file("res://Scene/TowerSelection.tscn")
-	
+			
 	elif action_btn_label.text == "Try Again":
 		get_tree().paused = false 
 		hide()
 		get_tree().reload_current_scene()
-		
 	else:
 		get_tree().paused = false 
 		hide()
@@ -174,6 +153,4 @@ func _on_quit_button_pressed():
 	get_tree().paused = false
 	if Global.from_tower_mode:
 		get_tree().change_scene_to_file("res://Scene/TowerSelection.tscn")
-	elif Global.from_story_mode:
-			Global.bring_to_current_chapter_ui()
-	hide()
+		hide()

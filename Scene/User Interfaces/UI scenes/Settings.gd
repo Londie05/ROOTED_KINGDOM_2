@@ -15,26 +15,23 @@ extends Control
 @onready var btn_bg_default = $"User Interface/Options/VBoxContainer/BgContainer/Btn_Default"
 @onready var btn_bg_dark = $"User Interface/Options/VBoxContainer/BgContainer/Btn_Dark"
 @onready var btn_bg_sword = $"User Interface/Options/VBoxContainer/BgContainer/Btn_Sword"
-
+@onready var btn_bg_grass = $"User Interface/Options/VBoxContainer/BgContainer/Btn_Grass"
 # --- ACCOUNT MANAGEMENT ---
 @onready var create_acc_btn = $"User Interface/Options/VBoxContainer/AccountManagement/CreateAccButton"
 @onready var rename_btn = $"User Interface/Options/VBoxContainer/AccountManagement/RenameButton"
-# !!! MAKE SURE THIS PATH MATCHES YOUR BUTTON !!!
 @onready var switch_acc_btn =  $"User Interface/Options/VBoxContainer/AccountManagement/SwitchAccButton"
+
 
 @onready var confirmation_popup = $CustomQuitPopup
 
 func _ready() -> void:
-	# 1. Cheat/Redeem Connections
 	if redeem_btn and not redeem_btn.pressed.is_connected(_on_redeem_pressed):
 		redeem_btn.pressed.connect(_on_redeem_pressed)
 	
-	# 2. Settings Initialization
 	var is_full = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 	if fullscreen_check:
 		fullscreen_check.button_pressed = is_full
 
-	# 3. Audio Initialization
 	setup_bgm_options()
 	if mute_button:
 		update_mute_button_visuals()
@@ -46,46 +43,35 @@ func _ready() -> void:
 		if not volume_slider.value_changed.is_connected(_on_volume_slider_value_changed):
 			volume_slider.value_changed.connect(_on_volume_slider_value_changed)
 
-	# 4. Background Connections
 	if btn_bg_default: btn_bg_default.pressed.connect(_on_bg_default_pressed)
 	if btn_bg_dark: btn_bg_dark.pressed.connect(_on_bg_dark_pressed)
 	if btn_bg_sword: btn_bg_sword.pressed.connect(_on_bg_sword_pressed)
+	if btn_bg_grass: btn_bg_grass.pressed.connect(_on_bg_grass_pressed)
 	
-	# 5. Account Management Connections
 	if create_acc_btn: create_acc_btn.pressed.connect(_on_create_acc_pressed)
 	if rename_btn: rename_btn.pressed.connect(_on_rename_pressed)
 	
-	# --- THIS IS THE MISSING CONNECTION FOR SWITCHING ACCOUNTS ---
 	if switch_acc_btn:
 		if not switch_acc_btn.pressed.is_connected(_on_switch_acc_pressed):
 			switch_acc_btn.pressed.connect(_on_switch_acc_pressed)
 
-	# 6. Popup Signal Connection
 	if confirmation_popup:
 		if not confirmation_popup.confirmed.is_connected(_on_create_acc_confirmed_final):
 			confirmation_popup.confirmed.connect(_on_create_acc_confirmed_final)
 
 func _on_switch_acc_pressed():
-	# 1. Save current progress before leaving
 	Global.save_game()
 	
-	# 2. CLEAR the current account session
 	Global.logout() 
 	
-	# 3. Set the target to the Selection screen
 	Global.loading_target_scene = "res://Scene/User Interfaces/UI scenes/AccountSelection.tscn"
 	
-	# 4. Go to Loading Screen
 	get_tree().change_scene_to_file("res://Scene/User Interfaces/LoadingScene.tscn")
-# --- EXISTING ACCOUNT LOGIC ---
 func _on_rename_pressed():
-	# 1. Set the flag so NameEntry knows to show the current name
 	Global.is_renaming_mode = true
 	
-	# 2. Tell the Loading Screen where to go
 	Global.loading_target_scene = "res://Scene/User Interfaces/UI scenes/NameEntry.tscn"
 	
-	# 3. Go to the Loading Screen
 	get_tree().change_scene_to_file("res://Scene/User Interfaces/LoadingScene.tscn")
 	
 func _on_create_acc_pressed():
@@ -161,6 +147,7 @@ func _on_fullscreen_check_toggled(toggled_on: bool) -> void:
 func _on_bg_default_pressed(): Global.set_background("Default")
 func _on_bg_dark_pressed(): Global.set_background("Ruins")
 func _on_bg_sword_pressed(): Global.set_background("Sword")
+func _on_bg_grass_pressed(): Global.set_background("Grass")
 
 func _on_redeem_pressed():
 	var code = cheat_input.text.to_upper()

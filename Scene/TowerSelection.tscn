@@ -399,31 +399,79 @@ offset_bottom = 226.0
 bbcode_enabled = true
 fit_content = true
 
-[node name="StartBattleButton" type="Button" parent="."]
+[node name="StartBattleButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 528.0
 offset_right = 176.0
 offset_bottom = 610.0
-text = "Start battle"
-icon = ExtResource("1_p0bcw")
-flat = true
-icon_alignment = 1
-expand_icon = true
+texture_normal = ExtResource("1_p0bcw")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="Back" type="Button" parent="."]
+[node name="Label" type="Label" parent="StartBattleButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -14.0
+offset_right = 26.5
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.99, 0.90684, 0.7821, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 17
+text = "Choose Characters"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 64
+metadata/_edit_lock_ = true
+
+[node name="Back" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 1.0
-offset_top = 15.0
-offset_right = 191.0
-offset_bottom = 138.0
-text = "Back
-"
-icon = ExtResource("1_p0bcw")
-flat = true
-autowrap_mode = 2
-icon_alignment = 1
-expand_icon = true
+offset_top = 35.0
+offset_right = 203.0
+offset_bottom = 92.0
+texture_normal = ExtResource("1_p0bcw")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Back" type="Label" parent="Back"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -14.0
+offset_right = 26.5
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.99, 0.90684, 0.7821, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 26
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 64
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="ScrollContainer/VBox/Floor1" to="." method="_on_floor_1_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
