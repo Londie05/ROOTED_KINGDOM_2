@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ckqg6qgs6grgd"]
+[gd_scene load_steps=24 format=3 uid="uid://ckqg6qgs6grgd"]
 
 [ext_resource type="Script" uid="uid://dksxk1y3frgek" path="res://Scene/User Interfaces/UI Scripts/button_manager_settings.gd" id="1_5gvj4"]
 [ext_resource type="Script" uid="uid://h5eph3mecfu1" path="res://Scene/User Interfaces/UI scenes/Settings.gd" id="1_vpxuq"]
@@ -21,6 +21,59 @@ bg_color = Color(0, 0, 0, 0.6862745)
 [sub_resource type="LabelSettings" id="LabelSettings_jh0e1"]
 font = ExtResource("4_jh0e1")
 font_size = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7f2m"]
+bg_color = Color(0.5764706, 0.28235295, 0.05882353, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.35686275, 0.16470589, 0.019607844, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48dna"]
+bg_color = Color(0.7137772, 0.35597873, 0.0893501, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yapx"]
+bg_color = Color(0.7137255, 0.35686275, 0.09019608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hkprg"]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color(0.5764706, 0.28235295, 0.05882353, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.35524586, 0.1640028, 0.021508332, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jpxyn"]
+bg_color = Color(0.7137255, 0.35686275, 0.09019608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4k0r7"]
+bg_color = Color(0.5764706, 0.28235295, 0.05882353, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.35686275, 0.16470589, 0.019607844, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pdjy5"]
+bg_color = Color(0.7137255, 0.35686275, 0.09019608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t5cgi"]
+bg_color = Color(0.5764706, 0.28235295, 0.05882353, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.35686275, 0.16470589, 0.019607844, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o1udp"]
+bg_color = Color(0.7137255, 0.35686275, 0.09019608, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ajvw"]
 
@@ -96,6 +149,9 @@ text = "Background Music:"
 [node name="BGMSelect" type="OptionButton" parent="User Interface/Options/VBoxContainer/BackgroundSound"]
 custom_minimum_size = Vector2(230, 0)
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_q7f2m")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_48dna")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7yapx")
 
 [node name="BackgroundLabel" type="Label" parent="User Interface/Options/VBoxContainer"]
 layout_mode = 2
@@ -147,7 +203,6 @@ text = "Mute all:"
 
 [node name="Fullscreen Check" type="CheckButton" parent="User Interface/Options/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_jh0e1")
 theme_override_font_sizes/font_size = 20
 text = "Full screen:"
 expand_icon = true
@@ -161,16 +216,22 @@ alignment = 1
 [node name="SwitchAccButton" type="Button" parent="User Interface/Options/VBoxContainer/AccountManagement"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_hkprg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jpxyn")
 text = "Switch account"
 
 [node name="RenameButton" type="Button" parent="User Interface/Options/VBoxContainer/AccountManagement"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_4k0r7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pdjy5")
 text = "Rename account"
 
 [node name="CreateAccButton" type="Button" parent="User Interface/Options/VBoxContainer/AccountManagement"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_t5cgi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o1udp")
 text = "Create new account"
 
 [node name="Button Manager" type="Control" parent="."]

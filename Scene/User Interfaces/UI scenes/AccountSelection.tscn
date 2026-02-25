@@ -60,13 +60,11 @@ text = "Delete account"
 
 [node name="Logo" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -482.0
-offset_top = 4.0
-offset_right = -2.0
-offset_bottom = 210.0
-grow_horizontal = 0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -351.5
+offset_right = 351.5
+offset_bottom = 238.0
+grow_horizontal = 2
 texture = ExtResource("4_0otaf")
-expand_mode = 1

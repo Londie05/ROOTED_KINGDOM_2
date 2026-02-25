@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://qmnutdlpk68l"]
+[gd_scene load_steps=10 format=3 uid="uid://qmnutdlpk68l"]
 
 [ext_resource type="Script" uid="uid://dg4em0ukvp7ku" path="res://Scene/User Interfaces/UI Scripts/button_manager_start.gd" id="1_nfl2a"]
 [ext_resource type="PackedScene" uid="uid://cbr4wmo2fw5b2" path="res://Scene/User Interfaces/UI Asset Components/MasterBackground.tscn" id="1_tgtv0"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dn2qmfcsek3p6" path="res://Asset/Backgrounds/BG V2.jpg" id="5_cpss8"]
 [ext_resource type="Script" uid="uid://b8dda3ind0tk" path="res://Scene/User Interfaces/UI scenes/TowerMode.gd" id="6_objsq"]
 [ext_resource type="Texture2D" uid="uid://duwuyb6u5gtli" path="res://Asset/User Interface/game_over_screen.webp" id="8_mfmoi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tgtv0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_objsq"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -36,22 +38,36 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nfl2a")
 
-[node name="Back" type="TextureButton" parent="ButtonManager"]
+[node name="MarginContainer" type="MarginContainer" parent="ButtonManager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="Panel" type="Panel" parent="ButtonManager/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tgtv0")
+
+[node name="Back" type="TextureButton" parent="ButtonManager/MarginContainer/Panel"]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 918.0
-offset_top = -676.0
-offset_right = 1087.0
-offset_bottom = -620.0
-grow_vertical = 0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -169.00024
+offset_bottom = 56.0
+grow_horizontal = 0
 texture_normal = ExtResource("3_tgtv0")
 ignore_texture_size = true
 stretch_mode = 6
 
-[node name="Label" type="Label" parent="ButtonManager/Back"]
+[node name="Label" type="Label" parent="ButtonManager/MarginContainer/Panel/Back"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,20 +80,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="story_mode" type="TextureButton" parent="ButtonManager"]
+[node name="story_mode" type="TextureButton" parent="ButtonManager/MarginContainer/Panel"]
 modulate = Color(1, 1, 1, 0.8117647)
 self_modulate = Color(0.67, 0.536, 0.536, 0.9019608)
-layout_mode = 0
-offset_left = 58.0
-offset_top = 29.0
-offset_right = 813.0
-offset_bottom = 216.0
+layout_mode = 1
+offset_right = 755.0
+offset_bottom = 187.0
 texture_normal = ExtResource("5_cpss8")
 ignore_texture_size = true
 stretch_mode = 6
 script = ExtResource("6_objsq")
 
-[node name="StoryModeBoarder" type="Panel" parent="ButtonManager/story_mode"]
+[node name="StoryModeBoarder" type="Panel" parent="ButtonManager/MarginContainer/Panel/story_mode"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,7 +101,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_objsq")
 
-[node name="Title" type="Label" parent="ButtonManager/story_mode"]
+[node name="Title" type="Label" parent="ButtonManager/MarginContainer/Panel/story_mode"]
 layout_mode = 0
 offset_right = 331.0
 offset_bottom = 110.0
@@ -105,13 +119,13 @@ vertical_alignment = 1
 autowrap_mode = 2
 autowrap_trim_flags = 64
 
-[node name="AvailabilityPanel" type="Panel" parent="ButtonManager/story_mode"]
+[node name="AvailabilityPanel" type="Panel" parent="ButtonManager/MarginContainer/Panel/story_mode"]
 visible = false
 layout_mode = 0
 offset_right = 755.0
 offset_bottom = 187.0
 
-[node name="AvailableLabel" type="Label" parent="ButtonManager/story_mode/AvailabilityPanel"]
+[node name="AvailableLabel" type="Label" parent="ButtonManager/MarginContainer/Panel/story_mode/AvailabilityPanel"]
 layout_mode = 0
 offset_right = 755.0
 offset_bottom = 177.0
@@ -126,20 +140,23 @@ text = "Currently Unavailable"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="tower_mode" type="TextureButton" parent="ButtonManager"]
+[node name="tower_mode" type="TextureButton" parent="ButtonManager/MarginContainer/Panel"]
 modulate = Color(1, 1, 1, 0.8117647)
 self_modulate = Color(0.67, 0.536, 0.536, 0.9019608)
-layout_mode = 0
-offset_left = 58.0
-offset_top = 247.0
-offset_right = 813.0
-offset_bottom = 424.0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -88.5
+offset_right = 755.0
+offset_bottom = 88.5
+grow_vertical = 2
 texture_normal = ExtResource("5_2sahd")
 ignore_texture_size = true
 stretch_mode = 6
 script = ExtResource("6_objsq")
 
-[node name="TowerModeBoarder" type="Panel" parent="ButtonManager/tower_mode"]
+[node name="TowerModeBoarder" type="Panel" parent="ButtonManager/MarginContainer/Panel/tower_mode"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -149,7 +166,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_objsq")
 
-[node name="Title" type="Label" parent="ButtonManager/tower_mode"]
+[node name="Title" type="Label" parent="ButtonManager/MarginContainer/Panel/tower_mode"]
 layout_mode = 0
 offset_right = 350.0
 offset_bottom = 110.0
@@ -167,13 +184,13 @@ vertical_alignment = 1
 autowrap_mode = 2
 autowrap_trim_flags = 64
 
-[node name="AvailabilityPanel" type="Panel" parent="ButtonManager/tower_mode"]
+[node name="AvailabilityPanel" type="Panel" parent="ButtonManager/MarginContainer/Panel/tower_mode"]
 visible = false
 layout_mode = 0
 offset_right = 755.0
 offset_bottom = 177.0
 
-[node name="AvailableLabel" type="Label" parent="ButtonManager/tower_mode/AvailabilityPanel"]
+[node name="AvailableLabel" type="Label" parent="ButtonManager/MarginContainer/Panel/tower_mode/AvailabilityPanel"]
 layout_mode = 0
 offset_right = 755.0
 offset_bottom = 177.0
@@ -188,20 +205,22 @@ text = "Currently Unavailable"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="endless_mode" type="TextureButton" parent="ButtonManager"]
+[node name="endless_mode" type="TextureButton" parent="ButtonManager/MarginContainer/Panel"]
 modulate = Color(1, 1, 1, 0.8117647)
 self_modulate = Color(0.67, 0.536, 0.536, 0.9019608)
-layout_mode = 0
-offset_left = 58.0
-offset_top = 458.0
-offset_right = 813.0
-offset_bottom = 635.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -177.0
+offset_right = 755.0
+grow_vertical = 0
 texture_normal = ExtResource("8_mfmoi")
 ignore_texture_size = true
 stretch_mode = 6
 script = ExtResource("6_objsq")
 
-[node name="EndlessModeBoarder" type="Panel" parent="ButtonManager/endless_mode"]
+[node name="EndlessModeBoarder" type="Panel" parent="ButtonManager/MarginContainer/Panel/endless_mode"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -211,7 +230,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_objsq")
 
-[node name="Title" type="Label" parent="ButtonManager/endless_mode"]
+[node name="Title" type="Label" parent="ButtonManager/MarginContainer/Panel/endless_mode"]
 layout_mode = 0
 offset_right = 378.0
 offset_bottom = 110.0
@@ -229,13 +248,13 @@ vertical_alignment = 1
 autowrap_mode = 2
 autowrap_trim_flags = 64
 
-[node name="AvailabilityPanel" type="Panel" parent="ButtonManager/endless_mode"]
+[node name="AvailabilityPanel" type="Panel" parent="ButtonManager/MarginContainer/Panel/endless_mode"]
 visible = false
 layout_mode = 0
 offset_right = 755.0
 offset_bottom = 177.0
 
-[node name="AvailableLabel" type="Label" parent="ButtonManager/endless_mode/AvailabilityPanel"]
+[node name="AvailableLabel" type="Label" parent="ButtonManager/MarginContainer/Panel/endless_mode/AvailabilityPanel"]
 layout_mode = 0
 offset_right = 755.0
 offset_bottom = 177.0
@@ -250,7 +269,7 @@ text = "Currently Unavailable"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="ButtonManager/Back" to="ButtonManager" method="_on_back_pressed"]
-[connection signal="pressed" from="ButtonManager/story_mode" to="ButtonManager" method="_on_story_mode_pressed"]
-[connection signal="pressed" from="ButtonManager/tower_mode" to="ButtonManager" method="_on_tower_mode_pressed"]
-[connection signal="pressed" from="ButtonManager/endless_mode" to="ButtonManager" method="_on_endless_mode_pressed"]
+[connection signal="pressed" from="ButtonManager/MarginContainer/Panel/Back" to="ButtonManager" method="_on_back_pressed"]
+[connection signal="pressed" from="ButtonManager/MarginContainer/Panel/story_mode" to="ButtonManager" method="_on_story_mode_pressed"]
+[connection signal="pressed" from="ButtonManager/MarginContainer/Panel/tower_mode" to="ButtonManager" method="_on_tower_mode_pressed"]
+[connection signal="pressed" from="ButtonManager/MarginContainer/Panel/endless_mode" to="ButtonManager" method="_on_endless_mode_pressed"]
