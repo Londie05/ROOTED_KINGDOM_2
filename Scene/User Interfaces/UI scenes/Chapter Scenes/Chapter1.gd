@@ -84,7 +84,6 @@ var story_script = [
 ]
 
 # --- CORE FUNCTIONS ---
-
 func _ready():
 	if quit_button:
 		quit_button.pressed.connect(_on_quit_attempt)
@@ -93,7 +92,6 @@ func _ready():
 		dialogue_ui.next_line_requested.connect(_load_next_line)
 		dialogue_ui.prev_line_requested.connect(_load_prev_line)
 	
-	# Initial state
 	background.modulate = Color.BLACK
 	beatrice.visible = false
 	charlotte.visible = false
@@ -104,7 +102,6 @@ func _ready():
 		current_line_index = Global.story_line_resume_index + 1
 		min_line_index = current_line_index
 		
-		# <--- ADD THIS LINE HERE to trigger the flash when returning
 		_trigger_white_flash() 
 		
 	else:
@@ -125,16 +122,11 @@ func _trigger_white_flash():
 	tween.tween_callback(flash.queue_free) # Delete it when done
 	
 func _on_quit_attempt():
-	# We repurpose the EndChapterPopup for a "Quit Confirmation"
-	# setup_popup(Title, ConfirmText, CancelText, BlurValue)
-	
-	# Disconnect existing signals to prevent double-firing or wrong logic
 	if end_chapter_popup.confirmed.is_connected(_on_next_chapter_pressed):
 		end_chapter_popup.confirmed.disconnect(_on_next_chapter_pressed)
 	if end_chapter_popup.cancelled.is_connected(_on_back_to_menu_pressed):
 		end_chapter_popup.cancelled.disconnect(_on_back_to_menu_pressed)
 		
-	# Connect NEW signals for quitting
 	end_chapter_popup.setup_popup("Quit Chapter? Your progress won't be saved", "Yes, Quit", "Stay", 1.0)
 	
 	end_chapter_popup.confirmed.connect(_confirm_quit)
@@ -143,7 +135,9 @@ func _on_quit_attempt():
 	end_chapter_popup.show_popup()
 
 func _confirm_quit():
-	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/StoryMode.tscn")
+	# Redirect to Story Selection via Loading Scene
+	Global.loading_target_scene = "res://Scene/User Interfaces/UI scenes/StoryMode.tscn"
+	get_tree().change_scene_to_file("res://Scene/User Interfaces/LoadingScene.tscn")
 	
 func _cancel_quit():
 	# Just hide the popup, the game continues
@@ -233,12 +227,12 @@ func _show_completion_popup():
 	
 	var reward_text = ""
 	
-	# --- ANTI-FARMING LOGIC ---
-	if not Global.floors_cleared.has("Chapter1"): 
+	if not Global.story_chapters_cleared.has("Chapter1"): 
 		Global.small_gems += reward_gems
 		Global.crystal_gems += reward_crystals
 		
-		Global.floors_cleared.append("Chapter1")
+		# SAVE TO THE NEW ARRAY
+		Global.story_chapters_cleared.append("Chapter1")
 		
 		Global.save_game()
 		
@@ -265,8 +259,10 @@ func _show_completion_popup():
 	end_chapter_popup.show_popup()
 
 func _on_next_chapter_pressed():
-	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/Chapter Scenes/Chapter2.tscn")	
-
+	# Redirect to Chapter 2 via Loading Scene
+	Global.loading_target_scene = "res://Scene/User Interfaces/UI scenes/Chapter Scenes/Chapter2.tscn"
+	get_tree().change_scene_to_file("res://Scene/User Interfaces/LoadingScene.tscn")
+	
 func _on_back_to_menu_pressed():
 	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/StoryMode.tscn")
 
@@ -283,9 +279,8 @@ func _apply_focus(speaker_name: String):
 func _play_anim(anim_name: String):
 	var tween = create_tween()
 	match anim_name:
-		"white_flash": # <--- Add this option here too so you can use it in script
+		"white_flash": 
 			_trigger_white_flash()
-			
 		"enter_left":
 			beatrice.position.x = -300
 			beatrice.visible = true

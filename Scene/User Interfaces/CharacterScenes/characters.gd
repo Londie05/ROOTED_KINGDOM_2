@@ -25,10 +25,10 @@ func _ready():
 	display_roster()
 	update_currency_ui()
 	
-	# FIX: Show button if we are in Story Mode OR Tower Mode
 	var is_battle_prep = Global.from_tower_mode or Global.current_game_mode == Global.GameMode.STORY
 	
 	if is_battle_prep:
+		$UpgradesButton.hide()
 		confirm_button.visible = true
 		$TeamPanel.show()
 	else:

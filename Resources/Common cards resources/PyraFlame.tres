@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://8do4m4cmh4nc"]
 
-[ext_resource type="Texture2D" uid="uid://bjlmdcxn3767p" path="res://Asset/Common cards/Pyra_flame.webp" id="1_q3au5"]
+[ext_resource type="Texture2D" uid="uid://bjlmdcxn3767p" path="res://Asset/Common cards/Pyra_Flame.webp" id="1_q3au5"]
 [ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="1_yc5nf"]
 [ext_resource type="AudioStream" uid="uid://ddgtab4rsougq" path="res://Asset/Sound effects/Magic Blast.mp3" id="3_86f41"]
 

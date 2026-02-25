@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=24 format=3 uid="uid://ckqg6qgs6grgd"]
+=======
+[gd_scene load_steps=13 format=3 uid="uid://ckqg6qgs6grgd"]
+>>>>>>> f03eae1304d94ed0aaaec46e3bb3067da633fb98
 
 [ext_resource type="Script" uid="uid://dksxk1y3frgek" path="res://Scene/User Interfaces/UI Scripts/button_manager_settings.gd" id="1_5gvj4"]
 [ext_resource type="Script" uid="uid://h5eph3mecfu1" path="res://Scene/User Interfaces/UI scenes/Settings.gd" id="1_vpxuq"]
@@ -7,9 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://bq3mv1chiqmla" path="res://Asset/Backgrounds/Main_Menu_Background.jpg" id="4_6ajvw"]
 [ext_resource type="FontFile" uid="uid://dtdw2k1jvjn37" path="res://Asset/Fonts/times.ttf" id="4_jh0e1"]
 [ext_resource type="Texture2D" uid="uid://dfpc1w50saul7" path="res://Asset/Backgrounds/Main_Menu_Background_dark.jpg" id="5_g0o0o"]
-[ext_resource type="Texture2D" uid="uid://cdfpkjhi1gi77" path="res://Asset/User Interface/button_ui.png" id="5_pf4lj"]
 [ext_resource type="Texture2D" uid="uid://ditqevbsah1hr" path="res://Asset/Characters/game_over_screen.webp" id="6_g0o0o"]
 [ext_resource type="Texture2D" uid="uid://he3dstfcqlb0" path="res://Asset/User Interface/%Storymode%/Rollings Plains.jpg" id="8_hkprg"]
+[ext_resource type="Texture2D" uid="uid://deoilkueygt75" path="res://Asset/User Interface/button.png" id="10_hkprg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jh0e1"]
 content_margin_left = 64.0
@@ -22,6 +26,7 @@ bg_color = Color(0, 0, 0, 0.6862745)
 font = ExtResource("4_jh0e1")
 font_size = 48
 
+<<<<<<< HEAD
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7f2m"]
 bg_color = Color(0.5764706, 0.28235295, 0.05882353, 1)
 border_width_left = 5
@@ -79,6 +84,8 @@ bg_color = Color(0.7137255, 0.35686275, 0.09019608, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g0o0o"]
 
+=======
+>>>>>>> f03eae1304d94ed0aaaec46e3bb3067da633fb98
 [node name="Settings" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -240,20 +247,41 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_5gvj4")
 
-[node name="Back" type="Button" parent="Button Manager"]
+[node name="Back" type="TextureButton" parent="Button Manager"]
 layout_mode = 0
 offset_top = 31.0
 offset_right = 174.0
 offset_bottom = 88.0
-theme_override_fonts/font = ExtResource("4_jh0e1")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_6ajvw")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_g0o0o")
-text = "Back
-"
-icon = ExtResource("5_pf4lj")
-icon_alignment = 1
-expand_icon = true
+texture_normal = ExtResource("10_hkprg")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Button Manager/Back"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -14.0
+offset_right = 26.5
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.99, 0.90684, 0.7821, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 26
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 64
+metadata/_edit_lock_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0

@@ -80,17 +80,25 @@ func _ready():
 	
 	await get_tree().process_frame 
 	
-	
-	if Global.current_tower_floor == 10:
-		bgm_player.stream = load("res://Asset/Sound effects/background effect3.mp3")
+	# --- IMPROVED MUSIC LOGIC ---
+	if Global.current_game_mode == Global.GameMode.TOWER:
+		if Global.current_tower_floor == 10:
+			bgm_player.stream = load("res://Asset/Sound effects/background effect3.mp3")
+		else:
+			var random_track_path = battle_themes.pick_random()
+			bgm_player.stream = load(random_track_path)
 	else:
-		var random_track_path = battle_themes.pick_random()
-		bgm_player.stream = load(random_track_path)
+		# Use a default Story Battle theme or keep current
+		bgm_player.stream = load("res://Asset/Sound effects/background effect1.mp3")
 	
 	bgm_player.play()
 	
+	# --- IMPROVED UI LOGIC ---
 	if stage_count_label:
-		stage_count_label.text = "Floor: " + str(Global.current_tower_floor)
+		if Global.current_game_mode == Global.GameMode.TOWER:
+			stage_count_label.text = "Floor: " + str(Global.current_tower_floor)
+		else:
+			stage_count_label.text = "Stage: " + Global.current_battle_stage
 		
 	setup_player_team()
 	build_deck_from_team()
@@ -364,7 +372,7 @@ func execute_slotted_actions():
 		var data = card_node.card_data
 		
 		var caster_hero = find_hero_owner(data)
-		var targets = get_targets_for_action(data.is_aoe, data.aoe_targets)
+		var targets = get_targets_for_action(data.is_aoe, data.aoe_targets, data.target_type)
 		var primary_target = targets[0] if not targets.is_empty() else null
 		
 		# Inside execute_slotted_actions() in BattleManager.gd
@@ -375,12 +383,10 @@ func execute_slotted_actions():
 			match data.vfx_position_mode:
 				data.VFXPositionMode.CASTER_RELATIVE:
 					if is_instance_valid(caster_hero):
-						# 1. Start at hero
 						final_pos = caster_hero.global_position 
-						# 2. Add the custom Vector2 offset (Distance)
 						final_pos += data.vfx_offset 
-						# 3. Subtract the lift to move it UP
 						final_pos.y -= data.vfx_vertical_lift 
+						spawn_vfx(data.vfx_frames, data.vfx_animation, final_pos, data.vfx_scale)
 						
 				data.VFXPositionMode.ENEMY_CENTER:
 					var alive_enemies = get_alive_enemies()
@@ -390,6 +396,7 @@ func execute_slotted_actions():
 							total_pos += e.global_position
 						final_pos = total_pos / alive_enemies.size()
 						final_pos.y -= data.vfx_vertical_lift
+						spawn_vfx(data.vfx_frames, data.vfx_animation, final_pos, data.vfx_scale)
 						
 				data.VFXPositionMode.TARGET:
 					for target in targets:
@@ -397,11 +404,11 @@ func execute_slotted_actions():
 							var t_pos = target.global_position
 							t_pos.y -= data.vfx_vertical_lift
 							spawn_vfx(data.vfx_frames, data.vfx_animation, t_pos, data.vfx_scale)
-					continue # Skip the single spawn below if we already spawned for each target
-
-			# Spawn the effect for CASTER_RELATIVE and ENEMY_CENTER
-			spawn_vfx(data.vfx_frames, data.vfx_animation, final_pos, data.vfx_scale)
-				
+		# --- END OF VFX BLOCK ---
+		
+		# Now the code continues normally without skipping!
+		if card_node.has_method("animate_as_active"):
+			card_node.animate_as_active()
 			
 		if card_node.has_method("animate_as_active"):
 			card_node.animate_as_active()
@@ -425,30 +432,15 @@ func execute_slotted_actions():
 				if is_instance_valid(target):
 					target.take_damage(final_damage if not is_crit else int(final_damage * 1.5), is_crit)
 		
-		if data.shield > 0:
-			var shield_targets = get_alive_players() # Shield targets are players, not enemies
-			if not shield_targets.is_empty():
-				var final_shield = Global.get_card_shield(data)
-				if data.is_aoe:
-					var hits = min(data.aoe_targets, shield_targets.size())
-					for i in range(hits):
-						shield_targets[i].add_shield(final_shield)
-				else:
-					# Helper to find lowest HP or self (modify as needed)
-					shield_targets.sort_custom(func(a, b): return a.current_health < b.current_health)
-					shield_targets[0].add_shield(final_shield)
+		if data.shield > 0 and not targets.is_empty():
+			var final_shield = Global.get_card_shield(data)
+			for target in targets:
+				target.add_shield(final_shield)
 
-		if data.heal_amount > 0:
-			var heal_targets = get_alive_players()
-			if not heal_targets.is_empty():
-				var final_heal = Global.get_card_heal(data)
-				if data.is_aoe:
-					var hits = min(data.aoe_targets, heal_targets.size())
-					for i in range(hits):
-						heal_targets[i].heal(final_heal)
-				else:
-					heal_targets.sort_custom(func(a, b): return a.current_health < b.current_health)
-					heal_targets[0].heal(final_heal)
+		if data.heal_amount > 0 and not targets.is_empty():
+			var final_heal = Global.get_card_heal(data)
+			for target in targets:
+				target.heal(final_heal)
 					
 		if data.mana_gain > 0:
 			var gain = Global.get_card_mana(data)
@@ -570,29 +562,43 @@ func check_battle_status():
 		
 	# --- VICTORY ---
 	if alive_enemies.is_empty():
-		is_battle_ending = true # Lock the function
+		is_battle_ending = true 
 		
 		await get_tree().create_timer(0.5).timeout
 		if not is_inside_tree(): return 
 
 		# A. STORY MODE VICTORY
 		if Global.current_game_mode == Global.GameMode.STORY:
+			# Record story progress
+			if not Global.story_chapters_cleared.has(Global.current_battle_stage):
+				Global.story_chapters_cleared.append(Global.current_battle_stage)
+			
+			Global.save_game() # SAVE PROGRESS
+			
 			Global.just_finished_battle = true
 			if Global.last_story_scene_path != "":
 				get_tree().change_scene_to_file(Global.last_story_scene_path)
 			else:
 				get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/Chapter Scenes/Chapter1.tscn")
 		
-		# B. TOWER MODE VICTORY (The missing part!)
+		# B. TOWER MODE VICTORY
 		else:
-			# Increment the floor for the next run
-			Global.current_tower_floor += 1
-			# Assuming you have a victory menu in your GlobalMenu system
+			# 1. RECORD THE WIN: Add the floor we JUST beat to the cleared list
+			if not Global.floors_cleared.has(Global.current_tower_floor):
+				Global.floors_cleared.append(Global.current_tower_floor)
+			
+			# 2. SAVE TO FILE: This ensures the gap disappears forever
+			Global.save_game()
+			
+			# 3. Increment for the "Next Floor" button logic
+			# We don't change Global.current_tower_floor yet, 
+			# we let the Victory Menu handle the transition.
+			
 			if GlobalMenu.has_method("show_victory_menu"):
 				GlobalMenu.show_victory_menu()
 			else:
-				# Fallback: Just reload the scene to start the next floor
-				get_tree().reload_current_scene()
+				# Fallback: Go back to selection to see the new unlocked floor
+				get_tree().change_scene_to_file("res://Scene/TowerSelection.tscn")
 	
 func get_alive_players() -> Array:
 	var alive = []
@@ -618,30 +624,44 @@ func _on_enemy_clicked(clicked_enemy):
 	
 
 
-func get_targets_for_action(is_aoe: bool, num_targets: int) -> Array:
-	var alive_enemies = get_alive_enemies()
+func get_targets_for_action(is_aoe: bool, num_targets: int, target_type: int) -> Array:
+	var possible_targets = []
 	var targets = []
 	
-	if alive_enemies.is_empty():
-		return targets
-
-	var locked_enemy = null
-	for e in alive_enemies:
-		if e.is_locked_target:
-			locked_enemy = e
-			break
-	
-	if is_aoe:
-		if locked_enemy:
-			targets.append(locked_enemy)
-		for e in alive_enemies:
-			if e != locked_enemy and targets.size() < num_targets:
-				targets.append(e)
+	# 1. Grab the correct list based on the card's target type
+	if target_type == CardData.TargetType.HERO:
+		possible_targets = get_alive_players()
+		# Automatically sort heroes so the lowest HP is first
+		possible_targets.sort_custom(func(a, b): return a.current_health < b.current_health)
 	else:
-		if locked_enemy:
-			targets.append(locked_enemy)
+		possible_targets = get_alive_enemies()
+		
+	if possible_targets.is_empty():
+		return targets
+		
+	# 2. Pick targets
+	if target_type == CardData.TargetType.ENEMY:
+		var locked_enemy = null
+		for e in possible_targets:
+			if e.is_locked_target:
+				locked_enemy = e
+				break
+				
+		if is_aoe:
+			if locked_enemy: targets.append(locked_enemy)
+			for e in possible_targets:
+				if e != locked_enemy and targets.size() < num_targets:
+					targets.append(e)
 		else:
-			targets.append(alive_enemies[0])
+			targets.append(locked_enemy if locked_enemy else possible_targets[0])
+			
+	elif target_type == CardData.TargetType.HERO:
+		if is_aoe:
+			var hits = min(num_targets, possible_targets.size())
+			for i in range(hits):
+				targets.append(possible_targets[i])
+		else:
+			targets.append(possible_targets[0]) # Heals the lowest HP hero
 			
 	return targets
 	

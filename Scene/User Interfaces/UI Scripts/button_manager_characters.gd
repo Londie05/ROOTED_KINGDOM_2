@@ -15,7 +15,10 @@ func _on_back_pressed() -> void:
 		get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/main_menu.tscn")
 
 func _confirm_exit():
-	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/StoryMode.tscn")
+	# Set the destination for the loading screen
+	Global.loading_target_scene = "res://Scene/User Interfaces/UI scenes/StoryMode.tscn"
+	# Go to loading screen
+	get_tree().change_scene_to_file("res://Scene/User Interfaces/LoadingScene.tscn")
 	
 func _show_exit_verification():
 	custom_quit_popup.setup_popup("Quit Selection?", "Yes, Quit", "Cancel", 1.0)

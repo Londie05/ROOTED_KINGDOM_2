@@ -7,8 +7,8 @@ signal prev_line_requested
 @onready var dialogue_text: RichTextLabel = $"MarginContainer/Control/Dialogue Panel Container/MarginContainer/Dialogue"
 @onready var speaker_name_label: Label = $"MarginContainer/Control/Speaker PanelContainer/MarginContainer/Speakername"
 @onready var speaker_panel = $"MarginContainer/Control/Speaker PanelContainer"
-@onready var next_btn: Button = $MarginContainer/Control/NextButton
-@onready var back_btn: Button = $MarginContainer/Control/BackButton
+@onready var next_btn: TextureButton = $MarginContainer/Control/NextButton
+@onready var back_btn: TextureButton = $MarginContainer/Control/BackButton
 
 var is_typing = false
 var current_text = ""

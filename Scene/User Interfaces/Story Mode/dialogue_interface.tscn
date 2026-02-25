@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkgrs28nbmk1"]
+[gd_scene load_steps=9 format=3 uid="uid://dkgrs28nbmk1"]
 
 [ext_resource type="Texture2D" uid="uid://dmc1sdajme8vi" path="res://Asset/User Interface/%Storymode%/dialogue_border.png" id="1_1unjk"]
 [ext_resource type="Script" uid="uid://dtql8gqi2mnwt" path="res://Scene/User Interfaces/Story Mode/DialogueInterface.gd" id="1_14j54"]
 [ext_resource type="FontFile" uid="uid://dtdw2k1jvjn37" path="res://Asset/Fonts/times.ttf" id="2_14j54"]
 [ext_resource type="Texture2D" uid="uid://drrunbeatodhw" path="res://Asset/User Interface/%Storymode%/name_border.png" id="3_kus0a"]
+[ext_resource type="Texture2D" uid="uid://l45mprnx01t8" path="res://Asset/User Interface/pause.png" id="5_kus0a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3as14"]
 bg_color = Color(0.58, 0.28419998, 0.058000013, 1)
@@ -108,22 +109,73 @@ text = "Lattle Brown-haired Woman"
 label_settings = SubResource("LabelSettings_56hp3")
 clip_text = true
 
-[node name="NextButton" type="Button" parent="MarginContainer/Control"]
+[node name="NextButton" type="TextureButton" parent="MarginContainer/Control"]
 layout_mode = 0
-offset_left = 962.0
-offset_top = 351.0
-offset_right = 1094.0
-offset_bottom = 403.0
-text = "Next"
+offset_left = 944.0
+offset_top = 434.0
+offset_right = 1076.0
+offset_bottom = 473.0
+texture_normal = ExtResource("5_kus0a")
+ignore_texture_size = true
+stretch_mode = 6
 
-[node name="BackButton" type="Button" parent="MarginContainer/Control"]
+[node name="NextLabel" type="Label" parent="MarginContainer/Control/NextButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -1.0
+offset_right = -2.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.99, 0.90684, 0.7821, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 20
+text = "Next"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+autowrap_trim_flags = 64
+metadata/_edit_lock_ = true
+
+[node name="BackButton" type="TextureButton" parent="MarginContainer/Control"]
 layout_mode = 0
-offset_left = 816.0
-offset_top = 350.0
-offset_right = 948.0
-offset_bottom = 402.0
-text = "Back
-"
+offset_left = 797.0
+offset_top = 435.0
+offset_right = 929.0
+offset_bottom = 474.0
+texture_normal = ExtResource("5_kus0a")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="BackLabel" type="Label" parent="MarginContainer/Control/BackButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.99, 0.90684, 0.7821, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 20
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+autowrap_trim_flags = 64
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="MarginContainer/Control/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Control/BackButton" to="." method="_on_back_button_pressed"]
