@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://cvapuxqev15ex"]
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://cvapuxqev15ex"]
 
 [ext_resource type="Texture2D" uid="uid://ba7lkai3nsu6j" path="res://Asset/Common cards/Ice_weaver.webp" id="1_1mmay"]
 [ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="1_7o0iu"]
 [ext_resource type="AudioStream" uid="uid://d2gkalxlrrv20" path="res://Asset/Sound effects/sacred_barrier.mp3" id="3_r7n2n"]
+[ext_resource type="SpriteFrames" uid="uid://cqji16ngfb8ai" path="res://Resources/Card Animations/simple_animation.tres" id="4_r7n2n"]
 
 [resource]
 script = ExtResource("1_7o0iu")
@@ -17,4 +18,7 @@ aoe_targets = 2
 critical_chance = 30
 shield_growth = 0
 sound_effect = ExtResource("3_r7n2n")
+vfx_frames = ExtResource("4_r7n2n")
+vfx_animation = "Ice_weaver"
+vfx_vertical_lift = 40.0
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

@@ -2,6 +2,7 @@ extends Node
 
 enum GameMode { TOWER, STORY }
 var current_game_mode: GameMode = GameMode.TOWER
+var story_chapters_cleared: Array = []
 
 # var _CURRENTLY_PLAYING_CHAPTER: int = 1
 
@@ -369,6 +370,7 @@ func save_game():
 	if current_account_id == "": return
 		
 	var config = ConfigFile.new()
+	config.set_value("Progression", "story_chapters_cleared", story_chapters_cleared)
 	config.set_value("Progression", "character_levels", character_levels)
 	config.set_value("Progression", "player_name", player_name)
 	config.set_value("Progression", "small_gems", small_gems)
@@ -396,6 +398,7 @@ func load_game():
 	var config = ConfigFile.new()
 	var err = config.load(get_current_save_path())
 	if err != OK: return
+	story_chapters_cleared = config.get_value("Progression", "story_chapters_cleared", [])
 	
 	character_levels = config.get_value("Progression", "character_levels", {})
 	player_name = config.get_value("Progression", "player_name", "")
@@ -434,6 +437,7 @@ func reset_player_data():
 	small_gems = 5000
 	crystal_gems = 5000
 	unlocked_heroes = ["Hero"]
+	story_chapters_cleared = []
 	card_levels = {}
 	character_levels = {}
 	current_tower_floor = 1

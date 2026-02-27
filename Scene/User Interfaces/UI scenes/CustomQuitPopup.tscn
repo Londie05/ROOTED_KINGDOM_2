@@ -30,7 +30,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_sme5c")
 [node name="TextureRect" type="TextureRect" parent="PanelContainer"]
 layout_mode = 2
 texture = ExtResource("2_trt3v")
-expand_mode = 1
+expand_mode = 3
 
 [node name="Dimmer" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -86,15 +86,17 @@ autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PopupBox/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 110
+theme_override_constants/separation = 100
 alignment = 1
 
 [node name="ConfirmButton" type="Button" parent="CenterContainer/PopupBox/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 12
 text = "Quit"
 
 [node name="CancelButton" type="Button" parent="CenterContainer/PopupBox/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 12
 text = "Cancel"
 
 [connection signal="pressed" from="CenterContainer/PopupBox/MarginContainer/VBoxContainer/HBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]

@@ -128,10 +128,6 @@ func _on_quit_attempt():
 		end_chapter_popup.cancelled.disconnect(_on_back_to_menu_pressed)
 		
 	end_chapter_popup.setup_popup("Quit Chapter? Your progress won't be saved", "Yes, Quit", "Stay", 1.0)
-	
-	end_chapter_popup.confirmed.connect(_confirm_quit)
-	end_chapter_popup.cancelled.connect(_cancel_quit)
-	
 	end_chapter_popup.show_popup()
 
 func _confirm_quit():

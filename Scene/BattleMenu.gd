@@ -151,6 +151,11 @@ func _on_action_button_pressed():
 
 func _on_quit_button_pressed():
 	get_tree().paused = false
+	hide()
+	
 	if Global.from_tower_mode:
 		get_tree().change_scene_to_file("res://Scene/TowerSelection.tscn")
-		hide()
+	else:
+		Global.loading_target_scene = "res://Scene/User Interfaces/UI scenes/StoryMode.tscn" 
+		
+		get_tree().change_scene_to_file("res://Scene/User Interfaces/LoadingScene.tscn")

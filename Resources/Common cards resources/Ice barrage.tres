@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://dhh82yst46iew"]
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://dhh82yst46iew"]
 
 [ext_resource type="Texture2D" uid="uid://bymstx0vlywpa" path="res://Asset/Common cards/Ice_Barrage.webp" id="1_o5lfv"]
 [ext_resource type="Script" uid="uid://olc2cw5uohq6" path="res://Script/CardData.gd" id="1_qym0v"]
 [ext_resource type="AudioStream" uid="uid://m2ojc58jrf7s" path="res://Asset/Sound effects/icebarrage.mp3" id="3_o5lfv"]
+[ext_resource type="SpriteFrames" uid="uid://cqji16ngfb8ai" path="res://Resources/Card Animations/simple_animation.tres" id="4_d7iks"]
 
 [resource]
 script = ExtResource("1_qym0v")
@@ -17,4 +18,7 @@ is_aoe = true
 aoe_targets = 4
 damage_growth = 2
 sound_effect = ExtResource("3_o5lfv")
+vfx_frames = ExtResource("4_d7iks")
+vfx_animation = "Ice_barrage"
+vfx_vertical_lift = 40.0
 metadata/_custom_type_script = "uid://olc2cw5uohq6"

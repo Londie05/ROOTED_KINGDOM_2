@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-[gd_scene load_steps=24 format=3 uid="uid://ckqg6qgs6grgd"]
-=======
-[gd_scene load_steps=13 format=3 uid="uid://ckqg6qgs6grgd"]
->>>>>>> f03eae1304d94ed0aaaec46e3bb3067da633fb98
+[gd_scene load_steps=22 format=3 uid="uid://ckqg6qgs6grgd"]
 
 [ext_resource type="Script" uid="uid://dksxk1y3frgek" path="res://Scene/User Interfaces/UI Scripts/button_manager_settings.gd" id="1_5gvj4"]
 [ext_resource type="Script" uid="uid://h5eph3mecfu1" path="res://Scene/User Interfaces/UI scenes/Settings.gd" id="1_vpxuq"]
@@ -26,7 +22,6 @@ bg_color = Color(0, 0, 0, 0.6862745)
 font = ExtResource("4_jh0e1")
 font_size = 48
 
-<<<<<<< HEAD
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7f2m"]
 bg_color = Color(0.5764706, 0.28235295, 0.05882353, 1)
 border_width_left = 5
@@ -80,12 +75,6 @@ border_blend = true
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o1udp"]
 bg_color = Color(0.7137255, 0.35686275, 0.09019608, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ajvw"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g0o0o"]
-
-=======
->>>>>>> f03eae1304d94ed0aaaec46e3bb3067da633fb98
 [node name="Settings" type="Control"]
 layout_mode = 3
 anchors_preset = 15
