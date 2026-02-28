@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://baxww8ywkbaxd" path="res://Asset/Characters/heal.png" id="2_gcq1o"]
 [ext_resource type="Texture2D" uid="uid://chatlqndtqgxj" path="res://Asset/Characters/ice barrage.png" id="3_k8gyr"]
 [ext_resource type="Texture2D" uid="uid://05c2743tg1cy" path="res://Asset/Characters/fire blast.png" id="3_m884e"]
-[ext_resource type="Texture2D" uid="uid://bvec4obgbqajc" path="res://Asset/Characters/ice_freeze.png" id="4_b6vyi"]
+[ext_resource type="Texture2D" uid="uid://2rkmts4elxm2" path="res://Asset/Characters/ice freeze.png" id="4_k8gyr"]
 [ext_resource type="Texture2D" uid="uid://br7fjj26airnj" path="res://Asset/Characters/pierce.png" id="4_q5f23"]
 [ext_resource type="Texture2D" uid="uid://b746fbeu73xug" path="res://Asset/Characters/ice_weaver.png" id="5_5ofys"]
 [ext_resource type="Texture2D" uid="uid://cn4kc14356ej6" path="res://Asset/Characters/poison dart.png" id="5_k8gyr"]
@@ -112,36 +112,36 @@ atlas = ExtResource("3_k8gyr")
 region = Rect2(972, 936, 478, 468)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a7in4"]
-atlas = ExtResource("4_b6vyi")
-region = Rect2(972, 0, 478, 468)
+atlas = ExtResource("4_k8gyr")
+region = Rect2(0, 0, 484, 468)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p2uo4"]
-atlas = ExtResource("4_b6vyi")
-region = Rect2(486, 0, 478, 468)
+atlas = ExtResource("4_k8gyr")
+region = Rect2(484, 0, 484, 468)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_erj8a"]
-atlas = ExtResource("4_b6vyi")
-region = Rect2(0, 0, 478, 468)
+atlas = ExtResource("4_k8gyr")
+region = Rect2(968, 0, 484, 468)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_otlwi"]
-atlas = ExtResource("4_b6vyi")
-region = Rect2(972, 468, 478, 468)
+atlas = ExtResource("4_k8gyr")
+region = Rect2(0, 468, 484, 468)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aaph2"]
-atlas = ExtResource("4_b6vyi")
-region = Rect2(486, 468, 478, 468)
+atlas = ExtResource("4_k8gyr")
+region = Rect2(484, 468, 484, 468)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4xnkg"]
-atlas = ExtResource("4_b6vyi")
-region = Rect2(0, 468, 478, 468)
+atlas = ExtResource("4_k8gyr")
+region = Rect2(968, 468, 484, 468)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0hkck"]
-atlas = ExtResource("4_b6vyi")
-region = Rect2(972, 936, 478, 468)
+atlas = ExtResource("4_k8gyr")
+region = Rect2(0, 936, 484, 468)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aug7g"]
-atlas = ExtResource("4_b6vyi")
-region = Rect2(486, 936, 478, 468)
+atlas = ExtResource("4_k8gyr")
+region = Rect2(484, 936, 484, 468)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hk0hj"]
 atlas = ExtResource("5_5ofys")
@@ -426,7 +426,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Ice_freeze",
-"speed": 7.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,

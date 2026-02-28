@@ -206,6 +206,7 @@ target_height = 210.0
 [node name="AnimSprite" type="AnimatedSprite2D" parent="PlayerTeam/Dummy3"]
 position = Vector2(4.0000153, -0.9999695)
 scale = Vector2(0.7, 0.7)
+animation = &""
 metadata/_edit_lock_ = true
 
 [node name="HealthBar" type="ProgressBar" parent="PlayerTeam/Dummy3"]

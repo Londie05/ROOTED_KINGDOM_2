@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfolhvmo1gnb6"
-path="res://.godot/imported/Ice_freeze.webp-ed832ccf8721b9f06f99ca8a964069c2.ctex"
+uid="uid://2rkmts4elxm2"
+path="res://.godot/imported/ice freeze.png-49bd8ca623208953dbbd6f22d607c9ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/Common cards/Ice_freeze.webp"
-dest_files=["res://.godot/imported/Ice_freeze.webp-ed832ccf8721b9f06f99ca8a964069c2.ctex"]
+source_file="res://Asset/Characters/ice freeze.png"
+dest_files=["res://.godot/imported/ice freeze.png-49bd8ca623208953dbbd6f22d607c9ce.ctex"]
 
 [params]
 
