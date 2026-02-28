@@ -11,7 +11,7 @@ var cooldown_timer: float = 0.0
 var original_confirm_text: String = ""
 
 func _ready() -> void:
-	set_process(false) # Only run process when a timer is active
+	set_process(false) 
 	hide()
 
 func setup_popup(message: String, confirm_text: String, cancel_text: String, wait_time: float = 0.0):

@@ -8,8 +8,7 @@ static var currently_inspecting_card: MarginContainer = null
 var card_data: CardData 
 @onready var visuals = $Visuals
 @onready var card_image_node = $Visuals/VBoxContainer/CardImage
-# 2. Replaced play_button with mana_label
-@onready var mana_label = $Visuals/VBoxContainer/ManaLabel 
+@onready var mana_label = $Visuals/VBoxContainer/CardImage/ManaLabel
 @onready var desc_label = $Visuals/VBoxContainer/CardImage/MarginContainer/DescriptionLabel
 
 var allow_hover: bool = true

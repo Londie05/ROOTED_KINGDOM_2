@@ -68,7 +68,6 @@ func _ready():
 		
 	if dialogue_ui:
 		dialogue_ui.next_line_requested.connect(_load_next_line)
-		dialogue_ui.prev_line_requested.connect(_load_prev_line)
 	
 	if Global.just_finished_battle:
 		Global.just_finished_battle = false
@@ -117,12 +116,6 @@ func _load_next_line():
 		_load_current_line()
 	else:
 		_show_completion_popup()
-
-func _load_prev_line():
-	if is_chapter_finished: return 
-	if current_line_index > min_line_index:
-		current_line_index -= 1
-		_load_current_line()
 
 func _load_current_line():
 	if current_line_index < 0 or current_line_index >= story_script.size():

@@ -90,7 +90,6 @@ func _ready():
 		
 	if dialogue_ui:
 		dialogue_ui.next_line_requested.connect(_load_next_line)
-		dialogue_ui.prev_line_requested.connect(_load_prev_line)
 	
 	background.modulate = Color.BLACK
 	beatrice.visible = false
@@ -167,13 +166,7 @@ func start_story_battle():
 	
 	Global.loading_target_scene = "res://Scene/User Interfaces/CharacterScenes/CharacterSelection.tscn"
 	get_tree().change_scene_to_file("res://Scene/User Interfaces/LoadingScene.tscn")
-	
-func _load_prev_line():
-	if is_chapter_finished: return # Safety Lock
-	
-	if current_line_index > min_line_index:
-		current_line_index -= 1
-		_load_current_line()
+
 
 func _load_current_line():
 	if current_line_index >= story_script.size(): return

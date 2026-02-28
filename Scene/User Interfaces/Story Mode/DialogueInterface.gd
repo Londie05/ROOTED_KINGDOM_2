@@ -2,18 +2,16 @@ extends Control
 class_name DialogueInterface
 
 signal next_line_requested
-signal prev_line_requested
 
 @onready var dialogue_text: RichTextLabel = $"MarginContainer/Control/Dialogue Panel Container/MarginContainer/Dialogue"
 @onready var speaker_name_label: Label = $"MarginContainer/Control/Speaker PanelContainer/MarginContainer/Speakername"
 @onready var speaker_panel = $"MarginContainer/Control/Speaker PanelContainer"
 @onready var next_btn: TextureButton = $MarginContainer/Control/NextButton
-@onready var back_btn: TextureButton = $MarginContainer/Control/BackButton
 
 var is_typing = false
 var current_text = ""
 var typing_tween: Tween
-var is_active = true # NEW: To disable UI when the chapter ends
+var is_active = true 
 
 func _ready():
 	speaker_panel.visible = false
@@ -51,16 +49,6 @@ func _on_next_button_pressed() -> void:
 		# Send signal to Director (Chapter script)
 		next_line_requested.emit()
 
-func _on_back_button_pressed() -> void:
-	if not is_active: return
-	
-	if typing_tween and typing_tween.is_valid():
-		typing_tween.kill()
-	
-	prev_line_requested.emit()
-
-# Call this from Chapter2.gd when the popup shows up!
 func set_active(state: bool):
 	is_active = state
 	next_btn.disabled = !state
-	if back_btn: back_btn.disabled = !state

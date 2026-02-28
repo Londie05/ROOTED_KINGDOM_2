@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dbivgkhlqit6w"]
+[gd_scene load_steps=12 format=3 uid="uid://dbivgkhlqit6w"]
 
 [ext_resource type="Script" uid="uid://bwg4cg8j30r81" path="res://Scene/User Interfaces/UI scenes/StoryMode.gd" id="1_k8oo6"]
 [ext_resource type="PackedScene" uid="uid://cbr4wmo2fw5b2" path="res://Scene/User Interfaces/UI Asset Components/MasterBackground.tscn" id="2_drjwh"]
@@ -17,6 +17,14 @@ border_width_top = 12
 border_width_right = 12
 border_width_bottom = 12
 border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7ccj"]
+bg_color = Color(0.13725491, 0.13725491, 0.13725491, 0.84313726)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.05189076, 0.024530932, 0.00071947504, 1)
 
 [node name="StoryMode" type="Control"]
 layout_mode = 3
@@ -144,8 +152,15 @@ vertical_alignment = 1
 autowrap_mode = 2
 autowrap_trim_flags = 64
 
+[node name="Panel" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="ClearedBadgePanel" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter1"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -157,26 +172,26 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="ClearedBadgeLabel" type="Label" parent="ScrollContainer/HBoxContainer/Chapter1/ClearedBadgePanel"]
+[node name="ClearedBadgeLabel" type="RichTextLabel" parent="ScrollContainer/HBoxContainer/Chapter1/ClearedBadgePanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.31350005, 0.99, 0, 1)
-theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_colors/default_color = Color(0.32156864, 0.83137256, 0.34509805, 1)
+theme_override_colors/font_shadow_color = Color(0.59607846, 0.5529412, 0.28627452, 0)
+theme_override_constants/shadow_outline_size = 8
 theme_override_constants/shadow_offset_x = 9
 theme_override_constants/shadow_offset_y = 9
 theme_override_constants/outline_size = 15
-theme_override_constants/shadow_outline_size = 10
-theme_override_font_sizes/font_size = 27
+theme_override_font_sizes/normal_font_size = 29
+bbcode_enabled = true
 text = "Chapter cleared"
-horizontal_alignment = 1
-vertical_alignment = 1
 autowrap_mode = 2
 autowrap_trim_flags = 64
+horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="Chapter2" type="TextureButton" parent="ScrollContainer/HBoxContainer"]
@@ -222,6 +237,15 @@ vertical_alignment = 1
 autowrap_mode = 2
 autowrap_trim_flags = 64
 
+[node name="Panel" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter2"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="ClearedBadgePanel" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter2"]
 visible = false
 layout_mode = 1
@@ -235,26 +259,26 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="ClearedBadgeLabel" type="Label" parent="ScrollContainer/HBoxContainer/Chapter2/ClearedBadgePanel"]
+[node name="ClearedBadgeLabel" type="RichTextLabel" parent="ScrollContainer/HBoxContainer/Chapter2/ClearedBadgePanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.31350005, 0.99, 0, 1)
-theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_colors/default_color = Color(0.32156864, 0.83137256, 0.34509805, 1)
+theme_override_colors/font_shadow_color = Color(0.59607846, 0.5529412, 0.28627452, 0)
+theme_override_constants/shadow_outline_size = 8
 theme_override_constants/shadow_offset_x = 9
 theme_override_constants/shadow_offset_y = 9
 theme_override_constants/outline_size = 15
-theme_override_constants/shadow_outline_size = 10
-theme_override_font_sizes/font_size = 27
+theme_override_font_sizes/normal_font_size = 29
+bbcode_enabled = true
 text = "Chapter cleared"
-horizontal_alignment = 1
-vertical_alignment = 1
 autowrap_mode = 2
 autowrap_trim_flags = 64
+horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="Chapter3" type="TextureButton" parent="ScrollContainer/HBoxContainer"]
@@ -297,6 +321,15 @@ vertical_alignment = 1
 autowrap_mode = 2
 autowrap_trim_flags = 64
 
+[node name="Panel" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter3"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="ClearedBadgePanel" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter3"]
 visible = false
 layout_mode = 1
@@ -310,26 +343,26 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="ClearedBadgeLabel" type="Label" parent="ScrollContainer/HBoxContainer/Chapter3/ClearedBadgePanel"]
+[node name="ClearedBadgeLabel" type="RichTextLabel" parent="ScrollContainer/HBoxContainer/Chapter3/ClearedBadgePanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.31350005, 0.99, 0, 1)
-theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_colors/default_color = Color(0.32156864, 0.83137256, 0.34509805, 1)
+theme_override_colors/font_shadow_color = Color(0.59607846, 0.5529412, 0.28627452, 0)
+theme_override_constants/shadow_outline_size = 8
 theme_override_constants/shadow_offset_x = 9
 theme_override_constants/shadow_offset_y = 9
 theme_override_constants/outline_size = 15
-theme_override_constants/shadow_outline_size = 10
-theme_override_font_sizes/font_size = 27
+theme_override_font_sizes/normal_font_size = 29
+bbcode_enabled = true
 text = "Chapter cleared"
-horizontal_alignment = 1
-vertical_alignment = 1
 autowrap_mode = 2
 autowrap_trim_flags = 64
+horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="Chapter4" type="TextureButton" parent="ScrollContainer/HBoxContainer"]
@@ -373,6 +406,15 @@ vertical_alignment = 1
 autowrap_mode = 2
 autowrap_trim_flags = 64
 
+[node name="Panel" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter4"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="ClearedBadgePanel" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter4"]
 visible = false
 layout_mode = 1
@@ -386,30 +428,29 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="ClearedBadgeLabel" type="Label" parent="ScrollContainer/HBoxContainer/Chapter4/ClearedBadgePanel"]
+[node name="ClearedBadgeLabel" type="RichTextLabel" parent="ScrollContainer/HBoxContainer/Chapter4/ClearedBadgePanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.31350005, 0.99, 0, 1)
-theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_colors/default_color = Color(0.32156864, 0.83137256, 0.34509805, 1)
+theme_override_colors/font_shadow_color = Color(0.59607846, 0.5529412, 0.28627452, 0)
+theme_override_constants/shadow_outline_size = 8
 theme_override_constants/shadow_offset_x = 9
 theme_override_constants/shadow_offset_y = 9
 theme_override_constants/outline_size = 15
-theme_override_constants/shadow_outline_size = 10
-theme_override_font_sizes/font_size = 27
+theme_override_font_sizes/normal_font_size = 29
+bbcode_enabled = true
 text = "Chapter cleared"
-horizontal_alignment = 1
-vertical_alignment = 1
 autowrap_mode = 2
 autowrap_trim_flags = 64
+horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="ChapterDescriptionPanel" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -418,42 +459,60 @@ anchor_bottom = 1.0
 offset_top = -234.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_f7ccj")
 
 [node name="TitleLabel" type="Label" parent="ChapterDescriptionPanel"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.679
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -162.0
-offset_top = -118.0
-offset_right = 158.0
-offset_bottom = -40.0
+anchor_bottom = 0.679
+offset_left = -89.0
+offset_top = -133.886
+offset_right = 80.0
+offset_bottom = -69.886
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 25
-text = "TITLE"
+theme_override_colors/font_color = Color(0.99, 0.90684, 0.7821, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 28
+text = "Title"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_trim_flags = 64
 
 [node name="RewardLabel" type="Label" parent="ChapterDescriptionPanel"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.33800003
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -162.0
-offset_top = -40.0
-offset_right = 158.0
-offset_bottom = 38.0
+offset_left = -89.0
+offset_top = 9.9079895
+offset_right = 94.0
+offset_bottom = 53.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 25
-text = "Reward Label"
+theme_override_colors/font_color = Color(0.99, 0.90684, 0.7821, 1)
+theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 28
+text = "Reward Label
+"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_trim_flags = 64
 
 [node name="StartButton" type="Button" parent="ChapterDescriptionPanel"]
 layout_mode = 1

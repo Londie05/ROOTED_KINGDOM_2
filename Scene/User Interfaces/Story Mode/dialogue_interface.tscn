@@ -145,37 +145,4 @@ autowrap_mode = 2
 autowrap_trim_flags = 64
 metadata/_edit_lock_ = true
 
-[node name="BackButton" type="TextureButton" parent="MarginContainer/Control"]
-layout_mode = 0
-offset_left = 797.0
-offset_top = 435.0
-offset_right = 929.0
-offset_bottom = 474.0
-texture_normal = ExtResource("5_kus0a")
-ignore_texture_size = true
-stretch_mode = 6
-
-[node name="BackLabel" type="Label" parent="MarginContainer/Control/BackButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.99, 0.90684, 0.7821, 1)
-theme_override_colors/font_shadow_color = Color(0.46, 0.2852, 0.2852, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9490196)
-theme_override_constants/shadow_offset_x = 9
-theme_override_constants/shadow_offset_y = 9
-theme_override_constants/outline_size = 15
-theme_override_constants/shadow_outline_size = 10
-theme_override_font_sizes/font_size = 20
-text = "Back"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-autowrap_trim_flags = 64
-metadata/_edit_lock_ = true
-
 [connection signal="pressed" from="MarginContainer/Control/NextButton" to="." method="_on_next_button_pressed"]
-[connection signal="pressed" from="MarginContainer/Control/BackButton" to="." method="_on_back_button_pressed"]

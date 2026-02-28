@@ -51,8 +51,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="ManaLabel" type="Label" parent="Visuals/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 10
+[node name="ManaLabel" type="Label" parent="Visuals/VBoxContainer/CardImage"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 94.0
+offset_right = 35.0
+offset_bottom = 106.0
+theme_override_colors/font_color = Color(0, 0.57588875, 0.9120724, 1)
+theme_override_font_sizes/font_size = 6
 text = "Mana cost: 1"
-horizontal_alignment = 1
