@@ -433,6 +433,7 @@ target_height = 200.0
 [node name="AnimSprite" type="AnimatedSprite2D" parent="EnemyTeam/Enemy4"]
 material = SubResource("ShaderMaterial_hjqj7")
 scale = Vector2(-0.42941666, 0.37955877)
+animation = &"attack_long"
 metadata/_edit_lock_ = true
 
 [node name="HealthBar" type="ProgressBar" parent="EnemyTeam/Enemy4"]

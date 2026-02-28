@@ -1,8 +1,8 @@
-[gd_resource type="SpriteFrames" load_steps=28 format=3 uid="uid://bx4np5blq5ol6"]
+[gd_resource type="SpriteFrames" load_steps=29 format=3 uid="uid://bx4np5blq5ol6"]
 
 [ext_resource type="Texture2D" uid="uid://b06cw2dgdgbie" path="res://Asset/Characters/boss_long_range.webp" id="1_5jv2c"]
 [ext_resource type="Texture2D" uid="uid://ru12q47cry36" path="res://Asset/User Interface/Boss_left_side.png" id="1_w87nc"]
-[ext_resource type="Texture2D" uid="uid://bj4twny4fud5s" path="res://Asset/Characters/boss_short_range_left.png" id="2_5jv2c"]
+[ext_resource type="Texture2D" uid="uid://d3it8uwavnmd1" path="res://Asset/Characters/boss short range.png" id="2_5jv2c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tv2np"]
 atlas = ExtResource("1_5jv2c")
@@ -67,6 +67,10 @@ region = Rect2(4150, 1846, 2075, 923)
 [sub_resource type="AtlasTexture" id="AtlasTexture_p3ct8"]
 atlas = ExtResource("2_5jv2c")
 region = Rect2(2075, 1846, 2075, 923)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6v2f"]
+atlas = ExtResource("2_5jv2c")
+region = Rect2(0, 1846, 2075, 923)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w87nc"]
 atlas = ExtResource("1_w87nc")
@@ -155,6 +159,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_p3ct8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6v2f")
 }],
 "loop": false,
 "name": &"attack_short",
