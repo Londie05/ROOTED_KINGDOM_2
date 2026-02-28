@@ -165,15 +165,9 @@ func execute_enemy_ai():
 				await get_tree().create_timer(0.5).timeout
 				continue 
 
-		# 1. Get the full attack info from the enemy
 		var attack_decision = enemy.decide_attack()
 		
-		# 2. Play Sound
-		if attack_decision["sfx"] and sfx_player:
-			sfx_player.stream = attack_decision["sfx"]
-			sfx_player.play()
-
-		# 3. Handle Target Selection (using the decision's AoE settings)
+		# --- MOVE TARGET SELECTION HERE ---
 		var targets_to_hit = []
 		if attack_decision["is_aoe"]:
 			alive_heroes.shuffle()
@@ -182,19 +176,25 @@ func execute_enemy_ai():
 				targets_to_hit.append(alive_heroes[i])
 		else:
 			targets_to_hit.append(alive_heroes.pick_random())
+		# ----------------------------------
 
-		# 4. Apply Damage
-		await get_tree().create_timer(0.2).timeout
-		var damage_to_deal = int(enemy.base_damage * attack_decision["damage_mult"])
+		# Pass the TARGETS instead of just the center position
+		enemy.play_enemy_attack_sequence(attack_decision, targets_to_hit)
 		
-		# We still check crit here using the enemy's calculated crit chance
+		await enemy.attack_hit_moment
+		
+		if attack_decision["sfx"] and sfx_player:
+			sfx_player.stream = attack_decision["sfx"]
+			sfx_player.play()
+
+		var damage_to_deal = int(enemy.base_damage * attack_decision["damage_mult"])
 		var is_crit = randi() % 100 < enemy.critical_chance
 		if is_crit: damage_to_deal = int(damage_to_deal * 1.5)
 
 		for target in targets_to_hit:
 			target.take_damage(damage_to_deal, is_crit)
 
-		await get_tree().create_timer(0.8).timeout
+		await enemy.attack_finished
 	
 	check_battle_status()
 	if not get_alive_players().is_empty():

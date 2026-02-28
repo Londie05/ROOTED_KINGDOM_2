@@ -1,5 +1,7 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://cqmjjngvfv0m6"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=5 format=3 uid="uid://cqmjjngvfv0m6"]
 
+[ext_resource type="AudioStream" uid="uid://di6mxheucbbrf" path="res://Asset/Sound effects/enemysoundeeffects.mp3" id="1_4ov6l"]
+[ext_resource type="AudioStream" uid="uid://m2ojc58jrf7s" path="res://Asset/Sound effects/icebarrage.mp3" id="1_8ec23"]
 [ext_resource type="Script" uid="uid://de4ufxbti7lif" path="res://Script/EnemyData.gd" id="1_cbvff"]
 [ext_resource type="SpriteFrames" uid="uid://bx4np5blq5ol6" path="res://Resources/Animation resourcess/Enemy animations/FloorBoss10.tres" id="1_q4icm"]
 
@@ -13,4 +15,12 @@ min_crit_chance = 70
 max_crit_chance = 100
 is_aoe = true
 aoe_targets = 3
+attack_sound_1 = ExtResource("1_8ec23")
+secondary_attack_chance = 0.5
+attack_sound_2 = ExtResource("1_4ov6l")
+primary_anim = "attack_long"
+primary_is_vfx_only = true
+primary_vfx_scale = Vector2(2.5, 2.5)
+primary_vfx_offset = Vector2(-180, 0)
+secondary_vfx_scale = Vector2(2, 2)
 metadata/_custom_type_script = "uid://de4ufxbti7lif"

@@ -18,4 +18,6 @@ attack_sound_1 = ExtResource("1_rhfy0")
 secondary_attack_chance = 0.5
 secondary_aoe_targets = 1
 attack_sound_2 = ExtResource("1_rhfy0")
+primary_moves_center = true
+secondary_moves_center = false
 metadata/_custom_type_script = "uid://de4ufxbti7lif"

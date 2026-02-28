@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfolhvmo1gnb6"
-path="res://.godot/imported/Ice_Freeze.webp-b68350fc4ea448862e4ff3d8175e03d6.ctex"
+uid="uid://bj4twny4fud5s"
+path="res://.godot/imported/boss_short_range_left.png-ee68b9646dea16c6283b6f91e2ca83ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/Common cards/Ice_Freeze.webp"
-dest_files=["res://.godot/imported/Ice_Freeze.webp-b68350fc4ea448862e4ff3d8175e03d6.ctex"]
+source_file="res://Asset/Characters/boss_short_range_left.png"
+dest_files=["res://.godot/imported/boss_short_range_left.png-ee68b9646dea16c6283b6f91e2ca83ca.ctex"]
 
 [params]
 

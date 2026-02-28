@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bi8phesrd24o6"
-path="res://.godot/imported/boss long range.png-7b3bebb151fa9d892a1127832f478fbc.ctex"
+uid="uid://b06cw2dgdgbie"
+path="res://.godot/imported/boss_long_range.webp-982f93e1890c86bb18d59217036e848d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/Characters/boss long range.png"
-dest_files=["res://.godot/imported/boss long range.png-7b3bebb151fa9d892a1127832f478fbc.ctex"]
+source_file="res://Asset/Characters/boss_long_range.webp"
+dest_files=["res://.godot/imported/boss_long_range.webp-982f93e1890c86bb18d59217036e848d.ctex"]
 
 [params]
 

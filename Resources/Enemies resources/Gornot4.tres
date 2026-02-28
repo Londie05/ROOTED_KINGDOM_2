@@ -18,4 +18,5 @@ secondary_attack_chance = 0.5
 secondary_is_aoe = true
 secondary_aoe_targets = 2
 attack_sound_2 = ExtResource("1_icqma")
+primary_moves_center = true
 metadata/_custom_type_script = "uid://de4ufxbti7lif"

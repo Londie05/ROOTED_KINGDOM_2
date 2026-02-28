@@ -249,7 +249,7 @@ metadata/_edit_lock_ = true
 
 [node name="Enemy" type="Node2D" parent="EnemyTeam"]
 position = Vector2(761, 330)
-scale = Vector2(0.9070809, 0.8992282)
+scale = Vector2(0.9070809, 1.0896796)
 script = ExtResource("6_f2o1h")
 damage_node = ExtResource("10_4x6d6")
 char_name = "Enemy1"
@@ -258,8 +258,7 @@ target_height = 200.0
 
 [node name="AnimSprite" type="AnimatedSprite2D" parent="EnemyTeam/Enemy"]
 material = SubResource("ShaderMaterial_3314g")
-scale = Vector2(-0.5, 0.445)
-metadata/_edit_lock_ = true
+scale = Vector2(-1.2802685, -2.354842)
 
 [node name="HealthBar" type="ProgressBar" parent="EnemyTeam/Enemy"]
 offset_left = -51.814495
@@ -305,7 +304,7 @@ metadata/_edit_lock_ = true
 
 [node name="Enemy2" type="Node2D" parent="EnemyTeam"]
 position = Vector2(908, 498.99997)
-scale = Vector2(0.93382394, 0.9239756)
+scale = Vector2(1.0182744, 0.8868891)
 script = ExtResource("6_f2o1h")
 damage_node = ExtResource("10_4x6d6")
 char_name = "Enemy2"
@@ -360,7 +359,7 @@ metadata/_edit_lock_ = true
 
 [node name="Enemy3" type="Node2D" parent="EnemyTeam"]
 position = Vector2(956.99994, 349)
-scale = Vector2(0.93382394, 0.9239756)
+scale = Vector2(0.8721886, 1.2218517)
 script = ExtResource("6_f2o1h")
 damage_node = ExtResource("10_4x6d6")
 char_name = "Enemy3"
@@ -424,7 +423,7 @@ metadata/_edit_lock_ = true
 
 [node name="Enemy4" type="Node2D" parent="EnemyTeam"]
 position = Vector2(765, 511.00003)
-scale = Vector2(0.93382394, 0.9239756)
+scale = Vector2(0.8924224, 0.943266)
 script = ExtResource("6_f2o1h")
 damage_node = ExtResource("10_4x6d6")
 char_name = "Enemy3"

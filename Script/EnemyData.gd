@@ -22,3 +22,16 @@ class_name EnemyData
 @export var secondary_aoe_targets: int = 3
 @export var secondary_damage_mult: float = 1.5
 @export var attack_sound_2: AudioStream
+
+@export_group("Animations")
+@export var primary_anim: String = "simple"
+@export var primary_moves_center: bool = false
+@export var primary_is_vfx_only: bool = false 
+@export var primary_vfx_scale: Vector2 = Vector2(1.0, 1.0) 
+@export var primary_vfx_offset: Vector2 = Vector2.ZERO      
+
+@export var secondary_anim: String = "attack_short"
+@export var secondary_moves_center: bool = true
+@export var secondary_is_vfx_only: bool = false 
+@export var secondary_vfx_scale: Vector2 = Vector2(1.0, 1.0) 
+@export var secondary_vfx_offset: Vector2 = Vector2.ZERO     
