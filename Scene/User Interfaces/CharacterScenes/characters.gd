@@ -25,7 +25,11 @@ func _ready():
 	display_roster()
 	update_currency_ui()
 	
-	var is_battle_prep = Global.from_tower_mode or Global.current_game_mode == Global.GameMode.STORY
+	# --- UPDATED LOGIC HERE ---
+	# We added "Global.current_game_mode == Global.GameMode.ENDLESS" to the check
+	var is_battle_prep = Global.from_tower_mode or \
+						 Global.current_game_mode == Global.GameMode.STORY or \
+						 Global.current_game_mode == Global.GameMode.ENDLESS
 	
 	if is_battle_prep:
 		$UpgradesButton.hide()

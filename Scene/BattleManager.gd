@@ -1,7 +1,11 @@
 extends Control
 
+@export_group("Endless Mode")
+@export var endless_enemy_pool: Array[EnemyData] = []
+
 @onready var stage_count_label = $CanvasLayer/StageCount
 
+@export_group("Tower Mode")
 @export var floor_1_enemies: Array[EnemyData] = []
 @export var floor_2_enemies: Array[EnemyData] = []
 @export var floor_3_enemies: Array[EnemyData] = []
@@ -63,6 +67,8 @@ var max_slots: int = 3
 var phases: Array = ["player", "enemy"]
 var current_phase_index: int = 0
 
+var is_transitioning_round: bool = false
+
 # Sound effects
 @onready var sfx_player = $CanvasLayer/SFXPlayer
 @onready var bgm_player = $CanvasLayer/BGMPlayer
@@ -73,6 +79,8 @@ var battle_themes: Array[String] = [
 	"res://Asset/Sound effects/background effect1.mp3",
 	"res://Asset/Sound effects/background effect2.mp3"
 ]
+
+@onready var reward_popup = $CanvasLayer/CustomQuitPopup
 
 func _ready():
 	for child in hand_container.get_children():
@@ -97,6 +105,9 @@ func _ready():
 	if stage_count_label:
 		if Global.current_game_mode == Global.GameMode.TOWER:
 			stage_count_label.text = "Floor: " + str(Global.current_tower_floor)
+		elif Global.current_game_mode == Global.GameMode.ENDLESS:
+			# Ensure it starts at Round 1 immediately
+			stage_count_label.text = "Round: " + str(round_number)
 		else:
 			stage_count_label.text = "Stage: " + Global.current_battle_stage
 		
@@ -115,19 +126,53 @@ func setup_player_team():
 		if i < Global.selected_team.size():
 			var data = Global.selected_team[i]
 			character_node.setup_character(data)
+			
+			# ADD THIS LINE:
+			if not character_node.character_died.is_connected(_on_hero_died):
+				character_node.character_died.connect(_on_hero_died)
 		else:
 			character_node.queue_free()
 			
+func _on_hero_died(dead_hero: BattleCharacter):
+	print("Cleaning up cards for dead hero: ", dead_hero.char_name)
+	# 1. Instantly remove cards from Hand and Slots
+	purge_dead_cards() 
+	# 2. Scrub the Deck
+	var new_deck = []
+	for card_data in deck:
+		# Only keep the card if the owner is still alive
+		var owner = find_hero_owner(card_data)
+		if owner != null and owner.current_health > 0:
+			new_deck.append(card_data)
+	deck = new_deck
+	
+	# 3. Scrub the Discard Pile
+	var new_discard = []
+	for card_data in discard_pile:
+		var owner = find_hero_owner(card_data)
+		if owner != null and owner.current_health > 0:
+			new_discard.append(card_data)
+	discard_pile = new_discard
+	
 func build_deck_from_team():
 	deck.clear()
-	for data in Global.selected_team:
+	# Only get cards from heroes who are currently alive in the scene
+	var alive_heroes = get_alive_players()
+	
+	for hero in alive_heroes:
+		var data = hero.character_data
+		if not data: continue
+		
+		# Add their unique card
 		if data.unique_card:
 			deck.append(data.unique_card)
 		
+		# Add their common cards
 		for card in data.common_cards:
 			deck.append(card)
 	
 	deck.shuffle()
+	print("Deck rebuilt with cards from ", alive_heroes.size(), " living heroes.")
 
 # --- 4. TURN LOGIC ---
 func start_current_phase():
@@ -157,6 +202,7 @@ func start_current_phase():
 
 func execute_enemy_ai():
 	for enemy in get_alive_enemies():
+		if is_transitioning_round or is_battle_ending: return
 		var alive_heroes = get_alive_players()
 		if alive_heroes.is_empty(): break
 		
@@ -196,9 +242,10 @@ func execute_enemy_ai():
 
 		await enemy.attack_finished
 	
-	check_battle_status()
-	if not get_alive_players().is_empty():
-		end_current_phase()
+	if not is_transitioning_round:
+		check_battle_status()
+		if not get_alive_players().is_empty():
+			end_current_phase()
 
 func spawn_cards():
 	var current_cards_in_hand = hand_container.get_child_count()
@@ -246,6 +293,9 @@ func _on_card_interaction(card_node: Node):
 		return_card_to_hand(data, card_node)
 		
 func end_current_phase():
+	# If we are moving to a new wave, STOP this old phase logic immediately
+	if is_transitioning_round or is_battle_ending: return
+	
 	if sfx_player:
 		sfx_player.stop()
 		
@@ -271,6 +321,7 @@ func find_hero_owner(card_data: CardData) -> BattleCharacter:
 				return hero
 	return null
 	
+
 func try_play_card_to_slot(data: CardData, card_node: Node):
 	if slotted_nodes.size() >= max_slots: return 
 	if current_mana < data.mana_cost:
@@ -349,7 +400,8 @@ func reshuffle_discard_into_deck():
 	deck.shuffle()
 	
 func advance_round():
-	round_number += 1
+	if Global.current_game_mode != Global.GameMode.ENDLESS:
+		round_number += 1
 
 func spawn_vfx(frames: SpriteFrames, anim: String, pos: Vector2, scale_mult: float):
 	var effect = vfx_scene.instantiate()
@@ -481,7 +533,19 @@ func setup_enemies():
 	var enemy_nodes = enemy_team.get_children()
 	var selected_data: Array[EnemyData] = []
 	var growth_multiplier: float = 1.0
-	# --- 1. CALCULATE GROWTH ---
+	
+	# --- 1. CALCULATE GROWTH (Keep your exact logic here) ---
+	if Global.current_game_mode == Global.GameMode.ENDLESS:
+		var num_to_spawn = 1
+		if round_number >= 6 and round_number <= 10: num_to_spawn = 2
+		elif round_number >= 11 and round_number <= 15: num_to_spawn = 3
+		elif round_number >= 16: num_to_spawn = 4 
+			
+		for i in range(num_to_spawn):
+			if not endless_enemy_pool.is_empty():
+				selected_data.append(endless_enemy_pool.pick_random())
+		growth_multiplier = 1.0 + (round_number * 0.02)
+		
 	if Global.current_game_mode == Global.GameMode.TOWER:
 		# --- TOWER LOGIC (Existing) ---
 		var growth_percent = 0.05 
@@ -516,19 +580,21 @@ func setup_enemies():
 			"1-1": selected_data = story_ch1_stage_1_1
 			"1-2": selected_data = story_ch2_stage_1_2
 			"1-4": selected_data = story_ch2_stage_1_4
-		
+	
 	for node in enemy_nodes:
 		node.hide()
 		node.current_health = 0 
+		node.modulate.a = 1.0 # CRITICAL: Reset the fade-out from when they died!
+		
+		var area = node.get_node_or_null("ClickArea")
+		if area:
+			area.input_pickable = true # Turn clicking back on
 
 	for i in range(selected_data.size()):
 		if i < enemy_nodes.size():
 			var enemy_resource = selected_data[i]
-			
-			# Load base stats
 			enemy_nodes[i].setup_enemy(enemy_resource)
 			
-			# Apply scaling
 			var new_max_hp = int(enemy_nodes[i].max_health * growth_multiplier)
 			var new_dmg = int(enemy_nodes[i].base_damage * growth_multiplier)
 			
@@ -543,9 +609,9 @@ func setup_enemies():
 			
 			if not enemy_nodes[i].enemy_selected.is_connected(_on_enemy_clicked):
 				enemy_nodes[i].enemy_selected.connect(_on_enemy_clicked)
-				
+					
 func check_battle_status():
-	if is_battle_ending: return
+	if is_battle_ending or is_transitioning_round: return
 	
 	purge_dead_cards()
 	
@@ -555,25 +621,33 @@ func check_battle_status():
 	# --- DEFEAT ---
 	if alive_players.is_empty():
 		is_battle_ending = true
+		if Global.current_game_mode == Global.GameMode.ENDLESS:
+			if round_number > Global.highest_endless_round:
+				Global.highest_endless_round = round_number
+				Global.save_game()
 		await get_tree().create_timer(1.0).timeout
 		fade_out_music()
 		GlobalMenu.show_loss_menu() 
 		return
 		
-	# --- VICTORY ---
+	# --- VICTORY / NEXT WAVE ---
 	if alive_enemies.is_empty():
-		is_battle_ending = true 
+		if Global.current_game_mode == Global.GameMode.ENDLESS:
+			is_transitioning_round = true # LOCK the logic
+			process_endless_round_victory()
+			return # Exit immediately so we don't trigger end_turn logic
 		
+		# STORY & TOWER (Battle actually ends here)
+		is_battle_ending = true 
 		await get_tree().create_timer(0.5).timeout
 		if not is_inside_tree(): return 
 
-		# A. STORY MODE VICTORY
 		if Global.current_game_mode == Global.GameMode.STORY:
 			# Record story progress
 			if not Global.story_chapters_cleared.has(Global.current_battle_stage):
 				Global.story_chapters_cleared.append(Global.current_battle_stage)
 			
-			Global.save_game() # SAVE PROGRESS
+			Global.save_game() 
 			
 			Global.just_finished_battle = true
 			if Global.last_story_scene_path != "":
@@ -581,24 +655,49 @@ func check_battle_status():
 			else:
 				get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/Chapter Scenes/Chapter1.tscn")
 		
-		# B. TOWER MODE VICTORY
-		else:
-			# 1. RECORD THE WIN: Add the floor we JUST beat to the cleared list
+		elif Global.current_game_mode == Global.GameMode.TOWER:
+			# Record tower progress
 			if not Global.floors_cleared.has(Global.current_tower_floor):
 				Global.floors_cleared.append(Global.current_tower_floor)
 			
-			# 2. SAVE TO FILE: This ensures the gap disappears forever
 			Global.save_game()
-			
-			# 3. Increment for the "Next Floor" button logic
-			# We don't change Global.current_tower_floor yet, 
-			# we let the Victory Menu handle the transition.
 			
 			if GlobalMenu.has_method("show_victory_menu"):
 				GlobalMenu.show_victory_menu()
 			else:
-				# Fallback: Go back to selection to see the new unlocked floor
 				get_tree().change_scene_to_file("res://Scene/TowerSelection.tscn")
+				
+func process_endless_round_victory():
+	# 1. Calculate Rewards
+	var gems_won = randi_range(10, 15)
+	var crystals_won = randi_range(1, 3)
+	Global.small_gems += gems_won
+	Global.crystal_gems += crystals_won
+	
+	var reward_text = "Round %d Cleared!\nReceived: %d Gems and %d Crystals" % [round_number, gems_won, crystals_won]
+	reward_popup.show_reward_auto_close(reward_text, 1.5)
+	
+	round_number += 1
+	if stage_count_label:
+		stage_count_label.text = "Round: " + str(round_number)
+
+	# 4. Clean up the Battlefield (Hand/Slots to Discard)
+	for card in hand_container.get_children():
+		if card.card_data: discard_pile.append(card.card_data)
+		card.queue_free()
+	for card in slot_container.get_children():
+		if card.card_data: discard_pile.append(card.card_data)
+		card.queue_free()
+	slotted_nodes.clear()
+	
+	# 5. Wait for the popup to finish before spawning new enemies
+	await get_tree().create_timer(1.6).timeout 
+	
+	setup_enemies()
+	
+	is_transitioning_round = false
+	current_phase_index = 0
+	start_current_phase()
 	
 func get_alive_players() -> Array:
 	var alive = []
@@ -678,41 +777,31 @@ func _on_restart_button_pressed():
 	
 
 func purge_dead_cards():
-	# 1. Create a list of CharacterData for heroes that are actually ALIVE in the scene
-	var alive_hero_data: Array = []
-	
+	# 1. Figure out who is still alive
+	var alive_hero_data = []
 	for hero in player_team.get_children():
-		# Safety check: ensures we only look at living BattleCharacter nodes
 		if is_instance_valid(hero) and hero.current_health > 0:
-			# We assume your BattleCharacter script has a 'character_data' variable 
-			# assigned during setup_character()
-			if hero.get("character_data"):
-				alive_hero_data.append(hero.character_data)
+			alive_hero_data.append(hero.character_data)
 	
-	# 2. Helper function to check if a card belongs to any of the alive heroes
+	# 2. Rule: A card is "valid" only if its owner is in the alive list
 	var card_is_valid = func(card_res: CardData):
 		for data in alive_hero_data:
-			# Check if it's the signature card
-			if data.unique_card == card_res:
-				return true
-			# Check if it's one of the common cards
-			if card_res in data.common_cards:
+			if data.unique_card == card_res or card_res in data.common_cards:
 				return true
 		return false
 
-	# 3. Filter the Arrays
+	# 3. Scrub the Logic (Deck & Discard)
 	deck = deck.filter(card_is_valid)
 	discard_pile = discard_pile.filter(card_is_valid)
 	
-	# 4. Remove dead cards from the Hand UI
+	# 4. Scrub the UI (Hand & Slots)
 	for card_node in hand_container.get_children():
-		if is_instance_valid(card_node) and card_node.card_data:
-			if not card_is_valid.call(card_node.card_data):
-				card_node.queue_free()
+		if not card_is_valid.call(card_node.card_data):
+			card_node.queue_free()
 				
-	# 5. Remove dead cards from Slots UI
 	for card_node in slotted_nodes.duplicate():
-		if is_instance_valid(card_node) and card_node.card_data:
-			if not card_is_valid.call(card_node.card_data):
-				slotted_nodes.erase(card_node)
-				card_node.queue_free()
+		if not card_is_valid.call(card_node.card_data):
+			slotted_nodes.erase(card_node)
+			card_node.queue_free()
+	
+	print("Cleanup complete. Remaining cards in deck: ", deck.size())

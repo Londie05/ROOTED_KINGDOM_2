@@ -1,6 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://nbb3dskrjq7w"]
 
 [ext_resource type="Script" uid="uid://tg07uedak3d2" path="res://Scene/User Interfaces/UI scenes/QuitPopup.gd" id="1_cb2ph"]
+[ext_resource type="Texture2D" uid="uid://l45mprnx01t8" path="res://Asset/User Interface/pause.png" id="2_trt3v"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b7c3e"]
 
@@ -11,9 +12,6 @@ border_width_top = 6
 border_width_right = 6
 border_width_bottom = 6
 border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_cb2ph"]
-font_size = 15
 
 [node name="CustomQuitPopup" type="CanvasLayer"]
 script = ExtResource("1_cb2ph")
@@ -35,11 +33,20 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_b7c3e")
 
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/PopupBox"]
+custom_minimum_size = Vector2(480, 220)
+layout_mode = 2
+texture = ExtResource("2_trt3v")
+expand_mode = 1
+stretch_mode = 6
+
 [node name="Panel" type="Panel" parent="CenterContainer/PopupBox"]
+visible = false
 custom_minimum_size = Vector2(400, 150)
 layout_mode = 2
 
 [node name="Boarder" type="Panel" parent="CenterContainer/PopupBox"]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_cb2ph")
 
@@ -55,11 +62,14 @@ alignment = 1
 [node name="Label" type="Label" parent="CenterContainer/PopupBox/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(4.29996, 3.36106, 3.021113, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8039216)
-theme_override_font_sizes/font_size = 14
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 6
+theme_override_font_sizes/font_size = 17
 text = "Are you sure you want to quit?"
-label_settings = SubResource("LabelSettings_cb2ph")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

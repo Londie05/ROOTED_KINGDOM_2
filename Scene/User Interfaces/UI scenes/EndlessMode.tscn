@@ -53,4 +53,112 @@ vertical_alignment = 1
 autowrap_trim_flags = 64
 metadata/_edit_lock_ = true
 
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(800, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -199.0
+offset_right = 400.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(800, 450)
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58431375, 0.078431375, 0, 1)
+theme_override_constants/line_spacing = 7
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 9
+theme_override_constants/shadow_outline_size = 8
+theme_override_font_sizes/font_size = 40
+text = "ENDLESS MODE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSPanel" type="Panel" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="HighestScoreLabel" type="Label" parent="CenterContainer/VBoxContainer/HSPanel"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0.9647059, 0.5019608, 0, 1)
+theme_override_constants/line_spacing = 7
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 9
+theme_override_constants/shadow_outline_size = 8
+theme_override_font_sizes/font_size = 20
+text = "Highest Round: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RewardBox" type="Label" parent="CenterContainer/VBoxContainer/HSPanel"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 0
+offset_top = 36.5
+offset_right = 800.0
+offset_bottom = 86.5
+theme_override_colors/font_color = Color(0.60784316, 0.7529412, 0.827451, 1)
+theme_override_constants/line_spacing = 7
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 9
+theme_override_constants/shadow_outline_size = 8
+theme_override_font_sizes/font_size = 20
+text = "Daily Highest reward: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HSPanel/RewardBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 0
+offset_top = 50.0
+offset_right = 800.0
+offset_bottom = 132.0
+
+[node name="LootTitle" type="Label" parent="CenterContainer/VBoxContainer/HSPanel/RewardBox/VBoxContainer"]
+custom_minimum_size = Vector2(800, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1254902, 0.5019608, 0, 1)
+theme_override_constants/line_spacing = 7
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 9
+theme_override_constants/shadow_outline_size = 8
+theme_override_font_sizes/font_size = 20
+text = "Possible Rewards every rounds:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LootDetail" type="Label" parent="CenterContainer/VBoxContainer/HSPanel/RewardBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9490196, 0.5019608, 0.8352941, 1)
+theme_override_constants/line_spacing = 7
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 9
+theme_override_constants/shadow_outline_size = 8
+theme_override_font_sizes/font_size = 20
+text = "10-15 Gems | 1-3 Crystals"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer/HSPanel"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 0
+offset_left = 236.0
+offset_top = 215.5
+offset_right = 578.0
+offset_bottom = 255.5
+text = "Start Battle"
+
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

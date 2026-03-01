@@ -56,3 +56,18 @@ func _on_confirm_button_pressed() -> void:
 func _on_cancel_button_pressed() -> void:
 	hide()
 	cancelled.emit()
+
+func show_reward_auto_close(message: String, duration: float = 2.0):
+	message_label.text = message
+	
+	confirm_btn.hide()
+	cancel_btn.hide()
+	
+	show()
+	
+	await get_tree().create_timer(duration).timeout
+	hide()
+	
+	confirm_btn.show()
+	cancel_btn.show()
+	

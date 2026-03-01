@@ -107,7 +107,7 @@ func lock_floors():
 	# 2. The player is allowed to play any floor up to max_cleared + 1
 	var unlock_limit = max_cleared + 1
 
-	for i in range(1, 1):
+	for i in range(1, 21):
 		var node_name = "Floor" + str(i)
 		if container.has_node(node_name):
 			var btn = container.get_node(node_name)

@@ -152,10 +152,14 @@ func _on_action_button_pressed():
 func _on_quit_button_pressed():
 	get_tree().paused = false
 	hide()
-	
-	if Global.from_tower_mode:
+
+	if Global.current_game_mode == Global.GameMode.TOWER:
 		get_tree().change_scene_to_file("res://Scene/TowerSelection.tscn")
-	else:
-		Global.loading_target_scene = "res://Scene/User Interfaces/UI scenes/StoryMode.tscn" 
 		
+	elif Global.current_game_mode == Global.GameMode.STORY:
+		Global.loading_target_scene = "res://Scene/User Interfaces/UI scenes/StoryMode.tscn" 
+		get_tree().change_scene_to_file("res://Scene/User Interfaces/LoadingScene.tscn")
+		
+	elif Global.current_game_mode == Global.GameMode.ENDLESS:
+		Global.loading_target_scene = "res://Scene/User Interfaces/UI scenes/EndlessMode.tscn"
 		get_tree().change_scene_to_file("res://Scene/User Interfaces/LoadingScene.tscn")

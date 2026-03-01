@@ -1,6 +1,6 @@
 extends Node
 
-enum GameMode { TOWER, STORY }
+enum GameMode { TOWER, STORY, ENDLESS}
 var current_game_mode: GameMode = GameMode.TOWER
 var story_chapters_cleared: Array = []
 
@@ -10,6 +10,10 @@ var last_story_scene_path: String = ""
 var story_line_resume_index: int = 0
 var just_finished_battle: bool = false
 var current_battle_stage: String = ""
+
+# --- ENDLESS MODE VARIABLES ---
+var highest_endless_round: int = 0
+var current_endless_round: int = 1
 
 # Background music
 var bgm_player: AudioStreamPlayer
@@ -327,6 +331,33 @@ func try_redeem_code(code: String) -> String:
 		"RESET":
 			reset_player_data()
 			return "Save File Deleted."
+		"ALL":
+			small_gems += 99999
+			crystal_gems += 99999
+			
+			var all_my_characters = ["Beatrice", "Arlene", "Charlotte", "Sean", "Jullian"] 
+			var all_my_cards = ["Glaciation of Plains", "Blaze heart", "Magic Blast", "Pyra Flame", "Gun Down", "Ice barrage", "Ice Freeze", "Ice Weaver", "Parry", "Pierce", "Sacred Barrier", "Sacred Barrier", "Warm Touch", "Bloom endless meadow", "Judgement Crimson", "Sharpshooter of death"]
+			
+			for char_name in all_my_characters:
+				character_levels[char_name] = 150
+				if not unlocked_heroes.has(char_name):
+					unlocked_heroes.append(char_name)
+				
+			for card_name in all_my_cards:
+				card_levels[card_name] = 150
+				
+			current_tower_floor = 20
+			for i in range(1, 21):
+				if not floors_cleared.has(i):
+					floors_cleared.append(i)
+					
+			var known_story_stages = ["1-1", "1-2", "1-4", "Chapter1", "Chapter2", "Chapter3", "Chapter4"]
+			for stage in known_story_stages:
+				if not story_chapters_cleared.has(stage):
+					story_chapters_cleared.append(stage)
+					
+			save_game()
+			return "GOD MODE ENABLED!\nLv.150 & All Modes Unlocked!"
 		_:
 			return "Invalid Code"
 			

@@ -4,6 +4,8 @@ class_name BattleCharacter
 signal attack_hit_moment # Tells Manager: "Apply damage NOW"
 signal attack_finished   # Tells Manager: "I am back, next card please"
 
+signal character_died(character_node) # Add this at the top
+
 @export var damage_node: PackedScene
 
 @export var char_name: String = ""
@@ -229,9 +231,19 @@ func update_ui():
 		shield_label.text = "Shield: " + str(current_shield)
 
 func die():
+	character_died.emit(self)
 	var tween = create_tween()
 	tween.tween_property(self, "modulate:a", 0, 0.5)
-	tween.tween_callback(queue_free)
+	await tween.finished # Wait for the fade out to finish
+	
+	hide() 
+	current_health = 0
+	is_locked_target = false
+	
+	# Turn off their click box so the player can't target a ghost
+	var area = get_node_or_null("ClickArea")
+	if area:
+		area.input_pickable = false
 
 func set_target_lock(should_lock: bool):
 	is_locked_target = should_lock
