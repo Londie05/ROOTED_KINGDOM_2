@@ -251,7 +251,7 @@ metadata/_edit_lock_ = true
 
 [node name="Enemy" type="Node2D" parent="EnemyTeam"]
 position = Vector2(761, 330)
-scale = Vector2(0.9070809, 1.0896796)
+scale = Vector2(0.84080875, 0.99299246)
 script = ExtResource("6_f2o1h")
 damage_node = ExtResource("10_4x6d6")
 char_name = "Enemy1"
@@ -306,7 +306,7 @@ metadata/_edit_lock_ = true
 
 [node name="Enemy2" type="Node2D" parent="EnemyTeam"]
 position = Vector2(908, 498.99997)
-scale = Vector2(1.0182744, 0.8868891)
+scale = Vector2(1.052558, 0.90634936)
 script = ExtResource("6_f2o1h")
 damage_node = ExtResource("10_4x6d6")
 char_name = "Enemy2"
@@ -361,7 +361,7 @@ metadata/_edit_lock_ = true
 
 [node name="Enemy3" type="Node2D" parent="EnemyTeam"]
 position = Vector2(956.99994, 349)
-scale = Vector2(0.8721886, 1.2218517)
+scale = Vector2(0.71425515, 1.0222095)
 script = ExtResource("6_f2o1h")
 damage_node = ExtResource("10_4x6d6")
 char_name = "Enemy3"
@@ -425,7 +425,7 @@ metadata/_edit_lock_ = true
 
 [node name="Enemy4" type="Node2D" parent="EnemyTeam"]
 position = Vector2(765, 511.00003)
-scale = Vector2(0.8924224, 0.943266)
+scale = Vector2(0.8771454, 0.943266)
 script = ExtResource("6_f2o1h")
 damage_node = ExtResource("10_4x6d6")
 char_name = "Enemy3"

@@ -80,23 +80,35 @@ func _ready():
 	cursed_monster.visible = false
 	_load_current_line()
 
-# --- QUIT LOGIC ---
 func _on_quit_attempt():
-	if dialogue_ui.has_method("set_active"):
-		dialogue_ui.set_active(false)
-		
-	end_chapter_popup.setup_popup("Quit Chapter? Your progress won't be saved", "Yes, Quit", "Stay", 1.0)
-	
 	if end_chapter_popup.confirmed.is_connected(_on_next_pressed):
 		end_chapter_popup.confirmed.disconnect(_on_next_pressed)
+	if end_chapter_popup.confirmed.is_connected(_confirm_quit):
+		end_chapter_popup.confirmed.disconnect(_confirm_quit)
+	if end_chapter_popup.cancelled.is_connected(_on_back_pressed):
+		end_chapter_popup.cancelled.disconnect(_on_back_pressed)
+	if end_chapter_popup.cancelled.is_connected(_cancel_quit):
+		end_chapter_popup.cancelled.disconnect(_cancel_quit)
+
+	end_chapter_popup.setup_popup(
+		"Quit Chapter? Your progress won't be saved", 
+		"Yes, Quit", 
+		"Stay", 
+		1.0
+	)
 	
 	end_chapter_popup.confirmed.connect(_confirm_quit)
 	end_chapter_popup.cancelled.connect(_cancel_quit)
+	
+	if dialogue_ui.has_method("set_active"):
+		dialogue_ui.set_active(false)
+		
 	end_chapter_popup.show_popup()
 
 func _confirm_quit():
-	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/StoryMode.tscn")
-
+	Global.loading_target_scene = "res://Scene/User Interfaces/UI scenes/StoryMode.tscn"
+	get_tree().change_scene_to_file("res://Scene/User Interfaces/LoadingScene.tscn")
+	
 func _cancel_quit():
 	end_chapter_popup.hide()
 	if dialogue_ui.has_method("set_active"):
