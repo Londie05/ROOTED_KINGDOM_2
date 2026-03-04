@@ -10,15 +10,11 @@ const GEM_ICON_PATH = "res://Asset/Backgrounds/gem_1.webp"
 const CRYSTAL_ICON_PATH = "res://Asset/Backgrounds/gem_3.webp"
 
 func _ready():
-	# Loop through all 21 floors to connect signals automatically
-	for i in range(1, 22):
+	for i in range(1, 31):
 		var node_name = "Floor" + str(i)
 		if container.has_node(node_name):
 			var btn = container.get_node(node_name)
 			var floor_desc = "Floor" + str(i)
-			if i == 21:
-				floor_desc = "Floor 21: On Going..."
-			
 			btn.pressed.connect(_on_floor_selected.bind(i, floor_desc))
 	
 	$StartBattleButton/Label.text = "Choose Characters"
@@ -104,7 +100,6 @@ func lock_floors():
 		if f is int:
 			max_cleared = max(max_cleared, f)
 	
-	# 2. The player is allowed to play any floor up to max_cleared + 1
 	var unlock_limit = max_cleared + 1
 
 	for i in range(1, 21):
@@ -112,7 +107,6 @@ func lock_floors():
 		if container.has_node(node_name):
 			var btn = container.get_node(node_name)
 			
-			# A floor is unlocked if its number is <= our limit
 			var is_unlocked = (i <= unlock_limit)
 			
 			btn.disabled = not is_unlocked

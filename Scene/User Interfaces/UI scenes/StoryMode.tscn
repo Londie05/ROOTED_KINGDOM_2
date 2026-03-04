@@ -315,55 +315,19 @@ theme_override_constants/shadow_offset_y = 9
 theme_override_constants/outline_size = 15
 theme_override_constants/shadow_outline_size = 10
 theme_override_font_sizes/font_size = 40
-text = "Chapter 3"
+text = "TBC"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 autowrap_trim_flags = 64
 
 [node name="Panel" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter3"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="ClearedBadgePanel" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter3"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_right = -9.0
-offset_bottom = -279.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
-[node name="ClearedBadgeLabel" type="RichTextLabel" parent="ScrollContainer/HBoxContainer/Chapter3/ClearedBadgePanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/default_color = Color(0.32156864, 0.83137256, 0.34509805, 1)
-theme_override_colors/font_shadow_color = Color(0.59607846, 0.5529412, 0.28627452, 0)
-theme_override_constants/shadow_outline_size = 8
-theme_override_constants/shadow_offset_x = 9
-theme_override_constants/shadow_offset_y = 9
-theme_override_constants/outline_size = 15
-theme_override_font_sizes/normal_font_size = 29
-bbcode_enabled = true
-text = "Chapter cleared"
-autowrap_mode = 2
-autowrap_trim_flags = 64
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="Chapter4" type="TextureButton" parent="ScrollContainer/HBoxContainer"]
 modulate = Color(1, 1, 1, 0.8117647)
@@ -389,6 +353,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 47.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.99, 0.90684, 0.7821, 1)
@@ -399,7 +364,7 @@ theme_override_constants/shadow_offset_y = 9
 theme_override_constants/outline_size = 15
 theme_override_constants/shadow_outline_size = 10
 theme_override_font_sizes/font_size = 40
-text = "TBC...
+text = "TBC
 "
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -407,48 +372,12 @@ autowrap_mode = 2
 autowrap_trim_flags = 64
 
 [node name="Panel" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter4"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="ClearedBadgePanel" type="Panel" parent="ScrollContainer/HBoxContainer/Chapter4"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_right = -9.0
-offset_bottom = -279.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
-[node name="ClearedBadgeLabel" type="RichTextLabel" parent="ScrollContainer/HBoxContainer/Chapter4/ClearedBadgePanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/default_color = Color(0.32156864, 0.83137256, 0.34509805, 1)
-theme_override_colors/font_shadow_color = Color(0.59607846, 0.5529412, 0.28627452, 0)
-theme_override_constants/shadow_outline_size = 8
-theme_override_constants/shadow_offset_x = 9
-theme_override_constants/shadow_offset_y = 9
-theme_override_constants/outline_size = 15
-theme_override_font_sizes/normal_font_size = 29
-bbcode_enabled = true
-text = "Chapter cleared"
-autowrap_mode = 2
-autowrap_trim_flags = 64
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="ChapterDescriptionPanel" type="Panel" parent="."]
 layout_mode = 1

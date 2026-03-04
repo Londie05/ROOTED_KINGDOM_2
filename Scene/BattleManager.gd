@@ -26,6 +26,16 @@ extends Control
 @export var floor_18_enemies: Array[EnemyData] = []
 @export var floor_19_enemies: Array[EnemyData] = []
 @export var floor_20_enemies: Array[EnemyData] = []
+@export var floor_21_enemies: Array[EnemyData] = []
+@export var floor_22_enemies: Array[EnemyData] = []
+@export var floor_23_enemies: Array[EnemyData] = []
+@export var floor_24_enemies: Array[EnemyData] = []
+@export var floor_25_enemies: Array[EnemyData] = []
+@export var floor_26_enemies: Array[EnemyData] = []
+@export var floor_27_enemies: Array[EnemyData] = []
+@export var floor_28_enemies: Array[EnemyData] = []
+@export var floor_29_enemies: Array[EnemyData] = []
+@export var floor_30_enemies: Array[EnemyData] = []
 
 @export_group("Story Mode Battles")
 @export var story_ch1_stage_1_1: Array[EnemyData] = []
@@ -572,10 +582,19 @@ func setup_enemies():
 			18: selected_data = floor_18_enemies
 			19: selected_data = floor_19_enemies
 			20: selected_data = floor_20_enemies
+			21: selected_data = floor_21_enemies
+			22: selected_data = floor_22_enemies
+			23: selected_data = floor_23_enemies
+			24: selected_data = floor_24_enemies
+			25: selected_data = floor_25_enemies
+			26: selected_data = floor_26_enemies
+			27: selected_data = floor_27_enemies
+			28: selected_data = floor_28_enemies
+			29: selected_data = floor_29_enemies
+			30: selected_data = floor_30_enemies
 	elif Global.current_game_mode == Global.GameMode.STORY:
-		growth_multiplier = 1.0 # Keep story battles at intended difficulty
+		growth_multiplier = 1.0 
 		print("Story Mode Active. Loading Stage: ", Global.current_battle_stage)
-		# This "match" looks at the ID we sent from the Chapter script
 		match Global.current_battle_stage:
 			"1-1": selected_data = story_ch1_stage_1_1
 			"1-2": selected_data = story_ch2_stage_1_2
@@ -783,18 +802,15 @@ func purge_dead_cards():
 		if is_instance_valid(hero) and hero.current_health > 0:
 			alive_hero_data.append(hero.character_data)
 	
-	# 2. Rule: A card is "valid" only if its owner is in the alive list
 	var card_is_valid = func(card_res: CardData):
 		for data in alive_hero_data:
 			if data.unique_card == card_res or card_res in data.common_cards:
 				return true
 		return false
 
-	# 3. Scrub the Logic (Deck & Discard)
 	deck = deck.filter(card_is_valid)
 	discard_pile = discard_pile.filter(card_is_valid)
 	
-	# 4. Scrub the UI (Hand & Slots)
 	for card_node in hand_container.get_children():
 		if not card_is_valid.call(card_node.card_data):
 			card_node.queue_free()
@@ -803,5 +819,3 @@ func purge_dead_cards():
 		if not card_is_valid.call(card_node.card_data):
 			slotted_nodes.erase(card_node)
 			card_node.queue_free()
-	
-	print("Cleanup complete. Remaining cards in deck: ", deck.size())

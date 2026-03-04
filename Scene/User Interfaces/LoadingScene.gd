@@ -72,9 +72,7 @@ func _update_loading_text():
 		else:
 			status_label.text = "Loading Game Resources..."
 
-# Restoration of the missing helper functions
 func _update_battle_text():
-	# Creates a cycling "..." animation
 	var dots = "".repeat(int(time_elapsed * 2.0) % 4)
 	status_label.text = "Preparing for Battle" + dots
 

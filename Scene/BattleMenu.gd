@@ -36,7 +36,6 @@ func _ready():
 		if not fullscreen_check.toggled.is_connected(_on_fullscreen_check_toggled):
 			fullscreen_check.toggled.connect(_on_fullscreen_check_toggled)
 
-# --- CALL THIS WHENEVER THE MENU SHOWS ---
 func refresh_audio_ui():
 	update_mute_button_visuals()
 	if volume_slider:
@@ -136,7 +135,7 @@ func _on_action_button_pressed():
 		get_tree().paused = false 
 		Global.current_tower_floor += 1
 		hide()
-		if Global.current_tower_floor <= 20:
+		if Global.current_tower_floor <= 30:
 			get_tree().reload_current_scene()
 		else:
 			get_tree().change_scene_to_file("res://Scene/TowerSelection.tscn")

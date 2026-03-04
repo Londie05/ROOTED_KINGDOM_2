@@ -29,11 +29,11 @@ enum TargetType { ENEMY, HERO }
 
 @export_group("Visuals & Audio")
 @export var sound_effect: AudioStream
-@export var animation_name: String = "attack" # Default animation name
-@export var moves_to_target: bool = false     # True = Melee, False = Ranged/Magic
-@export var vfx_frames: SpriteFrames # One file containing ALL your common FX
-@export var vfx_animation: String = "slash" # The specific animation to play
+@export var animation_name: String = "" 
+@export var moves_to_target: bool = false    
+@export var vfx_frames: SpriteFrames 
+@export var vfx_animation: String = "" 
 @export var vfx_scale: float = 1.0
 @export var vfx_position_mode: VFXPositionMode = VFXPositionMode.TARGET
 @export var vfx_offset: Vector2 = Vector2(100, 0)
-@export var vfx_vertical_lift: float = 80.0     #  How many pixels to move UP
+@export var vfx_vertical_lift: float = 80.0    

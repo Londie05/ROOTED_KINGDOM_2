@@ -60,7 +60,7 @@ func _on_start_pressed():
 func _update_clear_badges():
 	var container = $ScrollContainer/HBoxContainer
 	
-	for i in range(1, 5): # Check chapters 1 through 4
+	for i in range(1, 2): 
 		var key = "Chapter" + str(i)
 		var chapter_node = container.get_node_or_null(key)
 		
