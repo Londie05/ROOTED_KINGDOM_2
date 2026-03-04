@@ -91,6 +91,7 @@ var battle_themes: Array[String] = [
 ]
 
 @onready var reward_popup = $CanvasLayer/CustomQuitPopup
+@onready var quit_confirmation = $CanvasLayer/CustomQuitPopup
 
 func _ready():
 	for child in hand_container.get_children():
@@ -544,7 +545,6 @@ func setup_enemies():
 	var selected_data: Array[EnemyData] = []
 	var growth_multiplier: float = 1.0
 	
-	# --- 1. CALCULATE GROWTH (Keep your exact logic here) ---
 	if Global.current_game_mode == Global.GameMode.ENDLESS:
 		var num_to_spawn = 1
 		if round_number >= 6 and round_number <= 10: num_to_spawn = 2
@@ -557,7 +557,6 @@ func setup_enemies():
 		growth_multiplier = 1.0 + (round_number * 0.02)
 		
 	if Global.current_game_mode == Global.GameMode.TOWER:
-		# --- TOWER LOGIC (Existing) ---
 		var growth_percent = 0.05 
 		growth_multiplier = 1.0 + (Global.current_tower_floor * growth_percent)
 	
@@ -640,10 +639,16 @@ func check_battle_status():
 	# --- DEFEAT ---
 	if alive_players.is_empty():
 		is_battle_ending = true
+		
 		if Global.current_game_mode == Global.GameMode.ENDLESS:
 			if round_number > Global.highest_endless_round:
 				Global.highest_endless_round = round_number
-				Global.save_game()
+				
+			if round_number > Global.daily_highest_round:
+				Global.daily_highest_round = round_number
+				
+			Global.save_game()
+			
 		await get_tree().create_timer(1.0).timeout
 		fade_out_music()
 		GlobalMenu.show_loss_menu() 
@@ -687,20 +692,25 @@ func check_battle_status():
 				get_tree().change_scene_to_file("res://Scene/TowerSelection.tscn")
 				
 func process_endless_round_victory():
-	# 1. Calculate Rewards
 	var gems_won = randi_range(10, 15)
 	var crystals_won = randi_range(1, 3)
+	
 	Global.small_gems += gems_won
 	Global.crystal_gems += crystals_won
 	
+	Global.daily_gems_earned += gems_won
+	Global.daily_crystals_earned += crystals_won
+	Global.save_game()
+	
 	var reward_text = "Round %d Cleared!\nReceived: %d Gems and %d Crystals" % [round_number, gems_won, crystals_won]
-	reward_popup.show_reward_auto_close(reward_text, 1.5)
+	
+	if reward_popup:
+		reward_popup.show_reward_auto_close(reward_text, 1.5)
 	
 	round_number += 1
 	if stage_count_label:
 		stage_count_label.text = "Round: " + str(round_number)
 
-	# 4. Clean up the Battlefield (Hand/Slots to Discard)
 	for card in hand_container.get_children():
 		if card.card_data: discard_pile.append(card.card_data)
 		card.queue_free()
@@ -709,7 +719,6 @@ func process_endless_round_victory():
 		card.queue_free()
 	slotted_nodes.clear()
 	
-	# 5. Wait for the popup to finish before spawning new enemies
 	await get_tree().create_timer(1.6).timeout 
 	
 	setup_enemies()
@@ -819,3 +828,42 @@ func purge_dead_cards():
 		if not card_is_valid.call(card_node.card_data):
 			slotted_nodes.erase(card_node)
 			card_node.queue_free()
+
+func request_quit():
+	if quit_confirmation:
+		quit_confirmation.get_parent().move_child(quit_confirmation, quit_confirmation.get_parent().get_child_count() - 1)
+		
+		quit_confirmation.setup_popup(
+			"Quit Battle?\nEndless progress will be saved.", 
+			"Quit", 
+			"Cancel", 
+			1.5 
+		)
+		
+		if quit_confirmation.confirmed.is_connected(_on_quit_confirmed):
+			quit_confirmation.confirmed.disconnect(_on_quit_confirmed)
+		
+		quit_confirmation.confirmed.connect(_on_quit_confirmed)
+		quit_confirmation.show_popup()
+		
+func _on_quit_confirmed():
+	if Global.current_game_mode == Global.GameMode.ENDLESS:
+		if round_number > Global.highest_endless_round:
+			Global.highest_endless_round = round_number
+		if round_number > Global.daily_highest_round:
+			Global.daily_highest_round = round_number
+		Global.save_game()
+	
+	get_tree().paused = false
+	_navigate_back_to_menu()
+	
+	
+func _navigate_back_to_menu():
+	if Global.current_game_mode == Global.GameMode.TOWER:
+		get_tree().change_scene_to_file("res://Scene/TowerSelection.tscn")
+	elif Global.current_game_mode == Global.GameMode.STORY:
+		Global.loading_target_scene = "res://Scene/User Interfaces/UI scenes/StoryMode.tscn"
+		get_tree().change_scene_to_file("res://Scene/User Interfaces/LoadingScene.tscn")
+	elif Global.current_game_mode == Global.GameMode.ENDLESS:
+		Global.loading_target_scene = "res://Scene/User Interfaces/UI scenes/EndlessMode.tscn"
+		get_tree().change_scene_to_file("res://Scene/User Interfaces/LoadingScene.tscn")

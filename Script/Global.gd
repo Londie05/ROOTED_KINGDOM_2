@@ -11,10 +11,19 @@ var story_line_resume_index: int = 0
 var just_finished_battle: bool = false
 var current_battle_stage: String = ""
 
+var daily_gems_earned: int = 0
+var daily_crystals_earned: int = 0
+
 # --- ENDLESS MODE VARIABLES ---
 var highest_endless_round: int = 0
 var current_endless_round: int = 1
 
+# --- DAILY RESET VARIABLES ---
+var daily_highest_round: int = 0
+var daily_rewards_earned: int = 0
+var last_played_day: int = 0
+var last_played_month: int = 0
+var last_played_year: int = 0
 # Background music
 var bgm_player: AudioStreamPlayer
 var current_bgm_track_name: String = "Music 1" # Default
@@ -411,6 +420,12 @@ func save_game():
 	config.set_value("Progression", "card_levels", card_levels)
 	config.set_value("Progression", "floors_cleared", floors_cleared)
 	
+	config.set_value("Progression", "daily_highest_round", daily_highest_round)
+	config.set_value("Progression", "daily_rewards_earned", daily_rewards_earned)
+	config.set_value("Progression", "last_played_day", last_played_day)
+	config.set_value("Progression", "last_played_month", last_played_month)
+	config.set_value("Progression", "last_played_year", last_played_year)
+	
 	
 	config.set_value("settings", "bgm_track_name", current_bgm_track_name)
 	
@@ -431,6 +446,13 @@ func load_game():
 	if err != OK: return
 	story_chapters_cleared = config.get_value("Progression", "story_chapters_cleared", [])
 	
+	daily_highest_round = config.get_value("Progression", "daily_highest_round", 0)
+	daily_rewards_earned = config.get_value("Progression", "daily_rewards_earned", 0)
+	last_played_day = config.get_value("Progression", "last_played_day", 0)
+	last_played_month = config.get_value("Progression", "last_played_month", 0)
+	last_played_year = config.get_value("Progression", "last_played_year", 0)
+	
+	
 	character_levels = config.get_value("Progression", "character_levels", {})
 	player_name = config.get_value("Progression", "player_name", "")
 	small_gems = config.get_value("Progression", "small_gems", 5000)
@@ -446,7 +468,7 @@ func load_game():
 	
 	master_volume = config.get_value("settings", "master_volume", 1.0)
 	is_muted = config.get_value("settings", "is_muted", false)
-	
+	check_daily_reset()
 	apply_master_volume(master_volume)
 
 func apply_master_volume(value: float):
@@ -552,3 +574,17 @@ func grant_floor_reward(floor_num: int):
 	small_gems += reward["small"]
 	crystal_gems += reward["crystal"]
 	save_game()
+
+func check_daily_reset():
+	var current_date = Time.get_date_dict_from_system()
+	
+	if current_date["day"] != last_played_day or current_date["month"] != last_played_month or current_date["year"] != last_played_year:
+		daily_highest_round = 0
+		daily_rewards_earned = 0
+		
+		last_played_day = current_date["day"]
+		last_played_month = current_date["month"]
+		last_played_year = current_date["year"]
+		
+		save_game()
+		

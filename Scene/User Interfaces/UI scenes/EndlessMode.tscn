@@ -91,8 +91,9 @@ layout_mode = 2
 [node name="HighestScoreLabel" type="Label" parent="CenterContainer/VBoxContainer/HSPanel"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 0
+offset_top = 47.5
 offset_right = 800.0
-offset_bottom = 28.0
+offset_bottom = 97.5
 theme_override_colors/font_color = Color(0.9647059, 0.5019608, 0, 1)
 theme_override_constants/line_spacing = 7
 theme_override_constants/shadow_offset_y = 10
@@ -106,16 +107,16 @@ vertical_alignment = 1
 [node name="RewardBox" type="Label" parent="CenterContainer/VBoxContainer/HSPanel"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 0
-offset_top = 36.5
+offset_top = 83.5
 offset_right = 800.0
-offset_bottom = 86.5
+offset_bottom = 133.5
 theme_override_colors/font_color = Color(0.60784316, 0.7529412, 0.827451, 1)
 theme_override_constants/line_spacing = 7
 theme_override_constants/shadow_offset_y = 10
 theme_override_constants/outline_size = 9
 theme_override_constants/shadow_outline_size = 8
 theme_override_font_sizes/font_size = 20
-text = "Daily Highest reward: 0"
+text = "Daily Rewards Earned: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -160,5 +161,21 @@ offset_top = 215.5
 offset_right = 578.0
 offset_bottom = 255.5
 text = "Start Battle"
+
+[node name="ResetTimerDaily" type="Label" parent="CenterContainer/VBoxContainer/HSPanel"]
+custom_minimum_size = Vector2(800, 30)
+layout_mode = 0
+offset_top = 0.5
+offset_right = 800.0
+offset_bottom = 50.5
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/line_spacing = 7
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 9
+theme_override_constants/shadow_outline_size = 8
+theme_override_font_sizes/font_size = 20
+text = "Reset in: 00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
