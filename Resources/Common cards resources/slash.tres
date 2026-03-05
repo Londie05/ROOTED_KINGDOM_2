@@ -8,7 +8,7 @@
 script = ExtResource("2_fc3r1")
 card_name = "Slash"
 card_image = ExtResource("1_fc3r1")
-description = "Deals 12 damage to single enemy"
+description = "Deals [DMG] damage to single enemy"
 damage = 12
 shield = 1
 heal_amount = 1

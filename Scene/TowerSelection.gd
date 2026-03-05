@@ -94,7 +94,6 @@ func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/start_battle.tscn")
 
 func lock_floors():
-	# 1. Find the highest floor actually cleared in the list
 	var max_cleared = 0
 	for f in Global.floors_cleared:
 		if f is int:
@@ -102,7 +101,7 @@ func lock_floors():
 	
 	var unlock_limit = max_cleared + 1
 
-	for i in range(1, 21):
+	for i in range(1, 31):
 		var node_name = "Floor" + str(i)
 		if container.has_node(node_name):
 			var btn = container.get_node(node_name)
@@ -111,8 +110,7 @@ func lock_floors():
 			
 			btn.disabled = not is_unlocked
 			
-			# Visual feedback
 			if is_unlocked:
-				btn.modulate = Color(1, 1, 1) # Bright
+				btn.modulate = Color(1, 1, 1) 
 			else:
-				btn.modulate = Color(0.3, 0.3, 0.3) # Darkened
+				btn.modulate = Color(0.3, 0.3, 0.3)

@@ -8,7 +8,7 @@
 script = ExtResource("1_6jplm")
 card_name = "Sharpshooter of death"
 card_image = ExtResource("1_bmnps")
-description = "Deals 70 damage to a single enemy with 70% chance of dealing critical damage"
+description = "Deals [DMG] damage to a single enemy with [CRIT]% chance of dealing critical damage"
 damage = 70
 mana_cost = 7
 aoe_targets = 1

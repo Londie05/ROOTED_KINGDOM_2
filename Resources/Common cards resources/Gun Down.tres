@@ -8,7 +8,7 @@
 script = ExtResource("1_utgqj")
 card_name = "Gun Down"
 card_image = ExtResource("1_7qtlj")
-description = "deals 18 damage to single enemy"
+description = "deals [DMG] damage to single enemy"
 damage = 15
 mana_cost = 1
 aoe_targets = 1

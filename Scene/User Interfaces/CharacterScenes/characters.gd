@@ -18,18 +18,17 @@ var selection_card_scene = preload("res://Scene/User Interfaces/CharacterScenes/
 var card_ui_scene = preload("res://Scene/CardUI.tscn")
 
 var current_viewed_hero: CharacterData = null
-
+var is_battle_prep: bool = false
 
 func _ready():
 	Global.clear_team()
-	display_roster()
-	update_currency_ui()
 	
-	# --- UPDATED LOGIC HERE ---
-	# We added "Global.current_game_mode == Global.GameMode.ENDLESS" to the check
-	var is_battle_prep = Global.from_tower_mode or \
+	is_battle_prep = Global.from_tower_mode or \
 						 Global.current_game_mode == Global.GameMode.STORY or \
 						 Global.current_game_mode == Global.GameMode.ENDLESS
+	
+	display_roster() 
+	update_currency_ui()
 	
 	if is_battle_prep:
 		$UpgradesButton.hide()
@@ -81,23 +80,21 @@ func _on_hero_selection(data: CharacterData, card_node: Button):
 	current_viewed_hero = data
 	update_details(data)
 	
-	# 1. Create a single variable to determine if the hero is locked or owned
 	var is_actually_locked = data.is_locked and not Global.is_hero_unlocked(data.name)
 	
 	if is_actually_locked:
-		# SHOW UNLOCK BUTTON
 		if unlock_btn:
 			unlock_btn.text = "Unlock: " + str(data.unlock_cost) + " Gems"
 			unlock_btn.show()
 			unlock_btn.disabled = (Global.small_gems < data.unlock_cost)
-		
 		return 
 	
-	# Hide the unlock button 
 	if unlock_btn: 
 		unlock_btn.hide()
 	
-	# 3. ADD/REMOVE FROM TEAM LOGIC
+	if not is_battle_prep:
+		return 
+	
 	if data in Global.selected_team:
 		Global.selected_team.erase(data)
 		card_node.get_node("SelectionOverlay").hide()
@@ -117,7 +114,6 @@ func _on_unlock_hero_pressed():
 	if Global.small_gems >= current_viewed_hero.unlock_cost:
 		Global.small_gems -= current_viewed_hero.unlock_cost
 		
-		# SAVE TO GLOBAL SO IT PERSISTS
 		Global.unlock_hero(current_viewed_hero.name)
 		
 		display_roster()
@@ -128,13 +124,10 @@ func _on_unlock_hero_pressed():
 	
 func _on_confirm_battle_pressed():
 	if Global.selected_team.size() > 0:
-		# Tell Global where the Loading Screen should take us
 		Global.loading_target_scene = "res://Scene/battlefield.tscn"
 		
-		# Go to Loading Screen
 		get_tree().change_scene_to_file("res://Scene/User Interfaces/LoadingScene.tscn")
 	else:
-		# You could add a UI popup here instead of just a print
 		print("You must select at least one character!")
 
 func update_team_ui():
@@ -182,7 +175,6 @@ func update_details(data: CharacterData):
 			play_btn.hide()
 		
 		var desc_label = Label.new()
-		# Only show description if unlocked? 
 		desc_label.text = card_data.description 
 		desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		desc_label.custom_minimum_size.x = 320 

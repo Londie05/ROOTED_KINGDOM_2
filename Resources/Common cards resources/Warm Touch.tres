@@ -9,7 +9,7 @@
 script = ExtResource("2_1cttj")
 card_name = "Warm Touch"
 card_image = ExtResource("1_1cttj")
-description = "Heals all allies by 30"
+description = "Heals all allies by [HEAL]"
 target_type = 1
 heal_amount = 30
 mana_cost = 3

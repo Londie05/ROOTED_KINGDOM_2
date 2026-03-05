@@ -8,10 +8,12 @@
 script = ExtResource("1_2b8co")
 card_name = "The Luminious warrior"
 card_image = ExtResource("1_53ukj")
-description = "deals 55 damage to single enemy and stunning them for 1 turn with 45% chance of dealing critical damage"
+description = "deals [DMG] damage to single enemy and stunning them for 1 turn with [CRIT]% chance of dealing critical damage"
 damage = 55
+stuns_enemy = true
 mana_cost = 7
 critical_chance = 45
+stun_duration = 1
 damage_growth = 2
 shield_growth = 0
 heal_growth = 0

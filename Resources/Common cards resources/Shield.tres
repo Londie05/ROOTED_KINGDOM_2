@@ -9,7 +9,7 @@
 script = ExtResource("2_yn7dl")
 card_name = "Sacred Barrier"
 card_image = ExtResource("1_yn7dl")
-description = "Give 17 shield to all heroes on the field"
+description = "Give [SHIELD] shield to all heroes on the field"
 target_type = 1
 shield = 17
 mana_cost = 2

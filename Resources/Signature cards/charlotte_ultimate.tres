@@ -8,7 +8,7 @@
 script = ExtResource("2_hswhc")
 card_name = "Judgement Crimson"
 card_image = ExtResource("1_hswhc")
-description = "Gain 8 mana, 15 shield and  15 heal to all allies"
+description = "Gain [MANA] mana, [SHIELD] shield and  [HEAL] heal to all allies"
 target_type = 1
 shield = 15
 heal_amount = 15

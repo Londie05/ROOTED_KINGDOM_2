@@ -8,7 +8,7 @@
 script = ExtResource("2_eay75")
 card_name = "Bloom endless meadow"
 card_image = ExtResource("1_eay75")
-description = "deals 66 damage to all enemies and has a 44% chance of dealing critical damage"
+description = "deals [DMG] damage to all enemies and has a [CRIT]% chance of dealing critical damage"
 damage = 66
 mana_cost = 7
 is_aoe = true

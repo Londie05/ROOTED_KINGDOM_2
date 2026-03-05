@@ -437,9 +437,11 @@ func execute_slotted_actions():
 		var caster_hero = find_hero_owner(data)
 		var targets = get_targets_for_action(data.is_aoe, data.aoe_targets, data.target_type)
 		var primary_target = targets[0] if not targets.is_empty() else null
+		var support_targets = targets
 		
-		# Inside execute_slotted_actions() in BattleManager.gd
-
+		if data.target_type == CardData.TargetType.ENEMY:
+			support_targets = get_targets_for_action(data.is_aoe, data.aoe_targets, CardData.TargetType.HERO)
+			
 		if data.vfx_frames:
 			var final_pos = Vector2.ZERO
 			
@@ -467,9 +469,7 @@ func execute_slotted_actions():
 							var t_pos = target.global_position
 							t_pos.y -= data.vfx_vertical_lift
 							spawn_vfx(data.vfx_frames, data.vfx_animation, t_pos, data.vfx_scale)
-		# --- END OF VFX BLOCK ---
 		
-		# Now the code continues normally without skipping!
 		if card_node.has_method("animate_as_active"):
 			card_node.animate_as_active()
 			
@@ -495,15 +495,18 @@ func execute_slotted_actions():
 				if is_instance_valid(target):
 					target.take_damage(final_damage if not is_crit else int(final_damage * 1.5), is_crit)
 		
-		if data.shield > 0 and not targets.is_empty():
+		if data.shield > 0 and not support_targets.is_empty():
 			var final_shield = Global.get_card_shield(data)
-			for target in targets:
-				target.add_shield(final_shield)
+			for target in support_targets:
+				if is_instance_valid(target):
+					target.add_shield(final_shield)
+					
 
-		if data.heal_amount > 0 and not targets.is_empty():
+		if data.heal_amount > 0 and not support_targets.is_empty():
 			var final_heal = Global.get_card_heal(data)
-			for target in targets:
-				target.heal(final_heal)
+			for target in support_targets:
+				if is_instance_valid(target):
+					target.heal(final_heal)
 					
 		if data.mana_gain > 0:
 			var gain = Global.get_card_mana(data)

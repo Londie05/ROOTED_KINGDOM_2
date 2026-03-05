@@ -30,6 +30,8 @@ var current_bgm_track_name: String = "Music 1" # Default
 var master_volume: float = 1.0
 var is_muted: bool = false
 
+signal card_upgraded(card_name)
+
 # Account Management
 var all_accounts: Dictionary = {} # Stores { "unique_id": "Player Name" }
 var current_account_id: String = ""
@@ -58,7 +60,8 @@ var allowed_bgm_scenes: Array[String] = [
 	"NameEntry",
 	"AccountSelection",
 	"StoryMode",
-	"EndlessMode"
+	"EndlessMode",
+	"TitleScreen"
 ]
 
 # For backgrounds
@@ -378,10 +381,12 @@ func attempt_upgrade(data: CardData) -> bool:
 		if not card_levels.has(data.card_name):
 			card_levels[data.card_name] = 0
 		card_levels[data.card_name] += 1
+		
+		card_upgraded.emit(data.card_name) 
+		
 		save_game()
 		return true
-	else:
-		return false
+	return false
 
 func upgrade_character(data: CharacterData) -> bool:
 	var cost = get_upgrade_cost(data.name)

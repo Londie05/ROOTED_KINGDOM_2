@@ -9,7 +9,7 @@
 script = ExtResource("1_q2jd0")
 card_name = "Pierce"
 card_image = ExtResource("1_pu6pm")
-description = "deals 14 damage to two enemies"
+description = "deals [DMG] damage to two enemies"
 damage = 14
 mana_cost = 1
 is_aoe = true

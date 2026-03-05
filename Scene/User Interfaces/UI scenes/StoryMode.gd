@@ -60,7 +60,7 @@ func _on_start_pressed():
 func _update_clear_badges():
 	var container = $ScrollContainer/HBoxContainer
 	
-	for i in range(1, 2): 
+	for i in range(1, 3): 
 		var key = "Chapter" + str(i)
 		var chapter_node = container.get_node_or_null(key)
 		
@@ -82,9 +82,9 @@ func _update_clear_badges():
 				else:
 					var prev_key = "Chapter" + str(i - 1)
 					if Global.story_chapters_cleared.has(prev_key):
-						block_panel.visible = false # Unlock it!
+						block_panel.visible = false 
 					else:
-						block_panel.visible = true # Stay blocked!
+						block_panel.visible = true 
 
 func _on_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scene/User Interfaces/UI scenes/start_battle.tscn")

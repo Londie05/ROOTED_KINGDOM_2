@@ -9,7 +9,7 @@
 script = ExtResource("1_qym0v")
 card_name = "Ice barrage"
 card_image = ExtResource("1_o5lfv")
-description = "Deals 5 damage and stuns all enemies on the field for 1 round"
+description = "Deals [DMG] damage and stuns all enemies on the field for 1 turn"
 damage = 8
 stuns_enemy = true
 mana_cost = 2

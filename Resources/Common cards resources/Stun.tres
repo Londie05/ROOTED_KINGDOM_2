@@ -9,7 +9,7 @@
 script = ExtResource("2_j3qua")
 card_name = "Stun"
 card_image = ExtResource("1_j3qua")
-description = "stuns a single enemy for 2 rounds"
+description = "stuns a single enemy for 2 turns"
 damage = 2
 stuns_enemy = true
 mana_cost = 3

@@ -9,7 +9,7 @@
 script = ExtResource("1_7o0iu")
 card_name = "Ice Weaver"
 card_image = ExtResource("1_1mmay")
-description = "Deals 25 damage to two enemies and heal an ally"
+description = "Deals [DMG] damage to two enemies and heal an ally"
 damage = 25
 mana_cost = 2
 is_aoe = true

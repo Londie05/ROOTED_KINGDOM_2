@@ -44,9 +44,36 @@ func setup(data: CardData):
 	if mana_label:
 		mana_label.text = "Mana: " + str(data.mana_cost)
 	
-	if desc_label:
-		desc_label.text = data.description
+	if not Global.card_upgraded.is_connected(_on_card_upgraded):
+		Global.card_upgraded.connect(_on_card_upgraded)
+		
+	update_description()
 
+func _on_global_card_upgraded(upgraded_card_name):
+	if card_data and upgraded_card_name == card_data.card_name:
+		update_description()
+		
+func update_description():
+	if not card_data or not desc_label: return
+	
+	var text = card_data.description 
+	
+	if "[DMG]" in text:
+		text = text.replace("[DMG]", str(Global.get_card_damage(card_data)))
+	
+	if "[SHIELD]" in text:
+		text = text.replace("[SHIELD]", str(Global.get_card_shield(card_data)))
+		
+	if "[HEAL]" in text:
+		text = text.replace("[HEAL]", str(Global.get_card_heal(card_data)))
+		
+	if "[MANA]" in text:
+		text = text.replace("[MANA]", str(Global.get_card_mana(card_data)))
+	if "[CRIT]" in text:
+		text = text.replace("[CRIT]", str(card_data.critical_chance))
+		
+	desc_label.text = text
+	
 func _gui_input(event):
 	if not is_playable or click_locked: return
 	
@@ -169,3 +196,8 @@ func animate_as_active():
 	visuals.modulate = Color(2.03, 1.962, 1.802, 1.0) 
 	tween.tween_interval(0.8) 
 	tween.tween_property(visuals, "modulate", Color(1, 1, 1), 0.2)
+
+func _on_card_upgraded(upgraded_name: String):
+	if card_data and card_data.card_name == upgraded_name:
+		update_description()
+		

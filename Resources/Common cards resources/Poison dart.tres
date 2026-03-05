@@ -9,7 +9,7 @@
 script = ExtResource("1_frn3b")
 card_name = "Poison dart"
 card_image = ExtResource("1_md57h")
-description = "deals 25 damage to 1 enemy and stun it for 1 turn"
+description = "deals [DMG] damage to one enemy and stun it for 1 turn"
 damage = 25
 stuns_enemy = true
 mana_cost = 2

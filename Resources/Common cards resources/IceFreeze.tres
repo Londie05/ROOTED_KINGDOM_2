@@ -9,7 +9,7 @@
 script = ExtResource("1_kx0o4")
 card_name = "Ice Freeze"
 card_image = ExtResource("1_cok2d")
-description = "Freeze all enemies for 1 turn"
+description = "Freeze one enemy for 1 turn"
 damage = 3
 stuns_enemy = true
 mana_cost = 2
