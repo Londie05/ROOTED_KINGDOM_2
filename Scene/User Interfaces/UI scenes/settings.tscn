@@ -284,12 +284,11 @@ layout_mode = 2
 
 [node name="CheatInput" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
-placeholder_text = "Enter Code"
 
 [node name="RedeemButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
-text = "Redeem"
+text = "enter"
 
 [connection signal="value_changed" from="User Interface/Options/VBoxContainer/Volume/Volume Slider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="toggled" from="User Interface/Options/VBoxContainer/HBoxContainer/Fullscreen Check" to="." method="_on_fullscreen_check_toggled"]

@@ -38,6 +38,8 @@ var current_account_id: String = ""
 var is_renaming_mode: bool = false 
 const MASTER_SAVE_PATH = "user://master_config.save"
 
+var sfx_enabled: bool = true
+
 # --- MUSIC TRACKS ---
 var bgm_tracks: Dictionary = {
 	"Music 1": "res://Asset/Backgrounds/Story Mode/bgMusic2.ogg",
@@ -120,6 +122,16 @@ var floor_rewards = {
 	18: { "small": 700, "crystal": 10 },
 	19: { "small": 750, "crystal": 15 },
 	20: { "small": 1500, "crystal": 30 },
+	21: { "small": 2000, "crystal": 35 },
+	22: { "small": 2100, "crystal": 40 },
+	23: { "small": 2200, "crystal": 45 },
+	24: { "small": 2300, "crystal": 50 },
+	25: { "small": 2400, "crystal": 55 },
+	26: { "small": 2500, "crystal": 60 },
+	27: { "small": 3000, "crystal": 65 },
+	28: { "small": 3500, "crystal": 70 },
+	29: { "small": 3600, "crystal": 75 },
+	30: { "small": 4000, "crystal": 80 },
 }
 
 const HP_GROWTH_PER_LEVEL = 5
@@ -415,6 +427,9 @@ func save_game():
 	if current_account_id == "": return
 		
 	var config = ConfigFile.new()
+	config.set_value("Progression", "daily_gems_earned", daily_gems_earned)
+	config.set_value("Progression", "daily_crystals_earned", daily_crystals_earned)
+	config.set_value("Progression", "highest_endless_round", highest_endless_round)
 	config.set_value("Progression", "story_chapters_cleared", story_chapters_cleared)
 	config.set_value("Progression", "character_levels", character_levels)
 	config.set_value("Progression", "player_name", player_name)
@@ -449,8 +464,10 @@ func load_game():
 	var config = ConfigFile.new()
 	var err = config.load(get_current_save_path())
 	if err != OK: return
+	daily_gems_earned = config.get_value("Progression", "daily_gems_earned", 0)
+	daily_crystals_earned = config.get_value("Progression", "daily_crystals_earned", 0)
 	story_chapters_cleared = config.get_value("Progression", "story_chapters_cleared", [])
-	
+	highest_endless_round = config.get_value("Progression", "highest_endless_round", 0)
 	daily_highest_round = config.get_value("Progression", "daily_highest_round", 0)
 	daily_rewards_earned = config.get_value("Progression", "daily_rewards_earned", 0)
 	last_played_day = config.get_value("Progression", "last_played_day", 0)
@@ -490,10 +507,9 @@ func apply_master_volume(value: float):
 			AudioServer.set_bus_mute(bus_index, true)
 		
 func reset_player_data():
-	# Resets variables only. Does not delete file.
 	player_name = ""
 	small_gems = 5000
-	crystal_gems = 5000
+	crystal_gems = 100 
 	unlocked_heroes = ["Hero"]
 	story_chapters_cleared = []
 	card_levels = {}
@@ -502,6 +518,13 @@ func reset_player_data():
 	floors_cleared = []
 	current_bg_name = "Default"
 	current_bgm_track_name = "Music 1"
+	
+	highest_endless_round = 0
+	current_endless_round = 1
+	daily_highest_round = 0
+	daily_gems_earned = 0
+	daily_crystals_earned = 0
+	daily_rewards_earned = 0
 
 
 # --- TEAM ---
@@ -529,6 +552,8 @@ func setup_audio_node():
 		sfx_player.bus = "Master"
 	
 func play_button_sfx():
+	if not sfx_enabled: return
+	
 	if sfx_player and button_click_sfx:
 		sfx_player.stream = button_click_sfx
 		sfx_player.pitch_scale = randf_range(0.98, 1.02)
@@ -585,11 +610,18 @@ func check_daily_reset():
 	
 	if current_date["day"] != last_played_day or current_date["month"] != last_played_month or current_date["year"] != last_played_year:
 		daily_highest_round = 0
-		daily_rewards_earned = 0
+		daily_gems_earned = 0
+		daily_crystals_earned = 0
 		
 		last_played_day = current_date["day"]
 		last_played_month = current_date["month"]
 		last_played_year = current_date["year"]
 		
 		save_game()
-		
+
+func mute_sfx_bus(is_muted: bool):
+	var sfx_bus_index = AudioServer.get_bus_index("SFX")
+	if sfx_bus_index != -1:
+		AudioServer.set_bus_mute(sfx_bus_index, is_muted)
+	else:
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), is_muted)

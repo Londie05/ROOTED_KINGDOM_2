@@ -8,7 +8,7 @@
 script = ExtResource("1_om1pg")
 name = "Enemy1"
 idle_animation = ExtResource("1_j73hr")
-max_health = 333
+max_health = 250
 base_damage = 7
 min_crit_chance = 0
 max_crit_chance = 0

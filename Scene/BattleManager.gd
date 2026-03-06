@@ -94,40 +94,47 @@ var battle_themes: Array[String] = [
 @onready var quit_confirmation = $CanvasLayer/CustomQuitPopup
 
 func _ready():
+	# 1. HARD MUTE immediately at the engine level
+	Global.mute_sfx_bus(true)
+	Global.sfx_enabled = false
+	
 	for child in hand_container.get_children():
 		child.queue_free()
 	
 	await get_tree().process_frame 
 	
-	# --- IMPROVED MUSIC LOGIC ---
-	if Global.current_game_mode == Global.GameMode.TOWER:
-		if Global.current_tower_floor == 10:
-			bgm_player.stream = load("res://Asset/Sound effects/background effect3.mp3")
-		else:
-			var random_track_path = battle_themes.pick_random()
-			bgm_player.stream = load(random_track_path)
-	else:
-		# Use a default Story Battle theme or keep current
-		bgm_player.stream = load("res://Asset/Sound effects/background effect1.mp3")
+	setup_battle_music() 
 	
-	bgm_player.play()
-	
-	# --- IMPROVED UI LOGIC ---
 	if stage_count_label:
 		if Global.current_game_mode == Global.GameMode.TOWER:
 			stage_count_label.text = "Floor: " + str(Global.current_tower_floor)
 		elif Global.current_game_mode == Global.GameMode.ENDLESS:
-			# Ensure it starts at Round 1 immediately
 			stage_count_label.text = "Round: " + str(round_number)
 		else:
 			stage_count_label.text = "Stage: " + Global.current_battle_stage
-		
+			
 	setup_player_team()
 	build_deck_from_team()
 	setup_enemies()
 	update_mana_ui()
 	start_current_phase()
 	
+	for i in range(3):
+		await get_tree().process_frame
+		
+	Global.mute_sfx_bus(false)
+	Global.sfx_enabled = true
+
+func setup_battle_music():
+	if Global.current_game_mode == Global.GameMode.TOWER:
+		if Global.current_tower_floor == 10:
+			bgm_player.stream = load("res://Asset/Sound effects/background effect3.mp3")
+		else:
+			bgm_player.stream = load(battle_themes.pick_random())
+	else:
+		bgm_player.stream = load("res://Asset/Sound effects/background effect1.mp3")
+	bgm_player.play()
+			
 func setup_player_team():
 	var heroes_in_scene = player_team.get_children() 
 	
@@ -700,17 +707,21 @@ func process_endless_round_victory():
 	
 	Global.small_gems += gems_won
 	Global.crystal_gems += crystals_won
-	
 	Global.daily_gems_earned += gems_won
 	Global.daily_crystals_earned += crystals_won
+	
+	var finished_round = round_number
+	
+	round_number += 1
+	Global.current_endless_round = round_number 
+	
 	Global.save_game()
 	
-	var reward_text = "Round %d Cleared!\nReceived: %d Gems and %d Crystals" % [round_number, gems_won, crystals_won]
+	var reward_text = "Round %d Cleared!\nReceived: %d Gems and %d Crystals" % [finished_round, gems_won, crystals_won]
 	
 	if reward_popup:
 		reward_popup.show_reward_auto_close(reward_text, 1.5)
 	
-	round_number += 1
 	if stage_count_label:
 		stage_count_label.text = "Round: " + str(round_number)
 

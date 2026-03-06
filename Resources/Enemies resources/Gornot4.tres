@@ -9,7 +9,7 @@
 script = ExtResource("1_yrnme")
 name = "Gornot4"
 idle_animation = ExtResource("1_d4a58")
-max_health = 777
+max_health = 650
 base_damage = 15
 min_crit_chance = 0
 max_crit_chance = 0

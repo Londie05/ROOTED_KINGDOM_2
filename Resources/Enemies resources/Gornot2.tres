@@ -9,7 +9,7 @@
 script = ExtResource("1_kiovc")
 name = "Enemy2"
 idle_animation = ExtResource("1_vk04e")
-max_health = 435
+max_health = 380
 base_damage = 12
 min_crit_chance = 0
 max_crit_chance = 0

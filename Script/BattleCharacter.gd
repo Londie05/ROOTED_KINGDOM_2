@@ -98,8 +98,8 @@ func play_attack_sequence(target_node: Node2D, should_move: bool, anim_name: Str
 			else:
 				anim_sprite.flip_h = true
 
-		spawn_debug_dot(target_pos) 
-		spawn_debug_dot(destination) 
+		# spawn_debug_dot(target_pos) 
+		# spawn_debug_dot(destination) 
 
 		var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "global_position", destination, 0.3)

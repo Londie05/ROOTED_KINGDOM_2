@@ -8,7 +8,7 @@
 script = ExtResource("1_wch68")
 name = "Gornot5"
 idle_animation = ExtResource("1_duuli")
-max_health = 1000
+max_health = 850
 base_damage = 30
 min_crit_chance = 0
 max_crit_chance = 0
@@ -18,5 +18,7 @@ attack_sound_1 = ExtResource("2_mo7dh")
 secondary_attack_chance = 0.5
 secondary_aoe_targets = 1
 attack_sound_2 = ExtResource("2_mo7dh")
+primary_anim = "attack_5"
 primary_moves_center = true
+secondary_anim = "attack_5"
 metadata/_custom_type_script = "uid://de4ufxbti7lif"

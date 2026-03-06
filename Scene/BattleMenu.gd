@@ -151,14 +151,21 @@ func _on_action_button_pressed():
 func _on_quit_button_pressed():
 	get_tree().paused = false
 	hide()
+	
+	if Global.current_game_mode == Global.GameMode.ENDLESS:
+		if Global.current_endless_round > Global.highest_endless_round:
+			Global.highest_endless_round = Global.current_endless_round
+			
+		if Global.current_endless_round > Global.daily_highest_round:
+			Global.daily_highest_round = Global.current_endless_round
+			
+		Global.save_game()
 
 	if Global.current_game_mode == Global.GameMode.TOWER:
 		get_tree().change_scene_to_file("res://Scene/TowerSelection.tscn")
-		
 	elif Global.current_game_mode == Global.GameMode.STORY:
 		Global.loading_target_scene = "res://Scene/User Interfaces/UI scenes/StoryMode.tscn" 
 		get_tree().change_scene_to_file("res://Scene/User Interfaces/LoadingScene.tscn")
-		
 	elif Global.current_game_mode == Global.GameMode.ENDLESS:
 		Global.loading_target_scene = "res://Scene/User Interfaces/UI scenes/EndlessMode.tscn"
 		get_tree().change_scene_to_file("res://Scene/User Interfaces/LoadingScene.tscn")
