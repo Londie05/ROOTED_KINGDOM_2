@@ -82,14 +82,14 @@ alignment = 1
 [node name="ConfirmButton" type="Button" parent="CenterContainer/PopupBox/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 13
 text = "Quit"
 autowrap_mode = 2
 
 [node name="CancelButton" type="Button" parent="CenterContainer/PopupBox/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 13
 text = "Cancel"
 autowrap_mode = 2
 

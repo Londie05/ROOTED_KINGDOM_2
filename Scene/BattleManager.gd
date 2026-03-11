@@ -150,7 +150,7 @@ func setup_player_team():
 				character_node.character_died.connect(_on_hero_died)
 		else:
 			character_node.queue_free()
-			
+
 func _on_hero_died(dead_hero: BattleCharacter):
 	print("Cleaning up cards for dead hero: ", dead_hero.char_name)
 	# 1. Instantly remove cards from Hand and Slots
@@ -705,10 +705,18 @@ func process_endless_round_victory():
 	var gems_won = randi_range(10, 15)
 	var crystals_won = randi_range(1, 3)
 	
-	Global.small_gems += gems_won
-	Global.crystal_gems += crystals_won
-	Global.daily_gems_earned += gems_won
-	Global.daily_crystals_earned += crystals_won
+	if Global.current_endless_round > Global.highest_endless_round:
+		Global.small_gems += gems_won
+		Global.crystal_gems += crystals_won
+		Global.daily_gems_earned += gems_won
+		Global.daily_crystals_earned += crystals_won
+	else:
+		crystals_won = 0
+		gems_won = 0
+		Global.small_gems += gems_won
+		Global.crystal_gems += crystals_won
+		Global.daily_gems_earned += gems_won
+		Global.daily_crystals_earned += crystals_won
 	
 	var finished_round = round_number
 	

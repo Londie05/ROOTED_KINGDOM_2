@@ -370,8 +370,8 @@ func try_redeem_code(code: String) -> String:
 			for card_name in all_my_cards:
 				card_levels[card_name] = 150
 				
-			current_tower_floor = 20
-			for i in range(1, 21):
+			current_tower_floor = 30
+			for i in range(1, 31):
 				if not floors_cleared.has(i):
 					floors_cleared.append(i)
 					
